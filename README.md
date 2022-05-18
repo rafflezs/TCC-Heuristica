@@ -1,6 +1,14 @@
-# 🏫 Metaheuristica em Timetable Universitário
+# 🏫 Projeto: Metaheuristica em Timetable Universitário
+
+## Resumo do projeto
 
 Desenvolvimento de uma *engine* para formulação de quadros de horários dos IFG, utilizando metaheuristica desenvolvida do zero para fins de conclusão do curso de Ciências da Computação.
+
+## Definindo Timetable
+
+Área da ***Pesquisa Operacional*** que consiste em agendar eventos (encontro de atores) em um plano (normalmente quadro de horas/agenda). Trata-se de um problema **NP-Difícil** muito importante para as áreas de Logística e Matemática Computacional.
+
+# Aplicação
 
 ## 📓 Funcionamento
 
