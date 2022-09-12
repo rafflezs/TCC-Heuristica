@@ -1,30 +1,14 @@
-#ifndef _SALA_HPP
-#define _SALA_HPP
+#ifndef _TURMA_HPP
+#define _TURMA_HPP
 
-class Sala {
+class Turma {
   private:
-    std::string id;
-    std::string nome;
-    int capacidade;
-    std::string bloco;
-    int list_id;
-  
-  public:
-    void setId(const std::string &str);
-    std::string getId() const;
+    std::string _id;
+    // ? class Curso ou std::string curso?
+    std::string _periodo;
 
-    void setNome(const std::string &str);
-    std::string getNome() const;
-
-    void setCapacidade(const int value);
-    int getCapacidade() const;
-
-    void setbloco(const std::string &str);
-    std::string getbloco() const;
-
-    void setId(const int value);
-    int getId() const;
     
+  public:
 }
 
-#endif // !_SALA>_HPP
+#endif // !_TURMA_HPP
