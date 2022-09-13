@@ -24,5 +24,5 @@ Desenvolvimento de uma *engine* para formulação de quadros de horários dos IF
  - Microsoft Excel e Google Sheets - softwares de edição de planilhas para formulação dos dados de entrada.
  - Python - modulos de processamento de dados textuais/tabelados e exportações dos valores obtidos para documento portável.
  - C/C++ - desenvolvimento do **kernel** da aplicação, processamento dos dados (objetos) e execução das metaheuristicas.
-[comment]: <> - Flutter (Dart) - framework para desenvolvimento front-end da aplicação através de GUI.
+ - Flutter (Dart) - framework para desenvolvimento front-end da aplicação através de GUI.
 
