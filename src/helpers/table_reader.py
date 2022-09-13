@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import re
+import unicodedata
 
 ##
 
@@ -21,6 +22,13 @@ def parse_directory(file_name):
   if not os.path.exists('../csv/'+dir_name):
     os.makedirs('../csv/'+dir_name)
   return "../csv/"+dir_name+"/"
+##
+
+def remove_accents_regex(string: str) -> str:
+    regex = re.compile(r'[\u0300-\u036F]', flags=re.DOTALL)
+    normalized = unicodedata.normalize('NFKD', string)
+    return regex.sub('', normalized)
+
 ##
 
 convert_file()
