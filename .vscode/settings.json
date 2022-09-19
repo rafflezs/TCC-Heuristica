@@ -45,6 +45,7 @@
     "xlocinfo": "cpp",
     "xlocnum": "cpp",
     "sstream": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "list": "cpp"
   }
 }
