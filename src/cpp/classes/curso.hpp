@@ -6,12 +6,12 @@
 class Curso
 {
 private:
-  std::string m_id;
-  int m_index;
-  std::string m_nome;
-  std::string m_titulo_formacao;
-  std::list<Turma *> m_turmas;
-  std::array <std::array<int,16>,6> m_disponibilidade;
+  std::string m_id {"NULL"};
+  int m_index {NULL};
+  std::string m_nome {"NULL"};
+  std::string m_titulo_formacao {"NULL"};
+  std::list<Turma *> m_turmas {nullptr};
+  std::array<std::array<int, 16>, 6> m_disponibilidade {};
 
 public:
   std::string get_id()
@@ -64,22 +64,45 @@ public:
     this->m_turmas = m_turmas;
   }
 
-  std::array <std::array<int,16>,6> get_disponibilidade(){
+  std::array<std::array<int, 16>, 6> get_disponibilidade()
+  {
     return this->m_disponibilidade;
   }
 
-  void set_disponibilidade(std::array <std::array<int,16>,6> t_disponibilidade){
+  void set_disponibilidade(std::array<std::array<int, 16>, 6> t_disponibilidade)
+  {
     this->m_disponibilidade = t_disponibilidade;
   }
 
-  Curso(const std::string t_id, 
-        const int m_index,
-        const std::string t_nome, 
-        std::string m_titulo_formacao,
-        const std::list<Turma*> t_turmas, 
-        const std::array <std::array<int,16>,6> m_disponibilidade) : 
-  m_id(t_id), m_nome(t_nome), m_turmas(t_turmas) {};
-  std::string toString();
+  Curso()
+  {};
+
+  Curso(const std::string &t_id,
+        const int t_index,
+        const std::string &t_nome,
+        std::string t_titulo_formacao,
+        const std::list<Turma *> t_turmas,
+        const std::array<std::array<int, 16>, 6> t_disponibilidade) : 
+  m_id(t_id), m_nome(t_nome), m_index(t_index),
+  m_titulo_formacao(t_titulo_formacao), m_turmas(t_turmas),
+  m_disponibilidade(t_disponibilidade){};
+
+void printArray()
+{
+    std::cout << "ID: " << this->get_id() << ", Nome" << this->get_nome() 
+    << ", Tipo" << this->get_titulo_formacao() << std::endl;
+
+    for (auto t : this->get_turmas()) {
+      std::cout << t  << std::endl;
+    }
+
+    for (int j = 0; j < this->get_disponibilidade().size(); j++ )
+    {
+
+    }
+
+}
+
 };
 
 #endif // !_CURSO_HPP
