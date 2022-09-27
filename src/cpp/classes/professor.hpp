@@ -7,6 +7,8 @@ private:
   string id;
   int pos_id;
 
+  // list <Disciplinas*> m_disciplinas
+
 public:
 
   nome

@@ -46,6 +46,13 @@
     "xlocnum": "cpp",
     "sstream": "cpp",
     "vector": "cpp",
-    "list": "cpp"
+    "list": "cpp",
+    "array": "cpp",
+    "iomanip": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "xlocmon": "cpp",
+    "xloctime": "cpp",
+    "xtree": "cpp"
   }
 }
