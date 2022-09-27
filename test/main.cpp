@@ -2,17 +2,11 @@
 #include "../src/cpp/public/public_includes.hpp"
 
 int main() {
-  // Curso c = Curso();
 
-  std::ifstream fin;
-  fin.open("data\\csv\\2018-1\\Cursos.csv");
-  std::vector<std::string> row;
-  std::string line, word, temp;
+  std::array<std::array<int,16>,6> a {};
+  Curso c = Curso("st1", 0, "st2", "st3", {nullptr}, a);
 
-  while (fin >> temp) {
-    std::cout << temp << std::endl;
-    std::cout << "ç~``´´^ããíí" << std::endl;
-  }
+  std::cout << c.toString() << std::endl;
 
   return 0;
 }
