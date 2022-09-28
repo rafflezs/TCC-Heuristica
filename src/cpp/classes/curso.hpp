@@ -6,12 +6,12 @@
 class Curso
 {
 private:
-  std::string m_id {"NULL"};
-  int m_index {NULL};
-  std::string m_nome {"NULL"};
-  std::string m_titulo_formacao {"NULL"};
-  std::list<Turma *> m_turmas {nullptr};
-  std::array<std::array<int, 16>, 6> m_disponibilidade {};
+  std::string m_id{"NULL"};
+  int m_index{NULL};
+  std::string m_nome{"NULL"};
+  std::string m_titulo_formacao{"NULL"};
+  std::list<Turma *> m_turmas{nullptr};
+  std::array<std::array<int, 16>, 6> m_disponibilidade{};
 
 public:
   std::string get_id()
@@ -74,35 +74,39 @@ public:
     this->m_disponibilidade = t_disponibilidade;
   }
 
-  Curso()
-  {};
+  Curso(){};
 
   Curso(const std::string &t_id,
         const int t_index,
         const std::string &t_nome,
         std::string t_titulo_formacao,
         const std::list<Turma *> t_turmas,
-        const std::array<std::array<int, 16>, 6> t_disponibilidade) : 
-  m_id(t_id), m_nome(t_nome), m_index(t_index),
-  m_titulo_formacao(t_titulo_formacao), m_turmas(t_turmas),
-  m_disponibilidade(t_disponibilidade){};
+        const std::array<std::array<int, 16>, 6> t_disponibilidade) : m_id(t_id), m_nome(t_nome), m_index(t_index),
+                                                                      m_titulo_formacao(t_titulo_formacao), m_turmas(t_turmas),
+                                                                      m_disponibilidade(t_disponibilidade){};
 
-void printArray()
-{
-    std::cout << "ID: " << this->get_id() << ", Nome" << this->get_nome() 
-    << ", Tipo" << this->get_titulo_formacao() << std::endl;
+  void print()
+  {
+    std::cout << "Index: " << this->get_index() << ", ID: " << this->get_id() << ", Nome: " << this->get_nome()
+              << ", Tipo: " << this->get_titulo_formacao() << std::endl;
 
-    for (auto t : this->get_turmas()) {
-      std::cout << t  << std::endl;
-    }
-
-    for (int j = 0; j < this->get_disponibilidade().size(); j++ )
+    std::cout << "list<Turmas>" << std::endl;
+    for (auto t_turma : this->get_turmas())
     {
-
+      std::cout << t_turma << std::endl;
     }
 
-}
-
+    std::cout << "array<disponibilidade>" << std::endl;
+    std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
+    for (int i = 0; i < f_dispo.size(); i++)
+    {
+      for (int j = 0; j < f_dispo[i].size(); j++)
+      {
+        std::cout << f_dispo[i][j] << " ";
+      }
+      std::cout << std::endl;
+    }
+  }
 };
 
 #endif // !_CURSO_HPP
