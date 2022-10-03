@@ -1,5 +1,5 @@
-#ifndef PROFESSOR_HPP
-#define PROFESSOR_HPP
+#ifndef _PROFESSOR_HPP
+#define _PROFESSOR_HPP
 
 #include <string>
 
@@ -68,18 +68,23 @@ public:
 
   Professor(){};
 
-  Professor(const std::string t_id,
-            const int t_index,
-            const std::string t_nome,
-            const std::list <Disciplina*> t_disciplinas,
-            const std::array<std::array<int, 16>, 6> t_disponibilidade) : m_id(t_id), m_nome(t_nome), m_index(t_index),
-                                                                          m_disciplinas(t_disciplinas),
-                                                                          m_disponibilidade(t_disponibilidade){};
+  Professor(
+    const std::string t_id,
+    const int t_index,
+    const std::string t_nome,
+    const std::list <Disciplina*> t_disciplinas,
+    const std::array<std::array<int, 16>, 6> t_disponibilidade) : 
+  m_id(t_id), 
+  m_nome(t_nome), 
+  m_index(t_index),
+  m_disciplinas(t_disciplinas),
+  m_disponibilidade(t_disponibilidade){};
 
   void print()
   {
-    std::cout << "Index: " << this->get_index() << ", ID: " << this->get_id() << ", Nome: " << this->get_nome()
-              << std::endl;
+    std::cout << "Index: " << this->get_index() 
+    << ", ID: " << this->get_id() 
+    << ", Nome: " << this->get_nome() << std::endl;
 
     std::cout << "list<Disciplinas>" << std::endl;
     for (auto t_turma : this->get_disciplinas())

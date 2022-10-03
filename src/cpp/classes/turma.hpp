@@ -75,19 +75,31 @@ public:
 
   Turma(){};
 
-  Turma(const std::string t_id,
-        const int t_index,
-        const std::string t_nome,
-        std::string t_periodo,
-        const std::list<Disciplina *> t_disciplinas,
-        const std::array<std::array<int, 16>, 6> t_disponibilidade) : m_id(t_id), m_nome(t_nome), m_index(t_index),
-                                                                      m_periodo(t_periodo), m_disciplinas(t_disciplinas),
-                                                                      m_disponibilidade(t_disponibilidade){};
+  Turma(
+    const std::string t_id,
+    const int t_index,
+    const std::string t_nome,
+    std::string t_periodo,
+    const std::list<Disciplina *> t_disciplinas,
+    const std::array<std::array<int, 16>, 6> t_disponibilidade
+  ) : 
+  m_id(t_id), m_nome(t_nome), 
+  m_index(t_index),
+  m_periodo(t_periodo), 
+  m_disciplinas(t_disciplinas),
+  m_disponibilidade(t_disponibilidade){};
 
+  /*
+  ** Função para print da Classe
+  ** @param NULL
+  ** @return void
+  */
   void print()
   {
-    std::cout << "Index: " << this->get_index() << ", ID: " << this->get_id() << ", Nome: " << this->get_nome()
-              << ", Periodo: " << this->get_periodo() << std::endl;
+    std::cout << "Index: " << this->get_index() 
+    << ", ID: " << this->get_id() 
+    << ", Nome: " << this->get_nome()
+    << ", Periodo: " << this->get_periodo() << std::endl;
 
     std::cout << "list<Disciplinas>" << std::endl;
     for (auto t_turma : this->get_disciplinas())
