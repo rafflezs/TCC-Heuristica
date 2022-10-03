@@ -7,6 +7,7 @@ class Disciplina
 {
 private:
   std::string m_id{"NULL"};
+  std::string m_cod_diario{"NULL"};
   int m_index{NULL};
   std::string m_nome{"NULL"};
   std::string m_periodo{"NULL"};
@@ -100,6 +101,7 @@ public:
 
   Disciplina(
     const std::string t_id,
+    const std::string t_cod_diario,
     const int t_index,
     const std::string t_nome,
     std::string t_periodo,
@@ -108,7 +110,8 @@ public:
     const int t_ch_presencial,
     const std::array<std::array<int, 16>, 6> t_disponibilidade
   ) : 
-    m_id(t_id), 
+    m_id(t_id),
+    m_cod_diario(t_cod_diario), 
     m_nome(t_nome), 
     m_index(t_index),
     m_periodo(t_periodo), 
