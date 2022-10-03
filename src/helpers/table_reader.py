@@ -10,12 +10,12 @@ def convert_file(dir, inp):
   if inp == '*':
     for xls_file in os.listdir():
       folder_path = parse_directory(xls_file)
-      for sheet_name, df in pd.read_excel(xls_file, index_col=1, sheet_name=None).items():
-        df.to_csv (folder_path+sheet_name+".csv", sep=";",encoding='utf-8', index = False)
+      for sheet_name, df in pd.read_excel(xls_file, index_col=0, sheet_name=None).items():
+        df.to_csv (folder_path+sheet_name+".csv", sep=";",encoding='utf-8', index = True)
   else:
     folder_path = parse_directory(inp)
-    for sheet_name, df in pd.read_excel(inp, index_col=1, sheet_name=None).items():
-        df.to_csv (folder_path+sheet_name+".csv", sep=";",encoding='utf-8', index = False)
+    for sheet_name, df in pd.read_excel(inp, index_col=0, sheet_name=None).items():
+        df.to_csv (folder_path+sheet_name+".csv", sep=";",encoding='utf-8', index = True)
 ##
 
 def parse_directory(file_name):
