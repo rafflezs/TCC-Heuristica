@@ -81,14 +81,26 @@ public:
         const std::string &t_nome,
         std::string t_titulo_formacao,
         const std::list<Turma *> t_turmas,
-        const std::array<std::array<int, 16>, 6> t_disponibilidade) : m_id(t_id), m_nome(t_nome), m_index(t_index),
-                                                                      m_titulo_formacao(t_titulo_formacao), m_turmas(t_turmas),
-                                                                      m_disponibilidade(t_disponibilidade){};
+        const std::array<std::array<int, 16>, 6> t_disponibilidade) :
+      
+      m_id(t_id), 
+      m_nome(t_nome), 
+      m_index(t_index),
+      m_titulo_formacao(t_titulo_formacao), 
+      m_turmas(t_turmas),
+      m_disponibilidade(t_disponibilidade){};
 
+  /*
+  ** Função para print da Classe
+  ** @param NULL
+  ** @return void
+  */
   void print()
   {
-    std::cout << "Index: " << this->get_index() << ", ID: " << this->get_id() << ", Nome: " << this->get_nome()
-              << ", Tipo: " << this->get_titulo_formacao() << std::endl;
+    std::cout << "Index: " << this->get_index() 
+    << ", ID: " << this->get_id() 
+    << ", Nome: " << this->get_nome()
+    << ", Tipo: " << this->get_titulo_formacao() << std::endl;
 
     std::cout << "list<Turmas>" << std::endl;
     for (auto t_turma : this->get_turmas())

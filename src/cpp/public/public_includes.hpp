@@ -7,3 +7,4 @@
 #include <string>
 #include <list>
 #include <array>
+#include <cstring>

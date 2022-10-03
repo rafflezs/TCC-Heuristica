@@ -98,22 +98,39 @@ public:
 
   Disciplina(){};
 
-  Disciplina(const std::string t_id,
-             const int t_index,
-             const std::string t_nome,
-             std::string t_periodo,
-             const int t_qtd_alunos,
-             const int t_ch_ead,
-             const int t_ch_presencial,
-             const std::array<std::array<int, 16>, 6> t_disponibilidade) : m_id(t_id), m_nome(t_nome), m_index(t_index),
-                                                                           m_periodo(t_periodo), m_qtd_alunos(t_qtd_alunos),
-                                                                           m_ch_ead(t_ch_ead), m_ch_presencial(t_ch_presencial),
-                                                                           m_disponibilidade(t_disponibilidade){};
+  Disciplina(
+    const std::string t_id,
+    const int t_index,
+    const std::string t_nome,
+    std::string t_periodo,
+    const int t_qtd_alunos,
+    const int t_ch_ead,
+    const int t_ch_presencial,
+    const std::array<std::array<int, 16>, 6> t_disponibilidade
+  ) : 
+    m_id(t_id), 
+    m_nome(t_nome), 
+    m_index(t_index),
+    m_periodo(t_periodo), 
+    m_qtd_alunos(t_qtd_alunos),
+    m_ch_ead(t_ch_ead), 
+    m_ch_presencial(t_ch_presencial),
+    m_disponibilidade(t_disponibilidade){};
 
+  /*
+  ** Função para print da Classe
+  ** @param NULL
+  ** @return void
+  */
   void print()
   {
-    std::cout << "Index: " << this->get_index() << ", ID: " << this->get_id() << ", Nome: " << this->get_nome()
-              << ", Periodo: " << this->get_periodo() << ", # ALUNOS: " << this->get_qtd_alunos() << ", CH Presencial: " << this->get_ch_presencial() << ", CH EAD: " << this->get_ch_ead() << std::endl;
+    std::cout << "Index: " << this->get_index() 
+    << ", ID: " << this->get_id() 
+    << ", Nome: " << this->get_nome()
+    << ", Periodo: " << this->get_periodo() 
+    << ", # ALUNOS: " << this->get_qtd_alunos() 
+    << ", CH Presencial: " << this->get_ch_presencial() 
+    << ", CH EAD: " << this->get_ch_ead() << std::endl;
 
     std::cout << "array<disponibilidade>" << std::endl;
     std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
