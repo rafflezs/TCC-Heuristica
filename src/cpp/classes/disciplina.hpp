@@ -141,7 +141,7 @@ public:
     {
       for (int j = 0; j < f_dispo[i].size(); j++)
       {
-        std::cout << f_dispo[i][j] << " ";
+        std::cout << std::setw(5) << f_dispo[i][j] << " ";
       }
       std::cout << std::endl;
     }
