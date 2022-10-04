@@ -15,7 +15,7 @@ public:
     std::list<Disciplina> m_lista_disciplinas;
     std::list<Curso> m_lista_cursos;
     Instancia(const std::string ano_instancia);
-    const std::vector<std::string> parse_coluna(const std::string entrada, const char operador);
+    const std::vector<std::string> parse_coluna(const std::string &entrada, const char &operador);
     const std::array<std::array<int, 16>, 6> preencher_disponibilidade(const std::vector <std::string> dias);
     const std::list<Professor> instanciar_professor(const std::string &ano_instancia);
     const std::list<Curso> instanciar_curso(const std::string &ano_instancia);

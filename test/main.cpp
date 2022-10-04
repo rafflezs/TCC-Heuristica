@@ -2,13 +2,11 @@
 
 int main()
 {
-    Instancia inst = Instancia("2018");
-
-    for (std::list<Turma>::iterator i = inst.m_lista_turmas.begin(); 
-        i != inst.m_lista_turmas.end(); ++i){
-        (i)->print();
-    };
+    Instancia inst = Instancia("2018-1");
+    // for (std::list<Professor>::iterator i = inst.m_lista_professores.begin();
+    //     i != inst.m_lista_professores.end(); ++i){
+    //     (i)->print();
+    // };
 
     return 0;
 }
-
