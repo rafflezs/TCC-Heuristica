@@ -15,7 +15,8 @@ private:
   int m_qtd_alunos{0};
   int m_ch_ead{0};
   int m_ch_presencial{0};
-
+  int m_split{1}; // TODO: Implementar leitura do CSV
+  int m_ch_min{0}; // TODO: Implementar leitura do CSV
 public:
   std::string get_id()
   {
