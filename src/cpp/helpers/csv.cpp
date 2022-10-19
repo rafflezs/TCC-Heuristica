@@ -51,10 +51,15 @@ const std::array<std::array<int, 16>, 6> CSVReader::preencher_disponibilidade(co
             {
                 if (n.length() > 2)
                 {
-                    std::vector<std::string> temp = parse_coluna(n, '-');
-                    for (int i = std::stoi(temp[0]); i < std::stoi(temp[1]); i++)
+                    std::vector<std::string> temp;
+                    std::string tempWord;
+                    temp = parse_coluna(n, '-');
+                    int start, end;
+                    start = stoi(temp[0]);
+                    end = stoi(temp[1]);
+                    for (int i = start; i <= end; i++)
                     {
-                        std::string tempWord = std::to_string(i);
+                        tempWord = std::to_string(i);
                         fim.push_back(tempWord);
                     }
                 }
@@ -70,7 +75,7 @@ const std::array<std::array<int, 16>, 6> CSVReader::preencher_disponibilidade(co
         }
         for (auto n : fim)
         {
-            t_disponibilidade[dia][std::stoi(n)] = -1;
+            t_disponibilidade[dia][std::stoi(n) - 1] = -1;
         }
     }
 
