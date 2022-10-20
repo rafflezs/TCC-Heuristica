@@ -1,0 +1,95 @@
+ID;Curso;Nome;Periodo ;Disciplinas;SEG;TER;QUA;QUI;SEX;SAB
+20181.02ADM112.1V;Técnico em Administração;Técnico em Administração - Primeiro Semestre;Tarde;104699,104696,104694,104700,104697,104698,104695;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ADM112.2V;Técnico em Administração;Técnico em Administração - Segundo Semestre;Tarde;99921,99923,99919,99924,99918,99920;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ADM112.3V;Técnico em Administração;Técnico em Administração - Terceiro Semestre;Tarde;99928,99931,99926,99929,99925,99930,99927;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ADM11N.1N;Técnico em Administração;Técnico em Administração - Primeiro Semestre;Noite;104692,104689,104687,104693,104690,104691,104688;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM11N.2N;Técnico em Administração;Técnico em Administração - Segundo Semestre;Noite;99908,99909,99906,99910,99905,99907;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM11N.3N;Técnico em Administração;Técnico em Administração - Terceiro Semestre;Noite;99914,99917,99912,99915,99911,99916,99913;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.1N;PROEJA Adminstração;PROEJA Administração - Primeiro Semestre;Noite;104954,104950,104955,104952,104953,104951,104956;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.2N;PROEJA Adminstração;PROEJA Administração - Segundo Semestre;Noite;100057,100058,100055,100056,100052,100054,100053;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.3N;PROEJA Adminstração;PROEJA Administração - Teceiro Semestre;Noite;100062,100064,100065,100061,100063,100059,100060;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.4N;PROEJA Adminstração;PROEJA Administração - Quarto Semestre;Noite;100067,100071,100072,100069,100070,100066,100068;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.5N;PROEJA Adminstração;PROEJA Administração - Quinto Semestre;Noite;100074,100077,100073,100076,100078,100075,100079;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.6N;PROEJA Adminstração;PROEJA Administração - Sexto Semestre;Noite;100085,100081,100080,100082,100083,100086,100084;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ADM12N.7N;PROEJA Adminstração;PROEJA Administração - Setimo Semestre;Noite;100087,100088,100089,100090,100091,100092,100093;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02AGN21N.3N;Agronegócio;Tecnológo em Agronegócio - Terceiro Periodo;Noite;99039,99040,99042,99043,99041;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02AGN21N.5N;Agronegócio;Tecnológo em Agronegócio - Quinto Periodo;Noite;99044,99045,99047,99046,99048;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02AGN21N.7N;Agronegócio;Tecnológo em Agronegócio - Setimo Periodo;Noite;99080,99064,99059,99094;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02AGP11M.1M;Técnico em Agropecuária;Técnico em Agropecuaria - Primeiro Semestre;Manhã;104703,104702,104705,104701,104704;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02AGP11M.2M;Técnico em Agropecuária;Técnico em Agropecuaria - Segundo Semestre;Manhã;99934,99933,99932,99935,99936;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02AGP11M.3M;Técnico em Agropecuária;Técnico em Agropecuaria - Terceiro Semestre;Manhã;99940,99937,99938,99942,99941,99939;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02AGP11M.4M;Técnico em Agropecuária;Técnico em Agropecuaria - Quarto Semestre;Manhã;99943,99945,99946,99944,99947;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02AGP11V.1V;Técnico em Agropecuária;Técnico em Agropecuaria - Primeiro Semestre;Tarde;104708,104707,104710,104706,104709;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGP11V.2V;Técnico em Agropecuária;Técnico em Agropecuaria - Segundo Semestre;Tarde;99950,99949,99948,99951,99952;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGP11V.3V;Técnico em Agropecuária;Técnico em Agropecuaria - Terceiro Semestre;Tarde;99956,99953,99954,99958,99957,99955;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGP11V.4V;Técnico em Agropecuária;Técnico em Agropecuaria - Quarto Semestre;Tarde;99959,99961,99962,99960,99963;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGR20I.1;Agronomia;Bacharelado em Agronômia - Primeiro Periodo;Tarde;104847,104848,104849,104850,104851,104852,104853;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGR20I.3M;Agronomia;Bacharelado em Agronômia - Terceiro Periodo;Manhã;99115,99118,99117,99116,99120,99114,99113,99119,106268;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02AGR20I.5;Agronomia;Bacharelado em Agronômia - Quinto Periodo;Tarde;99383,99385,101736,102789,99387,99388,99382,99128,99126,99123,99127,99122,99125,99124,99121;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGR20I.5V;Agronomia;Bacharelado em Agronômia - Quinto Periodo;Manhã;99128,99126,99123,99127,99122,99125,99124,99121;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02AGR20I.7M;Agronomia;Bacharelado em Agronômia - Setimo Periodo;Tarde;99135,99136,99134,99132,99129,99131,99133,99130;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02AGR20I.9V;Agronomia;Bacharelado em Agronômia - Nono Periodo;Manhã;99142,99137,99140,99141,99139,99143,99138;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02ALI11N.1N;Técnico em Alimentos;Técnico em Alimentos - Primeiro Semestre;Noite;104712,104715,104716,104717,104711,104713,104714;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ALI11N.2N;Técnico em Alimentos;Técnico em Alimentos - Segundo Semestre;Noite;99965,99966,99969,99967,99968,99964;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ALI11N.3N;Técnico em Alimentos;Técnico em Alimentos - Terceiro Semestre;Noite;99970,99973,99972,99971;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ALI11N.4N;Técnico em Alimentos;Técnico em Alimentos - Quarto Semestre;Noite;99976,99978,99975,99974,99977,99979;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ALI20I.1V;Engenharia de Alimentos;Engenharia de Alimentos - Primeiro Periodo;Tarde;104612,104613,104614,104615,104616,104617,104618;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ALI20I.3M;Engenharia de Alimentos;Engenharia de Alimentos - Terceiro Periodo;Manhã;99242,99243,99240,99239,99237,99238,99241;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02ALI20I.5V;Engenharia de Alimentos;Engenharia de Alimentos - Quinto Periodo;Tarde;99249,99246,99251,99244,99250,99248,99245,99247;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ALI20I.7M;Engenharia de Alimentos;Engenharia de Alimentos - Setimo Periodo;Manhã;99254,99255,99256,99252,99253;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02ALI20I.9V;Engenharia de Alimentos;Engenharia de Alimentos - Nono Periodo;Tarde;99258,99257,99263,99262,99259,99261,99260;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02BIO22N.1N;Ciências Biológicas (licenciatura);Licenciatura em Biologia - Primeiro Periodo;Noite;104681,104683,104682,104684,104685,104686,104730;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BIO22N.3N;Ciências Biológicas (licenciatura);Licenciatura em Biologia - Terceiro Periodo;Noite;99266,99268,99267,99264,99265;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BIO22N.5N;Ciências Biológicas (licenciatura);Licenciatura em Biologia - Quinto Periodo;Noite;99269,99271,99274,99270,99273,99272;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BIO22N.7N;Ciências Biológicas (licenciatura);Licenciatura em Biologia - Setimo Periodo;Noite;99276,99277,99278,99275;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BIO23I.1V;Ciências Biológicas (bacharelado);Bacharelado em Biologia - Primeiro Periodo;Tarde;104626,104628,104627,104629,104630,104631,104632,104633;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02BIO23I.3M;Ciências Biológicas (bacharelado);Bacharelado em Biologia - Terceiro Periodo;Manhã;99144,99147,99148,99149,99146,99145,99150;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02BIO23I.5V;Ciências Biológicas (bacharelado);Bacharelado em Biologia - Quinto Periodo;Tarde;99154,99156,99153,99155,99151,99527,99526,99152;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02BTC11N.1N;Técnico em Biotecnologia;Técnico em Biotecnologia - Primeiro Semestre;Noite;104718,104722,104719,104723,104721,104720;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BTC11N.2N;Técnico em Biotecnologia;Técnico em Biotecnologia - Segundo Semestre;Noite;99980,99985,99981,99982,99983,99984;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BTC11N.3N;Técnico em Biotecnologia;Técnico em Biotecnologia - Terceiro Semestre;Noite;99989,99986,99988,99990,99987;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02BTC11N.4N;Técnico em Biotecnologia;Técnico em Biotecnologia - Quarto Semestre;Noite;99995,99994,99991,99993,99992;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02CDC20I.1;Ciência da Computação;Bacharelado em Ciência da Computação - Primeiro Periodo;Tarde;104823,104837,104822,104824,104825,104826;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02CDC20I.3;Ciência da Computação;Bacharelado em Ciência da Computação - Terceiro Periodo;Manhã;99505,102788,99159,99162,99160,99157,99161,99158;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02CDC20I.3M;Ciência da Computação;Bacharelado em Ciência da Computação - Quinto Periodo;Manhã;99159,99162,99160,99157,99161,99158;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02CDC20I.5V;Ciência da Computação;Bacharelado em Ciência da Computação - Setimo Periodo;Tarde;99165,99164,99167,99168,99163,99166;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02CIV20I.1.-;Engenharia Civil;Engenharia Civil - Primeiro Periodo;Tarde;104795,104796,104797,104798,104799,104800,104801;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02CIV20I.3M.-;Engenharia Civil;Engenharia Civil - Terceiro Periodo;Manhã;99209,99205,99204,99207,99206,99208,99203,99202;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02CIV20I.5V.-;Engenharia Civil;Engenharia Civil - Quinto Periodo;Tarde;99211,99212,99216,99210,99215,99213,99214;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02CIV20I.7M.-;Engenharia Civil;Engenharia Civil - Setimo Periodo;Manhã;99223,99222,99221,99218,99220,99217,99219;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02CIV20I.9V.-;Engenharia Civil;Engenharia Civil - Nono Periodo;Tarde;99232,99229,99226,99224,99235;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02COT11N.1N;Técnico em Contabilidade;Técnico em Contabilidade - Primeiro Semestre;Noite;104729,104724,104726,104728,104727,104725;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02COT11N.2N;Técnico em Contabilidade;Técnico em Contabilidade - Terceiro Semestre;Noite;99996,99999,99997,99998,100000;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02COT11N.3N;Técnico em Contabilidade;Técnico em Contabilidade - Terceiro Semestre;Noite;100004,100002,100001,100003,100005;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02EAM20I.1V;Engenharia Ambiental;Engenharia Ambiental - Primeiro Periodo;Tarde;104619,104620,104621,104622,104623,104624,104625;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02EAM20I.3M;Engenharia Ambiental;Engenharia Ambiental - Terceiro Periodo;Manhã;99174,99172,99171,99175,99170,99169,99173,106248;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02EAM20I.5V;Engenharia Ambiental;Engenharia Ambiental - Quinto Periodo;Tarde;99182,99176,99178,99177,99181,99179,99180,104827;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02EAM20I.7M;Engenharia Ambiental;Engenharia Ambiental - Setimo Periodo;Manhã;99183,99189,99187,99184,99188,99186,99185;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02EAM20I.9V;Engenharia Ambiental;Engenharia Ambiental - Nono Periodo;Tarde;99194,99191,99198,99195,99190,99201;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02EDI11N.1N;PROEJA Edificações;PROEJA Edificações - Primeiro Semestre;Noite;107240,107241,107242,107244,107243,107245;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02EDI12N.3N;PROEJA Edificações;PROEJA Edificações - Tereceiro Semestre;Noite;101011,101009,101010,101005,101006,101007,101008;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02EDI12N.4N;PROEJA Edificações;PROEJA Edificações - Quarto Semestre;Noite;101017,101015,101018,101019,101016,101013,101012,101014;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02EDI12N.5N;PROEJA Edificações;PROEJA Edificações - Quinto Semestre;Noite;101026,101025,101023,101022,101024,101021,101020;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02EDI12N.6N;PROEJA Edificações;PROEJA Edificações - Sexto Semestre;Noite;105162,105163,105164,105161,105159,105158;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02INF11N.1N.-;Técnico em Informática;Técnico em Informatica - Primeiro Semestre;Noite;104741,104742,104813,104743,104744,104814,104740,104812;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02INF11N.2N.-;Técnico em Informática;Técnico em Informatica - Segundo Semestre;Noite;100010,100009,100006,100007,100011,100008;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02INF11N.3N.-;Técnico em Informática;Técnico em Informatica - Terceiro Semestre;Noite;100015,100012,100016,100013,100014;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI10N.1N;Técnico em Química;Técnico em Quimica - Primeiro Semestre;Noite;104748,104745,104750,104747,104749,104751,104746;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI10N.2N;Técnico em Química;Técnico em Quimica - Segundo Semestre;Noite;100018,100019,100022,100023,100021,100017,100020;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI10N.3N;Técnico em Química;Técnico em Quimica - Terceiro Semestre;Noite;100025,100026,100027,100024,100030,100029,100028;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI22N.1N;Química;Licenciatura em Quimica - Primeiro Periodo;Noite;104596,104597,104598,104600,104602,104601;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI22N.3N;Química;Licenciatura em Quimica - Terceiro Periodo;Noite;99280,99281,99279,99282,99283,99284;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI22N.5N;Química;Licenciatura em Quimica - Quinto Periodo;Noite;99288,99289,99287,99286,99290,99285;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02QUI22N.7N;Química;Licenciatura em Quimica - Setimo Periodo;Noite;99294,99295,99292,99293,99296,99291;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SAM21N.1N;Saneamento Ambiental;Tecnologo em Saneamento Ambiental - Primeiro Semestre;Noite;104573,104572,104574,104575,104576,104577;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SAM21N.3N;Saneamento Ambiental;Tecnologo em Saneamento Ambiental - Terceiro Semestre;Noite;99328,99326,99325,99327,99329;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SAM21N.5N;Saneamento Ambiental;Tecnologo em Saneamento Ambiental - Quinto Semestre;Noite;99333,99330,99331,99332,99334;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SGT11N.1N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho - Primeiro Semestre;Noite;104757,104752,104756,104753,104755,104754;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SGT11N.2N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho - Segundo Semestre;Noite;100037,100034,100031,100033,100036,100032,100035;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SGT11N.3N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho - Terceiro Semestre;Noite;100039,100038,100043,100042,100041,100040,100044;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02SGT11N.4N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho - Quarto Semestre;Noite;100046,100051,100045,100049,100047,100048,100050;1-12;1-12;1-12;1-12;1-12;12-16
+20181.02ZOO20I.1V;Zootecnia;Tecnologo em Zootecnia - Primeiro Periodo;Tarde;104578,104565,104579,104580,104581,104582,104583,104564;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ZOO20I.3M;Zootecnia;Tecnologo em Zootecnia - Terceiro Periodo;Manhã;99301,99302,99298,99297,99303,99299,99300;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02ZOO20I.5V;Zootecnia;Tecnologo em Zootecnia - Quinto Periodo;Tarde;99552,99548,99550,99553,99551,99549;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20181.02ZOO20I.7M;Zootecnia;Tecnologo em Zootecnia - Setimo Periodo;Manhã;99538,99539,99536,99540,99537,99541;7-16;7-16;7-16;7-16;7-16;1-16
+20181.02ZOO20I.9V;Zootecnia;Tecnologo em Zootecnia - Nono Periodo;Tarde;99545,99546,99542,99544,99547,99543;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
