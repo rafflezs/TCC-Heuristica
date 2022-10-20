@@ -10,7 +10,7 @@ private:
   int m_index{NULL};
   std::string m_nome{"NULL"};
   std::string m_titulo_formacao{"NULL"};
-  std::list<Turma *> m_turmas{nullptr};
+  std::vector<Turma *> m_turmas{nullptr};
   std::array<std::array<int, 16>, 6> m_disponibilidade{};
 
 public:
@@ -54,12 +54,12 @@ public:
     this->m_titulo_formacao = m_titulo_formacao;
   }
 
-  std::list<Turma *> get_turmas()
+  std::vector<Turma *> get_turmas()
   {
     return this->m_turmas;
   }
 
-  void set_turmas(std::list<Turma *> m_turmas)
+  void set_turmas(std::vector<Turma *> m_turmas)
   {
     this->m_turmas = m_turmas;
   }
@@ -80,7 +80,7 @@ public:
         const int t_index,
         const std::string &t_nome,
         std::string t_titulo_formacao,
-        const std::list<Turma *> t_turmas,
+        const std::vector<Turma *> t_turmas,
         const std::array<std::array<int, 16>, 6> t_disponibilidade) :
       
       m_id(t_id), 
@@ -102,7 +102,7 @@ public:
     << ", Nome: " << this->get_nome()
     << ", Tipo: " << this->get_titulo_formacao() << std::endl;
 
-    std::cout << "list<Turmas>" << std::endl;
+    std::cout << "vector<Turmas>" << std::endl;
     for (auto t_turma : this->get_turmas())
     {
       std::cout << t_turma << std::endl;

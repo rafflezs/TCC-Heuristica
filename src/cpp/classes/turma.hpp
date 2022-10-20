@@ -9,7 +9,7 @@ class Turma {
     int m_index{NULL};
     std::string m_nome{"NULL"};
     std::string m_periodo{"NULL"};
-    std::list<Disciplina *> m_disciplinas{nullptr};
+    std::vector<Disciplina *> m_disciplinas{nullptr};
     std::array<std::array<int, 16>, 6> m_disponibilidade{};
 
 public:
@@ -53,12 +53,12 @@ public:
     this->m_periodo = t_periodo;
   }
 
-  std::list<Disciplina*> get_disciplinas()
+  std::vector<Disciplina*> get_disciplinas()
   {
     return this->m_disciplinas;
   }
 
-  void set_disciplinas(std::list<Disciplina*> t_disciplinas)
+  void set_disciplinas(std::vector<Disciplina*> t_disciplinas)
   {
     this->m_disciplinas = t_disciplinas;
   }
@@ -80,7 +80,7 @@ public:
     const int t_index,
     const std::string t_nome,
     std::string t_periodo,
-    const std::list<Disciplina *> t_disciplinas,
+    const std::vector<Disciplina *> t_disciplinas,
     const std::array<std::array<int, 16>, 6> t_disponibilidade
   ) : 
   m_id(t_id), m_nome(t_nome), 
@@ -101,7 +101,7 @@ public:
     << ", Nome: " << this->get_nome()
     << ", Periodo: " << this->get_periodo() << std::endl;
 
-    std::cout << "list<Disciplinas>" << std::endl;
+    std::cout << "vector<Disciplinas>" << std::endl;
     for (auto t_turma : this->get_disciplinas())
     {
       std::cout << t_turma << std::endl;
