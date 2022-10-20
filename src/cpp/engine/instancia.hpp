@@ -13,18 +13,19 @@ private:
     CSVReader m_csv = CSVReader();
 
 public:
+    Instancia(const std::string ano_instancia);
+
     std::vector<Turma> m_lista_turmas;
     std::vector<Professor> m_lista_professores;
     std::vector<Disciplina> m_lista_disciplinas;
     std::vector<Curso> m_lista_cursos;
-    Instancia(const std::string ano_instancia);
-    const std::vector<std::string> parse_coluna(const std::string &entrada, const char &operador);
-    const std::array<std::array<int, 16>, 6> preencher_disponibilidade(const std::vector <std::string> dias);
-    std::vector<std::vector<std::string>> ler_colunas(std::ifstream *file, const char &separador);
+
     const std::vector<Professor> instanciar_professor(const std::string &ano_instancia);
     const std::vector<Curso> instanciar_curso(const std::string &ano_instancia);
     const std::vector<Turma> instanciar_turma(const std::string &ano_instancia);
     const std::vector<Disciplina> instanciar_disciplina(const std::string &ano_instancia);
+
+    std::vector <Disciplina*> buscar_disciplinas(const std::vector<std::string> nome_disciplinas);
 };
 
 #endif //!_INSTNACIA_HPP
