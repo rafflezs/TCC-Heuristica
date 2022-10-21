@@ -1,7 +1,9 @@
-#ifndef _SOLUCAO_HPP
-#define _SOLUCAO_HPP
+#ifndef _HEURISTICA_HPP
+#define _HEURISTICA_HPP
 
-class Solucao {
+#include "solucao.hpp"
+
+class Heuristica {
 
 // ! TODO: Implementar Inicialização da Solução -> Solução Zero
 // ! TODO: Implementar Herística Construtiva da Solução -> Inserir Inicio
@@ -16,7 +18,14 @@ class Solucao {
 // TODO: Implementar exclusão da Solução
 // TODO: Implementar inserção da Solução
 
+private:
+    std::list<Solucao*> solucoes;
+
+public:
+    std::vector<Disciplina> ordernar_disciplinas();
+    void exibir_solucoes();
+
 
 };
 
-#endif //!_SOLUCAO_HPP
+#endif //!_HEURISTICA_HPP
