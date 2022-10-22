@@ -5,26 +5,21 @@
 
 class Heuristica {
 
-// ! TODO: Implementar Inicialização da Solução -> Solução Zero
 // ! TODO: Implementar Herística Construtiva da Solução -> Inserir Inicio
     // ! Verificar ordenação utilizada na Heurística Construtiva
-// ! TODO: Implementar Impressão da Solução
 
-
-// Instancia - Computação
-// Instancia (hard) - Biologias e Biotecnologia
 
 // TODO: Implementar leitura da Solução
 // TODO: Implementar exclusão da Solução
 // TODO: Implementar inserção da Solução
 
 private:
-    std::list<Solucao*> solucoes;
+    std::vector<Solucao*> solucoes{};
 
 public:
-    std::vector<Disciplina> ordernar_disciplinas();
+    Heuristica(std::string t_instancia_pipe, int tam_populacao);
+    const std::vector<Disciplina*> ordernar_disciplinas(const int &rand_metodo);
     void exibir_solucoes();
-
 
 };
 

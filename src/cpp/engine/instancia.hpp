@@ -13,7 +13,7 @@ private:
     CSVReader m_csv = CSVReader();
 
 public:
-    Instancia(const std::string ano_instancia);
+    Instancia(std::string ano_instancia);
 
     std::vector<Turma*> m_lista_turmas;
     std::vector<Professor*> m_lista_professores;
@@ -25,8 +25,8 @@ public:
     const std::vector<Turma*> instanciar_turma(const std::string &ano_instancia);
     const std::vector<Disciplina*> instanciar_disciplina(const std::string &ano_instancia);
 
-    std::vector <Disciplina*> buscar_disciplinas(const std::vector<std::string> nome_disciplinas);
-    std::vector <Turma*> buscar_turmas(const std::vector<std::string> nome_turmas);
+    std::vector <Disciplina*> buscar_disciplinas(const std::vector<std::string> &nome_disciplinas);
+    std::vector <Turma*> buscar_turmas(const std::vector<std::string> &nome_turmas);
 
     void print_instancia();
 };

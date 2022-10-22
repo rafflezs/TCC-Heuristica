@@ -40,6 +40,8 @@ const std::vector<Professor *> Instancia::instanciar_professor(const std::string
         index++;
     }
 
+    file.close();
+
     return t_professores;
 }
 
@@ -68,6 +70,8 @@ const std::vector<Curso *> Instancia::instanciar_curso(const std::string &ano_in
         index++;
     }
 
+    file.close();
+
     return t_cursos;
 }
 
@@ -94,6 +98,8 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
         }
         index++;
     }
+
+    file.close();
 
     return t_turmas;
 }
@@ -125,10 +131,12 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
         index++;
     }
 
+    file.close();
+
     return t_disciplinas;
 }
 
-std::vector<Disciplina *> Instancia::buscar_disciplinas(const std::vector<std::string> nome_disciplinas)
+std::vector<Disciplina *> Instancia::buscar_disciplinas(const std::vector<std::string> &nome_disciplinas)
 {
 
     std::vector<Disciplina *> t_disc{nullptr};
@@ -151,7 +159,7 @@ std::vector<Disciplina *> Instancia::buscar_disciplinas(const std::vector<std::s
     return t_disc;
 }
 
-std::vector<Turma *> Instancia::buscar_turmas(const std::vector<std::string> nome_turmas)
+std::vector<Turma *> Instancia::buscar_turmas(const std::vector<std::string> &nome_turmas)
 {
 
     std::vector<Turma *> t_turma{nullptr};
