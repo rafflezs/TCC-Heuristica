@@ -6,13 +6,17 @@
 class Solucao{
 
 private:
-    Instancia m_instancia{nullptr};
+    Instancia *m_instancia{nullptr};
 
 public:
-    Solucao();
+    Solucao(std::string t_instancia, std::vector<Disciplina*> disciplinas_ordenadas);
+    Solucao(std::string t_instancia);
 
-    void gerar_solucao(); // Caso não receba disciplinas, gerar solucao zero
-    void gerar_solucao(std::vector<Disciplina*> disciplinas_ordenadas);
+    void exibir_solucao();
+
+    Instancia get_instancia();
+
+    void debug_vector_disciplina_addr();
 
 };
 

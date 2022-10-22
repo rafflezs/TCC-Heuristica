@@ -135,6 +135,84 @@ public:
     }
   }
 
+  void print_solucao()
+  {
+    std::cout << "Nome: " << this->get_nome() << std::endl;
+
+    std::cout << "Horario da Turma: " << std::endl;
+    std::cout << std::setw(5) << "   "
+              << " "
+              << std::setw(5) << "H1 "
+              << " "
+              << std::setw(5) << "H2 "
+              << " "
+              << std::setw(5) << "H3 "
+              << " "
+              << std::setw(5) << "H4 "
+              << " "
+              << std::setw(5) << "H5 "
+              << " "
+              << std::setw(5) << "H6 "
+              << " "
+              << std::setw(5) << "H7 "
+              << " "
+              << std::setw(5) << "H8 "
+              << " "
+              << std::setw(5) << "H9 "
+              << " "
+              << std::setw(5) << "H10 "
+              << " "
+              << std::setw(5) << "H11 "
+              << " "
+              << std::setw(5) << "H12 "
+              << " "
+              << std::setw(5) << "H13 "
+              << " "
+              << std::setw(5) << "H14 "
+              << " "
+              << std::setw(5) << "H15 "
+              << " "
+              << std::setw(5) << "H16 " << std::endl;
+    std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
+    for (int i = 0; i < f_dispo.size(); i++)
+    {
+      switch (i)
+      {
+      case 0:
+        std::cout << std::setw(5) << "SEG "
+                  << " ";
+        break;
+      case 1:
+        std::cout << std::setw(5) << "TER "
+                  << " ";
+        break;
+      case 2:
+        std::cout << std::setw(5) << "QUA "
+                  << " ";
+        break;
+      case 3:
+        std::cout << std::setw(5) << "QUI "
+                  << " ";
+        break;
+      case 4:
+        std::cout << std::setw(5) << "SEX "
+                  << " ";
+        break;
+      case 5:
+        std::cout << std::setw(5) << "SAB "
+                  << " ";
+        break;
+      default:
+        break;
+      }
+      for (int j = 0; j < f_dispo[i].size(); j++)
+      {
+        std::cout << std::setw(5) << f_dispo[i][j] << " ";
+      }
+      std::cout << std::endl;
+    }
+  }
 };
+
 
 #endif // !_TURMA_HPP
