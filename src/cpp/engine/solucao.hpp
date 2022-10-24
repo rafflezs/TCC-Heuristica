@@ -9,13 +9,13 @@ private:
     Instancia *m_instancia{nullptr};
 
 public:
-    Solucao(std::string t_instancia, std::vector<Disciplina*> disciplinas_ordenadas);
     Solucao(std::string t_instancia);
 
+    void popular_solucao(std::vector <Disciplina*> disciplinas_ordenadas);
     void exibir_solucao();
 
-    Instancia get_instancia();
 
+    Instancia get_instancia();
     void debug_vector_disciplina_addr();
 
 };
