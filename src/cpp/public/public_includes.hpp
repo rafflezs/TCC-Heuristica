@@ -9,6 +9,7 @@
 #include <array>
 #include <cstring>
 #include <iomanip>
+#include <algorithm>
 
 #define NC "\e[0m"
 #define RED "\e[0;31m"
