@@ -23,7 +23,7 @@ public:
     void heuristica_construtiva();
     
     void exibir_solucoes();
-    void debug_heuristica(const std::vector<Disciplina*> &disciplinas_ordenadas, Solucao* sol);
+    void debug_heuristica();
 
 };
 

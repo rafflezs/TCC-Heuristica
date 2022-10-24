@@ -17,8 +17,19 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
     switch (rand_metodo)
     {
+
+    case 0:
+        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        break;
+
     case 1:
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
+                  { return lhs->get_ch_presencial() < rhs->get_ch_presencial(); });
+        break;
+
+    case 2:
+
         break;
 
     default:
@@ -31,10 +42,9 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
 void Heuristica::heuristica_construtiva()
 {
-    for (auto it: this->solucoes)
+    for (auto it : this->solucoes)
     {
         it->popular_solucao(ordernar_disciplinas(0, it));
-        debug_heuristica(ordernar_disciplinas(0, it), it);
     }
 }
 
@@ -46,18 +56,14 @@ void Heuristica::exibir_solucoes()
     }
 }
 
-void Heuristica::debug_heuristica(const std::vector<Disciplina *> &disciplinas_ordenadas, Solucao* sol)
+void Heuristica::debug_heuristica()
 {
     /* ---------------DEBUG BLOCK---------------------
     ** ! VERIFICAR COPIA DE PRT ADDR !
     */
-    (*sol).debug_vector_disciplina_addr();
-    std::cout << "\n\n"
-              << std::endl;
-    std::cout << "Endereco Lista t_disciplinas_ordenadas -> " << &disciplinas_ordenadas << std::endl;
-    for (auto it : disciplinas_ordenadas)
+    std::cout << REDB "\n\nDEBUG - ENDERECOS DISCIPLINAS\n" NC << std::endl;
+    for (auto it : this->solucoes)
     {
-        std::cout << "Disciplina " << it->get_nome() << ";" << it << std::endl;
+        it->debug_vector_disciplina_addr();
     }
-    std::cout << std::endl;
 }

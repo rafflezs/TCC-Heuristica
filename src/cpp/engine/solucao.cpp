@@ -42,11 +42,11 @@ Instancia Solucao::get_instancia()
 void Solucao::debug_vector_disciplina_addr()
 {
     auto t_disciplinas_debug = m_instancia->m_lista_disciplinas;
-    std::cout << "Endereco Lista Raiz -> " << &t_disciplinas_debug << std::endl;
+    std::cout << "Endereco Lista Raiz;" << &t_disciplinas_debug << std::endl;
 
     for (auto it : t_disciplinas_debug)
     {
-        std::cout << "Disciplina " << it->get_nome() << ";" << it << std::endl;
+        std::cout << it->get_nome() << ";" << it << std::endl;
     }
     std::cout << std::endl;
 }
