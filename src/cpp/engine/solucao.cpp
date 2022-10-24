@@ -1,21 +1,16 @@
 #include "solucao.hpp"
 
-Solucao::Solucao(std::string t_instancia, std::vector<Disciplina *> disciplinas_ordenadas)
-{
-    m_instancia = new Instancia(t_instancia);
-    std::cout << "Gerada Instancia da Solução Populada."<< std::endl;
-
-    if (disciplinas_ordenadas.size() > 0) 
-    {
-        
-    }
-}
-
 Solucao::Solucao(std::string t_instancia)
 {
     m_instancia = new Instancia(t_instancia);
-    std::cout << "Gerada Instancia da Solução Zero."<< std::endl;
+    std::cout << "Gerada Instancia da Solução Populada."<< std::endl;
 }
+
+void Solucao::popular_solucao(std::vector <Disciplina*> disciplinas_ordenadas)
+{
+
+}
+
 
 void Solucao::exibir_solucao()
 {

@@ -11,7 +11,6 @@ int main(int argc, char** argv)
 
 
     Heuristica h = Heuristica(argv[1], std::stoi(argv[2]));
-    h.ordernar_disciplinas(0);
-    
+    h.heuristica_construtiva();
     return 0;
 }
