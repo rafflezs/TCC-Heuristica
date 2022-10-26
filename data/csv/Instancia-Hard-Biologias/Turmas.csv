@@ -1,0 +1,22 @@
+ID;Curso;Nome;Periodo ;Disciplinas;SEG;TER;QUA;QUI;SEX;SAB
+20221.02BIO22N.1N;Ciências Biológicas (licenciatura);Ciências Biológicas - Primeiro Periodo (Noturno);Noite;183888,182557,183586,182559,182558,182560,182561;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO22N.3N;Ciências Biológicas (licenciatura);Ciências Biológicas - Terceiro Periodo (Noturno);Noite;182562,182563,182564,182565,182566;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO22N.5N;Ciências Biológicas (licenciatura);Ciências Biológicas - Quinto Periodo (Noturno);Noite;182567,182568,182569,182570,182572,182571;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO22N.7N;Ciências Biológicas (licenciatura);Ciências Biológicas - Setimo Periodo (Noturno);Noite;182573,182574,182575,182576,182577,182578;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO23I.1MV;Ciências Biológicas (bacharelado);Ciências Biológicas - Primeiro Periodo (Integral);Tarde;182579,182329,182331,182330,182332,182333,182334,182335;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BIO23I.3MV;Ciências Biológicas (bacharelado);Ciências Biológicas - Terceiro Periodo (Integral);Manhã;182336,182337,182338,182340,182341;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02BIO23I.5MV;Ciências Biológicas (bacharelado);Ciências Biológicas - Quinto Periodo (Integral);Tarde;182342,182343,182344,182345,182346,182347,182348,182349;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BIO23I.7MV;Ciências Biológicas (bacharelado);Ciências Biológicas - Setimo Periodo (Integral);Manhã;182350,182351,182352,182353,182354;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02BIO23I.8MV;Ciências Biológicas (bacharelado);Ciências Biológicas - Oitavo Periodo (Integral);Tarde;182355,183865,183863;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BTC11N.1N;Técnico em Biotecnologia;Técnico em Biotecnologia - Primeiro Semestre;Noite;183864,183486,183490,183487,183491,183489;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BTC11N.3N;Técnico em Biotecnologia;Técnico em Biotecnologia - Terceiro Semestre;Noite;183488,183495,183496,183493,183492;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ENQ20I.1MV;Engenharia Química;Engenharia Química - Primeiro Periodo;Tarde;183744,182483,182484,182485,182486,182487,182488;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ENQ20I.3MV;Engenharia Química;Engenharia Química - Terceiro Periodo;Manhã;182489,182492,182493,182494;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ENQ20I.5MV;Engenharia Química;Engenharia Química - Quinto Periodo;Tarde;182495,182497,182499,182498,182500,182501;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ENQ20I.TE.2MV;Engenharia Química;Engenharia Química - Segundo Periodo Especial;Manhã;182502;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02QUI10N.1N;Técnico em Química;Técnico em Química - Primeiro Semestre;Noite;183675,183522,183519,183524,183521,183523,183525;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI10N.3N;Técnico em Química;Técnico em Química - Terceiro Semestre;Noite;183520,183528,183531,183532,183529,183526,183530;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.1N;Química;Química - Primeiro Periodo (Noturno);Noite;183527,182580,182581,182582,182583,182584;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.3N;Química;Química - Terceiro Periodo (Noturno);Noite;182585,182586,182587,182588,182589;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.5N;Química;Química - Quinto Periodo (Noturno);Noite;182591,182592,182593,182595;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.7N;Química;Química - Setimo Periodo (Noturno);Noite;182597,182598,182601,182602;1-12;1-12;1-12;1-12;1-12;12-16

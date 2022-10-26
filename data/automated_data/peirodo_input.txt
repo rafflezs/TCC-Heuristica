@@ -1,0 +1,93 @@
+20221.02ADM11N.1N	Técnico em Administração
+20221.02ADM11N.3N	Técnico em Administração
+20221.02ADM12N.1N	PROEJA Adminstração
+20221.02ADM12N.4N	PROEJA Adminstração
+20221.02ADM12N.5N	PROEJA Adminstração
+20221.02ADM12N.6N	PROEJA Adminstração
+20221.02ADM12N.7N	PROEJA Adminstração
+20221.02ADM20N.1N	Administração
+20221.02ADM20N.3N	Administração
+20221.02ADM20N.5N	Administração
+20221.02ADM20N.7N	Administração
+20221.02AGN21N.6N	Agronegócio
+20221.02AGP11M.1M	Técnico em Agropecuária
+20221.02AGP11M.3M	Técnico em Agropecuária
+20221.02AGP11V.1V	Técnico em Agropecuária
+20221.02AGP11V.3V	Técnico em Agropecuária
+20221.02AGR20I.10MV	Agronomia
+20221.02AGR20I.1MV	Agronomia
+20221.02AGR20I.2MV	Agronomia
+20221.02AGR20I.3MV	Agronomia
+20221.02AGR20I.4MV	Agronomia
+20221.02AGR20I.5MV	Agronomia
+20221.02AGR20I.7MV	Agronomia
+20221.02AGR20I.9MV	Agronomia
+20221.02AGR20I.TE.2MV	Agronomia
+20221.02AGR20I.TE.7MV	Agronomia
+20221.02AGR20I.TE-2010.MV	Agronomia
+20221.02AGR20I.TE-2018.MV	Agronomia
+20221.02ALI11N.1N	Técnico em Alimentos
+20221.02ALI11N.3N	Técnico em Alimentos
+20221.02ALI20I.1MV	Engenharia de Alimentos
+20221.02ALI20I.3MV	Engenharia de Alimentos
+20221.02ALI20I.5MV	Engenharia de Alimentos
+20221.02ALI20I.7MV	Engenharia de Alimentos
+20221.02ALI20I.9MV	Engenharia de Alimentos
+20221.02ALI20I.TE.2MV	Engenharia de Alimentos
+20221.02BIO22N.1N	Ciências Biológicas (licenciatura)
+20221.02BIO22N.3N	Ciências Biológicas (licenciatura)
+20221.02BIO22N.5N	Ciências Biológicas (licenciatura)
+20221.02BIO22N.7N	Ciências Biológicas (licenciatura)
+20221.02BIO23I.1MV	Ciências Biológicas (bacharelado)
+20221.02BIO23I.3MV	Ciências Biológicas (bacharelado)
+20221.02BIO23I.5MV	Ciências Biológicas (bacharelado)
+20221.02BIO23I.7MV	Ciências Biológicas (bacharelado)
+20221.02BIO23I.8MV	Ciências Biológicas (bacharelado)
+20221.02BTC11N.1N	Técnico em Biotecnologia
+20221.02BTC11N.3N	Técnico em Biotecnologia
+20221.02CDC20I.1MV	Ciência da Computação
+20221.02CDC20I.3MV	Ciência da Computação
+20221.02CDC20I.5MV	Ciência da Computação
+20221.02CDC20I.7MV	Ciência da Computação
+20221.02CIV20I.1MV	Engenharia Civil
+20221.02CIV20I.3MV	Engenharia Civil
+20221.02CIV20I.5MV	Engenharia Civil
+20221.02CIV20I.7MV	Engenharia Civil
+20221.02CIV20I.9MV	Engenharia Civil
+20221.02COT11N.1N	Técnico em Contabilidade
+20221.02COT11N.3N	Técnico em Contabilidade
+20221.02EAM20I.1MV	Engenharia Ambiental
+20221.02EAM20I.3MV	Engenharia Ambiental
+20221.02EAM20I.5MV	Engenharia Ambiental
+20221.02EAM20I.7MV	Engenharia Ambiental
+20221.02EAM20I.9MV	Engenharia Ambiental
+20221.02EAM20I.TE.MV	Engenharia Ambiental
+20221.02EDI11N.1N	Técnico em Edificações
+20221.02EDI11N.3N	Técnico em Edificações
+20221.02EDI12N.1N	PROEJA Edificações
+20221.02EDI12N.4N	PROEJA Edificações
+20221.02EDI12N.5N	PROEJA Edificações
+20221.02EDI12N.6N	PROEJA Edificações
+20221.02ENQ20I.1MV	Engenharia Química
+20221.02ENQ20I.3MV	Engenharia Química
+20221.02ENQ20I.5MV	Engenharia Química
+20221.02ENQ20I.TE.2MV	Engenharia Química
+20221.02INF11N.3N	Técnico em Informática
+20221.02INF11N.4N	Técnico em Informática
+20221.02QUI10N.1N	Técnico em Química
+20221.02QUI10N.3N	Técnico em Química
+20221.02QUI22N.1N	Química
+20221.02QUI22N.3N	Química
+20221.02QUI22N.5N	Química
+20221.02QUI22N.7N	Química
+20221.02SAM21N.5N	Saneamento Ambiental
+20221.02SAM21N.TE-2016.3N	Saneamento Ambiental
+20221.02SAM21N.TE-2018.3N	Saneamento Ambiental
+20221.02SGT11N.1N	Técnico em Segurança do Trabalho
+20221.02SGT11N.3N	Técnico em Segurança do Trabalho
+20221.02ZOO20I.10MV	Zootecnia
+20221.02ZOO20I.1MV	Zootecnia
+20221.02ZOO20I.3MV	Zootecnia
+20221.02ZOO20I.5MV	Zootecnia
+20221.02ZOO20I.7MV	Zootecnia
+20221.02ZOO20I.9MV	Zootecnia
