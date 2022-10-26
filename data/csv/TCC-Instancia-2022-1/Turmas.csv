@@ -1,0 +1,94 @@
+ID;Técnico em Administração;Nome;Periodo ;Disciplinas;SEG;TER;QUA;QUI;SEX;SAB
+20221.02ADM11N.1N;Técnico em Administração;Técnico em Administração (Primeiro Noturno);Noite;183444,183441,183439,183445,183442,183443,183440;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM11N.3N;Técnico em Administração;Técnico em Administração (Terceiro Noturno);Noite;183447,183450,183448,184649,183451,183446,183449;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM12N.1N;PROEJA Adminstração;PROEJA Adminstração (Primeiro Noturno);Noite;183676,183679,183680;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM12N.4N;PROEJA Adminstração;PROEJA Adminstração (Quarto Noturno);Noite;183686;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM12N.5N;PROEJA Adminstração;PROEJA Adminstração (Quinto Noturno);Noite;183712;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM12N.6N;PROEJA Adminstração;PROEJA Adminstração (Sexto Noturno);Noite;183699,183703,183705;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM12N.7N;PROEJA Adminstração;PROEJA Adminstração (Setimo Noturno);Noite;183711,183710;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM20N.1N;Administração;Administração (Primeiro Noturno);Noite;182290,182291,182292,182293,182294;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM20N.3N;Administração;Administração (Terceiro Noturno);Noite;182295,182296,182298,182299,182297;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM20N.5N;Administração;Administração (Quinto Noturno);Noite;182300,182301,182303,182304,182302;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ADM20N.7N;Administração;Administração (Setimo Noturno);Noite;182306,182305,182307,182308,183789;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02AGN21N.6N;Agronegócio;Agronegócio (Sexto Noturno);Noite;183914,183916;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02AGP11M.1M;Técnico em Agropecuária;Técnico em Agropecuária (Primeiro Periodo);Manhã;183454,183453,183456,183452,183455;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02AGP11M.3M;Técnico em Agropecuária;Técnico em Agropecuária (Terceiro Periodo);Manhã;183457,183458,183459,183461,183460,183462;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02AGP11V.1V;Técnico em Agropecuária;Técnico em Agropecuária (Primeiro Periodo);Tarde;183465,183464,183467,183463,183466;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGP11V.3V;Técnico em Agropecuária;Técnico em Agropecuária (Terceiro Periodo);Tarde;183468,183469,183470,183472,183471,183473;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.10MV;Agronomia;Agronomia (Decimo Periodo);Manhã;183792,183821,183791,183793;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02AGR20I.1MV;Agronomia;Agronomia (Primeiro Periodo);Tarde;182247,183411,182248,182249,183409,182250,182251,182252,182253;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.2MV;Agronomia;Agronomia (Segundo Periodo);Tarde;183410,182254,182255,182256,182257,182258;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.3MV;Agronomia;Agronomia (Terceiro Periodo);Manhã;182259,182261,182263,182262,182264,182265,182266;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02AGR20I.4MV;Agronomia;Agronomia (Quarto Periodo);Manhã;182267,183806,183807,183808,183809,183810;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02AGR20I.5MV;Agronomia;Agronomia (Quinto Periodo);Tarde;183811,182268,182270,182269,182272,182271,182273;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.7MV;Agronomia;Agronomia (Setimo Periodo);Manhã;182274,182275,182276,182277,182278,182280;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02AGR20I.9MV;Agronomia;Agronomia (Nono Periodo);Tarde;182281,182282,182283,182284,182285,182286,182287,182288;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.TE.2MV;Agronomia;Agronomia (Segundo Periodo);Tarde;182289;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.TE.7MV;Agronomia;Agronomia (Setimo Periodo);Tarde;183790;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.TE-2010.MV;Agronomia;Agronomia (Turma Especial 2010);Tarde;183818,183851,183852;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02AGR20I.TE-2018.MV;Agronomia;Agronomia (Turma Especial 2018);Tarde;183855,183858,183856;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ALI11N.1N;Técnico em Alimentos;Técnico em Alimentos (Primeiro Noturno);Noite;183857,183475,183478,183479,183480,183474,183476;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ALI11N.3N;Técnico em Alimentos;Técnico em Alimentos (Terceiro Noturno);Noite;183477,183485,183483,183482,183484;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ALI20I.1MV;Engenharia de Alimentos;Engenharia de Alimentos (Primeiro Periodo);Tarde;183481,182449,182453,182454;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ALI20I.3MV;Engenharia de Alimentos;Engenharia de Alimentos (Terceiro Periodo);Manhã;182455,182456,182458,182459,182460,182461;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ALI20I.5MV;Engenharia de Alimentos;Engenharia de Alimentos (Quinto Periodo);Tarde;182462,182463,182464,182466,182465;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ALI20I.7MV;Engenharia de Alimentos;Engenharia de Alimentos (Setimo Periodo);Manhã;182467,182469,182470,182472;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ALI20I.9MV;Engenharia de Alimentos;Engenharia de Alimentos (Nono Periodo);Tarde;182471,182473,182474,182475,182478,182480,182481;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ALI20I.TE.2MV;Engenharia de Alimentos;Engenharia de Alimentos (Segundo Periodo);Tarde;182482;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BIO22N.1N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Primeiro Noturno);Noite;183888,182557,183586,182559,182558,182560,182561;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO22N.3N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Terceiro Noturno);Noite;182562,182563,182564,182565,182566;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO22N.5N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Quinto Noturno);Noite;182567,182568,182569,182570,182572,182571;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO22N.7N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Setimo Noturno);Noite;182573,182574,182575,182576,182577,182578;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BIO23I.1MV;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Primeiro Periodo);Tarde;182579,182329,182331,182330,182332,182333,182334,182335;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BIO23I.3MV;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Terceiro Periodo);Manhã;182336,182337,182338,182340,182341;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02BIO23I.5MV;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Quinto Periodo);Tarde;182342,182343,182344,182345,182346,182347,182348,182349;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BIO23I.7MV;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Setimo Periodo);Manhã;182350,182351,182352,182353,182354;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02BIO23I.8MV;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Oitavo Periodo);Tarde;182355,183865,183863;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02BTC11N.1N;Técnico em Biotecnologia;Técnico em Biotecnologia (Primeiro Noturno);Noite;183864,183486,183490,183487,183491,183489;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02BTC11N.3N;Técnico em Biotecnologia;Técnico em Biotecnologia (Terceiro Noturno);Noite;183488,183495,183496,183493,183492;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02CDC20I.1MV;Ciência da Computação;Ciência da Computação (Primeiro Periodo);Tarde;183494,182310,182309,182311,182312;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02CDC20I.3MV;Ciência da Computação;Ciência da Computação (Terceiro Periodo);Manhã;182313,182314,182315,182316,182317,182318;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02CDC20I.5MV;Ciência da Computação;Ciência da Computação (Quinto Periodo);Tarde;182319,182320,183866,182321,182322,182323;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02CDC20I.7MV;Ciência da Computação;Ciência da Computação (Setimo Periodo);Manhã;182324,182325,183867,182326,182327;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02CIV20I.1MV;Engenharia Civil;Engenharia Civil (Primeiro Periodo);Tarde;182328,182406,182407,183412,182408,182409,182410,182411;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02CIV20I.3MV;Engenharia Civil;Engenharia Civil (Terceiro Periodo);Manhã;182412,182413,182415,182416,182414,182417,182418;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02CIV20I.5MV;Engenharia Civil;Engenharia Civil (Quinto Periodo);Tarde;182419,182420,182421,182422,182423,182424;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02CIV20I.7MV;Engenharia Civil;Engenharia Civil (Setimo Periodo);Manhã;182425,182426,182427,182428,182430,182429;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02CIV20I.9MV;Engenharia Civil;Engenharia Civil (Nono Periodo);Tarde;182431,182432,182434,182437,182441,182443,182444,182445,182446;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02COT11N.1N;Técnico em Contabilidade;Técnico em Contabilidade (Primeiro Noturno);Noite;182447,183502,183497,183499,183501,183500;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02COT11N.3N;Técnico em Contabilidade;Técnico em Contabilidade (Terceiro Noturno);Noite;183498,183504,183507,183506,183503;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02EAM20I.1MV;Engenharia Ambiental;Engenharia Ambiental (Primeiro Periodo);Tarde;183505,182356,182357,182358,182359,182360,182361;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02EAM20I.3MV;Engenharia Ambiental;Engenharia Ambiental (Terceiro Periodo);Manhã;182362,182363,182365,182364,182366,182367,182368;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02EAM20I.5MV;Engenharia Ambiental;Engenharia Ambiental (Quinto Periodo);Tarde;182369,182370,182371,182372,182373,182375,182374;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02EAM20I.7MV;Engenharia Ambiental;Engenharia Ambiental (Setimo Periodo);Manhã;182376,182377,182378,182379,182381,182382;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02EAM20I.9MV;Engenharia Ambiental;Engenharia Ambiental (Nono Periodo);Tarde;182383,182384,182392;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02EAM20I.TE.MV;Engenharia Ambiental;Engenharia Ambiental (Esturma Especial);Manhã;182397,183879;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02EDI11N.1N;Técnico em Edificações;Técnico em Edificações (Primeiro Noturno);Noite;183882,183508,183509,183510,183512,183511;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02EDI11N.3N;Técnico em Edificações;Técnico em Edificações (Terceiro Noturno);Noite;183513,183514,183515,183516,183517;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02EDI12N.1N;PROEJA Edificações;PROEJA Edificações (Primeiro Noturno);Noite;183518;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02EDI12N.4N;PROEJA Edificações;PROEJA Edificações (Quarto Noturno);Noite;183723;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02EDI12N.5N;PROEJA Edificações;PROEJA Edificações (Quinto Noturno);Noite;183730;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02EDI12N.6N;PROEJA Edificações;PROEJA Edificações (Sexto Noturno);Noite;183736;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ENQ20I.1MV;Engenharia Química;Engenharia Química (Primeiro Periodo);Tarde;183744,182483,182484,182485,182486,182487,182488;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ENQ20I.3MV;Engenharia Química;Engenharia Química (Terceiro Periodo);Manhã;182489,182492,182493,182494;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ENQ20I.5MV;Engenharia Química;Engenharia Química (Quinto Periodo);Tarde;182495,182497,182499,182498,182500,182501;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ENQ20I.TE.2MV;Engenharia Química;Engenharia Química (Segundo Periodo);Manhã;182502;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02INF11N.3N;Técnico em Informática;Técnico em Informática (Terceiro Noturno);Noite;183895,183669,183667;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02INF11N.4N;Técnico em Informática;Técnico em Informática (Quarto Noturno);Noite;183670,183672,183673;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI10N.1N;Técnico em Química;Técnico em Química (Primeiro Noturno);Noite;183675,183522,183519,183524,183521,183523,183525;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI10N.3N;Técnico em Química;Técnico em Química (Terceiro Noturno);Noite;183520,183528,183531,183532,183529,183526,183530;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.1N;Química;Química (Primeiro Noturno);Noite;183527,182580,182581,182582,182583,182584;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.3N;Química;Química (Terceiro Noturno);Noite;182585,182586,182587,182588,182589;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.5N;Química;Química (Quinto Noturno);Noite;182591,182592,182593,182595;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02QUI22N.7N;Química;Química (Setimo Noturno);Noite;182597,182598,182601,182602;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02SAM21N.5N;Saneamento Ambiental;Saneamento Ambiental (Quinto Noturno);Noite;182603,183896,183897,183898,183900;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02SAM21N.TE-2016.3N;Saneamento Ambiental;Saneamento Ambiental (Terceiro Noturno);Noite;183899;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02SAM21N.TE-2018.3N;Saneamento Ambiental;Saneamento Ambiental (Terceiro Noturno);Noite;183911,183901,183904;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02SGT11N.1N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Primeiro Noturno);Noite;183905,183538,183533,183537,183534,183536;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02SGT11N.3N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Terceiro Noturno);Noite;183535,183542,183540,183539,183544,183543,183541;1-12;1-12;1-12;1-12;1-12;12-16
+20221.02ZOO20I.10MV;Zootecnia;Zootecnia (Decimo Periodo);Manhã;183545;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ZOO20I.1MV;Zootecnia;Zootecnia (Primeiro Periodo);Tarde;183931,182503,183587,182504,182505,183588,182507;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ZOO20I.3MV;Zootecnia;Zootecnia (Terceiro Periodo);Manhã;182508,182509,182511,182513,182512;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ZOO20I.5MV;Zootecnia;Zootecnia (Quinto Periodo);Tarde;182514,182515,182516,182517,182518,182519;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20221.02ZOO20I.7MV;Zootecnia;Zootecnia (Setimo Periodo);Manhã;182520,182521,182522,182523,182524,182525,182526;7-16;7-16;7-16;7-16;7-16;1-16
+20221.02ZOO20I.9MV;Zootecnia;Zootecnia (Nono Periodo);Tarde;182527,182533,182534,182543;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
