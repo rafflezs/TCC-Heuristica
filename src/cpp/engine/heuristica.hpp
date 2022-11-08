@@ -2,6 +2,8 @@
 #define _HEURISTICA_HPP
 
 #include "solucao.hpp"
+#include <random>
+#include <ctime>
 
 class Heuristica {
 

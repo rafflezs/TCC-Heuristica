@@ -2,19 +2,19 @@
 
 Instancia::Instancia(const std::string ano_instancia)
 {
-    std::cout << "Gerando instancia do periodo: " + ano_instancia << std::endl;
+    // std::cout << "Gerando instancia do periodo: " + ano_instancia << std::endl;
 
     this->m_lista_disciplinas = instanciar_disciplina(ano_instancia);
-    std::cout << "Gerou lista de disciplinas" << std::endl;
+    // std::cout << "Gerou lista de disciplinas" << std::endl;
 
     this->m_lista_turmas = instanciar_turma(ano_instancia);
-    std::cout << "Gerou lista de turmas" << std::endl;
+    // std::cout << "Gerou lista de turmas" << std::endl;
 
     this->m_lista_professores = instanciar_professor(ano_instancia);
-    std::cout << "Gerou lista de professores" << std::endl;
+    // std::cout << "Gerou lista de professores" << std::endl;
 
     this->m_lista_cursos = instanciar_curso(ano_instancia);
-    std::cout << "Gerou lista de cursos" << std::endl;
+    // std::cout << "Gerou lista de cursos" << std::endl;
 }
 
 const std::vector<Professor *> Instancia::instanciar_professor(const std::string &ano_instancia)
@@ -126,7 +126,9 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
                 std::stoi((*row)[6]),
                 std::stoi((*row)[7]),
                 std::stoi((*row)[8]),
-                m_csv.preencher_disponibilidade({(*row)[9], (*row)[10], (*row)[11], (*row)[12], (*row)[13], (*row)[14]})));
+                std::stoi((*row)[9]),
+                std::stoi((*row)[10]),
+                m_csv.preencher_disponibilidade({(*row)[11], (*row)[12], (*row)[13], (*row)[14], (*row)[15], (*row)[16]})));
         }
         index++;
     }
