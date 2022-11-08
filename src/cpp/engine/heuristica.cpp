@@ -13,26 +13,53 @@ Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
 std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metodo, Solucao *solucao)
 {
 
-    std::vector<Disciplina *> t_disciplinas_ordenadas{};
+    std::vector<Disciplina *> t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
 
     switch (rand_metodo)
     {
 
-    case 0:
-        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
-        break;
-
+    // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
     case 1:
+        printf("Caso %d - Maior CH-MIN\n", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
-                  { return lhs->get_ch_presencial() < rhs->get_ch_presencial(); });
+                  { return lhs->get_ch_min() > rhs->get_ch_min(); });
         break;
 
+    // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
     case 2:
-
+        printf("Caso %d - Menor Split\n", rand_metodo);
+        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
+                  { return lhs->get_split() < rhs->get_split(); });
         break;
 
+    // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
+    case 3:
+        printf("Caso %d - Prioriedade CH-MIN e Split Combinados\n", rand_metodo);
+        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
+                  { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() <  rhs->get_split()); });
+        break;
+
+    // // TODO Caso 4: Ordenar disciplina por professor com mais disciplinas
+    // case 4:
+    //     printf("Caso %d\n", rand_metodo);
+    //     break;
+
+    // // TODO Caso 5: Ordenar disciplina por Curso
+    // case 5:
+    //     printf("Caso %d\n", rand_metodo);
+    //     break;
+
+    // // TODO Caso 6: Random Sort
+    // case 6:
+    //     printf("Caso %d\n", rand_metodo);
+    //     break;
+
+    // Caso base: ordenação por ordem de leitura da instância
     default:
+        printf("Caso %d - Ordem de Leitura\n", rand_metodo);
         t_disciplinas_ordenadas;
         break;
     }
@@ -44,7 +71,8 @@ void Heuristica::heuristica_construtiva()
 {
     for (auto it : this->solucoes)
     {
-        it->popular_solucao(ordernar_disciplinas(0, it));
+        // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordernar_disciplinas()
+        it->popular_solucao(ordernar_disciplinas(3, it));
     }
 }
 

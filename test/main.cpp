@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv)
 {
-    std::cout << argv[1] << std::endl;
+    srand(time(0));
     // Instancia inst = Instancia(argv[1]);
     // inst.print_instancia();
 
@@ -12,6 +12,5 @@ int main(int argc, char** argv)
 
     Heuristica h = Heuristica(argv[1], std::stoi(argv[2]));
     h.heuristica_construtiva();
-    h.debug_heuristica();
     return 0;
 }

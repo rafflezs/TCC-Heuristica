@@ -15,17 +15,17 @@ private:
   int m_qtd_alunos{0};
   int m_ch_ead{0};
   int m_ch_presencial{0};
-  int m_split{1}; // TODO: Implementar leitura do CSV
-  int m_ch_min{0}; // TODO: Implementar leitura do CSV
+  int m_split{1};
+  int m_ch_min{0};
 public:
   std::string get_id()
   {
     return this->m_id;
   }
 
-  void set_id(std::string m_id)
+  void set_id(std::string t_id)
   {
-    this->m_id = m_id;
+    this->m_id = t_id;
   }
 
   int get_index()
@@ -33,9 +33,9 @@ public:
     return this->m_index;
   }
 
-  void set_index(int m_index)
+  void set_index(int t_index)
   {
-    this->m_index = m_index;
+    this->m_index = t_index;
   }
 
   std::string get_nome()
@@ -43,9 +43,9 @@ public:
     return this->m_nome;
   }
 
-  void set_nome(std::string m_nome)
+  void set_nome(std::string t_nome)
   {
-    this->m_nome = m_nome;
+    this->m_nome = t_nome;
   }
 
   std::string get_periodo()
@@ -73,9 +73,9 @@ public:
     return this->m_qtd_alunos;
   }
 
-  void set_qtd_alunos(int m_qtd_alunos)
+  void set_qtd_alunos(int t_qtd_alunos)
   {
-    this->m_qtd_alunos = m_qtd_alunos;
+    this->m_qtd_alunos = t_qtd_alunos;
   }
 
   int get_ch_ead()
@@ -83,9 +83,9 @@ public:
     return this->m_ch_ead;
   }
 
-  void set_ch_ead(int m_ch_ead)
+  void set_ch_ead(int t_ch_ead)
   {
-    this->m_ch_ead = m_ch_ead;
+    this->m_ch_ead = t_ch_ead;
   }
 
   int get_ch_presencial()
@@ -93,9 +93,29 @@ public:
     return this->m_ch_presencial;
   }
 
-  void set_ch_presencial(int m_ch_presencial)
+  void set_ch_presencial(int t_ch_presencial)
   {
-    this->m_ch_presencial = m_ch_presencial;
+    this->m_ch_presencial = t_ch_presencial;
+  }
+
+    int get_ch_min()
+  {
+    return this->m_ch_min;
+  }
+
+  void set_ch_min(int t_ch_min)
+  {
+    this->m_ch_min = t_ch_min;
+  }
+
+    int get_split()
+  {
+    return this->m_split;
+  }
+
+  void set_split(int t_split)
+  {
+    this->m_split = t_split;
   }
 
   Disciplina(){};
@@ -109,6 +129,8 @@ public:
     const int t_qtd_alunos,
     const int t_ch_ead,
     const int t_ch_presencial,
+    const int t_ch_min,
+    const int t_split,
     const std::array<std::array<int, 16>, 6> t_disponibilidade
   ) : 
     m_id(t_id),
@@ -119,6 +141,8 @@ public:
     m_qtd_alunos(t_qtd_alunos),
     m_ch_ead(t_ch_ead), 
     m_ch_presencial(t_ch_presencial),
+    m_ch_min(t_ch_min),
+    m_split(t_split),
     m_disponibilidade(t_disponibilidade){};
 
   /*
@@ -134,7 +158,9 @@ public:
     << ", Periodo: " << this->get_periodo() 
     << ", # ALUNOS: " << this->get_qtd_alunos() 
     << ", CH Presencial: " << this->get_ch_presencial() 
-    << ", CH EAD: " << this->get_ch_ead() << std::endl;
+    << ", CH EAD: " << this->get_ch_ead() << std::endl
+    << ", MIN: " << this->get_ch_min() << std::endl
+    << ",SPLIT: " << this->get_split() << std::endl;
 
     std::cout << "array<disponibilidade>" << std::endl;
     std::cout << std::setw(5) << "H1 " << " "
