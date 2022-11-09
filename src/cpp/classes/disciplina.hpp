@@ -6,7 +6,6 @@
 class Disciplina
 {
 private:
-  int m_id_nominal{0};
   std::string m_id{"NULL"};
   std::string m_cod_diario{"NULL"};
   int m_index{NULL};
@@ -19,15 +18,6 @@ private:
   int m_split{1};
   int m_ch_min{0};
 public:
-  int get_id_nominal()
-  {
-    return this->m_id_nominal;
-  }
-
-  void set_id_nominal(int t_id_nominal)
-  {
-    this->m_id_nominal = t_id_nominal;
-  }
 
   std::string get_id()
   {
@@ -132,28 +122,26 @@ public:
   Disciplina(){};
 
   Disciplina(
-    const int t_id_nominal,
     const std::string t_id,
     const std::string t_cod_diario,
     const int t_index,
     const std::string t_nome,
     std::string t_periodo,
     const int t_qtd_alunos,
-    const int t_ch_ead,
     const int t_ch_presencial,
+    const int t_ch_ead,
     const int t_ch_min,
     const int t_split,
     const std::array<std::array<int, 16>, 6> t_disponibilidade
   ) : 
-    m_id_nominal(t_id_nominal),
     m_id(t_id),
     m_cod_diario(t_cod_diario), 
     m_nome(t_nome), 
     m_index(t_index),
     m_periodo(t_periodo), 
     m_qtd_alunos(t_qtd_alunos),
-    m_ch_ead(t_ch_ead), 
     m_ch_presencial(t_ch_presencial),
+    m_ch_ead(t_ch_ead), 
     m_ch_min(t_ch_min),
     m_split(t_split),
     m_disponibilidade(t_disponibilidade){};
