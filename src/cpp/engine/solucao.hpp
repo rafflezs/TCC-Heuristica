@@ -3,25 +3,30 @@
 
 #include "instancia.hpp"
 #include <algorithm>
-class Solucao{
+class Solucao
+{
 
 private:
     Instancia *m_instancia{nullptr};
-
+    int m_id{0};
 public:
-    Solucao(std::string t_instancia);
+    Solucao(std::string t_instancia, int t_id);
 
-    void popular_solucao(std::vector <Disciplina*> disciplinas_ordenadas);
+    bool popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas);
+    bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma);
+    void alocar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
+    bool tem_choque(Disciplina *t_disciplina, Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split);
+    bool tem_choque(Disciplina *t_disciplina, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
     void exibir_solucao();
-    bool tem_choque(Disciplina* t_disciplina);
 
-    Professor* encontrar_prof_relacionado(Disciplina* t_disciplina);
-    Turma* encontrar_turma_relacionada(Disciplina* t_disciplina);
-    Curso* encontrar_curso_relacionado(Turma* t_turma);
+    Professor *encontrar_prof_relacionado(Disciplina *t_disciplina);
+    Turma *encontrar_turma_relacionada(Disciplina *t_disciplina);
+    Curso *encontrar_curso_relacionado(Turma *t_turma);
 
     Instancia get_instancia();
     void debug_vector_disciplina_addr();
 
+    int get_id_solucao();
 };
 
 #endif // !_SOLUCAO_HPP
