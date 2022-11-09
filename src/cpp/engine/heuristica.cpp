@@ -75,11 +75,13 @@ void Heuristica::heuristica_construtiva()
         // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordernar_disciplinas()
         bool deu_certo = it->popular_solucao(ordernar_disciplinas(rand() % 4, it));
         if (deu_certo == true){
+            it->set_factivel(true);
             std::cout << "Solucao " << it->get_id_solucao() << " encontrada" << std::endl;
             // it->exibir_solucao();
         }
         else
         {
+            it->set_factivel(false);
             std::cout << "Solucao " << it->get_id_solucao() << " infactivel" << std::endl;
             // it->exibir_solucao();
         }
@@ -90,7 +92,8 @@ void Heuristica::exibir_solucoes()
 {
     for (auto it = this->solucoes.begin(); it != this->solucoes.end(); it++)
     {
-        (*it)->exibir_solucao();
+        if ((*it)->get_factivel() == true)
+            (*it)->exibir_solucao();
     }
 }
 

@@ -12,5 +12,7 @@ int main(int argc, char** argv)
 
     Heuristica h = Heuristica(argv[1], std::stoi(argv[2]));
     h.heuristica_construtiva();
+    printf("\n\n\n\n\n\nSOLUCOES ENCONTRADAS\n\n");
+    h.exibir_solucoes();
     return 0;
 }

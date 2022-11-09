@@ -13,8 +13,9 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
     int iterations_limit = disciplinas_ordenadas.size();
 
     std::cout << "\n\nPopulando solução " << this->get_id_solucao() << std::endl;
-    while (disciplinas_ordenadas.size() != 0)
+    while (!disciplinas_ordenadas.empty())
     {
+        std::cout << "Iteracao " << iteracoes << " | Disciplina " << disciplinas_ordenadas.back()->get_index() << " - " << disciplinas_ordenadas.back()->get_nome() << std::endl; 
         if (iteracoes >
             (iterations_limit * iterations_limit))
         {
@@ -22,14 +23,13 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
             return false;
         }
 
-        auto disciplina = disciplinas_ordenadas[disciplinas_ordenadas.size() - 1];
 
         // std::cout << disciplina->get_nome() << " | " << disciplina->get_nome() << std::endl;
-        auto professor_relacionado = encontrar_prof_relacionado(disciplina);
-        auto turma_relacionada = encontrar_turma_relacionada(disciplina);
+        auto professor_relacionado = encontrar_prof_relacionado(disciplinas_ordenadas.back());
+        auto turma_relacionada = encontrar_turma_relacionada(disciplinas_ordenadas.back());
         // std::cout << std::endl;
 
-        bool verificado = verificar_horario(disciplina, professor_relacionado, turma_relacionada);
+        bool verificado = verificar_horario(disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada);
         if (verificado == true)
         {
             disciplinas_ordenadas.pop_back();
@@ -40,22 +40,19 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
             iteracoes++;
     }
 
-    if (disciplinas_ordenadas.empty())
-        return true;
-    return false;
+    return true;
 }
 
 bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma)
 {
-    std::cout << "Alocando disciplina " << t_disciplina->get_nome() << "(" << t_disciplina->get_index   () << ")" << " para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << std::endl;
-
+    std::cout << "Alocando disciplina " << t_disciplina->get_nome() << "(" << t_disciplina->get_index() << ")"
+              << " para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << std::endl;
 
     if (t_disciplina->get_ch_presencial() == 0)
     {
         std::cout << "Disciplina com CH Nula " << std::endl;
         return true;
     }
-
 
     std::vector<int> splits{};
     if (t_disciplina->get_ch_presencial() % t_disciplina->get_split() == 0)
@@ -70,29 +67,89 @@ bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor
     }
 
     std::cout << "A disciplina possui  CH-Presencial " << t_disciplina->get_ch_presencial() << " e " << t_disciplina->get_split() << " sendo eles: {";
-    for (auto split : splits) std::cout << split << ", ";
+    for (auto split : splits)
+        std::cout << split << ", ";
     std::cout << "}" << std::endl;
 
-
-    // ! Problema ta aqui o fila duma puta
-    // ! é so dar um jeito de terminar o loop onde ele deve terminar
-
-    for (auto split : splits)
+    if (t_disciplina->get_periodo() == "Manhã")
     {
-        for (int dia = 0; dia < 6; dia++)
+        for (int split = 0; split < splits.size(); split++)
         {
-            for (int horario = 0; horario < (16 - t_disciplina->get_ch_min()); horario++)
+            std::cout << "Verificando split " << split << " {" << splits[split] << "}" << std::endl;
+            for (int dia = 0; dia < 6; dia++)
             {
-                if (tem_choque(t_disciplina, t_professor, dia, horario, split) == false && tem_choque(t_disciplina, t_turma, dia, horario, split) == false)
+                std::cout << "Verificando dia " << dia + 1 << std::endl;
+                for (int horario = 0; horario < (6 - t_disciplina->get_ch_min()); horario++)
                 {
-                    std::cout << "Não houve choque para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << ". Alocando horário" << std::endl;
-                    alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, split);
-                    break;
+                    std::cout << "Verificando horário H" << horario + 1 << std::endl;
+                    int tem_choque_professor = tem_choque(t_disciplina, t_professor, dia, horario, splits[split]);
+                    int tem_choque_turma = tem_choque(t_disciplina, t_turma, dia, horario, splits[split]);
+                    if (tem_choque_professor + tem_choque_turma == 0)
+                    {
+                        std::cout << "Não houve choque para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << ". Alocando horário" << std::endl;
+                        alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, splits[split]);
+                        break;
+                    }
                 }
                 break;
             }
-            break;
+            continue;
         }
+        return true;
+    }
+
+    else if (t_disciplina->get_periodo() == "Tarde")
+    {
+        for (int split = 0; split < splits.size(); split++)
+        {
+            std::cout << "Verificando split " << split << " {" << splits[split] << "}" << std::endl;
+            for (int dia = 0; dia < 6; dia++)
+            {
+                std::cout << "Verificando dia " << dia + 1 << std::endl;
+                for (int horario = 6; horario < (12 - t_disciplina->get_ch_min()); horario++)
+                {
+                    std::cout << "Verificando horário H" << horario + 1 << std::endl;
+                    int tem_choque_professor = tem_choque(t_disciplina, t_professor, dia, horario, splits[split]);
+                    int tem_choque_turma = tem_choque(t_disciplina, t_turma, dia, horario, splits[split]);
+                    if (tem_choque_professor + tem_choque_turma == 0)
+                    {
+                        std::cout << "Não houve choque para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << ". Alocando horário" << std::endl;
+                        alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, splits[split]);
+                        break;
+                    }
+                }
+                break;
+            }
+            continue;
+        }
+        return true;
+    }
+
+    else if (t_disciplina->get_periodo() == "Noite")
+    {
+        for (int split = 0; split < splits.size(); split++)
+        {
+            std::cout << "Verificando split " << split << " {" << splits[split] << "}" << std::endl;
+            for (int dia = 0; dia < 6; dia++)
+            {
+                std::cout << "Verificando dia " << dia + 1 << std::endl;
+                for (int horario = 12; horario < (16 - t_disciplina->get_ch_min()); horario++)
+                {
+                    std::cout << "Verificando horário H" << horario + 1 << std::endl;
+                    int tem_choque_professor = tem_choque(t_disciplina, t_professor, dia, horario, splits[split]);
+                    int tem_choque_turma = tem_choque(t_disciplina, t_turma, dia, horario, splits[split]);
+                    if (tem_choque_professor + tem_choque_turma == 0)
+                    {
+                        std::cout << "Não houve choque para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << ". Alocando horário" << std::endl;
+                        alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, splits[split]);
+                        break;
+                    }
+                }
+                break;
+            }
+            continue;
+        }
+        return true;
     }
 
     return false;
@@ -112,16 +169,21 @@ void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, T
     }
     t_professor->set_disponibilidade(horario);
 
+    t_professor->print_solucao();
+
     int split_aluno = t_split;
     horario = t_turma->get_disponibilidade();
     for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
     {
-        if (split_aluno== 0)
+        if (split_aluno == 0)
             break;
         horario[t_dia_escolhido][j] = t_disciplina->get_index();
         split_aluno--;
     }
     t_turma->set_disponibilidade(horario);
+    t_turma->print_solucao();
+
+    std::cout << std::endl;
 }
 
 bool Solucao::tem_choque(Disciplina *t_disciplina, Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split)
@@ -130,17 +192,23 @@ bool Solucao::tem_choque(Disciplina *t_disciplina, Professor *t_professor, int t
     int consecutivo = 0;
     for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
     {
-        if (consecutivo == t_split) break;
+        if (horario[t_dia_escolhido][j] != 0)
+            return true;
+        if (consecutivo == t_split)
+            break;
         if (horario[t_dia_escolhido][j] == 0)
         {
-            std::cout << "Dia " << t_dia_escolhido+1 << " horario " << j+1 << " disponível" << " -> " << horario[t_dia_escolhido][j] << std::endl;
+            std::cout << "Dia " << t_dia_escolhido + 1 << " horario " << j + 1 << " disponível"
+                      << " -> " << horario[t_dia_escolhido][j] << std::endl;
             consecutivo++;
         }
     }
 
+    // ! TODO: O PROBLEMA TA POR AQUI
+
     if (consecutivo == t_split)
     {
-        std::cout << "Choque não encontrado. Dia x Horario-Inicial: " << t_dia_escolhido+1 << " x " << t_horario_inicial+1 << ". Consecutivo " << consecutivo << " == Split " << t_split << std::endl;
+        std::cout << "Choque não encontrado para o professor. Dia x Horario-Inicial: " << t_dia_escolhido + 1 << " x " << t_horario_inicial + 1 << ". Consecutivo " << consecutivo << " == Split " << t_split << std::endl;
         return false;
     }
 
@@ -155,17 +223,21 @@ bool Solucao::tem_choque(Disciplina *t_disciplina, Turma *t_turma, int t_dia_esc
     int consecutivo = 0;
     for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
     {
-        if (consecutivo == t_split) break;
+        if (horario[t_dia_escolhido][j] != 0)
+            return true;
+        if (consecutivo == t_split)
+            break;
         if (horario[t_dia_escolhido][j] == 0)
         {
-            std::cout << "Dia " << t_dia_escolhido+1 << " horario " << j+1 << " disponível" << " -> " << horario[t_dia_escolhido][j] << std::endl;
+            std::cout << "Dia " << t_dia_escolhido + 1 << " horario " << j + 1 << " disponível"
+                      << " -> " << horario[t_dia_escolhido][j] << std::endl;
             consecutivo++;
         }
     }
 
     if (consecutivo == t_split)
     {
-        std::cout << "Choque não encontrado. Dia x Horario-Inicial: " << t_dia_escolhido+1 << " x " << t_horario_inicial+1 << ". Consecutivo " << consecutivo << " == Split " << t_split << std::endl;
+        std::cout << "Choque não encontrado para a turma. Dia x Horario-Inicial: " << t_dia_escolhido + 1 << " x " << t_horario_inicial + 1 << ". Consecutivo " << consecutivo << " == Split " << t_split << std::endl;
         return false;
     }
 
@@ -269,4 +341,14 @@ void Solucao::debug_vector_disciplina_addr()
 int Solucao::get_id_solucao()
 {
     return this->m_id;
+}
+
+bool Solucao::get_factivel()
+{
+    return this->m_factivel;
+}
+
+void Solucao::set_factivel(bool const& t_factivel)
+{
+    this->m_factivel = t_factivel;
 }
