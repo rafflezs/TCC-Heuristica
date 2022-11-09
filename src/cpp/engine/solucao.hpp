@@ -9,6 +9,7 @@ class Solucao
 private:
     Instancia *m_instancia{nullptr};
     int m_id{0};
+    bool m_factivel{false};
 public:
     Solucao(std::string t_instancia, int t_id);
 
@@ -25,6 +26,9 @@ public:
 
     Instancia get_instancia();
     void debug_vector_disciplina_addr();
+
+    bool get_factivel();
+    void set_factivel(bool const& t_factivel);
 
     int get_id_solucao();
 };
