@@ -1,36 +1,129 @@
 #include "solucao.hpp"
 
-Solucao::Solucao(std::string t_instancia)
+Solucao::Solucao(std::string t_instancia, int t_id)
 {
     m_instancia = new Instancia(t_instancia);
+    m_id = t_id;
     std::cout << "Gerada Instancia da Solução Populada." << std::endl;
 }
 
-void Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
+bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
 {
     int iteracoes = 0;
+
     while (disciplinas_ordenadas.size() != 0)
     {
-        auto disciplina = disciplinas_ordenadas[disciplinas_ordenadas.size() - 1];
-        std::cout << disciplina->get_nome() << " | " << disciplina->get_nome() << std::endl;
-        auto professor_relacionado = encontrar_prof_relacionado(disciplina);
-        auto turma_relacionada = encontrar_turma_relacionada(disciplina);
-        std::cout << std::endl;
         if (iteracoes >
             (disciplinas_ordenadas.size() * disciplinas_ordenadas.size()))
         {
             printf("População encerrada por excesso de iterações\n");
-            break;
+            return false;
         }
 
-        disciplinas_ordenadas.pop_back();
+        auto disciplina = disciplinas_ordenadas[disciplinas_ordenadas.size() - 1];
+
+        std::cout << disciplina->get_nome() << " | " << disciplina->get_nome() << std::endl;
+        auto professor_relacionado = encontrar_prof_relacionado(disciplina);
+        auto turma_relacionada = encontrar_turma_relacionada(disciplina);
+        std::cout << std::endl;
+
+        bool verificado = verificar_horario(disciplina, professor_relacionado, turma_relacionada);
+        if (verificado == true)
+        {
+            disciplinas_ordenadas.pop_back();
+            iteracoes++;
+        }
+        else
+            iteracoes++;
     }
-    std::cout << std::endl;
+    return true;
 }
 
-bool Solucao::tem_choque(Disciplina *t_disciplina)
+bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma)
 {
+    if (t_disciplina->get_ch_presencial() == 0)
+        return true;
+
+    std::vector<int> splits{};
+    if (t_disciplina->get_ch_presencial() % t_disciplina->get_split() == 0)
+        for (int i = 0; i < t_disciplina->get_split(); i++)
+            splits.push_back(t_disciplina->get_ch_min());
+    else
+    {
+        int tam_total_disciplina = t_disciplina->get_ch_presencial();
+        for (int i = 0; i < t_disciplina->get_split(); i++)
+            splits.push_back(t_disciplina->get_ch_min());
+        splits.back() = splits.back() + (t_disciplina->get_ch_presencial() % t_disciplina->get_split());
+    }
+
+    for (auto split : splits)
+    {
+        for (int dia = 0; dia < 6; dia++)
+        {
+            for (int horario = 0; horario < (16 - t_disciplina->get_ch_min()); horario++)
+            {
+                if (!tem_choque(t_disciplina, t_professor, dia, horario, split) && !tem_choque(t_disciplina, t_turma, dia, horario, split))
+                {
+                    alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, split);
+                }
+            }
+        }
+    }
+
     return false;
+}
+
+void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split)
+{
+    auto horario = t_professor->get_disponibilidade();
+    for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
+    {
+        if (t_split == 0)
+            break;
+        horario[t_dia_escolhido][j] = t_disciplina->get_id_nominal();
+        t_split--;
+    }
+    t_professor->set_disponibilidade(horario);
+
+    horario = t_turma->get_disponibilidade();
+    for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
+    {
+        if (t_split == 0)
+            break;
+        horario[t_dia_escolhido][j] = t_disciplina->get_id_nominal();
+        t_split--;
+    }
+    t_turma->set_disponibilidade(horario);
+}
+
+bool Solucao::tem_choque(Disciplina *t_disciplina, Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split)
+{
+    auto horario = t_professor->get_disponibilidade();
+    int consecutivo = 0;
+    for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
+    {
+        if (horario[t_dia_escolhido][j] != 0)
+            consecutivo++;
+        if (consecutivo == t_split)
+            return false;
+    }
+
+    return true;
+}
+
+bool Solucao::tem_choque(Disciplina *t_disciplina, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split)
+{
+    auto horario = t_turma->get_disponibilidade();
+    int consecutivo = 0;
+    for (int j = t_horario_inicial; j < horario[t_dia_escolhido].size(); j++)
+    {
+        if (horario[t_dia_escolhido][j] != 0)
+            consecutivo++;
+        if (consecutivo == t_split)
+            return false;
+    }
+
+    return true;
 }
 
 Professor *Solucao::encontrar_prof_relacionado(Disciplina *t_disciplina)
@@ -123,4 +216,9 @@ void Solucao::debug_vector_disciplina_addr()
         std::cout << it->get_nome() << ";" << it << std::endl;
     }
     std::cout << std::endl;
+}
+
+int Solucao::get_id_solucao()
+{
+    return this->m_id;
 }

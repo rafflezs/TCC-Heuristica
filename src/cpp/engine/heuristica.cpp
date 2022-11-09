@@ -2,11 +2,11 @@
 
 Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
 {
-    this->solucoes.push_back(new Solucao(t_instancia_pipe));
-    for (int i = 0; i < tam_populacao; i++)
+    this->solucoes.push_back(new Solucao(t_instancia_pipe, 0));
+    for (int i = 1; i <= tam_populacao; i++)
     {
         std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i + 1 << NC << std::endl;
-        this->solucoes.push_back(new Solucao(t_instancia_pipe));
+        this->solucoes.push_back(new Solucao(t_instancia_pipe, i));
     }
 }
 
@@ -72,7 +72,10 @@ void Heuristica::heuristica_construtiva()
     for (auto it : this->solucoes)
     {
         // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordernar_disciplinas()
-        it->popular_solucao(ordernar_disciplinas(3, it));
+        if (it->popular_solucao(ordernar_disciplinas(rand() % 4, it)) == true)
+            it->exibir_solucao();
+        else
+            std::cout << "Solucao " << it->get_id_solucao() << " infactivel" << std::endl;
     }
 }
 

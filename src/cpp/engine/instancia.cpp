@@ -118,6 +118,7 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
         if (index > 0)
         {
             t_disciplinas.push_back(new Disciplina(
+                index,
                 (*row)[0],
                 (*row)[1],
                 index,
