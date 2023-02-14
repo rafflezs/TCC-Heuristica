@@ -20,7 +20,7 @@ Instancia::Instancia(const std::string ano_instancia)
 const std::vector<Professor *> Instancia::instanciar_professor(const std::string &ano_instancia)
 {
     std::vector<Professor *> t_professores;
-    std::ifstream file{"/home/rafflezs/TCC/data/csv/" + ano_instancia + "/Professores.csv"}; // WSL
+    std::ifstream file{"data/csv/" + ano_instancia + "/Professores.csv"}; // WSL
     // std::ifstream file{"/home/rafflezs/Programacao/TCC/data/csv/" + ano_instancia + "/Professores.csv"}; // Unix
     // std::ifstream file{"D:\\Programacao\\TCC\\data\\csv\\" + ano_instancia + "\\Professores.csv"}; // Windows
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
@@ -48,7 +48,7 @@ const std::vector<Professor *> Instancia::instanciar_professor(const std::string
 const std::vector<Curso *> Instancia::instanciar_curso(const std::string &ano_instancia)
 {
     std::vector<Curso *> t_cursos;
-    std::ifstream file{"/home/rafflezs/TCC/data/csv/" + ano_instancia + "/Cursos.csv"}; // WSL
+    std::ifstream file{"data/csv/" + ano_instancia + "/Cursos.csv"}; // WSL
     // std::ifstream file{"/home/rafflezs/Programacao/TCC/data/csv/" + ano_instancia + "/Cursos.csv"}; // Unix
     // std::ifstream file{"D:\\Programacao\\TCC\\data\\csv\\" + ano_instancia + "\\Cursos.csv"}; // Windows
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
@@ -78,7 +78,7 @@ const std::vector<Curso *> Instancia::instanciar_curso(const std::string &ano_in
 const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_instancia)
 {
     std::vector<Turma *> t_turmas;
-    std::ifstream file{"/home/rafflezs/TCC/data/csv/" + ano_instancia + "/Turmas.csv"}; // WSL
+    std::ifstream file{"data/csv/" + ano_instancia + "/Turmas.csv"}; // WSL
     // std::ifstream file{"/home/rafflezs/Programacao/TCC/data/csv/" + ano_instancia + "/Turmas.csv"}; // Unix
     // std::ifstream file{"D:\\Programacao\\TCC\\data\\csv\\" + ano_instancia + "\\Turmas.csv"}; // Windows
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
@@ -88,13 +88,31 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
     {
         if (index > 0)
         {
+            int int_primeiro_horario = 0;
+            int int_ultimo_horario = 5;
+
+            if ((*row)[3] == "Tarde")
+            {
+
+                int_primeiro_horario = 6;
+                int_ultimo_horario = 11;
+            }
+            else if ((*row)[3] == "Noite")
+            {
+
+                int_primeiro_horario = 12;
+                int_ultimo_horario = 15;
+            }
+
             t_turmas.push_back(new Turma(
                 (*row)[0],
                 index,
                 (*row)[2],
                 (*row)[3],
                 buscar_disciplinas(m_csv.parse_coluna((*row)[4], ',')),
-                m_csv.preencher_disponibilidade({(*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9], (*row)[10]})));
+                m_csv.preencher_disponibilidade({(*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9], (*row)[10]}),
+                int_primeiro_horario,
+                int_ultimo_horario));
         }
         index++;
     }
@@ -107,7 +125,7 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
 const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::string &ano_instancia)
 {
     std::vector<Disciplina *> t_disciplinas;
-    std::ifstream file{"/home/rafflezs/TCC/data/csv/" + ano_instancia + "/Disciplinas.csv"}; // WSL
+    std::ifstream file{"data/csv/" + ano_instancia + "/Disciplinas.csv"}; // WSL
     // std::ifstream file{"/home/rafflezs/Programacao/TCC/data/csv/" + ano_instancia + "/Disciplinas.csv"}; // Unix
     // std::ifstream file{"D:\\Programacao\\TCC\\data\\csv\\" + ano_instancia + "\\Disciplinas.csv"}; // Windows
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');

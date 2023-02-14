@@ -16,8 +16,8 @@ public:
     bool popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas);
     bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma);
     void alocar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
-    bool tem_choque(Disciplina *t_disciplina, Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split);
-    bool tem_choque(Disciplina *t_disciplina, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
+    bool eh_horario_disponivel(Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
+    bool eh_horario_disponivel(Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split);
     void exibir_solucao();
 
     Professor *encontrar_prof_relacionado(Disciplina *t_disciplina);
