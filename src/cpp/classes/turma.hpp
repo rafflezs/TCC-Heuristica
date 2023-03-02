@@ -253,6 +253,56 @@ public:
       std::cout << std::endl;
     }
   }
+
+  void print_output()
+  {
+    std::cout << "\\begin{table}[htbp]\n";
+    std::cout << "\\centering\n";
+    std::cout << "\\caption{Horário da Turma}\n";
+    std::cout << "\\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\\hline\n";
+    std::cout << " & \\multicolumn{15}{|c|}{Horário} \\\\ \\cline{2-16}\n";
+    std::cout << "Dia & H1 & H2 & H3 & H4 & H5 & H6 & H7 & H8 & H9 & H10 & H11 & H12 & H13 & H14 & H15 & H16 \\\\ \\hline\n";
+    std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
+    for (int i = 0; i < f_dispo.size(); i++)
+    {
+      switch (i)
+      {
+      case 0:
+        std::cout << "\\multirow{2}{*}{SEG} & ";
+        break;
+      case 1:
+        std::cout << "\\multirow{2}{*}{TER} & ";
+        break;
+      case 2:
+        std::cout << "\\multirow{2}{*}{QUA} & ";
+        break;
+      case 3:
+        std::cout << "\\multirow{2}{*}{QUI} & ";
+        break;
+      case 4:
+        std::cout << "\\multirow{2}{*}{SEX} & ";
+        break;
+      case 5:
+        std::cout << "\\multirow{2}{*}{SAB} & ";
+        break;
+      default:
+        break;
+      }
+      for (int j = 0; j < f_dispo[i].size(); j++)
+      {
+        if (j == f_dispo[i].size() - 1)
+        {
+          std::cout << f_dispo[i][j] << " \\\\ \\cline{2-16}\n";
+        }
+        else
+        {
+          std::cout << f_dispo[i][j] << " & ";
+        }
+      }
+    }
+    std::cout << "\\end{tabular}\n";
+    std::cout << "\\end{table}\n";
+  }
 };
 
 #endif // !_TURMA_HPP
