@@ -5,28 +5,22 @@
 #include <random>
 #include <ctime>
 
-class Heuristica {
-
-// ! TODO: Implementar Herística Construtiva da Solução -> Inserir Inicio
-    // ! Verificar ordenação utilizada na Heurística Construtiva
-
-
-// TODO: Implementar leitura da Solução
-// TODO: Implementar exclusão da Solução
-// TODO: Implementar inserção da Solução
+class Heuristica
+{
 
 private:
-    std::vector<Solucao*> solucoes{};
+    std::vector<Solucao *> solucoes{};
 
 public:
     Heuristica(std::string t_instancia_pipe, int tam_populacao);
-    
-    std::vector<Disciplina*> ordernar_disciplinas(const int &rand_metodo, Solucao* solucao);
+
+    std::vector<Disciplina *> ordernar_disciplinas(const int &rand_metodo, Solucao *solucao);
     void heuristica_construtiva();
+    // void mutar(Solucao *solucao, int taxa_mutacao);
+    // void cruzar(Solucao *solucao1, Solucao *solucao2);
     
     void exibir_solucoes();
     void debug_heuristica();
-
 };
 
 #endif //!_HEURISTICA_HPP

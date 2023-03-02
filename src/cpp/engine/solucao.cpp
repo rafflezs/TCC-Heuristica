@@ -62,26 +62,30 @@ bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor
         splits.push_back(horas_por_split);
     splits.push_back(tam_total_disciplina - horas_por_split * (t_disciplina->get_split() - 1));
 
-    int alocado = 0;
-
     std::cout << "Split Size= " << splits.size() << std::endl;
-    for (int split = 0; split < splits.size(); split++)
-        std::cout << "Split [i] = " << splits[alocado] << std::endl;
 
-    while (alocado != splits.size())
+    for (int split = 0; split < splits.size(); split++)
     {
-        std::cout << "Split [i] = " << splits[alocado] << std::endl;
+        std::cout << "Split [i] = " << splits[split] << std::endl;
+        //int random_day = rand() % 6;
+        //for (int d = 0; d < 6; d++)
         for (int dia = 0; dia < 6; dia++)
         {
-            for (int horario = t_turma->get_primeiro_horario_turno(); t_turma->get_ultimo_horario_turno(); horario++)
+            //dia = (d + random_day) % 6;
+            std::cout << "Verificando possibilidade no dia " << dia << std::endl;
+            for (int horario = t_turma->get_primeiro_horario_turno(); horario <= t_turma->get_ultimo_horario_turno(); horario++)
             {
-                if (eh_horario_disponivel(t_turma, dia, horario, splits[alocado]) && eh_horario_disponivel(t_professor, dia, horario, splits[alocado]))
+                std::cout << "Verificando possibilidade do horario " << horario << " ate o horario " << t_turma->get_ultimo_horario_turno() << std::endl;
+                if (eh_horario_disponivel(t_turma, dia, horario, splits[split]) && eh_horario_disponivel(t_professor, dia, horario, splits[split]))
                 {
-                    alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, splits[alocado]);
-                    alocado++;
+                    alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, splits[split]);
+                    split++;
+                    std::cout << "Alocação bem-sucedida. Split: " << split << std::endl;
                     break;
                 }
             }
+            if (split == splits.size())
+                break;
         }
     }
 
@@ -251,6 +255,14 @@ void Solucao::debug_vector_disciplina_addr()
     }
     std::cout << std::endl;
 }
+
+// void Solucao::trocar_disciplina(int ponto_de_corte, Disciplina* t_disicplina)
+// {
+    // std::srand(std::time(nullptr));
+    // int disciplina1_index = std::rand() % disciplinas_ordenadas.size();
+    // int disciplina2_index = std::rand() % disciplinas_ordenadas.size();
+    // std::swap(disciplinas_ordenadas[disciplina1_index], disciplinas_ordenadas[disciplina2_index]);
+// }
 
 int Solucao::get_id_solucao()
 {
