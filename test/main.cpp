@@ -1,4 +1,5 @@
 #include "../src/cpp/engine/heuristica.hpp"
+#include "../src/cpp/helpers/gravar-arquivo.hpp"
 
 int main(int argc, char** argv)
 {
