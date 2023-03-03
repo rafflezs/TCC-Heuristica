@@ -27,12 +27,14 @@ public:
         arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\textbf{H1} & \\textbf{H2} & \\textbf{H3} & \\textbf{H4} & \\textbf{H5} & \\textbf{H6} & \\textbf{H7} & \\textbf{H8} & \\textbf{H9} & \\textbf{H10} & \\textbf{H11} & \\textbf{H12} & \\textbf{H13} & \\textbf{H14} & \\textbf{H15} & \\textbf{H16} \\\\" << std::endl;
         arquivo << "\\hline" << std::endl;
 
-        for (Professor p : t_solucao->m_instancia->professor)
-        {
-            std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
-            arquivo << p.get_nome() << std::endl;
+        auto profs = t_solucao->get_instancia().m_lista_professores;
 
-            for (int i = 0; i < p.get_disponibilidade().size(); i++)
+        for (auto p : profs)
+        {
+            std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
+            arquivo << p->get_nome() << std::endl;
+
+            for (int i = 0; i < p->get_disponibilidade().size(); i++)
             {
                 switch (i)
                 {
@@ -57,7 +59,7 @@ public:
                 default:
                     break;
                 }
-                for (int j = 0; j < p.get_disponibilidade()[i].size(); j++)
+                for (int j = 0; j < p->get_disponibilidade()[i].size(); j++)
                 {
                     arquivo << f_dispo[i][j];
                     if (j < f_dispo[i].size() - 1)
