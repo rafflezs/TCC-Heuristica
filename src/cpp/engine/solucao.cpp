@@ -288,3 +288,13 @@ void Solucao::set_factivel(bool const &t_factivel)
 {
     this->m_factivel = t_factivel;
 }
+
+float Solucao::get_valor_avaliacao()
+{
+    return this->m_valor_avaliado;
+}
+
+void Solucao::set_valor_avaliacao(float const &t_valor_avaliacao)
+{
+    this->m_valor_avaliado = t_valor_avaliacao;
+}

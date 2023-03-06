@@ -9,7 +9,6 @@ class Heuristica
 
 private:
     std::vector<Solucao *> m_solucoes{};
-    std::vector<float> m_avaliacao_solucao{};
 
 public:
     Heuristica(std::string t_instancia_pipe, int tam_populacao);
@@ -18,13 +17,17 @@ public:
     void heuristica_construtiva();
     // void mutar(Solucao *solucao, int taxa_mutacao);
     // void cruzar(Solucao *solucao1, Solucao *solucao2);
-    
+
     void exibir_solucoes();
     void debug_heuristica();
 
-    float avaliar_solucao(Solucao* t_solucao);
+    void avaliar_solucoes();
 
-    Solucao* get_solucao(int index);
+    float avaliar_solucao(Solucao *t_solucao);
+    float calcular_janela_professor(Solucao* t_solucao);
+    float calcular_sexto_horario_turma(Solucao* t_solucao);
+
+    Solucao *get_solucao(int index);
 };
 
 #endif //!_HEURISTICA_HPP

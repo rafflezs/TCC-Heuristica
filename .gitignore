@@ -1,0 +1,8 @@
+/.devcontainer
+/.vs
+/.vscode
+/docs
+/test/exe
+/desktop.ini
+/todo.md
+/test/out.txt

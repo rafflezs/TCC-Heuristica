@@ -5,22 +5,11 @@ Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
     // this->solucoes.push_back(new Solucao(t_instancia_pipe, 0));
     for (int i = 1; i <= tam_populacao; i++)
     {
-        std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i + 1 << NC << std::endl;
+        std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i << NC << std::endl;
         this->m_solucoes.push_back(new Solucao(t_instancia_pipe, i));
     }
     std::cout << "-------Encerrada geração de populações-------\n"
               << std::endl;
-
-
-    std::cout << "-------Avaliando Soluções-------\n"
-              << std::endl;
-
-    for (int i = 1; i <= tam_populacao; i++)
-    {
-        std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i + 1 << NC << std::endl;
-        avaliar_solucao(m_solucoes[i]);
-    }
-
 }
 
 std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metodo, Solucao *solucao)
@@ -125,12 +114,162 @@ void Heuristica::debug_heuristica()
     }
 }
 
-float Heuristica::avaliar_solucao(Solucao* m_solucao){
-    return 0.0;
+void Heuristica::avaliar_solucoes()
+{
+    std::cout << "-------Avaliando Soluções-------\n" << std::endl;
+
+    for (int i = 1; i < m_solucoes.size(); i++)
+    {
+        std::cout << CYN "Avaliando solucao nº: " << i << NC << std::endl;
+        m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i]));
+        std::cout << "Avaliacao da Solucao " << i << ": " << m_solucoes[i]->get_valor_avaliacao() << std::endl;
+    }
 }
 
-Solucao* Heuristica::get_solucao(int index){
-        return this->m_solucoes[index];
+float Heuristica::avaliar_solucao(Solucao *t_solucao)
+{
+    return calcular_sexto_horario_turma(t_solucao);
+}
+
+float Heuristica::calcular_janela_professor(Solucao *t_solucao)
+{
+
+    float janela = 0.0;
+
+    auto profs = t_solucao->get_instancia().m_lista_professores;
+    for (auto p : profs)
+    {
+        std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
+
+        float janela = 0.0;
+
+        for (int dia = 0; dia < 6; dia++)
+        {
+
+            int primeiro_slot = 0;
+            int ultimo_slot = 0;
+
+            // Manhã
+            for (int slot = 0; slot < 6; slot++)
+            {
+                if (f_dispo[dia][slot] > 0)
+                {
+                    primeiro_slot = slot;
+                    break;
+                }
+            }
+            for (int slot = 5; slot >= 0; slot--)
+            {
+                if (f_dispo[dia][slot] > 0)
+                {
+                    ultimo_slot = slot;
+                    break;
+                }
+            }
+
+            for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
+            {
+                if (f_dispo[dia][slot] <= 0)
+                {
+                    janela += 0.05;
+                }
+            }
+
+            primeiro_slot = 0;
+            ultimo_slot = 0;
+
+            // Tarde
+            for (int slot = 6; slot < 12; slot++)
+            {
+                if (f_dispo[dia][slot] > 0)
+                {
+                    primeiro_slot = slot;
+                    break;
+                }
+            }
+            for (int slot = 11; slot >= 6; slot--)
+            {
+                if (f_dispo[dia][slot] > 0)
+                {
+                    ultimo_slot = slot;
+                    break;
+                }
+            }
+
+            for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
+            {
+                if (f_dispo[dia][slot] <= 0)
+                {
+                    janela += 0.05;
+                }
+            }
+
+            primeiro_slot = 0;
+            ultimo_slot = 0;
+
+            // Noite
+            for (int slot = 12; slot < 16; slot++)
+            {
+                if (f_dispo[dia][slot] > 0)
+                {
+                    primeiro_slot = slot;
+                    break;
+                }
+            }
+            for (int slot = 15; slot >= 12; slot--)
+            {
+                if (f_dispo[dia][slot] > 0)
+                {
+                    ultimo_slot = slot;
+                    break;
+                }
+            }
+
+            for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
+            {
+                if (f_dispo[dia][slot] <= 0)
+                {
+                    janela += 0.05;
+                }
+            }
+        }
+
+        std::cout << "\033[0m";
+
+        if (janela > 0)
+        {
+            p->print_solucao();
+        }
+    }
+
+    return janela;
+}
+
+float Heuristica::calcular_sexto_horario_turma(Solucao *t_solucao)
+{
+
+    float sexto_horario = 0.0;
+
+    auto turmas = t_solucao->get_instancia().m_lista_turmas;
+    for (auto t : turmas)
+    {
+        std::array<std::array<int, 16>, 6> f_dispo = t->get_disponibilidade();
+
+        for (int i = 0; i < f_dispo.size(); i++)
+        {
+            if (f_dispo[i][5 || 11] > 0)
+            {
+                sexto_horario += 0.5;
+            }
+        }
+    }
+
+    return sexto_horario;
+}
+
+Solucao *Heuristica::get_solucao(int index)
+{
+    return this->m_solucoes[index];
 }
 
 // void Heuristica::mutar(Solucao *solucao, int taxa_mutacao)
