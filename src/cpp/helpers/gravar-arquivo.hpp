@@ -38,7 +38,7 @@ public:
 
             std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
 
-            for (int i = 0; i < p->get_disponibilidade().size(); i++)
+            for (int i = 0; i < f_dispo.size(); i++)
             {
                 switch (i)
                 {

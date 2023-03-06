@@ -11,6 +11,7 @@ private:
     Instancia *m_instancia{nullptr};
     int m_id{0};
     bool m_factivel{false};
+    float m_valor_avaliado{0.0};
 
 public:
     Solucao(std::string t_instancia, int t_id);
@@ -32,6 +33,9 @@ public:
 
     bool get_factivel();
     void set_factivel(bool const &t_factivel);
+
+    float get_valor_avaliacao();
+    void set_valor_avaliacao(float const &t_valor_avaliacao);
 
     int get_id_solucao();
 };

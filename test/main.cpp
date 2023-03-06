@@ -15,7 +15,7 @@ int main(int argc, char** argv)
     h.heuristica_construtiva();
     printf("\n\n\n\n\n\nSOLUCOES ENCONTRADAS\n\n");
     h.exibir_solucoes();
-
+    h.avaliar_solucoes();
     GravarArquivo ga = GravarArquivo();
     ga.salvar_solucao_prof("data/output/test.latex", h.get_solucao(1));
     return 0;
