@@ -28,7 +28,17 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
         auto turma_relacionada = encontrar_turma_relacionada(disciplinas_ordenadas.back());
         // std::cout << std::endl;
 
-        bool verificado = verificar_horario(disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada);
+        int dias[6] = {0,1,2,3,4,5};
+        auto verificar_rd_dias = std::rand() % 2;
+
+        if ( verificar_rd_dias == 1)
+        {
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(dias, dias + 6, g);
+        }
+
+        bool verificado = verificar_horario(disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada, dias);
         if (verificado == true)
         {
             disciplinas_ordenadas.pop_back();
@@ -43,7 +53,7 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
     return true;
 }
 
-bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma)
+bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int* t_dias)
 {
     std::cout << "Alocando disciplina " << t_disciplina->get_nome() << "(" << t_disciplina->get_index() << ")"
               << " para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << std::endl;
