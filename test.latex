@@ -1,0 +1,126 @@
+\begin{table}[htbp]
+\centering
+\caption{Solução}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\textbf{}} & \multicolumn{15}{|c|}{\textbf{Horário da Turma}} \\
+\cline{2-16}
+\multicolumn{1}{|c|}{\textbf{}} & \textbf{H1} & \textbf{H2} & \textbf{H3} & \textbf{H4} & \textbf{H5} & \textbf{H6} & \textbf{H7} & \textbf{H8} & \textbf{H9} & \textbf{H10} & \textbf{H11} & \textbf{H12} & \textbf{H13} & \textbf{H14} & \textbf{H15} & \textbf{H16} \\
+\hline
+WILCIENE NUNES DO VALE
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 23 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 23 & 23 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+PAULO CARDOZO CARVALHO DE ARAUJO
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 7 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 7 & 7 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+MARCIO ANTONIO FERREIRA BELO FILHO
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 5 & 5 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 5 & 5 & 1 & 1 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+ANDRé DA CUNHA RIBEIRO
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 0 & 20 & 20 & 2 & 2 & 0 & 17 & 17 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 20 & 20 & 0 & 0 & 17 & 17 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+JOAO AREIS FERREIRA BARBOSA JUNIOR
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 3 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+ADRIANO SOARES DE OLIVEIRA BAILãO
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 21 & 0 & 0 & 0 & 12 & 0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 21 & 21 & 12 & 12 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 4 & 4 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+RAFAEL CARVALHO MENDONçA
+\multicolumn{1}{|c|}{\textbf{SEG}} & 6 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 28 & 28 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 6 & 6 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 28 & 28 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 16 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+HEVERTON BARROS DE MACEDO
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 8 & 8 & 0 & 0 & 0 & 0 & 14 & 0 & 0 & 0 & 0 & 0 & 25 & 25 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 14 & 14 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 8 & 8 & 8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 25 & 25 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+FáBIO MONTANHA RAMOS
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 26 & 26 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 26 & 26 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 9 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 9 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+HEYDE FRANCIELLE DO CARMO FRANçA
+\multicolumn{1}{|c|}{\textbf{SEG}} & 18 & 0 & 0 & 0 & 10 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 18 & 18 & 0 & 0 & 10 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+MARLUS DIAS SILVA
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 0 & 0 & 11 & 0 & 13 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 13 & 13 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 11 & 11 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 27 & 27 & 27 & 27 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 27 & 27 & 27 & 27 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+DOUGLAS CEDRIM OLIVEIRA
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 0 & 0 & 22 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 15 & 0 & 24 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 24 & 24 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 22 & 22 & 0 & 0 & 0 & 0 & 0 & 0 & 15 & 15 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+LEANDRO RODRIGUES DA SILVA SOUZA
+\multicolumn{1}{|c|}{\textbf{SEG}} & 0 & 19 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{TER}} & 0 & 0 & 19 & 19 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUA}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{QUI}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SEX}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\multicolumn{1}{|c|}{\textbf{SAB}} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}

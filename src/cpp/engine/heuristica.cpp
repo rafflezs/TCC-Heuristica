@@ -6,16 +6,29 @@ Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
     for (int i = 1; i <= tam_populacao; i++)
     {
         std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i + 1 << NC << std::endl;
-        this->solucoes.push_back(new Solucao(t_instancia_pipe, i));
+        this->m_solucoes.push_back(new Solucao(t_instancia_pipe, i));
     }
     std::cout << "-------Encerrada geração de populações-------\n"
               << std::endl;
+
+
+    std::cout << "-------Avaliando Soluções-------\n"
+              << std::endl;
+
+    for (int i = 1; i <= tam_populacao; i++)
+    {
+        std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i + 1 << NC << std::endl;
+        avaliar_solucao(m_solucoes[i]);
+    }
+
 }
 
 std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metodo, Solucao *solucao)
 {
 
     std::vector<Disciplina *> t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+    std::random_device rd;
+    std::mt19937 g(rd());
 
     switch (rand_metodo)
     {
@@ -54,10 +67,11 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
     //     printf("\n------Caso %d\n", rand_metodo);
     //     break;
 
-    // // TODO Caso 6: Random Sort
-    // case 6:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
+    // TODO Caso 6: Random Sort
+    case 6:
+        printf("\n------Caso %d\n", rand_metodo);
+        std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), g);
+        break;
 
     // Caso base: ordenação por ordem de leitura da instância
     default:
@@ -71,7 +85,7 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
 void Heuristica::heuristica_construtiva()
 {
-    for (auto it : this->solucoes)
+    for (auto it : this->m_solucoes)
     {
         // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordernar_disciplinas()
         bool deu_certo = it->popular_solucao(ordernar_disciplinas(rand() % 4, it));
@@ -92,7 +106,7 @@ void Heuristica::heuristica_construtiva()
 
 void Heuristica::exibir_solucoes()
 {
-    for (auto it = this->solucoes.begin(); it != this->solucoes.end(); it++)
+    for (auto it = this->m_solucoes.begin(); it != this->m_solucoes.end(); it++)
     {
         if ((*it)->get_factivel() == true)
             (*it)->exibir_solucao();
@@ -105,10 +119,18 @@ void Heuristica::debug_heuristica()
     ** ! VERIFICAR COPIA DE PRT ADDR !
     */
     std::cout << REDB "\n\nDEBUG - ENDERECOS DISCIPLINAS\n" NC << std::endl;
-    for (auto it : this->solucoes)
+    for (auto it : this->m_solucoes)
     {
         it->debug_vector_disciplina_addr();
     }
+}
+
+float Heuristica::avaliar_solucao(Solucao* m_solucao){
+    return 0.0;
+}
+
+Solucao* Heuristica::get_solucao(int index){
+        return this->m_solucoes[index];
 }
 
 // void Heuristica::mutar(Solucao *solucao, int taxa_mutacao)

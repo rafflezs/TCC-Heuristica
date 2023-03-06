@@ -2,14 +2,14 @@
 #define _HEURISTICA_HPP
 
 #include "solucao.hpp"
-#include <random>
 #include <ctime>
 
 class Heuristica
 {
 
 private:
-    std::vector<Solucao *> solucoes{};
+    std::vector<Solucao *> m_solucoes{};
+    std::vector<float> m_avaliacao_solucao{};
 
 public:
     Heuristica(std::string t_instancia_pipe, int tam_populacao);
@@ -21,6 +21,10 @@ public:
     
     void exibir_solucoes();
     void debug_heuristica();
+
+    float avaliar_solucao(Solucao* t_solucao);
+
+    Solucao* get_solucao(int index);
 };
 
 #endif //!_HEURISTICA_HPP
