@@ -15,24 +15,28 @@ public:
             return;
         }
 
-        t_solucao;
+        arquivo << "\\documentclass{article}" << std::endl;
+        arquivo << "\\usepackage[utf8]{inputenc}" << std::endl;
+        arquivo << "\\usepackage{lscape}" << std::endl;
 
-        arquivo << "\\begin{table}[htbp]" << std::endl;
-        arquivo << "\\centering" << std::endl;
-        arquivo << "\\caption{Solução}" << std::endl;
-        arquivo << "\\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}" << std::endl;
-        arquivo << "\\hline" << std::endl;
-        arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\multicolumn{15}{|c|}{\\textbf{Horário da Turma}} \\\\" << std::endl;
-        arquivo << "\\cline{2-16}" << std::endl;
-        arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\textbf{H1} & \\textbf{H2} & \\textbf{H3} & \\textbf{H4} & \\textbf{H5} & \\textbf{H6} & \\textbf{H7} & \\textbf{H8} & \\textbf{H9} & \\textbf{H10} & \\textbf{H11} & \\textbf{H12} & \\textbf{H13} & \\textbf{H14} & \\textbf{H15} & \\textbf{H16} \\\\" << std::endl;
-        arquivo << "\\hline" << std::endl;
+        arquivo << "\\begin{document}" << std::endl;
+
 
         auto profs = t_solucao->get_instancia().m_lista_professores;
 
         for (auto p : profs)
         {
+            arquivo << "\\begin{landscape}" << std::endl;
+            arquivo << "\\begin{table}[htbp]" << std::endl;
+            arquivo << "\\centering" << std::endl;
+            arquivo << "\\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}" << std::endl;
+            arquivo << "\\hline" << std::endl;
+            arquivo << "\\multicolumn{17}{|c|}{\\textbf{" << p->get_nome() << "}} \\\\" << std::endl;
+            arquivo << "\\cline{1-17}" << std::endl;
+            arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\textbf{H1} & \\textbf{H2} & \\textbf{H3} & \\textbf{H4} & \\textbf{H5} & \\textbf{H6} & \\textbf{H7} & \\textbf{H8} & \\textbf{H9} & \\textbf{H10} & \\textbf{H11} & \\textbf{H12} & \\textbf{H13} & \\textbf{H14} & \\textbf{H15} & \\textbf{H16} \\\\" << std::endl;
+            arquivo << "\\hline" << std::endl;
+
             std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
-            arquivo << p->get_nome() << std::endl;
 
             for (int i = 0; i < p->get_disponibilidade().size(); i++)
             {
@@ -61,7 +65,15 @@ public:
                 }
                 for (int j = 0; j < p->get_disponibilidade()[i].size(); j++)
                 {
-                    arquivo << f_dispo[i][j];
+                    if (f_dispo[i][j] > 0)
+                    {
+                        arquivo << f_dispo[i][j];
+                    }
+                    else
+                    {
+                        arquivo << " ";
+                    }
+
                     if (j < f_dispo[i].size() - 1)
                     {
                         arquivo << " & ";
@@ -72,6 +84,11 @@ public:
 
             arquivo << "\\end{tabular}" << std::endl;
             arquivo << "\\end{table}" << std::endl;
+            arquivo << "\\end{landscape}" << std::endl;
+
+            arquivo << "\\newpage" << std::endl;
         }
+
+        arquivo << "\\end{document}" << std::endl;
     };
 };
