@@ -21,6 +21,7 @@ public:
     void exibir_solucoes();
     void debug_heuristica();
 
+    // Função Objetivo
     void avaliar_solucoes();
 
     float avaliar_solucao(Solucao *t_solucao);

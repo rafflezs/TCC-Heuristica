@@ -12,6 +12,8 @@ private:
     int m_id{0};
     bool m_factivel{false};
     float m_valor_avaliado{0.0};
+    float m_valor_janelas{0.0};
+    float m_valor_sextos_horarios{0.0};
 
 public:
     Solucao(std::string t_instancia, int t_id);
