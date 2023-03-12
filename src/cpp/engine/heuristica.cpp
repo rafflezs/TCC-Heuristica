@@ -51,13 +51,19 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
     //     printf("\n------Caso %d\n", rand_metodo);
     //     break;
 
-    // // TODO Caso 5: Ordenar disciplina por Curso
+    // // TODO Caso 5: Ordenar disciplina por Curso com mais Turmas
     // case 5:
     //     printf("\n------Caso %d\n", rand_metodo);
     //     break;
 
+    // // TODO Caso 5: Ordenar disciplina por Curso com mais Disciplinas
+    // case 6:
+    //     printf("\n------Caso %d\n", rand_metodo);
+    //     break;
+
+
     // TODO Caso 6: Random Sort
-    case 6:
+    case 7:
         printf("\n------Caso %d\n", rand_metodo);
         std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), g);
         break;
@@ -128,7 +134,11 @@ void Heuristica::avaliar_solucoes()
 
 float Heuristica::avaliar_solucao(Solucao *t_solucao)
 {
-    return calcular_sexto_horario_turma(t_solucao);
+
+    // atribuir pesos fora das funções
+    // retonar QUANTIDADE de sextos e janelas
+
+    return calcular_sexto_horario_turma(t_solucao) + calcular_janela_professor(t_solucao);
 }
 
 float Heuristica::calcular_janela_professor(Solucao *t_solucao)
@@ -140,8 +150,6 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
     for (auto p : profs)
     {
         std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
-
-        float janela = 0.0;
 
         for (int dia = 0; dia < 6; dia++)
         {
@@ -169,7 +177,7 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
 
             for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
             {
-                if (f_dispo[dia][slot] <= 0)
+                if (f_dispo[dia][slot] == 0)
                 {
                     janela += 0.05;
                 }
