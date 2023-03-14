@@ -298,3 +298,23 @@ void Solucao::set_valor_avaliacao(float const &t_valor_avaliacao)
 {
     this->m_valor_avaliado = t_valor_avaliacao;
 }
+
+float Solucao::get_janela()
+{
+    return this->m_janela;
+}
+
+void Solucao::set_janela(float const &t_janela)
+{
+    this->m_janela = t_janela;
+}
+
+float Solucao::get_sexto_horario()
+{
+    return this->m_sexto_horario;
+}
+
+void Solucao::set_sexto_horario(float const &t_sexto_horario)
+{
+    this->m_sexto_horario = t_sexto_horario;
+}

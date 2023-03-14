@@ -61,7 +61,6 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
     //     printf("\n------Caso %d\n", rand_metodo);
     //     break;
 
-
     // TODO Caso 6: Random Sort
     case 7:
         printf("\n------Caso %d\n", rand_metodo);
@@ -120,9 +119,10 @@ void Heuristica::debug_heuristica()
     }
 }
 
-void Heuristica::avaliar_solucoes()
+void Heuristica::avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario)
 {
-    std::cout << "-------Avaliando Soluções-------\n" << std::endl;
+    std::cout << "-------Avaliando Soluções-------\n"
+              << std::endl;
 
     for (int i = 1; i < m_solucoes.size(); i++)
     {
@@ -132,13 +132,18 @@ void Heuristica::avaliar_solucoes()
     }
 }
 
-float Heuristica::avaliar_solucao(Solucao *t_solucao)
+float Heuristica::avaliar_solucao(Solucao *t_solucao, const float &peso_janela, const float &peso_sexto_horario)
 {
-
     // atribuir pesos fora das funções
     // retonar QUANTIDADE de sextos e janelas
+    float sexto_horario = calcular_sexto_horario_turma(t_solucao);
+    float janela_prof = calcular_janela_professor(t_solucao);
 
-    return calcular_sexto_horario_turma(t_solucao) + calcular_janela_professor(t_solucao);
+    t_solucao->set_sexto_horario(sexto_horario);
+    t_solucao->set_janela(janela_prof);
+    t_solucao->set_valor_avaliacao((peso_sexto_horario * sexto_horario) + (peso_janela * janela_prof));
+
+    return t_solucao->get_valor_avaliacao();
 }
 
 float Heuristica::calcular_janela_professor(Solucao *t_solucao)

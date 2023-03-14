@@ -19,7 +19,7 @@ public:
     Solucao(std::string t_instancia, int t_id);
 
     bool popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas);
-    bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int* t_dias);
+    bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int *t_dias);
     void alocar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
     bool eh_horario_disponivel(Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
     bool eh_horario_disponivel(Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split);
@@ -38,6 +38,12 @@ public:
 
     float get_valor_avaliacao();
     void set_valor_avaliacao(float const &t_valor_avaliacao);
+
+    float get_janela();
+    void set_janela(float const &t_janela);
+    
+    float get_sexto_horario();
+    void set_sexto_horario(float const &t_sexto_horario);
 
     int get_id_solucao();
 };
