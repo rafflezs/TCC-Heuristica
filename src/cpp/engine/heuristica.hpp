@@ -22,11 +22,11 @@ public:
     void debug_heuristica();
 
     // Função Objetivo
-    void avaliar_solucoes();
+    void avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario);
 
-    float avaliar_solucao(Solucao *t_solucao);
-    float calcular_janela_professor(Solucao* t_solucao);
-    float calcular_sexto_horario_turma(Solucao* t_solucao);
+    float avaliar_solucao(Solucao *t_solucao, const float &peso_janela, const float &peso_sexto_horario);
+    float calcular_janela_professor(Solucao *t_solucao);
+    float calcular_sexto_horario_turma(Solucao *t_solucao);
 
     Solucao *get_solucao(int index);
 };

@@ -11,16 +11,14 @@ Semana 2 (07/03/2023)
 
 Semana 3 (21/03/2023)
     0. Melhorar tabelas LaTeX (Geometry e afins)
-    1. Na função objetivo, utilizar enumeradores de pesos
-        - Os pesos devem ser atribuidos por pipeline em tempo de execução
-        - Os pesos devem atribuidos na função Heuristica::avaliar_solucao()
-        - Caso não definidos, atribuir um peso __DEFAULT__ = 1
-        - Atribuir o valor de janelas e sextos horarios na solucao Solucao::m_*
+    1. Na função objetivo, utilizar enumeradores de pesos [__TESTAR]
+        - Os pesos devem ser atribuidos por pipeline em tempo de execução [__DONE]
+        - Os pesos devem atribuidos na função Heuristica::avaliar_solucao() [__DONE]
+        - Caso não definidos, atribuir um peso __DEFAULT__ = 1 [__DONE]
+        - Atribuir o valor de janelas e sextos horarios na solucao Solucao::m_* [__DONE]
     2. Implementar Heuristicas de Melhoria
         - Busca Local
         - Metodo aleatorio: selecionar uma turma, destruir o horario e realocar.
-
-
 
 
 ___
