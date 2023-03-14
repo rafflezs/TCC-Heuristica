@@ -21,6 +21,6 @@ int main(int argc, char **argv)
     h.avaliar_solucoes(std::stof(argv[3]), std::stof(argv[4]));
     
     GravarArquivo ga = GravarArquivo();
-    ga.salvar_solucao_prof("data/output/test.latex", h.get_solucao(1));
+    ga.salvar_solucao_prof("data/output/test.tex", h.get_solucao(1));
     return 0;
 }
