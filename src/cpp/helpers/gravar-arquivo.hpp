@@ -16,8 +16,8 @@ public:
         }
 
         arquivo << "\\documentclass{article}" << std::endl;
-        arquivo << "\usepackage[a4paper, landscape, margin=1in]{geometry}" << std::endl;
-        arquivo << "\usepackage{tabularx}" << std::endl
+        arquivo << "\\usepackage[a4paper, landscape, margin=1in]{geometry}" << std::endl;
+        arquivo << "\\usepackage{tabularx}" << std::endl
                 << std::endl;
 
         arquivo << "\\setlength{\\extrarowheight}{40pt}" << std::endl

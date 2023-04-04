@@ -127,7 +127,7 @@ void Heuristica::avaliar_solucoes(const float &peso_janela, const float &peso_se
     for (int i = 1; i < m_solucoes.size(); i++)
     {
         std::cout << CYN "Avaliando solucao nº: " << i << NC << std::endl;
-        m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i]));
+        m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i],1,1));
         std::cout << "Avaliacao da Solucao " << i << ": " << m_solucoes[i]->get_valor_avaliacao() << std::endl;
     }
 }

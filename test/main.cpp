@@ -15,8 +15,8 @@ int main(int argc, char **argv)
     printf("\n\n\n\n\n\nSOLUCOES ENCONTRADAS\n\n");
     h.exibir_solucoes();
 
-    if (argv[3] == nullptr) argv[3] = "1"
-    if (argv[4] == nullptr) argv[4] = "1"
+    // if (argv[3] == nullptr) argv[3] = "1";
+    // if (argv[4] == nullptr) argv[4] = "1";
 
     h.avaliar_solucoes(std::stof(argv[3]), std::stof(argv[4]));
     
