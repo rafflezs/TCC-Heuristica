@@ -12,6 +12,6 @@ fi
 
 rm -f test/out.txt
 
-./test/exe "Instancia-Facil-Comp" 10 >> test/out.txt
+./test/exe "Instancia-Facil-Comp" 10 1 1 >> test/out.txt
 
 rm -f test/exe

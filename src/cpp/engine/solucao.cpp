@@ -301,20 +301,20 @@ void Solucao::set_valor_avaliacao(float const &t_valor_avaliacao)
 
 float Solucao::get_janela()
 {
-    return this->m_janela;
+    return this->m_valor_janelas;
 }
 
 void Solucao::set_janela(float const &t_janela)
 {
-    this->m_janela = t_janela;
+    this->m_valor_janelas = t_janela;
 }
 
 float Solucao::get_sexto_horario()
 {
-    return this->m_sexto_horario;
+    return this->m_valor_sextos_horarios;
 }
 
 void Solucao::set_sexto_horario(float const &t_sexto_horario)
 {
-    this->m_sexto_horario = t_sexto_horario;
+    this->m_valor_sextos_horarios = t_sexto_horario;
 }
