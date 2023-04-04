@@ -84,8 +84,7 @@ public:
 
             arquivo << "\\end{tabularx}" << std::endl;
             arquivo << "Instituto Federal de Educação, Ciência e Tecnologia Goiano - Campus Rio Verde, Rod. Sul Goiana, Km 01, Cx. P. 66, Rio Verde / Goiás" << std::endl;
-            if (p != profs.end())
-                arquivo << "\\newpage" << std::endl << std::endl;
+            arquivo << "\\newpage" << std::endl << std::endl;
         }
 
         arquivo << "\\end{document}" << std::endl;

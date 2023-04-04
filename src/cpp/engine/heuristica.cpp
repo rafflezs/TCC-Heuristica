@@ -325,3 +325,33 @@ Solucao *Heuristica::get_solucao(int index)
 //     solucoes.push_back(new Solucao(filho1));
 //     solucoes.push_back(new Solucao(filho2));
 // }
+
+void Heuristica::pos_processamento()
+{
+    for (auto it : this->m_solucoes)
+    {
+        std::random_device rd;
+        std::mt19937 g(rd());
+
+        switch (rand_metodo)
+        {
+
+        // Caso 1: Metodo Destrutivo
+        case 1:
+
+        break;
+
+        // Caso 2: Busca Local
+        case 2:
+
+        break;
+
+        // Caso base: ordenação por ordem de leitura da instância
+        default:
+            printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
+        t_disciplinas_ordenadas;
+        break;
+       }
+
+    }
+}
