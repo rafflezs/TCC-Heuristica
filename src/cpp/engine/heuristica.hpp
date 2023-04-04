@@ -2,6 +2,7 @@
 #define _HEURISTICA_HPP
 
 #include "solucao.hpp"
+#include <set>
 #include <ctime>
 
 class Heuristica
@@ -18,6 +19,7 @@ public:
     // void mutar(Solucao *solucao, int taxa_mutacao);
     // void cruzar(Solucao *solucao1, Solucao *solucao2);
     void pos_processamento();
+    void metodo_destrutivo(int t_qtd_turmas, Solucao *solucao);
 
     void exibir_solucoes();
     void debug_heuristica();

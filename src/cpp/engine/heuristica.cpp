@@ -333,25 +333,83 @@ void Heuristica::pos_processamento()
         std::random_device rd;
         std::mt19937 g(rd());
 
+        int rand_metodo = rand() % 3;
+
         switch (rand_metodo)
         {
 
-        // Caso 1: Metodo Destrutivo
-        case 1:
+            // Caso 1: Metodo Destrutivo
+            case 1:
+            {
+                int qtd_turmas = 1+ rand() % (it->get_instancia().m_lista_turmas.size()) / 2;
+                while (qtd_turmas == rand_metodo)
+                {
+                   qtd_turmas = 1+ rand() % (it->get_instancia().m_lista_turmas.size()) / 2; 
+                }
+                metodo_destrutivo(qtd_turmas, it);
+            }
+            break;
 
-        break;
+            // Caso 2: Busca Local
+            case 2:
+                std::cout << "Case 2" << std::endl;
+            break;
 
-        // Caso 2: Busca Local
-        case 2:
-
-        break;
-
-        // Caso base: ordenação por ordem de leitura da instância
-        default:
-            printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
-        t_disciplinas_ordenadas;
-        break;
+            // Caso base: ordenação por ordem de leitura da instância
+            default:
+                std::cout << "Case Default" << std::endl;
+            break;
        }
 
+    }
+}
+
+void Heuristica::metodo_destrutivo(int t_qtd_turmas, Solucao *solucao)
+{
+    for (int i = 0; i < t_qtd_turmas; i++)
+    {
+        auto turma = solucao->get_instancia().m_lista_turmas[rand() % solucao->get_instancia().m_lista_turmas.size()];
+        std::set<int> id_disciplinas{};
+
+        auto dispo = turma->get_disponibilidade();
+
+        for (int dia = 0; dia < dispo.size(); dia++)
+        {
+            for(int horario = 0; horario < dispo[0].size(); horario++)
+            {
+                id_disciplinas.insert(turma->m_disponibilidade[dia][horario]);
+                turma->m_disponibilidade[dia][horario] = 0;
+            }
+        }
+
+        std::vector<Disciplina*> disciplinas_destruidas;
+
+        for (auto disciplina : id_disciplinas)
+        {
+            disciplinas_destruidas.push_back(solucao->get_instancia().m_lista_disciplinas[disciplina]);
+            auto professor_relacionado = solucao->encontrar_prof_relacionado(disciplinas_destruidas.back());
+            for (int dia = 0; dia < 6; dia++)
+            {
+                for(int horario = 0; horario < 16; horario++)
+                {
+                    if (disciplina == professor_relacionado->m_disponibilidade[dia][horario])
+                        professor_relacionado->m_disponibilidade[dia][horario] = 0;
+                }
+            }
+        }
+
+        bool deu_certo = solucao->popular_solucao(disciplinas_destruidas);
+        if (deu_certo == true)
+        {
+            solucao->set_factivel(true);
+            std::cout << "Solucao " << solucao->get_id_solucao() << " encontrada" << std::endl;
+            // solucao->exibir_solucao();
+        }
+        else
+        {
+            solucao->set_factivel(false);
+            std::cout << "Solucao " << solucao->get_id_solucao() << " infactivel" << std::endl;
+            // solucao->exibir_solucao();
+        }
     }
 }
