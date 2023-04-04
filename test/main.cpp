@@ -19,7 +19,9 @@ int main(int argc, char **argv)
     // if (argv[4] == nullptr) argv[4] = "1";
 
     h.avaliar_solucoes(std::stof(argv[3]), std::stof(argv[4]));
-    
+    h.pos_processamento();
+    h.avaliar_solucoes(std::stof(argv[3]), std::stof(argv[4]));
+
     GravarArquivo ga = GravarArquivo();
     ga.salvar_solucao_prof("data/output/test.tex", h.get_solucao(1));
     return 0;
