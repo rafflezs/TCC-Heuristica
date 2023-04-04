@@ -17,6 +17,7 @@ public:
     void heuristica_construtiva();
     // void mutar(Solucao *solucao, int taxa_mutacao);
     // void cruzar(Solucao *solucao1, Solucao *solucao2);
+    void pos_processamento();
 
     void exibir_solucoes();
     void debug_heuristica();
