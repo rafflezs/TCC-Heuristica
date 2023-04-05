@@ -18,7 +18,8 @@ Semana 3 (21/03/2023)
         - Atribuir o valor de janelas e sextos horarios na solucao Solucao::m_* [__DONE]
     2. Implementar Heuristicas de Melhoria
         - Busca Local
-        - Metodo aleatorio: selecionar uma turma, destruir o horario e realocar.
+   
+        - Metodo aleatorio: selecionar uma turma, destruir o horario e realocar. [**WIP]
 
 
 ___

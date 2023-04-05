@@ -76,6 +76,11 @@ public:
     this->m_disponibilidade = t_disponibilidade;
   }
 
+  void set_disponibilidade(int t_dia, int t_horario, int t_valor)
+  {
+    this->m_disponibilidade[t_dia][t_horario] = t_valor;
+  }
+
   int get_primeiro_horario_turno()
   {
     return this->m_primeiro_horario_turno;

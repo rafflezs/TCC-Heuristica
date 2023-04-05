@@ -328,12 +328,15 @@ Solucao *Heuristica::get_solucao(int index)
 
 void Heuristica::pos_processamento()
 {
+
+    std::cout << "PP1" << std::endl;
     for (auto it : this->m_solucoes)
     {
         std::random_device rd;
         std::mt19937 g(rd());
 
         int rand_metodo = rand() % 3;
+        std::cout << "PP2" << std::endl;
 
         switch (rand_metodo)
         {
@@ -341,6 +344,7 @@ void Heuristica::pos_processamento()
             // Caso 1: Metodo Destrutivo
             case 1:
             {
+                std::cout << "PP3" << std::endl;
                 int qtd_turmas = 1+ rand() % (it->get_instancia().m_lista_turmas.size()) / 2;
                 while (qtd_turmas == rand_metodo)
                 {
@@ -377,8 +381,9 @@ void Heuristica::metodo_destrutivo(int t_qtd_turmas, Solucao *solucao)
         {
             for(int horario = 0; horario < dispo[0].size(); horario++)
             {
-                id_disciplinas.insert(turma->m_disponibilidade[dia][horario]);
-                turma->m_disponibilidade[dia][horario] = 0;
+                id_disciplinas.insert(dispo[dia][horario]);
+                dispo[dia][horario] = 0;
+                turma->set_disponibilidade(dia,horario,0);
             }
         }
 
@@ -392,8 +397,8 @@ void Heuristica::metodo_destrutivo(int t_qtd_turmas, Solucao *solucao)
             {
                 for(int horario = 0; horario < 16; horario++)
                 {
-                    if (disciplina == professor_relacionado->m_disponibilidade[dia][horario])
-                        professor_relacionado->m_disponibilidade[dia][horario] = 0;
+                    if (disciplina == dispo[dia][horario])
+                        professor_relacionado->set_disponibilidade(dia,horario,0);
                 }
             }
         }
@@ -402,14 +407,14 @@ void Heuristica::metodo_destrutivo(int t_qtd_turmas, Solucao *solucao)
         if (deu_certo == true)
         {
             solucao->set_factivel(true);
-            std::cout << "Solucao " << solucao->get_id_solucao() << " encontrada" << std::endl;
-            // solucao->exibir_solucao();
+            std::cout << "Horario destruido" << solucao->get_id_solucao() << " encontrada" << std::endl;
+            solucao->exibir_solucao();
         }
         else
         {
             solucao->set_factivel(false);
-            std::cout << "Solucao " << solucao->get_id_solucao() << " infactivel" << std::endl;
-            // solucao->exibir_solucao();
+            std::cout << "Horario destruido " << solucao->get_id_solucao() << " infactivel" << std::endl;
+            solucao->exibir_solucao();
         }
     }
 }
