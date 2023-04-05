@@ -45,6 +45,16 @@ public:
     this->m_nome = m_nome;
   }
 
+  void set_disponibilidade(std::array<std::array<int, 16>, 6> t_disponibilidade)
+  {
+    this->m_disponibilidade = t_disponibilidade;
+  }
+
+  void set_disponibilidade(int t_dia, int t_horario, int t_valor)
+  {
+    this->m_disponibilidade[t_dia][t_horario] = t_valor;
+  }
+
   std::array<std::array<int, 16>, 6> get_disponibilidade()
   {
     return this->m_disponibilidade;
@@ -58,11 +68,6 @@ public:
   void set_disciplinas(std::vector<Disciplina *> t_disciplinas)
   {
     this->m_disciplinas = t_disciplinas;
-  }
-
-  void set_disponibilidade(std::array<std::array<int, 16>, 6> t_disponibilidade)
-  {
-    this->m_disponibilidade = t_disponibilidade;
   }
 
   Professor(){};
