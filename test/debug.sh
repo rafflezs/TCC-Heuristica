@@ -10,8 +10,4 @@ then
     rm -f data/output/test.latex
 fi
 
-rm -f test/out.txt
-
-./test/exe Instancia-Facil-Comp 10 1.0 1.0 >> test/out.txt
-
-rm -f test/exe
+gdb test/exe

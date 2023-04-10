@@ -15,7 +15,7 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
     std::cout << "\n\nPopulando solução " << this->get_id_solucao() << std::endl;
     while (!disciplinas_ordenadas.empty())
     {
-        std::cout << "Iteracao " << iteracoes << " | Disciplina " << disciplinas_ordenadas.back()->get_index() << " - " << disciplinas_ordenadas.back()->get_nome() << std::endl;
+        // std::cout << "Iteracao " << iteracoes << " | Disciplina " << disciplinas_ordenadas.back()->get_index() << " - " << disciplinas_ordenadas.back()->get_nome() << std::endl;
         if (iteracoes >
             (iterations_limit * iterations_limit))
         {
@@ -43,8 +43,7 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
         {
             disciplinas_ordenadas.pop_back();
             iteracoes++;
-            std::cout << "Disciplina alocada\n"
-                      << std::endl;
+            // std::cout << "Disciplina alocada\n" << std::endl;
         }
         else
             iteracoes++;
@@ -55,8 +54,8 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
 
 bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int* t_dias)
 {
-    std::cout << "Alocando disciplina " << t_disciplina->get_nome() << "(" << t_disciplina->get_index() << ")"
-              << " para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << std::endl;
+    // std::cout << "Alocando disciplina " << t_disciplina->get_nome() << "(" << t_disciplina->get_index() << ")"
+            //   << " para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << std::endl;
 
     if (t_disciplina->get_ch_presencial() == 0)
     {
@@ -72,25 +71,25 @@ bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor
         splits.push_back(horas_por_split);
     splits.push_back(tam_total_disciplina - horas_por_split * (t_disciplina->get_split() - 1));
 
-    std::cout << "Split Size= " << splits.size() << std::endl;
+    // std::cout << "Split Size= " << splits.size() << std::endl;
 
     for (int split = 0; split < splits.size(); split++)
     {
-        std::cout << "Split [i] = " << splits[split] << std::endl;
+        // std::cout << "Split [i] = " << splits[split] << std::endl;
         //int random_day = rand() % 6;
         //for (int d = 0; d < 6; d++)
         for (int dia = 0; dia < 6; dia++)
         {
             //dia = (d + random_day) % 6;
-            std::cout << "Verificando possibilidade no dia " << dia << std::endl;
+            // std::cout << "Verificando possibilidade no dia " << dia << std::endl;
             for (int horario = t_turma->get_primeiro_horario_turno(); horario <= t_turma->get_ultimo_horario_turno(); horario++)
             {
-                std::cout << "Verificando possibilidade do horario " << horario << " ate o horario " << t_turma->get_ultimo_horario_turno() << std::endl;
+                // std::cout << "Verificando possibilidade do horario " << horario << " ate o horario " << t_turma->get_ultimo_horario_turno() << std::endl;
                 if (eh_horario_disponivel(t_turma, dia, horario, splits[split]) && eh_horario_disponivel(t_professor, dia, horario, splits[split]))
                 {
                     alocar_horario(t_disciplina, t_professor, t_turma, dia, horario, splits[split]);
                     split++;
-                    std::cout << "Alocação bem-sucedida. Split: " << split << std::endl;
+                    // std::cout << "Alocação bem-sucedida. Split: " << split << std::endl;
                     break;
                 }
             }
@@ -117,7 +116,7 @@ void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, T
     }
     t_professor->set_disponibilidade(horario);
 
-    t_professor->print_solucao();
+    // t_professor->print_solucao();
 
     int split_aluno = t_split;
     horario = t_turma->get_disponibilidade();
@@ -129,7 +128,7 @@ void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, T
         split_aluno--;
     }
     t_turma->set_disponibilidade(horario);
-    t_turma->print_solucao();
+    // t_turma->print_solucao();
 
     std::cout << std::endl;
 }
@@ -166,7 +165,7 @@ bool Solucao::eh_horario_disponivel(Turma *t_turma, int t_dia_escolhido, int t_h
         if (t_turma->get_disponibilidade()[t_dia_escolhido][i] == 0)
             alocado++;
         else
-            std::cout << "(Turma) Horario " << i << " do dia " << t_dia_escolhido << " indisponivel" << std::endl;
+            // std::cout << "(Turma) Horario " << i << " do dia " << t_dia_escolhido << " indisponivel" << std::endl;
 
     if (t_split == alocado)
         return true;

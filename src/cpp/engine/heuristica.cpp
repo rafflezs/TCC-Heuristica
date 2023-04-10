@@ -24,7 +24,7 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
     // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
     case 1:
-        printf("\n------Caso %d - Maior CH-MIN------", rand_metodo);
+        // printf("\n------Caso %d - Maior CH-MIN------", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_ch_min() > rhs->get_ch_min(); });
@@ -32,7 +32,7 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
     // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
     case 2:
-        printf("\n------Caso %d - Menor Split------", rand_metodo);
+        // printf("\n------Caso %d - Menor Split------", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_split() < rhs->get_split(); });
@@ -40,7 +40,7 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
     // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
     case 3:
-        printf("\n------Caso %d - Prioriedade CH-MIN e Split Combinados------", rand_metodo);
+        // printf("\n------Caso %d - Prioriedade CH-MIN e Split Combinados------", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() < rhs->get_split()); });
@@ -63,13 +63,13 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
 
     // TODO Caso 6: Random Sort
     case 7:
-        printf("\n------Caso %d\n", rand_metodo);
+        // printf("\n------Caso %d\n", rand_metodo);
         std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), g);
         break;
 
     // Caso base: ordenação por ordem de leitura da instância
     default:
-        printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
+        // printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
         t_disciplinas_ordenadas;
         break;
     }
@@ -87,13 +87,13 @@ void Heuristica::heuristica_construtiva()
         {
             it->set_factivel(true);
             std::cout << "Solucao " << it->get_id_solucao() << " encontrada" << std::endl;
-            // it->exibir_solucao();
+            it->exibir_solucao();
         }
         else
         {
             it->set_factivel(false);
             std::cout << "Solucao " << it->get_id_solucao() << " infactivel" << std::endl;
-            // it->exibir_solucao();
+            it->exibir_solucao();
         }
     }
 }
@@ -329,14 +329,13 @@ Solucao *Heuristica::get_solucao(int index)
 void Heuristica::pos_processamento()
 {
 
-    std::cout << "PP1" << std::endl;
     for (auto it : this->m_solucoes)
     {
         std::random_device rd;
         std::mt19937 g(rd());
 
-        int rand_metodo = rand() % 3;
-        std::cout << "PP2" << std::endl;
+        // int rand_metodo = rand() % 3;
+        int rand_metodo = 1;
 
         switch (rand_metodo)
         {
@@ -344,7 +343,6 @@ void Heuristica::pos_processamento()
             // Caso 1: Metodo Destrutivo
             case 1:
             {
-                std::cout << "PP3" << std::endl;
                 int qtd_turmas = 1+ rand() % (it->get_instancia().m_lista_turmas.size()) / 2;
                 while (qtd_turmas == rand_metodo)
                 {
@@ -377,14 +375,24 @@ void Heuristica::metodo_destrutivo(int t_qtd_turmas, Solucao *solucao)
 
         auto dispo = turma->get_disponibilidade();
 
+        // Zerar horarios
         for (int dia = 0; dia < dispo.size(); dia++)
         {
             for(int horario = 0; horario < dispo[0].size(); horario++)
             {
-                id_disciplinas.insert(dispo[dia][horario]);
-                dispo[dia][horario] = 0;
-                turma->set_disponibilidade(dia,horario,0);
+                if (dispo[dia][horario] > 0)
+                {
+                    id_disciplinas.insert(dispo[dia][horario]);
+                    dispo[dia][horario] = 0;
+                    turma->set_disponibilidade(dia,horario,0);
+                }
             }
+        }
+
+        if (id_disciplinas.empty())
+        {
+            printf("Não haviam disciplinas\n");
+            return;
         }
 
         std::vector<Disciplina*> disciplinas_destruidas;
