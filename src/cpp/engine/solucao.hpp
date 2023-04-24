@@ -14,6 +14,7 @@ private:
     float m_valor_avaliado{0.0};
     float m_valor_janelas{0.0};
     float m_valor_sextos_horarios{0.0};
+    std::string m_instancia_nome{"NULL"};
 
 public:
     Solucao(std::string t_instancia, int t_id);
@@ -45,7 +46,13 @@ public:
     float get_sexto_horario();
     void set_sexto_horario(float const &t_sexto_horario);
 
+    void set_id_solucao(const int& t_id);
     int get_id_solucao();
+
+    void set_instancia_nome(std::string t_instancia_nome);
+    std::string get_instancia_nome();
+
+    Solucao* shallow_copy();
 };
 
 #endif // !_SOLUCAO_HPP

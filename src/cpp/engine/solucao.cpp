@@ -4,6 +4,7 @@ Solucao::Solucao(std::string t_instancia, int t_id)
 {
     m_instancia = new Instancia(t_instancia);
     m_id = t_id;
+    this->m_instancia_nome = t_instancia;
     std::cout << "Gerada Instancia da Solução Populada." << std::endl;
 }
 
@@ -28,10 +29,10 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
         auto turma_relacionada = encontrar_turma_relacionada(disciplinas_ordenadas.back());
         // std::cout << std::endl;
 
-        int dias[6] = {0,1,2,3,4,5};
+        int dias[6] = {0, 1, 2, 3, 4, 5};
         auto verificar_rd_dias = std::rand() % 2;
 
-        if ( verificar_rd_dias == 1)
+        if (verificar_rd_dias == 1)
         {
             std::random_device rd;
             std::mt19937 g(rd());
@@ -53,7 +54,7 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
     return true;
 }
 
-bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int* t_dias)
+bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int *t_dias)
 {
     std::cout << "Alocando disciplina " << t_disciplina->get_nome() << "(" << t_disciplina->get_index() << ")"
               << " para o professor " << t_professor->get_nome() << " e turma " << t_turma->get_nome() << std::endl;
@@ -77,11 +78,11 @@ bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor
     for (int split = 0; split < splits.size(); split++)
     {
         std::cout << "Split [i] = " << splits[split] << std::endl;
-        //int random_day = rand() % 6;
-        //for (int d = 0; d < 6; d++)
+        // int random_day = rand() % 6;
+        // for (int d = 0; d < 6; d++)
         for (int dia = 0; dia < 6; dia++)
         {
-            //dia = (d + random_day) % 6;
+            // dia = (d + random_day) % 6;
             std::cout << "Verificando possibilidade no dia " << dia << std::endl;
             for (int horario = t_turma->get_primeiro_horario_turno(); horario <= t_turma->get_ultimo_horario_turno(); horario++)
             {
@@ -268,10 +269,10 @@ void Solucao::debug_vector_disciplina_addr()
 
 // void Solucao::trocar_disciplina(int ponto_de_corte, Disciplina* t_disicplina)
 // {
-    // std::srand(std::time(nullptr));
-    // int disciplina1_index = std::rand() % disciplinas_ordenadas.size();
-    // int disciplina2_index = std::rand() % disciplinas_ordenadas.size();
-    // std::swap(disciplinas_ordenadas[disciplina1_index], disciplinas_ordenadas[disciplina2_index]);
+// std::srand(std::time(nullptr));
+// int disciplina1_index = std::rand() % disciplinas_ordenadas.size();
+// int disciplina2_index = std::rand() % disciplinas_ordenadas.size();
+// std::swap(disciplinas_ordenadas[disciplina1_index], disciplinas_ordenadas[disciplina2_index]);
 // }
 
 int Solucao::get_id_solucao()
@@ -317,4 +318,27 @@ float Solucao::get_sexto_horario()
 void Solucao::set_sexto_horario(float const &t_sexto_horario)
 {
     this->m_valor_sextos_horarios = t_sexto_horario;
+}
+
+void Solucao::set_id_solucao(const int& t_id)
+{
+    this->m_id = t_id;
+}
+
+void Solucao::set_instancia_nome(std::string t_instancia)
+{
+    this->m_instancia_nome = t_instancia;
+}
+
+Solucao* Solucao::shallow_copy()
+{
+    Solucao *sol = new Solucao(this->m_instancia_nome, this->m_id);
+    
+    sol->set_instancia_nome(this->m_instancia_nome);
+    sol->set_id_solucao(this->m_id);
+    sol->set_factivel(this->m_factivel);
+    sol->set_valor_avaliacao(this->m_valor_avaliado);
+    sol->set_janela(this->m_valor_janelas);
+    sol->set_sexto_horario(this->m_valor_sextos_horarios);
+    return sol;
 }

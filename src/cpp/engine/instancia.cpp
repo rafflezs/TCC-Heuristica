@@ -3,6 +3,7 @@
 Instancia::Instancia(const std::string ano_instancia)
 {
     // std::cout << "Gerando instancia do periodo: " + ano_instancia << std::endl;
+    this->m_ano_instancia = ano_instancia;
 
     this->m_lista_disciplinas = instanciar_disciplina(ano_instancia);
     // std::cout << "Gerou lista de disciplinas" << std::endl;
@@ -227,4 +228,27 @@ void Instancia::print_instancia()
     {
         (*it)->print();
     }
+}
+
+Instancia* Instancia::shallow_copy()
+{
+    Instancia *inst = new Instancia(this->m_ano_instancia);
+    inst->m_csv = m_csv;
+    for (auto turma : m_lista_turmas)
+    {
+        inst->m_lista_turmas.push_back(turma);
+    }
+    for (auto prof : m_lista_professores)
+    {
+        inst->m_lista_professores.push_back(prof);
+    }
+    for (auto disc : m_lista_disciplinas)
+    {
+        inst->m_lista_disciplinas.push_back(disc);
+    }
+    for (auto curso : m_lista_cursos)
+    {
+        inst->m_lista_cursos.push_back(curso);
+    }
+    return inst;
 }

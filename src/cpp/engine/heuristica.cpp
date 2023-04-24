@@ -2,6 +2,11 @@
 
 Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
 {
+
+    this->m_instancia = t_instancia_pipe;
+    this->m_tamanho_populacao = tam_populacao;
+
+
     // this->solucoes.push_back(new Solucao(t_instancia_pipe, 0));
     for (int i = 1; i <= tam_populacao; i++)
     {
@@ -102,8 +107,8 @@ void Heuristica::exibir_solucoes()
 {
     for (auto it = this->m_solucoes.begin(); it != this->m_solucoes.end(); it++)
     {
-        if ((*it)->get_factivel() == true)
-            (*it)->exibir_solucao();
+        std::cout << "Solucao " << (*it)->get_id_solucao() << " | Avaliada em: " << (*it)->get_valor_avaliacao() << std::endl;
+        (*it)->exibir_solucao();
     }
 }
 
@@ -121,15 +126,17 @@ void Heuristica::debug_heuristica()
 
 void Heuristica::avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario)
 {
-    std::cout << "-------Avaliando Soluções-------\n"
-              << std::endl;
+    // std::cout << "-------Avaliando Soluções-------\n" << std::endl;
 
     for (int i = 1; i < m_solucoes.size(); i++)
     {
-        std::cout << CYN "Avaliando solucao nº: " << i << NC << std::endl;
-        m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i],1,1));
-        std::cout << "Avaliacao da Solucao " << i << ": " << m_solucoes[i]->get_valor_avaliacao() << std::endl;
+        // std::cout << CYN "Avaliando solucao nº: " << i << NC << std::endl;
+        m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i], peso_janela, peso_sexto_horario));
+        // std::cout << "Avaliacao da Solucao " << i << ": " << m_solucoes[i]->get_valor_avaliacao() << std::endl;
     }
+
+    std::sort(m_solucoes.begin(), m_solucoes.end(), [](Solucao *s1, Solucao *s2)
+              { return s1->get_valor_avaliacao() > s2->get_valor_avaliacao(); });
 }
 
 float Heuristica::avaliar_solucao(Solucao *t_solucao, const float &peso_janela, const float &peso_sexto_horario)
@@ -285,136 +292,19 @@ Solucao *Heuristica::get_solucao(int index)
     return this->m_solucoes[index];
 }
 
-// void Heuristica::mutar(Solucao *solucao, int taxa_mutacao)
-// {
-//     std::mt19937 engine(time(NULL));
-//     std::uniform_real_distribution<double> dist(0, 1);
-
-//     for (int i = 0; i < solucao->get_instancia().m_lista_disciplinas.size(); i++)
-//     {
-//         if (dist(engine) < taxa_mutacao)
-//         {
-//             int disciplina_idx = i;
-//             int nova_posicao = rand() % solucao->get_instancia().m_lista_disciplinas.size();
-
-//             auto disciplina = solucao->get_instancia().m_lista_disciplinas[disciplina_idx];
-//             solucao->get_instancia().m_lista_disciplinas.erase(solucao->get_instancia().m_lista_disciplinas.begin() + disciplina_idx);
-//             solucao->get_instancia().m_lista_disciplinas.insert(solucao->get_instancia().m_lista_disciplinas.begin() + nova_posicao, disciplina);
-//         }
-//     }
-// }
-
-// void Heuristica::cruzar(Solucao *solucao1, Solucao *solucao2)
-// {
-
-//     std::uniform_int_distribution<int> dist(0, solucao1->get_instancia().m_lista_disciplinas.size() - 1);
-//     std::mt19937 engine(time(nullptr));
-
-//     int ponto_corte = dist(engine);
-
-//     Solucao filho1 = *solucao1;
-//     Solucao filho2 = *solucao2;
-
-//     for (int i = ponto_corte; i < filho1.get_instancia().m_lista_disciplinas.size(); ++i)
-//     {
-//         Disciplina disciplina_solucao2 = *filho2.get_instancia().m_lista_disciplinas[i];
-//         filho1.trocar_disciplina(i, disciplina_solucao2);
-//         filho2.trocar_disciplina(i, *filho1.get_instancia().m_lista_disciplinas[i]);
-//     }
-
-//     solucoes.push_back(new Solucao(filho1));
-//     solucoes.push_back(new Solucao(filho2));
-// }
-
-void Heuristica::pos_processamento()
-{
-
-    std::cout << "PP1" << std::endl;
-    for (auto it : this->m_solucoes)
-    {
-        std::random_device rd;
-        std::mt19937 g(rd());
-
-        int rand_metodo = rand() % 3;
-        std::cout << "PP2" << std::endl;
-
-        switch (rand_metodo)
-        {
-
-            // Caso 1: Metodo Destrutivo
-            case 1:
-            {
-                std::cout << "PP3" << std::endl;
-                int qtd_turmas = 1+ rand() % (it->get_instancia().m_lista_turmas.size()) / 2;
-                while (qtd_turmas == rand_metodo)
-                {
-                   qtd_turmas = 1+ rand() % (it->get_instancia().m_lista_turmas.size()) / 2; 
-                }
-                metodo_destrutivo(qtd_turmas, it);
-            }
-            break;
-
-            // Caso 2: Busca Local
-            case 2:
-                std::cout << "Case 2" << std::endl;
-            break;
-
-            // Caso base: ordenação por ordem de leitura da instância
-            default:
-                std::cout << "Case Default" << std::endl;
-            break;
-       }
-
+Heuristica* Heuristica::shallow_copy() const {
+    Heuristica* newHeuristica = new Heuristica(*this);
+    for (Solucao* s : newHeuristica->m_solucoes) {
+        s = s->shallow_copy();
     }
+    return newHeuristica;
 }
 
-void Heuristica::metodo_destrutivo(int t_qtd_turmas, Solucao *solucao)
+void Heuristica::busca_local()
 {
-    for (int i = 0; i < t_qtd_turmas; i++)
-    {
-        auto turma = solucao->get_instancia().m_lista_turmas[rand() % solucao->get_instancia().m_lista_turmas.size()];
-        std::set<int> id_disciplinas{};
 
-        auto dispo = turma->get_disponibilidade();
+    // DESALOCAR AS TURMAS DE UMA SOLUCAO E VERIFICAR A VARIACAO DA QUALIDADE
+    // IMPORTANTE: USAR SHALLOW_COPY EM CASA DE REVERTER A SOLUCAO (QUALIDADE PIOR)
 
-        for (int dia = 0; dia < dispo.size(); dia++)
-        {
-            for(int horario = 0; horario < dispo[0].size(); horario++)
-            {
-                id_disciplinas.insert(dispo[dia][horario]);
-                dispo[dia][horario] = 0;
-                turma->set_disponibilidade(dia,horario,0);
-            }
-        }
-
-        std::vector<Disciplina*> disciplinas_destruidas;
-
-        for (auto disciplina : id_disciplinas)
-        {
-            disciplinas_destruidas.push_back(solucao->get_instancia().m_lista_disciplinas[disciplina]);
-            auto professor_relacionado = solucao->encontrar_prof_relacionado(disciplinas_destruidas.back());
-            for (int dia = 0; dia < 6; dia++)
-            {
-                for(int horario = 0; horario < 16; horario++)
-                {
-                    if (disciplina == dispo[dia][horario])
-                        professor_relacionado->set_disponibilidade(dia,horario,0);
-                }
-            }
-        }
-
-        bool deu_certo = solucao->popular_solucao(disciplinas_destruidas);
-        if (deu_certo == true)
-        {
-            solucao->set_factivel(true);
-            std::cout << "Horario destruido" << solucao->get_id_solucao() << " encontrada" << std::endl;
-            solucao->exibir_solucao();
-        }
-        else
-        {
-            solucao->set_factivel(false);
-            std::cout << "Horario destruido " << solucao->get_id_solucao() << " infactivel" << std::endl;
-            solucao->exibir_solucao();
-        }
-    }
+    // PENSAR EM UMA MANEIRA DE CHAMAR ESSA FUNCAO OU ORGANIZAR ELA
 }
