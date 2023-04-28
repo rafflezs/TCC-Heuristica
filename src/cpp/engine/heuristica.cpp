@@ -6,7 +6,6 @@ Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
     this->m_instancia = t_instancia_pipe;
     this->m_tamanho_populacao = tam_populacao;
 
-
     // this->solucoes.push_back(new Solucao(t_instancia_pipe, 0));
     for (int i = 1; i <= tam_populacao; i++)
     {
@@ -292,19 +291,32 @@ Solucao *Heuristica::get_solucao(int index)
     return this->m_solucoes[index];
 }
 
-Heuristica* Heuristica::shallow_copy() const {
-    Heuristica* newHeuristica = new Heuristica(*this);
-    for (Solucao* s : newHeuristica->m_solucoes) {
+Heuristica *Heuristica::shallow_copy() const
+{
+    Heuristica *newHeuristica = new Heuristica(*this);
+    for (Solucao *s : newHeuristica->m_solucoes)
+    {
         s = s->shallow_copy();
     }
     return newHeuristica;
 }
 
-void Heuristica::busca_local()
+void Heuristica::pos_processamento()
 {
+    for (auto it : this->m_solucoes)
+    {
+        Instancia shallow_instancia = *it->get_instancia().shallow_copy();
+        std::set<int> turmas_selecionadas{};
+        int qtd_turmas_selecionadas = rand() % shallow_instancia.m_lista_turmas.size() + 1;
+        for (int i = 0; i < qtd_turmas_selecionadas; i++)
+        {
+            turmas_selecionadas.insert(rand() % qtd_turmas_selecionadas);
+        }
 
-    // DESALOCAR AS TURMAS DE UMA SOLUCAO E VERIFICAR A VARIACAO DA QUALIDADE
-    // IMPORTANTE: USAR SHALLOW_COPY EM CASA DE REVERTER A SOLUCAO (QUALIDADE PIOR)
+        busca_local(turmas_selecionadas);
+    }
+}
 
-    // PENSAR EM UMA MANEIRA DE CHAMAR ESSA FUNCAO OU ORGANIZAR ELA
+bool Heuristica::busca_local(set<int> t_turmas_seleiconadas)
+{
 }

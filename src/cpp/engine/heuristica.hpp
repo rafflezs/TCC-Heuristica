@@ -19,7 +19,8 @@ public:
 
     std::vector<Disciplina *> ordernar_disciplinas(const int &rand_metodo, Solucao *solucao);
     void heuristica_construtiva();
-    void busca_local();
+    bool busca_local(set<int> t_turmas_seleiconadas);
+    void pos_processamento();
 
     void exibir_solucoes();
     void debug_heuristica();
