@@ -320,7 +320,7 @@ void Solucao::set_sexto_horario(float const &t_sexto_horario)
     this->m_valor_sextos_horarios = t_sexto_horario;
 }
 
-void Solucao::set_id_solucao(const int& t_id)
+void Solucao::set_id_solucao(const int &t_id)
 {
     this->m_id = t_id;
 }
@@ -330,10 +330,10 @@ void Solucao::set_instancia_nome(std::string t_instancia)
     this->m_instancia_nome = t_instancia;
 }
 
-Solucao* Solucao::shallow_copy()
+Solucao *Solucao::shallow_copy()
 {
     Solucao *sol = new Solucao(this->m_instancia_nome, this->m_id);
-    
+
     sol->set_instancia_nome(this->m_instancia_nome);
     sol->set_id_solucao(this->m_id);
     sol->set_factivel(this->m_factivel);

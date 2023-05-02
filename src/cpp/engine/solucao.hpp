@@ -4,6 +4,7 @@
 #include "instancia.hpp"
 #include <algorithm>
 #include <random>
+#include <set>
 class Solucao
 {
 
@@ -42,17 +43,18 @@ public:
 
     float get_janela();
     void set_janela(float const &t_janela);
-    
+
     float get_sexto_horario();
     void set_sexto_horario(float const &t_sexto_horario);
 
-    void set_id_solucao(const int& t_id);
+    void set_id_solucao(const int &t_id);
     int get_id_solucao();
 
     void set_instancia_nome(std::string t_instancia_nome);
     std::string get_instancia_nome();
 
-    Solucao* shallow_copy();
+
+    Solucao *shallow_copy();
 };
 
 #endif // !_SOLUCAO_HPP

@@ -18,8 +18,10 @@ public:
     Heuristica(std::string t_instancia_pipe, int tam_populacao);
 
     std::vector<Disciplina *> ordernar_disciplinas(const int &rand_metodo, Solucao *solucao);
+    void ordernar_disciplinas(const int &rand_metodo, std::vector<Disciplina*> t_disciplinas);
+
     void heuristica_construtiva();
-    bool busca_local(set<int> t_turmas_seleiconadas);
+    bool busca_local(std::set<int> t_turmas_selecionadas);
     void pos_processamento();
 
     void exibir_solucoes();
@@ -35,6 +37,10 @@ public:
     Solucao *get_solucao(int index);
 
     Heuristica *shallow_copy() const;
+
+    Solucao* busca_local(std::set<int> t_turmas_selecionadas, Solucao* t_solucao);
+    std::set<int> encontrar_disciplinas_turma(Turma *t_turma);
+    std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao* t_solucao);
 };
 
 #endif //!_HEURISTICA_HPP
