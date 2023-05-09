@@ -29,7 +29,7 @@ public:
 
     void print_instancia();
 
-    Instancia::Instancia *shallow_copy();
+    Instancia *shallow_copy();
 
 };
 

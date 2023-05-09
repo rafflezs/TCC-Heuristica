@@ -16,7 +16,7 @@ Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
               << std::endl;
 }
 
-std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metodo, Solucao *solucao)
+std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
 {
 
     std::vector<Disciplina *> t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
@@ -81,7 +81,7 @@ std::vector<Disciplina *> Heuristica::ordernar_disciplinas(const int &rand_metod
     return t_disciplinas_ordenadas;
 }
 
-void Heuristica::ordernar_disciplinas(const int &rand_metodo, std::vector<Disciplina*> t_disciplinas)
+void Heuristica::ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina*> *t_disciplina)
 {
 
     std::random_device rd;
@@ -93,49 +93,34 @@ void Heuristica::ordernar_disciplinas(const int &rand_metodo, std::vector<Discip
     // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
     case 1:
         printf("\n------Caso %d - Maior CH-MIN------", rand_metodo);
-        std::sort(t_disciplinas.begin(), t_disciplinas.end(), [](Disciplina *lhs, Disciplina *rhs)
+        std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_ch_min() > rhs->get_ch_min(); });
         break;
 
     // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
     case 2:
         printf("\n------Caso %d - Menor Split------", rand_metodo);
-        std::sort(t_disciplinas.begin(), t_disciplinas.end(), [](Disciplina *lhs, Disciplina *rhs)
+        std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_split() < rhs->get_split(); });
         break;
 
     // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
     case 3:
         printf("\n------Caso %d - Prioriedade CH-MIN e Split Combinados------", rand_metodo);
-        std::sort(t_disciplinas.begin(), t_disciplinas.end(), [](Disciplina *lhs, Disciplina *rhs)
+        std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() < rhs->get_split()); });
         break;
-
-    // // TODO Caso 4: Ordenar disciplina por professor com mais disciplinas
-    // case 4:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
-
-    // // TODO Caso 5: Ordenar disciplina por Curso com mais Turmas
-    // case 5:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
-
-    // // TODO Caso 5: Ordenar disciplina por Curso com mais Disciplinas
-    // case 6:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
 
     // TODO Caso 6: Random Sort
     case 7:
         printf("\n------Caso %d\n", rand_metodo);
-        std::shuffle(t_disciplinas.begin(), t_disciplinas.end(), g);
+        std::shuffle(t_disciplina->begin(), t_disciplina->end(), g);
         break;
 
     // Caso base: ordenação por ordem de leitura da instância
     default:
         printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
-        t_disciplinas;
+        t_disciplina;
         break;
     }
 }
@@ -144,8 +129,8 @@ void Heuristica::heuristica_construtiva()
 {
     for (auto it : this->m_solucoes)
     {
-        // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordernar_disciplinas()
-        bool deu_certo = it->popular_solucao(ordernar_disciplinas(rand() % 4, it));
+        // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordenar_disciplinas()
+        bool deu_certo = it->popular_solucao(ordenar_disciplinas(rand() % 4, it));
         if (deu_certo == true)
         {
             it->set_factivel(true);
@@ -364,46 +349,56 @@ void Heuristica::pos_processamento()
 {
     for (auto it : this->m_solucoes)
     {
-        Instancia shallow_instancia = *it->get_instancia().shallow_copy();
+        Instancia* shallow_instancia = it->get_instancia().shallow_copy();
         std::set<int> turmas_selecionadas{};
-        int qtd_turmas_selecionadas = rand() % shallow_instancia.m_lista_turmas.size() + 1;
+        int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
         for (int i = 0; i < qtd_turmas_selecionadas; i++)
             turmas_selecionadas.insert(rand() % qtd_turmas_selecionadas);
-        Solucao* temp_solucao = temp_solucao->shallow_copy();
-        
 
+        auto nova_solucao = busca_local(turmas_selecionadas, *it);
+
+        if (nova_solucao->get_factivel() == true && (nova_solucao->get_valor_avaliacao() > it->get_valor_avaliacao()))
+            it = nova_solucao;
     }
 }
 
 
-Solucao* Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao* t_solucao)
+Solucao* Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao)
 {
+
+    auto nova_solucao = t_solucao.shallow_copy();
+    auto nova_instancia = t_solucao.get_instancia().shallow_copy();
+
     for (auto turma_index : t_turmas_selecionadas)
     {
-        Instancia temp_instancia = *t_solucao->get_instancia().shallow_copy();
-        std::set<int> disciplinas_turma = encontrar_disciplinas_turma(temp_instancia.m_lista_turmas[turma_index]);
-        std::vector<Professor> professores_turma = encontrar_professores_turma(disciplinas_turma, &temp_instancia, t_solucao);
+        std::set<int> disciplinas_turma_set = encontrar_disciplinas_turma(nova_instancia->m_lista_turmas[turma_index]);
+        std::vector<Disciplina*> disciplinas_turma{};
+        std::vector<Professor> professores_turma = encontrar_professores_turma(disciplinas_turma_set, nova_instancia, nova_solucao);
 
         // set <int> disciplina TO vector<Disciplina> reordenado
-        for (int i = )
+        for (auto disc_set : disciplinas_turma_set)
         {
-
+            disciplinas_turma.push_back(nova_instancia->m_lista_disciplinas[disc_set]);
         }
 
-        bool deu_certo = t_solucao->popular_solucao(ordernar_disciplinas(rand() % 4, ));
+        ordenar_disciplinas(rand() % 4, &disciplinas_turma);
+
+        bool deu_certo = nova_solucao->popular_solucao(disciplinas_turma);
         if (deu_certo == true)
         {
-            t_solucao->set_factivel(true);
-            std::cout << "Solucao " << t_solucao->get_id_solucao() << " encontrada" << std::endl;
-            // t_solucao->exibir_solucao();
+            nova_solucao->set_factivel(true);
+            std::cout << "Solucao " << nova_solucao->get_id_solucao() << " encontrada" << std::endl;
+            // nova_solucao->exibir_solucao();
         }
         else
         {
-            t_solucao->set_factivel(false);
-            std::cout << "Solucao " << t_solucao->get_id_solucao() << " infactivel" << std::endl;
-            // t_solucao->exibir_solucao();
+            nova_solucao->set_factivel(false);
+            std::cout << "Solucao " << nova_solucao->get_id_solucao() << " infactivel" << std::endl;
+            // nova_solucao->exibir_solucao();
         }
     }
+
+    return nova_solucao;
 }
 
 std::set<int> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
@@ -451,4 +446,6 @@ std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> dis
             }
         }
     }
+
+    return professores_turma;
 }

@@ -7,9 +7,16 @@ int main(int argc, char **argv)
 
     Heuristica h = Heuristica(argv[1], std::stoi(argv[2]));
     h.heuristica_construtiva();
-    printf("\n\nSOLUCOES ENCONTRADAS\n\n");
     h.avaliar_solucoes(std::stof(argv[3]), std::stof(argv[4]));
+    printf("\n\nSOLUCOES ENCONTRADAS\n\n");
     h.exibir_solucoes();
+
+    // printf("\n\nSO\n\n");
+    // h.pos_processamento();
+    // h.avaliar_solucoes(std::stof(argv[3]), std::stof(argv[4]));
+    // printf("\n\nSOLUCOES ENCONTRADAS (POS PROCESSAMENTO)\n\n");
+    // h.exibir_solucoes();
+
 
     GravarArquivo ga = GravarArquivo();
     ga.salvar_solucao_prof("data/output/test.tex", h.get_solucao(1));
