@@ -87,6 +87,7 @@ void Heuristica::ordenar_disciplinas(const int &rand_metodo, std::vector<Discipl
     std::random_device rd;
     std::mt19937 g(rd());
 
+
     switch (rand_metodo)
     {
 
@@ -130,7 +131,8 @@ void Heuristica::heuristica_construtiva()
     for (auto it : this->m_solucoes)
     {
         // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordenar_disciplinas()
-        bool deu_certo = it->popular_solucao(ordenar_disciplinas(rand() % 4, it));
+        // bool deu_certo = it->popular_solucao(ordenar_disciplinas(rand() % 4, it));
+        bool deu_certo = it->popular_solucao(ordenar_disciplinas(7, it));
         if (deu_certo == true)
         {
             it->set_factivel(true);
@@ -381,7 +383,13 @@ Solucao* Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_
             disciplinas_turma.push_back(nova_instancia->m_lista_disciplinas[disc_set]);
         }
 
-        ordenar_disciplinas(rand() % 4, &disciplinas_turma);
+
+
+        // std::shuffle(disciplinas_turma->begin(), disciplinas_turma->end(), g);
+
+
+        // ordenar_disciplinas(rand() % 4, &disciplinas_turma);
+        ordenar_disciplinas(7, &disciplinas_turma);
 
         bool deu_certo = nova_solucao->popular_solucao(disciplinas_turma);
         if (deu_certo == true)

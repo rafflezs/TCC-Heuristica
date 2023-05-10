@@ -29,7 +29,7 @@ public:
         for (auto p : profs)
         {
             arquivo << "\\centering" << std::endl;
-            arquivo << "\\begin{tabularx}{1\textwidth} { | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X |}" << std::endl;
+            arquivo << "\\begin{tabularx}{\\textwidth} { | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X |}" << std::endl;
             arquivo << "\\hline" << std::endl;
             arquivo << "\\multicolumn{17}{|c|}{\\textbf{" << p->get_nome() << "}} \\\\" << std::endl;
             arquivo << "\\cline{1-17}" << std::endl;
