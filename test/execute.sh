@@ -5,13 +5,15 @@ then
     test/compile.sh
 fi
 
-if [ -f "data/output/test.latex" ]
+if [ -f "data/output/prof.tex" ]
 then
-    rm -f data/output/test.latex
+    rm -f data/output/prof.tex
+    rm -f data/output/turma.tex
+    rm -f data/output/solucao-analise.csv
 fi
 
 rm -f test/out.txt
 
-./test/exe "Instancia-Facil-Comp" 2 1 1 >> test/out.txt
+./test/exe "Instancia-Facil-Comp" 1 1 1 >> test/out.txt
 
 rm -f test/exe

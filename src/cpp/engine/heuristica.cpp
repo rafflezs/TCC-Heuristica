@@ -1,19 +1,44 @@
 #include "heuristica.hpp"
 
-Heuristica::Heuristica(std::string t_instancia_pipe, int tam_populacao)
+Heuristica::Heuristica(const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto)
 {
-
-    this->m_instancia = t_instancia_pipe;
-    this->m_tamanho_populacao = tam_populacao;
-
-    // this->solucoes.push_back(new Solucao(t_instancia_pipe, 0));
-    for (int i = 1; i <= tam_populacao; i++)
+    for (int i = 1; i <= m_tamanho_populacao; i++)
     {
-        std::cout << CYN "Gerando Instancia " << t_instancia_pipe << " nº: " << i << NC << std::endl;
-        this->m_solucoes.push_back(new Solucao(t_instancia_pipe, i));
+        this->m_solucoes.push_back(new Solucao(m_instancia_nome, i));
     }
-    std::cout << "-------Encerrada geração de populações-------\n"
-              << std::endl;
+
+    this->m_instancia_nome = t_instancia_nome;
+    this->m_tamanho_populacao = t_tam_pop;
+    this->m_peso_janela = t_peso_janela;
+    this->m_peso_sexto = t_peso_sexto;
+}
+
+void Heuristica::inicializar()
+{
+    GravarArquivo ga = GravarArquivo("data/output/");
+
+    heuristica_construtiva();
+    avaliar_solucoes(m_peso_janela, m_peso_sexto);
+    for (auto sol : m_solucoes)
+    {
+        // TERMINAR ESSA PORRA
+        ga.salvar_analise("./data/output/", sol, true);
+    }
+
+    pos_processamento();
+    avaliar_solucoes(m_peso_janela, m_peso_sexto);
+
+    for (auto sol : m_solucoes)
+    {
+        // TERMINAR ESSA PORRA
+        ga.salvar_analise("./data/output/", sol, false);
+    }
+    
+    auto melhor_solucao = get_melhor_solucao();
+    ga.salvar_saidas(melhor_solucao);
+
+    delete &ga;
+
 }
 
 std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
@@ -81,12 +106,11 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
     return t_disciplinas_ordenadas;
 }
 
-void Heuristica::ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina*> *t_disciplina)
+void Heuristica::ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina)
 {
 
     std::random_device rd;
     std::mt19937 g(rd());
-
 
     switch (rand_metodo)
     {
@@ -155,6 +179,7 @@ void Heuristica::exibir_solucoes()
         std::cout << "Solucao " << (*it)->get_id_solucao() << " | Avaliada em: " << (*it)->get_valor_avaliacao() << std::endl;
         (*it)->exibir_solucao();
     }
+    std::cout << "Solucoes Exibidas: void return (no problems found)" << std::endl;
 }
 
 void Heuristica::debug_heuristica()
@@ -193,7 +218,14 @@ float Heuristica::avaliar_solucao(Solucao *t_solucao, const float &peso_janela, 
 
     t_solucao->set_sexto_horario(sexto_horario);
     t_solucao->set_janela(janela_prof);
-    t_solucao->set_valor_avaliacao((peso_sexto_horario * sexto_horario) + (peso_janela * janela_prof));
+    if (t_solucao->get_factivel())
+    {
+        t_solucao->set_valor_avaliacao((peso_sexto_horario * sexto_horario) + (peso_janela * janela_prof));
+    }
+    else
+    {
+        t_solucao->set_valor_avaliacao(std::numeric_limits<float>::max());
+    }
 
     return t_solucao->get_valor_avaliacao();
 }
@@ -351,7 +383,7 @@ void Heuristica::pos_processamento()
 {
     for (auto it : this->m_solucoes)
     {
-        Instancia* shallow_instancia = it->get_instancia().shallow_copy();
+        Instancia *shallow_instancia = it->get_instancia().shallow_copy();
         std::set<int> turmas_selecionadas{};
         int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
         for (int i = 0; i < qtd_turmas_selecionadas; i++)
@@ -364,8 +396,7 @@ void Heuristica::pos_processamento()
     }
 }
 
-
-Solucao* Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao)
+Solucao *Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao)
 {
 
     auto nova_solucao = t_solucao.shallow_copy();
@@ -374,7 +405,7 @@ Solucao* Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_
     for (auto turma_index : t_turmas_selecionadas)
     {
         std::set<int> disciplinas_turma_set = encontrar_disciplinas_turma(nova_instancia->m_lista_turmas[turma_index]);
-        std::vector<Disciplina*> disciplinas_turma{};
+        std::vector<Disciplina *> disciplinas_turma{};
         std::vector<Professor> professores_turma = encontrar_professores_turma(disciplinas_turma_set, nova_instancia, nova_solucao);
 
         // set <int> disciplina TO vector<Disciplina> reordenado
@@ -383,10 +414,7 @@ Solucao* Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_
             disciplinas_turma.push_back(nova_instancia->m_lista_disciplinas[disc_set]);
         }
 
-
-
         // std::shuffle(disciplinas_turma->begin(), disciplinas_turma->end(), g);
-
 
         // ordenar_disciplinas(rand() % 4, &disciplinas_turma);
         ordenar_disciplinas(7, &disciplinas_turma);
@@ -431,7 +459,7 @@ std::set<int> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
     return disciplinas_turma;
 }
 
-std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao* temp_solucao)
+std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao *temp_solucao)
 {
     std::vector<Professor> professores_turma{};
     for (auto disciplina_index : disciplinas_turma)
@@ -456,4 +484,16 @@ std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> dis
     }
 
     return professores_turma;
+}
+
+Solucao* Heuristica::get_melhor_solucao() {
+    if (m_solucoes.empty()) {
+        return nullptr;
+    }
+
+    auto compareSolucao = [](Solucao* solucao1, Solucao* solucao2) {
+        return solucao1->get_valor_avaliacao() < solucao2->get_valor_avaliacao();
+    };
+
+    return *std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);
 }

@@ -2,23 +2,23 @@
 #define _HEURISTICA_HPP
 
 #include "solucao.hpp"
+#include "gravar-arquivo.hpp"
 #include <set>
 #include <ctime>
+#include <limits>
 
 class Heuristica
 {
 
 private:
     std::vector<Solucao *> m_solucoes{};
-    std::string m_instancia{"NULL"};
+    std::string m_instancia_nome{"NULL"};
     int m_tamanho_populacao{0};
-
-
-public:
-    Heuristica(std::string t_instancia_pipe, int tam_populacao);
+    float m_peso_janela{0};
+    float m_peso_sexto{0};
 
     std::vector<Disciplina *> ordenar_disciplinas(const int &rand_metodo, Solucao *solucao);
-    void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina*> *t_disciplina);
+    void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina);
 
     void heuristica_construtiva();
     void pos_processamento();
@@ -37,9 +37,15 @@ public:
 
     Heuristica *shallow_copy() const;
 
-    Solucao* busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao);
+    Solucao *busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao);
     std::set<int> encontrar_disciplinas_turma(Turma *t_turma);
-    std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao* t_solucao);
+    std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao *t_solucao);
+
+    Solucao* get_melhor_solucao();
+
+public:
+    Heuristica(const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto);
+    void inicializar();
 };
 
 #endif //!_HEURISTICA_HPP
