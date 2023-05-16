@@ -29,10 +29,15 @@ public:
         arquivo.seekp(0, std::ios::end);
         if (arquivo.tellp() == 0)
         {
-            arquivo << "SOL_ID;INIT_PARAMS;JANELAS;SEXTOS_HORARIOS;VALOR_FINAL\n";
+            arquivo << "SOL_ID;[INIT_PARAMS];JANELAS;SEXTOS_HORARIOS;VALOR_FINAL\n";
         }
 
-        // implementar append de informações de solução de TODAS as soluções
+        arquivo << t_solucao->get_id_solucao() << ";[" 
+                << this->m_param_janela << "," 
+                << this->m_param_sexto << "];" 
+                << t_solucao->get_janela() << ";" 
+                << t_solucao->get_sexto_horario() << ";" 
+                << t_solucao->get_valor_avaliacao() << "\n";
     }
 
     void salvar_saidas(Solucao *t_solucao)

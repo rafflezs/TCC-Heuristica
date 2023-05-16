@@ -6,6 +6,7 @@
 #include <set>
 #include <ctime>
 #include <limits>
+#include <chrono>
 
 class Heuristica
 {

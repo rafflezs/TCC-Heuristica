@@ -25,20 +25,22 @@ void Heuristica::inicializar()
         ga.salvar_analise("./data/output/", sol, true);
     }
 
-    pos_processamento();
+    pos_processamento(); // salvar_analise dentro ou fora do pos_processamento?
+                         // Fora implica em gerar toda a heuristica de busca local para a solucao e depois avaliar resultado final
+                         // Dentro implica em acompanhar a evolução da solucao ao longo das diferentes geracoes da heuristica busca local
+                         // Por enquanto fora
     avaliar_solucoes(m_peso_janela, m_peso_sexto);
 
     for (auto sol : m_solucoes)
     {
-        // TERMINAR ESSA PORRA
+        // Ver com o painho se esses dados são suficientes pra analise (clica na porra da funcao loiro burro)
         ga.salvar_analise("./data/output/", sol, false);
     }
-    
+
     auto melhor_solucao = get_melhor_solucao();
     ga.salvar_saidas(melhor_solucao);
 
     delete &ga;
-
 }
 
 std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
@@ -381,18 +383,45 @@ Heuristica *Heuristica::shallow_copy() const
 
 void Heuristica::pos_processamento()
 {
+    const int maxIterations = 10; // Maximum number of iterations
+    const int maxTime = 10;       // Maximum time in seconds
+
     for (auto it : this->m_solucoes)
     {
         Instancia *shallow_instancia = it->get_instancia().shallow_copy();
         std::set<int> turmas_selecionadas{};
+
+        // Tempo inicial 0 e qtd_itercoes para parametro de para da heuristica
+        std::chrono::time_point<std::chrono::steady_clock> tempo_iniciaç = std::chrono::steady_clock::now();
+        int iterations = 0;
+        bool hasImprovement = true;
+
+        // Gera um conjunto reduzido de turmas a serem detruidas
         int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
         for (int i = 0; i < qtd_turmas_selecionadas; i++)
             turmas_selecionadas.insert(rand() % qtd_turmas_selecionadas);
 
-        auto nova_solucao = busca_local(turmas_selecionadas, *it);
+        while (hasImprovement && iterations < maxIterations)
+        {
+            auto nova_solucao = busca_local(turmas_selecionadas, *it);
 
-        if (nova_solucao->get_factivel() == true && (nova_solucao->get_valor_avaliacao() > it->get_valor_avaliacao()))
-            it = nova_solucao;
+            if (nova_solucao->get_factivel() && (nova_solucao->get_valor_avaliacao() > it->get_valor_avaliacao()))
+            {
+                it = nova_solucao;
+                hasImprovement = true;
+            }
+            else
+            {
+                hasImprovement = false;
+            }
+
+            iterations++;
+
+            std::chrono::time_point<std::chrono::steady_clock> currentTime = std::chrono::steady_clock::now();
+            std::chrono::duration<double> elapsedSeconds = currentTime - tempo_iniciaç;
+            if (elapsedSeconds.count() > maxTime)
+                break;
+        }
     }
 }
 
@@ -486,12 +515,15 @@ std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> dis
     return professores_turma;
 }
 
-Solucao* Heuristica::get_melhor_solucao() {
-    if (m_solucoes.empty()) {
+Solucao *Heuristica::get_melhor_solucao()
+{
+    if (m_solucoes.empty())
+    {
         return nullptr;
     }
 
-    auto compareSolucao = [](Solucao* solucao1, Solucao* solucao2) {
+    auto compareSolucao = [](Solucao *solucao1, Solucao *solucao2)
+    {
         return solucao1->get_valor_avaliacao() < solucao2->get_valor_avaliacao();
     };
 
