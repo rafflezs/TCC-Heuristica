@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Implementar chamada src/automation/file-converter.py
+## para gerar instancia a partir do xlsx
+
 if [ ! -f "/test/exe" ]
 then
     test/compile.sh
@@ -18,3 +21,6 @@ rm -f test/out.txt
 ./test/exe "Instancia-Facil-Comp" 100 101.8 205.6 >> data/output/debug-out.txt
 
 rm -f test/exe
+
+## Implementar chamada src/automation/latex-to-pdf.py
+## para gerar pdf de saida
