@@ -2,15 +2,15 @@
 
 Heuristica::Heuristica(const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto)
 {
-    for (int i = 1; i <= m_tamanho_populacao; i++)
-    {
-        this->m_solucoes.push_back(new Solucao(m_instancia_nome, i));
-    }
-
     this->m_instancia_nome = t_instancia_nome;
     this->m_tamanho_populacao = t_tam_pop;
     this->m_peso_janela = t_peso_janela;
     this->m_peso_sexto = t_peso_sexto;
+
+    for (int i = 0; i < m_tamanho_populacao; i++)
+    {
+        this->m_solucoes.push_back(new Solucao(m_instancia_nome, i));
+    }
 }
 
 void Heuristica::inicializar()
@@ -37,10 +37,13 @@ void Heuristica::inicializar()
         ga.salvar_analise("./data/output/", sol, false);
     }
 
+    // salvando solucao em arquivo .tex
     auto melhor_solucao = get_melhor_solucao();
+    std::cout << "A solução ID " << melhor_solucao->get_id_solucao() 
+              << " com o valor na função objetivo de "
+              << melhor_solucao->get_valor_avaliacao()
+              << " pontos." << std::endl;
     ga.salvar_saidas(melhor_solucao);
-
-    delete &ga;
 }
 
 std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
@@ -55,7 +58,6 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 
     // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
     case 1:
-        printf("\n------Caso %d - Maior CH-MIN------", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_ch_min() > rhs->get_ch_min(); });
@@ -63,7 +65,6 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 
     // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
     case 2:
-        printf("\n------Caso %d - Menor Split------", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_split() < rhs->get_split(); });
@@ -71,36 +72,17 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 
     // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
     case 3:
-        printf("\n------Caso %d - Prioriedade CH-MIN e Split Combinados------", rand_metodo);
         t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() < rhs->get_split()); });
         break;
 
-    // // TODO Caso 4: Ordenar disciplina por professor com mais disciplinas
-    // case 4:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
-
-    // // TODO Caso 5: Ordenar disciplina por Curso com mais Turmas
-    // case 5:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
-
-    // // TODO Caso 5: Ordenar disciplina por Curso com mais Disciplinas
-    // case 6:
-    //     printf("\n------Caso %d\n", rand_metodo);
-    //     break;
-
-    // TODO Caso 6: Random Sort
-    case 7:
-        printf("\n------Caso %d\n", rand_metodo);
+    case 4:
         std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), g);
         break;
 
     // Caso base: ordenação por ordem de leitura da instância
     default:
-        printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
         t_disciplinas_ordenadas;
         break;
     }
@@ -119,34 +101,28 @@ void Heuristica::ordenar_disciplinas(const int &rand_metodo, std::vector<Discipl
 
     // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
     case 1:
-        printf("\n------Caso %d - Maior CH-MIN------", rand_metodo);
         std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_ch_min() > rhs->get_ch_min(); });
         break;
 
     // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
     case 2:
-        printf("\n------Caso %d - Menor Split------", rand_metodo);
         std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_split() < rhs->get_split(); });
         break;
 
     // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
     case 3:
-        printf("\n------Caso %d - Prioriedade CH-MIN e Split Combinados------", rand_metodo);
         std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() < rhs->get_split()); });
         break;
 
-    // TODO Caso 6: Random Sort
-    case 7:
-        printf("\n------Caso %d\n", rand_metodo);
+    case 4:
         std::shuffle(t_disciplina->begin(), t_disciplina->end(), g);
         break;
 
     // Caso base: ordenação por ordem de leitura da instância
     default:
-        printf("\n------Caso %d - Ordem de Leitura\n", rand_metodo);
         t_disciplina;
         break;
     }
@@ -162,13 +138,11 @@ void Heuristica::heuristica_construtiva()
         if (deu_certo == true)
         {
             it->set_factivel(true);
-            std::cout << "Solucao " << it->get_id_solucao() << " encontrada" << std::endl;
             // it->exibir_solucao();
         }
         else
         {
             it->set_factivel(false);
-            std::cout << "Solucao " << it->get_id_solucao() << " infactivel" << std::endl;
             // it->exibir_solucao();
         }
     }
@@ -198,13 +172,10 @@ void Heuristica::debug_heuristica()
 
 void Heuristica::avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario)
 {
-    // std::cout << "-------Avaliando Soluções-------\n" << std::endl;
 
     for (int i = 1; i < m_solucoes.size(); i++)
     {
-        // std::cout << CYN "Avaliando solucao nº: " << i << NC << std::endl;
         m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i], peso_janela, peso_sexto_horario));
-        // std::cout << "Avaliacao da Solucao " << i << ": " << m_solucoes[i]->get_valor_avaliacao() << std::endl;
     }
 
     std::sort(m_solucoes.begin(), m_solucoes.end(), [](Solucao *s1, Solucao *s2)
@@ -333,7 +304,7 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
             }
         }
 
-        std::cout << "\033[0m";
+        // std::cout << "\033[0m";
 
         if (janela > 0)
         {
@@ -383,43 +354,43 @@ Heuristica *Heuristica::shallow_copy() const
 
 void Heuristica::pos_processamento()
 {
-    const int maxIterations = 10; // Maximum number of iterations
-    const int maxTime = 10;       // Maximum time in seconds
+    const int iteracao_max = 10; // Maximum number of iterations
+    const int tempo_max = 10;    // Maximum time in seconds
 
     for (auto it : this->m_solucoes)
     {
         Instancia *shallow_instancia = it->get_instancia().shallow_copy();
         std::set<int> turmas_selecionadas{};
 
-        // Tempo inicial 0 e qtd_itercoes para parametro de para da heuristica
-        std::chrono::time_point<std::chrono::steady_clock> tempo_iniciaç = std::chrono::steady_clock::now();
-        int iterations = 0;
-        bool hasImprovement = true;
+        // Tempo inicial 0
+        std::chrono::time_point<std::chrono::steady_clock> chrono_inicial = std::chrono::steady_clock::now();
 
         // Gera um conjunto reduzido de turmas a serem detruidas
         int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
         for (int i = 0; i < qtd_turmas_selecionadas; i++)
             turmas_selecionadas.insert(rand() % qtd_turmas_selecionadas);
 
-        while (hasImprovement && iterations < maxIterations)
+        int iteracao = 0;
+        bool houve_melhoria = true;
+        while (houve_melhoria && iteracao < iteracao_max)
         {
             auto nova_solucao = busca_local(turmas_selecionadas, *it);
 
             if (nova_solucao->get_factivel() && (nova_solucao->get_valor_avaliacao() > it->get_valor_avaliacao()))
             {
                 it = nova_solucao;
-                hasImprovement = true;
+                houve_melhoria = true;
             }
             else
             {
-                hasImprovement = false;
+                houve_melhoria = false;
             }
 
-            iterations++;
+            iteracao++;
 
-            std::chrono::time_point<std::chrono::steady_clock> currentTime = std::chrono::steady_clock::now();
-            std::chrono::duration<double> elapsedSeconds = currentTime - tempo_iniciaç;
-            if (elapsedSeconds.count() > maxTime)
+            std::chrono::time_point<std::chrono::steady_clock> chrono_atual = std::chrono::steady_clock::now();
+            std::chrono::duration<double> elapsed_sec = chrono_atual - chrono_inicial;
+            if (elapsed_sec.count() > tempo_max)
                 break;
         }
     }
@@ -452,14 +423,10 @@ Solucao *Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_
         if (deu_certo == true)
         {
             nova_solucao->set_factivel(true);
-            std::cout << "Solucao " << nova_solucao->get_id_solucao() << " encontrada" << std::endl;
-            // nova_solucao->exibir_solucao();
         }
         else
         {
             nova_solucao->set_factivel(false);
-            std::cout << "Solucao " << nova_solucao->get_id_solucao() << " infactivel" << std::endl;
-            // nova_solucao->exibir_solucao();
         }
     }
 

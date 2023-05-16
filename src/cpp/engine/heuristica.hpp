@@ -2,7 +2,7 @@
 #define _HEURISTICA_HPP
 
 #include "solucao.hpp"
-#include "gravar-arquivo.hpp"
+#include "../helpers/gravar-arquivo.hpp"
 #include <set>
 #include <ctime>
 #include <limits>

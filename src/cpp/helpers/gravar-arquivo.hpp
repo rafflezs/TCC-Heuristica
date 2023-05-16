@@ -18,7 +18,7 @@ public:
     void salvar_analise(const std::string &path, Solucao *t_solucao, bool eh_construtiva)
     {
         std::string file_w_path{path + "solucao-analise.csv"};
-        std::ofstream arquivo(file_w_path);
+        std::ofstream arquivo(file_w_path, std::ios::app);
 
         if (!arquivo.is_open())
         {

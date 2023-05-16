@@ -12,9 +12,5 @@ int main(int argc, char **argv)
 
 
 /*
-
-POS-PROCESSAMENTO ALEATORIO EM CIMA DE UMA SOLUCAO RODANDO MAIS DE UMA VEZ
-    - BUSCA_LOCAL nao esta gerando pegando a solucao correta (ex: TAM 2 a busca local da solucao 1 na verdade está sendo aplicada na 2)
     - Implementar FIX-AND-OPTIMIZE (TRAVA UMA TURMA N E MODIFICA AS OUTRAS)
-
 */
