@@ -133,8 +133,8 @@ void Heuristica::heuristica_construtiva()
     for (auto it : this->m_solucoes)
     {
         // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordenar_disciplinas()
-        // bool deu_certo = it->popular_solucao(ordenar_disciplinas(rand() % 4, it));
-        bool deu_certo = it->popular_solucao(ordenar_disciplinas(7, it));
+        // bool deu_certo = it->popular_solucao(ordenar_disciplinas(rand() % 5, it));
+        bool deu_certo = it->popular_solucao(ordenar_disciplinas(4, it));
         if (deu_certo == true)
         {
             it->set_factivel(true);
@@ -173,7 +173,7 @@ void Heuristica::debug_heuristica()
 void Heuristica::avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario)
 {
 
-    for (int i = 1; i < m_solucoes.size(); i++)
+    for (int i = 0; i < m_solucoes.size(); i++)
     {
         m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i], peso_janela, peso_sexto_horario));
     }
@@ -203,10 +203,10 @@ float Heuristica::avaliar_solucao(Solucao *t_solucao, const float &peso_janela, 
     return t_solucao->get_valor_avaliacao();
 }
 
-float Heuristica::calcular_janela_professor(Solucao *t_solucao)
+int Heuristica::calcular_janela_professor(Solucao *t_solucao)
 {
 
-    float janela = 0.0;
+    int janela = 0;
 
     auto profs = t_solucao->get_instancia().m_lista_professores;
     for (auto p : profs)
@@ -241,7 +241,7 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
             {
                 if (f_dispo[dia][slot] == 0)
                 {
-                    janela += 0.05;
+                    janela += 1;
                 }
             }
 
@@ -270,7 +270,7 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
             {
                 if (f_dispo[dia][slot] <= 0)
                 {
-                    janela += 0.05;
+                    janela += 1;
                 }
             }
 
@@ -299,7 +299,7 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
             {
                 if (f_dispo[dia][slot] <= 0)
                 {
-                    janela += 0.05;
+                    janela += 1;
                 }
             }
         }
@@ -315,10 +315,10 @@ float Heuristica::calcular_janela_professor(Solucao *t_solucao)
     return janela;
 }
 
-float Heuristica::calcular_sexto_horario_turma(Solucao *t_solucao)
+int Heuristica::calcular_sexto_horario_turma(Solucao *t_solucao)
 {
 
-    float sexto_horario = 0.0;
+    int sexto_horario = 0;
 
     auto turmas = t_solucao->get_instancia().m_lista_turmas;
     for (auto t : turmas)
@@ -329,7 +329,7 @@ float Heuristica::calcular_sexto_horario_turma(Solucao *t_solucao)
         {
             if (f_dispo[i][5 || 11] > 0)
             {
-                sexto_horario += 0.5;
+                sexto_horario += 1;
             }
         }
     }
@@ -354,8 +354,8 @@ Heuristica *Heuristica::shallow_copy() const
 
 void Heuristica::pos_processamento()
 {
-    const int iteracao_max = 10; // Maximum number of iterations
-    const int tempo_max = 10;    // Maximum time in seconds
+    const int iteracao_max = 1000; // Maximum number of iterations
+    const int tempo_max = 100;    // Maximum time in seconds
 
     for (auto it : this->m_solucoes)
     {
@@ -366,14 +366,18 @@ void Heuristica::pos_processamento()
         std::chrono::time_point<std::chrono::steady_clock> chrono_inicial = std::chrono::steady_clock::now();
 
         // Gera um conjunto reduzido de turmas a serem detruidas
-        int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
+        // int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
+        int qtd_turmas_selecionadas = 1;
         for (int i = 0; i < qtd_turmas_selecionadas; i++)
             turmas_selecionadas.insert(rand() % qtd_turmas_selecionadas);
 
         int iteracao = 0;
         bool houve_melhoria = true;
-        while (houve_melhoria && iteracao < iteracao_max)
+        while (iteracao < iteracao_max)
         {
+
+            std::cout << "Pos_Processamento: " << it->get_id_solucao() << " | " << iteracao << std::endl;
+
             auto nova_solucao = busca_local(turmas_selecionadas, *it);
 
             if (nova_solucao->get_factivel() && (nova_solucao->get_valor_avaliacao() > it->get_valor_avaliacao()))
@@ -417,7 +421,7 @@ Solucao *Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_
         // std::shuffle(disciplinas_turma->begin(), disciplinas_turma->end(), g);
 
         // ordenar_disciplinas(rand() % 4, &disciplinas_turma);
-        ordenar_disciplinas(7, &disciplinas_turma);
+        ordenar_disciplinas(4, &disciplinas_turma);
 
         bool deu_certo = nova_solucao->popular_solucao(disciplinas_turma);
         if (deu_certo == true)

@@ -29,7 +29,7 @@ public:
         arquivo.seekp(0, std::ios::end);
         if (arquivo.tellp() == 0)
         {
-            arquivo << "SOL_ID;[INIT_PARAMS];JANELAS;SEXTOS_HORARIOS;VALOR_FINAL\n";
+            arquivo << "SOL_ID;[INIT_PARAMS];JANELAS;SEXTOS_HORARIOS;VALOR_FINAL;ITERACAO (0 para CONSTUTIVA, n para POS_PROCESSAMENTO);PARAM_ORDER(SO PRA CONSTUTIVA);TEMPO (de escrita da SOLUCAO)\n";
         }
 
         arquivo << t_solucao->get_id_solucao() << ";[" 

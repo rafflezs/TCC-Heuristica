@@ -12,5 +12,5 @@ int main(int argc, char **argv)
 
 
 /*
-    - Implementar FIX-AND-OPTIMIZE (TRAVA UMA TURMA N E MODIFICA AS OUTRAS)
+    - Implementar FIX-AND-OPTIMIZE DINAMICO
 */

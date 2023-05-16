@@ -18,7 +18,7 @@ fi
 
 rm -f test/out.txt
 
-./test/exe "Instancia-Facil-Comp" 100 101.8 205.6 >> data/output/debug-out.txt
+./test/exe "Instancia-Facil-Comp" 2 1 1 >> data/output/debug-out.txt
 
 rm -f test/exe
 
