@@ -9,6 +9,7 @@ class Solucao
 {
 
 private:
+    std::default_random_engine m_rng;
     Instancia *m_instancia{nullptr};
     int m_id{0};
     bool m_factivel{false};
@@ -18,7 +19,7 @@ private:
     std::string m_instancia_nome{"NULL"};
 
 public:
-    Solucao(std::string t_instancia, int t_id);
+    Solucao(std::default_random_engine &t_rng, std::string t_instancia, int t_id);
 
     bool popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas);
     bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int *t_dias);

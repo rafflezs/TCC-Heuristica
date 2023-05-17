@@ -1,0 +1,8 @@
+ID;Código de Disciplina;Disciplinas;Professor;Turma;Turno;Qtd Alunos;CH Presencial;CH EaD;Minimo;Split;SEG;TER;QUA;QUI;SEX;SAB
+1;1;Disciplina 1 – Cheia;1;1;Manhã;50;5;0;5;1;7-16;7-16;7-16;7-16;7-16;1-16
+2;2;Disciplina 2 – Quebrada;1;1;Manhã;50;4;0;2;2;7-16;7-16;7-16;7-16;7-16;1-16
+3;3;Disciplina 3 – Cheia;1;1;Manhã;50;4;0;4;1;7-16;7-16;7-16;7-16;7-16;1-16
+4;4;Disciplina 4 – Quebrada;2;1;Manhã;50;6;0;2;3;7-16;7-16;7-16;7-16;7-16;1-16
+5;5;Disciplina 5 – Quebrada;2;1;Manhã;50;4;0;2;2;7-16;7-16;7-16;7-16;7-16;1-16
+6;6;Disciplina 6 – Quebrada;2;1;Manhã;50;4;0;2;2;7-16;7-16;7-16;7-16;7-16;1-16
+7;7;Disciplina 7 – Cheia;1;1;Manhã;50;3;0;3;1;7-16;7-16;7-16;7-16;7-16;1-16

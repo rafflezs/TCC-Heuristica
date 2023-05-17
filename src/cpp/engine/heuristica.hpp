@@ -12,6 +12,7 @@ class Heuristica
 {
 
 private:
+    std::default_random_engine m_rng;
     std::vector<Solucao *> m_solucoes{};
     std::string m_instancia_nome{"NULL"};
     int m_tamanho_populacao{0};
@@ -40,12 +41,12 @@ private:
 
     Solucao *busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao);
     std::set<int> encontrar_disciplinas_turma(Turma *t_turma);
-    std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao *t_solucao);
+    std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Solucao *t_solucao);
 
-    Solucao* get_melhor_solucao();
+    Solucao *get_melhor_solucao();
 
 public:
-    Heuristica(const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto);
+    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto);
     void inicializar();
 };
 

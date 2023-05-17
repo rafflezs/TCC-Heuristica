@@ -1,7 +1,8 @@
 #include "heuristica.hpp"
 
-Heuristica::Heuristica(const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto)
+Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto)
 {
+    this->m_rng = t_rng;
     this->m_instancia_nome = t_instancia_nome;
     this->m_tamanho_populacao = t_tam_pop;
     this->m_peso_janela = t_peso_janela;
@@ -9,7 +10,7 @@ Heuristica::Heuristica(const std::string &t_instancia_nome, const int &t_tam_pop
 
     for (int i = 0; i < m_tamanho_populacao; i++)
     {
-        this->m_solucoes.push_back(new Solucao(m_instancia_nome, i));
+        this->m_solucoes.push_back(new Solucao(m_rng, m_instancia_nome, i));
     }
 }
 
@@ -39,7 +40,7 @@ void Heuristica::inicializar()
 
     // salvando solucao em arquivo .tex
     auto melhor_solucao = get_melhor_solucao();
-    std::cout << "A solução ID " << melhor_solucao->get_id_solucao() 
+    std::cout << "A solução ID " << melhor_solucao->get_id_solucao()
               << " com o valor na função objetivo de "
               << melhor_solucao->get_valor_avaliacao()
               << " pontos." << std::endl;
@@ -50,8 +51,6 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 {
 
     std::vector<Disciplina *> t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
-    std::random_device rd;
-    std::mt19937 g(rd());
 
     switch (rand_metodo)
     {
@@ -78,54 +77,16 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
         break;
 
     case 4:
-        std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), g);
+        std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), m_rng);
         break;
 
     // Caso base: ordenação por ordem de leitura da instância
     default:
-        t_disciplinas_ordenadas;
+        std::shuffle(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), m_rng);
         break;
     }
 
     return t_disciplinas_ordenadas;
-}
-
-void Heuristica::ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina)
-{
-
-    std::random_device rd;
-    std::mt19937 g(rd());
-
-    switch (rand_metodo)
-    {
-
-    // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
-    case 1:
-        std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
-                  { return lhs->get_ch_min() > rhs->get_ch_min(); });
-        break;
-
-    // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
-    case 2:
-        std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
-                  { return lhs->get_split() < rhs->get_split(); });
-        break;
-
-    // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
-    case 3:
-        std::sort(t_disciplina->begin(), t_disciplina->end(), [](Disciplina *lhs, Disciplina *rhs)
-                  { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() < rhs->get_split()); });
-        break;
-
-    case 4:
-        std::shuffle(t_disciplina->begin(), t_disciplina->end(), g);
-        break;
-
-    // Caso base: ordenação por ordem de leitura da instância
-    default:
-        t_disciplina;
-        break;
-    }
 }
 
 void Heuristica::heuristica_construtiva()
@@ -133,8 +94,8 @@ void Heuristica::heuristica_construtiva()
     for (auto it : this->m_solucoes)
     {
         // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordenar_disciplinas()
-        // bool deu_certo = it->popular_solucao(ordenar_disciplinas(rand() % 5, it));
-        bool deu_certo = it->popular_solucao(ordenar_disciplinas(4, it));
+        auto disciplinas_ordenadas = ordenar_disciplinas(4, it);
+        bool deu_certo = it->popular_solucao(disciplinas_ordenadas);
         if (deu_certo == true)
         {
             it->set_factivel(true);
@@ -354,87 +315,16 @@ Heuristica *Heuristica::shallow_copy() const
 
 void Heuristica::pos_processamento()
 {
-    const int iteracao_max = 1000; // Maximum number of iterations
-    const int tempo_max = 100;    // Maximum time in seconds
-
-    for (auto it : this->m_solucoes)
-    {
-        Instancia *shallow_instancia = it->get_instancia().shallow_copy();
-        std::set<int> turmas_selecionadas{};
-
-        // Tempo inicial 0
-        std::chrono::time_point<std::chrono::steady_clock> chrono_inicial = std::chrono::steady_clock::now();
-
-        // Gera um conjunto reduzido de turmas a serem detruidas
-        // int qtd_turmas_selecionadas = rand() % (*shallow_instancia).m_lista_turmas.size() + 1;
-        int qtd_turmas_selecionadas = 1;
-        for (int i = 0; i < qtd_turmas_selecionadas; i++)
-            turmas_selecionadas.insert(rand() % qtd_turmas_selecionadas);
-
-        int iteracao = 0;
-        bool houve_melhoria = true;
-        while (iteracao < iteracao_max)
-        {
-
-            std::cout << "Pos_Processamento: " << it->get_id_solucao() << " | " << iteracao << std::endl;
-
-            auto nova_solucao = busca_local(turmas_selecionadas, *it);
-
-            if (nova_solucao->get_factivel() && (nova_solucao->get_valor_avaliacao() > it->get_valor_avaliacao()))
-            {
-                it = nova_solucao;
-                houve_melhoria = true;
-            }
-            else
-            {
-                houve_melhoria = false;
-            }
-
-            iteracao++;
-
-            std::chrono::time_point<std::chrono::steady_clock> chrono_atual = std::chrono::steady_clock::now();
-            std::chrono::duration<double> elapsed_sec = chrono_atual - chrono_inicial;
-            if (elapsed_sec.count() > tempo_max)
-                break;
-        }
-    }
+    // Reimplementar pos processamento
+    // Ver Fix-and-Optmize dinamico discutido com o Belo em reunião
+    // as fotos do quadro estão no Celular
+    // Talvez renomear funções
 }
 
 Solucao *Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao)
 {
-
-    auto nova_solucao = t_solucao.shallow_copy();
-    auto nova_instancia = t_solucao.get_instancia().shallow_copy();
-
-    for (auto turma_index : t_turmas_selecionadas)
-    {
-        std::set<int> disciplinas_turma_set = encontrar_disciplinas_turma(nova_instancia->m_lista_turmas[turma_index]);
-        std::vector<Disciplina *> disciplinas_turma{};
-        std::vector<Professor> professores_turma = encontrar_professores_turma(disciplinas_turma_set, nova_instancia, nova_solucao);
-
-        // set <int> disciplina TO vector<Disciplina> reordenado
-        for (auto disc_set : disciplinas_turma_set)
-        {
-            disciplinas_turma.push_back(nova_instancia->m_lista_disciplinas[disc_set]);
-        }
-
-        // std::shuffle(disciplinas_turma->begin(), disciplinas_turma->end(), g);
-
-        // ordenar_disciplinas(rand() % 4, &disciplinas_turma);
-        ordenar_disciplinas(4, &disciplinas_turma);
-
-        bool deu_certo = nova_solucao->popular_solucao(disciplinas_turma);
-        if (deu_certo == true)
-        {
-            nova_solucao->set_factivel(true);
-        }
-        else
-        {
-            nova_solucao->set_factivel(false);
-        }
-    }
-
-    return nova_solucao;
+    // Reimplementar busca local
+    // Essa funcao deve simplemente refazer o horario da turma
 }
 
 std::set<int> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
@@ -459,12 +349,12 @@ std::set<int> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
     return disciplinas_turma;
 }
 
-std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> disciplinas_turma, Instancia *temp_instancia, Solucao *temp_solucao)
+std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> disciplinas_turma, Solucao *temp_solucao)
 {
     std::vector<Professor> professores_turma{};
     for (auto disciplina_index : disciplinas_turma)
     {
-        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(temp_instancia->m_lista_disciplinas[disciplina_index])));
+        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(temp_solucao->get_instancia().m_lista_disciplinas[disciplina_index])));
     }
 
     for (auto temp_prof : professores_turma)

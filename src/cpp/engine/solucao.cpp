@@ -1,7 +1,8 @@
 #include "solucao.hpp"
 
-Solucao::Solucao(std::string t_instancia, int t_id)
+Solucao::Solucao(std::default_random_engine &t_rng, std::string t_instancia, int t_id)
 {
+    this->m_rng = t_rng;
     m_instancia = new Instancia(t_instancia);
     m_id = t_id;
     this->m_instancia_nome = t_instancia;
@@ -17,7 +18,6 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
         if (iteracoes >
             (iterations_limit * iterations_limit))
         {
-            printf("População encerrada por excesso de iterações\n");
             return false;
         }
 
@@ -29,9 +29,7 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
 
         if (verificar_rd_dias == 1)
         {
-            std::random_device rd;
-            std::mt19937 g(rd());
-            std::shuffle(dias, dias + 6, g);
+            std::shuffle(dias, dias + 6, this->m_rng);
         }
 
         bool verificado = verificar_horario(disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada, dias);
@@ -68,7 +66,6 @@ bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor
     {
         for (int dia = 0; dia < 6; dia++)
         {
-            // dia = (d + random_day) % 6;
             for (int horario = t_turma->get_primeiro_horario_turno(); horario <= t_turma->get_ultimo_horario_turno(); horario++)
             {
                 if (eh_horario_disponivel(t_turma, dia, horario, splits[split]) && eh_horario_disponivel(t_professor, dia, horario, splits[split]))
@@ -99,7 +96,7 @@ void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, T
     }
     t_professor->set_disponibilidade(horario);
 
-    t_professor->print_solucao();
+    // t_professor->print_solucao();
 
     int split_aluno = t_split;
     horario = t_turma->get_disponibilidade();
@@ -111,7 +108,7 @@ void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, T
         split_aluno--;
     }
     t_turma->set_disponibilidade(horario);
-    t_turma->print_solucao();
+    // t_turma->print_solucao();
 
 }
 
@@ -296,7 +293,7 @@ void Solucao::set_instancia_nome(std::string t_instancia)
 
 Solucao *Solucao::shallow_copy()
 {
-    Solucao *sol = new Solucao(this->m_instancia_nome, this->m_id);
+    Solucao *sol = new Solucao(this->m_rng, this->m_instancia_nome, this->m_id);
 
     sol->set_instancia_nome(this->m_instancia_nome);
     sol->set_id_solucao(this->m_id);
