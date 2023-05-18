@@ -20,23 +20,12 @@ void Heuristica::inicializar()
 
     heuristica_construtiva();
     avaliar_solucoes(m_peso_janela, m_peso_sexto);
-    for (auto sol : m_solucoes)
-    {
-        // TERMINAR ESSA PORRA
-        ga.salvar_analise("./data/output/", sol, true);
-    }
 
     pos_processamento(); // salvar_analise dentro ou fora do pos_processamento?
                          // Fora implica em gerar toda a heuristica de busca local para a solucao e depois avaliar resultado final
                          // Dentro implica em acompanhar a evolução da solucao ao longo das diferentes geracoes da heuristica busca local
                          // Por enquanto fora
     avaliar_solucoes(m_peso_janela, m_peso_sexto);
-
-    for (auto sol : m_solucoes)
-    {
-        // Ver com o painho se esses dados são suficientes pra analise (clica na porra da funcao loiro burro)
-        ga.salvar_analise("./data/output/", sol, false);
-    }
 
     // salvando solucao em arquivo .tex
     auto melhor_solucao = get_melhor_solucao();
