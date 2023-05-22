@@ -23,7 +23,7 @@ private:
     std::vector<Disciplina *> ordenar_disciplinas(const int &rand_metodo, Solucao *solucao);
     void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina);
 
-    void heuristica_construtiva();
+    void heuristica_construtiva(int t_iteracao);
     void pos_processamento();
 
     void exibir_solucoes();
@@ -32,7 +32,7 @@ private:
     // Função Objetivo
     void ordenar_solucoes();
 
-    float avaliar_solucao(Solucao *t_solucao, bool t_factibilidade);
+    void avaliar_solucao(Solucao *t_solucao, bool t_factibilidade);
     int calcular_janela_professor(Solucao *t_solucao);
     int calcular_sexto_horario_turma(Solucao *t_solucao);
 
@@ -40,7 +40,7 @@ private:
 
     Heuristica *shallow_copy() const;
 
-    Solucao *busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao);
+    Solucao *busca_local(std::vector<Turma*> t_turmas, Solucao t_solucao);
     std::set<int> encontrar_disciplinas_turma(Turma *t_turma);
     std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Solucao *t_solucao);
 

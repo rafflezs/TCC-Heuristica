@@ -8,21 +8,21 @@ Solucao::Solucao(std::default_random_engine &t_rng, std::string t_instancia, int
     this->m_instancia_nome = t_instancia;
 }
 
-bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
+bool Solucao::popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas)
 {
     int iteracoes = 0;
-    int iterations_limit = disciplinas_ordenadas.size();
+    int iteracoes_limite = t_disciplinas_ordenadas.size();
 
-    while (!disciplinas_ordenadas.empty())
+    while (!t_disciplinas_ordenadas.empty())
     {
         if (iteracoes >
-            (iterations_limit * iterations_limit))
+            (iteracoes_limite * iteracoes_limite))
         {
             return false;
         }
 
-        auto professor_relacionado = encontrar_prof_relacionado(disciplinas_ordenadas.back());
-        auto turma_relacionada = encontrar_turma_relacionada(disciplinas_ordenadas.back());
+        auto professor_relacionado = encontrar_prof_relacionado(t_disciplinas_ordenadas.back());
+        auto turma_relacionada = encontrar_turma_relacionada(t_disciplinas_ordenadas.back());
 
         int dias[6] = {0, 1, 2, 3, 4, 5};
         auto verificar_rd_dias = std::rand() % 2;
@@ -32,10 +32,10 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> disciplinas_ordenadas)
             std::shuffle(dias, dias + 6, this->m_rng);
         }
 
-        bool verificado = verificar_horario(disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada, dias);
+        bool verificado = verificar_horario(t_disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada, dias);
         if (verificado == true)
         {
-            disciplinas_ordenadas.pop_back();
+            t_disciplinas_ordenadas.pop_back();
             iteracoes++;
         }
         else
@@ -60,7 +60,6 @@ bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor
     for (int i = 0; i < t_disciplina->get_split() - 1; i++)
         splits.push_back(horas_por_split);
     splits.push_back(tam_total_disciplina - horas_por_split * (t_disciplina->get_split() - 1));
-
 
     for (int split = 0; split < splits.size(); split++)
     {
@@ -109,7 +108,6 @@ void Solucao::alocar_horario(Disciplina *t_disciplina, Professor *t_professor, T
     }
     t_turma->set_disponibilidade(horario);
     // t_turma->print_solucao();
-
 }
 
 bool Solucao::eh_horario_disponivel(Professor *t_professor, int t_dia_escolhido, int t_horario_inicial, int t_split)

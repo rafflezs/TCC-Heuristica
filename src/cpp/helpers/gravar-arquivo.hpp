@@ -16,9 +16,9 @@ public:
         this->m_output_path = path;
     }
 
-    void salvar_analise(const std::string &path, Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
+    void salvar_analise(Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
     {
-        std::string file_w_path{path + "solucao-analise.csv"};
+        std::string file_w_path{m_output_path};
         std::ofstream arquivo(file_w_path, std::ios::app);
 
         if (!arquivo.is_open())
@@ -46,14 +46,14 @@ public:
 
     void salvar_saidas(Solucao *t_solucao)
     {
-        salvar_solucao_prof(m_output_path, t_solucao);
-        salvar_solucao_turmas(m_output_path, t_solucao);
+        salvar_solucao_prof(t_solucao);
+        salvar_solucao_turmas(t_solucao);
     }
 
-    void salvar_solucao_prof(const std::string &path, Solucao *t_solucao)
+    void salvar_solucao_prof(Solucao *t_solucao)
     {
-        std::string file_w_path{path + "prof.tex"};
-        std::ofstream arquivo(file_w_path);
+        std::string file_w_path{m_output_path};
+        std::ofstream arquivo(file_w_path, std::ios::app);
 
         if (!arquivo.is_open())
         {
@@ -137,10 +137,10 @@ public:
         arquivo << "\\end{document}" << std::endl;
     };
 
-    void salvar_solucao_turmas(const std::string &path, Solucao *t_solucao)
+    void salvar_solucao_turmas(Solucao *t_solucao)
     {
-        std::string file_w_path{path + "turma.tex"};
-        std::ofstream arquivo(file_w_path);
+        std::string file_w_path{m_output_path};
+        std::ofstream arquivo(file_w_path, std::ios::app);
 
         if (!arquivo.is_open())
         {

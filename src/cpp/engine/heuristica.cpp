@@ -17,15 +17,12 @@ Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_i
 
 void Heuristica::inicializar()
 {
+    // Heuristica inicial para preencher solucoes vazias
+    heuristica_construtiva(0);
 
-    heuristica_construtiva();
-    ordenar_solucoes();
+    // Heuristica: fix-and-optimize
+    pos_processamento();
 
-    pos_processamento(); // salvar_analise dentro ou fora do pos_processamento?
-                         // Fora implica em gerar toda a heuristica de busca local para a solucao e depois avaliar resultado final
-                         // Dentro implica em acompanhar a evolução da solucao ao longo das diferentes geracoes da heuristica busca local
-                         // Por enquanto fora
-    
     // salvando solucao em arquivo .tex
     auto melhor_solucao = get_melhor_solucao();
     std::cout << "A solução ID " << melhor_solucao->get_id_solucao()
@@ -76,9 +73,9 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
     return t_disciplinas_ordenadas;
 }
 
-void Heuristica::heuristica_construtiva()
+void Heuristica::heuristica_construtiva(int t_iteracao)
 {
-    GravarArquivo ga = GravarArquivo("");
+    GravarArquivo ga = GravarArquivo("./data/output/analise.csv");
 
     for (auto it : this->m_solucoes)
     {
@@ -88,8 +85,10 @@ void Heuristica::heuristica_construtiva()
         avaliar_solucao(it, deu_certo);
 
         // Salvando parametros da solucao em csv para futura analise
-        ga.salvar_analise("/data/output/analise.csv",it,0,rand_switch,(std::chrono::steady_clock::now() - *m_tempo_inicial));
+        ga.salvar_analise(it, t_iteracao, rand_switch, (std::chrono::steady_clock::now() - *m_tempo_inicial));
     }
+
+    ordenar_solucoes();
 }
 
 void Heuristica::exibir_solucoes()
@@ -120,7 +119,7 @@ void Heuristica::ordenar_solucoes()
               { return s1->get_valor_avaliacao() > s2->get_valor_avaliacao(); });
 }
 
-float Heuristica::avaliar_solucao(Solucao *t_solucao, bool t_factibilidade)
+void Heuristica::avaliar_solucao(Solucao *t_solucao, bool t_factibilidade)
 {
     float sexto_horario = calcular_sexto_horario_turma(t_solucao);
     float janela_prof = calcular_janela_professor(t_solucao);
@@ -136,8 +135,6 @@ float Heuristica::avaliar_solucao(Solucao *t_solucao, bool t_factibilidade)
     {
         t_solucao->set_valor_avaliacao(std::numeric_limits<float>::max());
     }
-
-    return t_solucao->get_valor_avaliacao();
 }
 
 int Heuristica::calcular_janela_professor(Solucao *t_solucao)
@@ -291,13 +288,81 @@ Heuristica *Heuristica::shallow_copy() const
 
 void Heuristica::pos_processamento()
 {
-    // Reimplementar pos processamento
-    // Ver Fix-and-Optmize dinamico discutido com o Belo em reunião
-    // as fotos do quadro estão no Celular
-    // Talvez renomear funções
+void Heuristica::pos_processamento()
+{
+    GravarArquivo ga = GravarArquivo("./data/output/analise.csv");
+
+    // Initial constructive heuristic
+    heuristica_construtiva(0);
+
+    // Iterate through each solution
+    for (auto solucao : m_solucoes)
+    {
+        int num_classes = solucao->get_num_classes();
+        Instancia* instancia = solucao->get_instancia();
+
+        // Initialize the iteration counter and improvement flag
+        int iteration = 0;
+        bool improved = true;
+
+        // Perform fix-and-optimize until time limit or no improvement
+        while (improved && (std::chrono::steady_clock::now() - *m_tempo_inicial) < TIME_LIMIT)
+        {
+            improved = false;
+
+            // Iterate through each class combination
+            for (int i = 0; i < num_classes; i++)
+            {
+                for (int j = i + 1; j < num_classes; j++)
+                {
+                    Turma* turma1 = solucao->get_turma(i);
+                    Turma* turma2 = solucao->get_turma(j);
+                    Curso* curso1 = turma1->get_curso();
+                    Curso* curso2 = turma2->get_curso();
+
+                    // Check if the classes are from the same course
+                    if (curso1 == curso2)
+                    {
+                        // Remove the schedules of the selected classes
+                        solucao->remover_agendamento(i);
+                        solucao->remover_agendamento(j);
+
+                        // Reapply the constructive heuristic
+                        bool deu_certo = solucao->popular_solucao(m_disciplinas);
+
+                        // Evaluate the updated solution and check for improvement
+                        avaliar_solucao(solucao, deu_certo);
+                        if (solucao->melhorou_solucao())
+                        {
+                            improved = true;
+                            // Save solution parameters to CSV for analysis
+                            ga.salvar_analise(solucao, iteration, i, j, (std::chrono::steady_clock::now() - *m_tempo_inicial));
+                        }
+                    }
+                }
+            }
+
+            iteration++;
+
+            // If no improvement and all class combinations have been tried, stop the heuristic
+            if (!improved && iteration >= num_classes * (num_classes - 1) / 2)
+                break;
+        }
+    }
+
+    // Sort the solutions
+    ordenar_solucoes();
+
+    // Get the best solution
+    auto melhor_solucao = get_melhor_solucao();
+    std::cout << "A solução ID " << melhor_solucao->get_id_solucao()
+              << " com o valor na função objetivo de "
+              << melhor_solucao->get_valor_avaliacao()
+              << " pontos." << std::endl;
+}
 }
 
-Solucao *Heuristica::busca_local(std::set<int> t_turmas_selecionadas, Solucao t_solucao)
+Solucao *Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao t_solucao)
 {
     // Reimplementar busca local
     // Essa funcao deve simplemente refazer o horario da turma
@@ -364,5 +429,7 @@ Solucao *Heuristica::get_melhor_solucao()
         return solucao1->get_valor_avaliacao() < solucao2->get_valor_avaliacao();
     };
 
-    return *std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);
+    auto melhor_solucao = std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);
+    GravarArquivo ga = GravarArquivo("./data/output/horarios.tex");
+    ga.salvar_saidas(*melhor_solucao);
 }
