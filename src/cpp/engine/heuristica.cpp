@@ -1,12 +1,13 @@
 #include "heuristica.hpp"
 
-Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto)
+Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::time_point<std::chrono::steady_clock> *t_tempo_inicial)
 {
     this->m_rng = t_rng;
     this->m_instancia_nome = t_instancia_nome;
     this->m_tamanho_populacao = t_tam_pop;
     this->m_peso_janela = t_peso_janela;
     this->m_peso_sexto = t_peso_sexto;
+    this->m_tempo_inicial = t_tempo_inicial;
 
     for (int i = 0; i < m_tamanho_populacao; i++)
     {
@@ -16,24 +17,21 @@ Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_i
 
 void Heuristica::inicializar()
 {
-    GravarArquivo ga = GravarArquivo("data/output/");
 
     heuristica_construtiva();
-    avaliar_solucoes(m_peso_janela, m_peso_sexto);
+    ordenar_solucoes();
 
     pos_processamento(); // salvar_analise dentro ou fora do pos_processamento?
                          // Fora implica em gerar toda a heuristica de busca local para a solucao e depois avaliar resultado final
                          // Dentro implica em acompanhar a evolução da solucao ao longo das diferentes geracoes da heuristica busca local
                          // Por enquanto fora
-    avaliar_solucoes(m_peso_janela, m_peso_sexto);
-
+    
     // salvando solucao em arquivo .tex
     auto melhor_solucao = get_melhor_solucao();
     std::cout << "A solução ID " << melhor_solucao->get_id_solucao()
               << " com o valor na função objetivo de "
               << melhor_solucao->get_valor_avaliacao()
               << " pontos." << std::endl;
-    ga.salvar_saidas(melhor_solucao);
 }
 
 std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
@@ -80,21 +78,17 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 
 void Heuristica::heuristica_construtiva()
 {
+    GravarArquivo ga = GravarArquivo("");
+
     for (auto it : this->m_solucoes)
     {
-        // TODO : Alterar o teto do rand baseado na quantidade de parametros do ordenar_disciplinas()
-        auto disciplinas_ordenadas = ordenar_disciplinas(4, it);
+        int rand_switch = 1 + (rand() % 4);
+        auto disciplinas_ordenadas = ordenar_disciplinas(rand_switch, it);
         bool deu_certo = it->popular_solucao(disciplinas_ordenadas);
-        if (deu_certo == true)
-        {
-            it->set_factivel(true);
-            // it->exibir_solucao();
-        }
-        else
-        {
-            it->set_factivel(false);
-            // it->exibir_solucao();
-        }
+        avaliar_solucao(it, deu_certo);
+
+        // Salvando parametros da solucao em csv para futura analise
+        ga.salvar_analise("/data/output/analise.csv",it,0,rand_switch,(std::chrono::steady_clock::now() - *m_tempo_inicial));
     }
 }
 
@@ -120,30 +114,23 @@ void Heuristica::debug_heuristica()
     }
 }
 
-void Heuristica::avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario)
+void Heuristica::ordenar_solucoes()
 {
-
-    for (int i = 0; i < m_solucoes.size(); i++)
-    {
-        m_solucoes[i]->set_valor_avaliacao(avaliar_solucao(m_solucoes[i], peso_janela, peso_sexto_horario));
-    }
-
     std::sort(m_solucoes.begin(), m_solucoes.end(), [](Solucao *s1, Solucao *s2)
               { return s1->get_valor_avaliacao() > s2->get_valor_avaliacao(); });
 }
 
-float Heuristica::avaliar_solucao(Solucao *t_solucao, const float &peso_janela, const float &peso_sexto_horario)
+float Heuristica::avaliar_solucao(Solucao *t_solucao, bool t_factibilidade)
 {
-    // atribuir pesos fora das funções
-    // retonar QUANTIDADE de sextos e janelas
     float sexto_horario = calcular_sexto_horario_turma(t_solucao);
     float janela_prof = calcular_janela_professor(t_solucao);
 
     t_solucao->set_sexto_horario(sexto_horario);
     t_solucao->set_janela(janela_prof);
-    if (t_solucao->get_factivel())
+    t_solucao->set_factivel(t_factibilidade);
+    if (t_factibilidade == true)
     {
-        t_solucao->set_valor_avaliacao((peso_sexto_horario * sexto_horario) + (peso_janela * janela_prof));
+        t_solucao->set_valor_avaliacao((m_peso_sexto * sexto_horario) + (m_peso_janela * janela_prof));
     }
     else
     {

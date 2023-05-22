@@ -1,4 +1,5 @@
 #include "../engine/solucao.hpp"
+#include <chrono>
 
 class GravarArquivo
 {

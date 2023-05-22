@@ -18,7 +18,8 @@ private:
     int m_tamanho_populacao{0};
     float m_peso_janela{0};
     float m_peso_sexto{0};
-
+    std::chrono::time_point<std::chrono::steady_clock> *m_tempo_inicial;
+    
     std::vector<Disciplina *> ordenar_disciplinas(const int &rand_metodo, Solucao *solucao);
     void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina);
 
@@ -29,9 +30,9 @@ private:
     void debug_heuristica();
 
     // Função Objetivo
-    void avaliar_solucoes(const float &peso_janela, const float &peso_sexto_horario);
+    void ordenar_solucoes();
 
-    float avaliar_solucao(Solucao *t_solucao, const float &peso_janela, const float &peso_sexto_horario);
+    float avaliar_solucao(Solucao *t_solucao, bool t_factibilidade);
     int calcular_janela_professor(Solucao *t_solucao);
     int calcular_sexto_horario_turma(Solucao *t_solucao);
 
@@ -46,7 +47,7 @@ private:
     Solucao *get_melhor_solucao();
 
 public:
-    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto);
+    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::time_point<std::chrono::steady_clock> *t_tempo_inicial);
     void inicializar();
 };
 
