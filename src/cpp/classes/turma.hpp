@@ -2,6 +2,7 @@
 #define _TURMA_HPP
 
 #include "disciplina.hpp"
+#include "curso.hpp"
 
 class Turma
 {
@@ -14,6 +15,7 @@ private:
   int m_ultimo_horario_turno{-1};
   std::vector<Disciplina *> m_disciplinas{nullptr};
   std::array<std::array<int, 16>, 6> m_disponibilidade{};
+  Curso* m_curso{nullptr};
 
 public:
   std::string get_id()
@@ -101,6 +103,16 @@ public:
     this->m_ultimo_horario_turno = t_ultimo_horario_turno;
   }
 
+  Curso* get_curso()
+  {
+    return this->m_curso;
+  }
+
+  void set_curso(const Curso* t_curso)
+  {
+    this->m_curso = t_curso;
+  }
+
   Turma(){};
 
   Turma(
@@ -111,14 +123,16 @@ public:
       const std::vector<Disciplina *> t_disciplinas,
       const std::array<std::array<int, 16>, 6> t_disponibilidade,
       const int t_primeiro_horario_turno,
-      const int t_ultimo_horario_turno) : m_id(t_id),
+      const int t_ultimo_horario_turno),
+      const Curso* t_curso : m_id(t_id),
                                           m_nome(t_nome),
                                           m_index(t_index),
                                           m_periodo(t_periodo),
                                           m_disciplinas(t_disciplinas),
                                           m_disponibilidade(t_disponibilidade),
                                           m_primeiro_horario_turno(t_primeiro_horario_turno),
-                                          m_ultimo_horario_turno(t_ultimo_horario_turno){};
+                                          m_ultimo_horario_turno(t_ultimo_horario_turno),
+                                          m_curso(t_curso){};
 
   /*
   ** Função para print da Classe
@@ -130,6 +144,7 @@ public:
     std::cout << "Index: " << this->get_index()
               << ", ID: " << this->get_id()
               << ", Nome: " << this->get_nome()
+              << ", Curso: " << this->get_curso()
               << ", Periodo: " << this->get_periodo() << std::endl;
 
     std::cout << "vector<Disciplinas>" << std::endl;

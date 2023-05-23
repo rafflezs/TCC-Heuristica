@@ -299,5 +299,6 @@ Solucao *Solucao::shallow_copy()
     sol->set_valor_avaliacao(this->m_valor_avaliado);
     sol->set_janela(this->m_valor_janelas);
     sol->set_sexto_horario(this->m_valor_sextos_horarios);
+    sol->m_instancia = m_instancia->shallow_copy();
     return sol;
 }

@@ -16,7 +16,7 @@ public:
         this->m_output_path = path;
     }
 
-    void salvar_analise(Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
+    void salvar_analise(                                                                                                                    Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
     {
         std::string file_w_path{m_output_path};
         std::ofstream arquivo(file_w_path, std::ios::app);

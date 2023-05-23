@@ -1,16 +1,15 @@
 #ifndef _CURSO_HPP
 #define _CURSO_HPP
 
-#include "turma.hpp"
-
 class Curso
 {
 private:
   std::string m_id{"NULL"};
-  int m_index{NULL};
+  int m_index{0};
   std::string m_nome{"NULL"};
   std::string m_titulo_formacao{"NULL"};
-  std::vector<Turma *> m_turmas{nullptr};
+  std::vector<int> m_turmas_index{};
+  std::vector<std::string> m_turmas{};
   std::array<std::array<int, 16>, 6> m_disponibilidade{};
 
 public:
@@ -54,14 +53,29 @@ public:
     this->m_titulo_formacao = m_titulo_formacao;
   }
 
-  std::vector<Turma *> get_turmas()
+  std::vector<int> get_turmas_index()
+  {
+    return this->m_turmas_index;
+  }
+
+  void set_turmas_index(std::vector<int> t_turmas_index)
+  {
+    this->m_turmas_index = t_turmas_index;
+  }
+
+  std::array<std::array<int, 16>, 6> get_disponibilidade()
+  {
+    return this->m_disponibilidade;
+  }
+
+  std::vector<std::string> get_turmas()
   {
     return this->m_turmas;
   }
 
-  void set_turmas(std::vector<Turma *> m_turmas)
+  void set_turmas(std::vector<std::string > t_turmas)
   {
-    this->m_turmas = m_turmas;
+    this->m_turmas = t_turmas;
   }
 
   std::array<std::array<int, 16>, 6> get_disponibilidade()
@@ -80,14 +94,14 @@ public:
         const int t_index,
         const std::string &t_nome,
         std::string t_titulo_formacao,
-        const std::vector<Turma *> t_turmas,
+        const std::vector<int> t_turmas_index,
         const std::array<std::array<int, 16>, 6> t_disponibilidade) :
       
       m_id(t_id), 
       m_nome(t_nome), 
       m_index(t_index),
       m_titulo_formacao(t_titulo_formacao), 
-      m_turmas(t_turmas),
+      m_turmas_index(t_turmas_index),
       m_disponibilidade(t_disponibilidade){};
 
   /*
@@ -102,7 +116,13 @@ public:
     << ", Nome: " << this->get_nome()
     << ", Tipo: " << this->get_titulo_formacao() << std::endl;
 
-    std::cout << "vector<Turmas>" << std::endl;
+    std::cout << "vector<int Turmas>" << std::endl;
+    for (auto t_turma : this->get_turmas_index())
+    {
+      std::cout << t_turma << std::endl;
+    }
+
+    std::cout << "vector<str Turmas>" << std::endl;
     for (auto t_turma : this->get_turmas())
     {
       std::cout << t_turma << std::endl;

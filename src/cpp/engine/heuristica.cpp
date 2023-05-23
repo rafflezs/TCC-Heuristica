@@ -288,78 +288,28 @@ Heuristica *Heuristica::shallow_copy() const
 
 void Heuristica::pos_processamento()
 {
-void Heuristica::pos_processamento()
-{
     GravarArquivo ga = GravarArquivo("./data/output/analise.csv");
 
-    // Initial constructive heuristic
-    heuristica_construtiva(0);
-
-    // Iterate through each solution
-    for (auto solucao : m_solucoes)
+    for (int i = 0; i < m_solucoes.size(); i++)
     {
-        int num_classes = solucao->get_num_classes();
-        Instancia* instancia = solucao->get_instancia();
+        auto nova_solucao = m_solucoes[i]->shallow_copy();
 
-        // Initialize the iteration counter and improvement flag
-        int iteration = 0;
-        bool improved = true;
+        int iteracao_solucao = 1;
+        int count = 0;
 
-        // Perform fix-and-optimize until time limit or no improvement
-        while (improved && (std::chrono::steady_clock::now() - *m_tempo_inicial) < TIME_LIMIT)
+        while (count < nova_solucao->get_instancia().m_lista_turmas.size())
         {
-            improved = false;
-
-            // Iterate through each class combination
-            for (int i = 0; i < num_classes; i++)
+            if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
             {
-                for (int j = i + 1; j < num_classes; j++)
-                {
-                    Turma* turma1 = solucao->get_turma(i);
-                    Turma* turma2 = solucao->get_turma(j);
-                    Curso* curso1 = turma1->get_curso();
-                    Curso* curso2 = turma2->get_curso();
-
-                    // Check if the classes are from the same course
-                    if (curso1 == curso2)
-                    {
-                        // Remove the schedules of the selected classes
-                        solucao->remover_agendamento(i);
-                        solucao->remover_agendamento(j);
-
-                        // Reapply the constructive heuristic
-                        bool deu_certo = solucao->popular_solucao(m_disciplinas);
-
-                        // Evaluate the updated solution and check for improvement
-                        avaliar_solucao(solucao, deu_certo);
-                        if (solucao->melhorou_solucao())
-                        {
-                            improved = true;
-                            // Save solution parameters to CSV for analysis
-                            ga.salvar_analise(solucao, iteration, i, j, (std::chrono::steady_clock::now() - *m_tempo_inicial));
-                        }
-                    }
-                }
+                count = 0;
             }
 
-            iteration++;
+            // Pensar em um jeito de agrupar Turma por Curso
 
-            // If no improvement and all class combinations have been tried, stop the heuristic
-            if (!improved && iteration >= num_classes * (num_classes - 1) / 2)
-                break;
+            iteracao_solucao++;
+            count++;
         }
     }
-
-    // Sort the solutions
-    ordenar_solucoes();
-
-    // Get the best solution
-    auto melhor_solucao = get_melhor_solucao();
-    std::cout << "A solução ID " << melhor_solucao->get_id_solucao()
-              << " com o valor na função objetivo de "
-              << melhor_solucao->get_valor_avaliacao()
-              << " pontos." << std::endl;
-}
 }
 
 Solucao *Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao t_solucao)
