@@ -16,6 +16,8 @@ Instancia::Instancia(const std::string ano_instancia)
 
     this->m_lista_cursos = instanciar_curso(ano_instancia);
     // std::cout << "Gerou lista de cursos" << std::endl;
+
+    relacionar_turmas_cursos();
 }
 
 const std::vector<Professor *> Instancia::instanciar_professor(const std::string &ano_instancia)
@@ -65,7 +67,8 @@ const std::vector<Curso *> Instancia::instanciar_curso(const std::string &ano_in
                     index,
                     (*row)[1],
                     (*row)[2],
-                    buscar_turmas(m_csv.parse_coluna((*row)[3], ',')),
+                    buscar_turmas_index(m_csv.parse_coluna((*row)[3], ',')),
+                    m_csv.parse_coluna((*row)[3], ','),
                     m_csv.preencher_disponibilidade({(*row)[4], (*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9]})));
         }
         index++;
@@ -110,10 +113,12 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
                 index,
                 (*row)[2],
                 (*row)[3],
+                (*row)[1],
                 buscar_disciplinas(m_csv.parse_coluna((*row)[4], ',')),
                 m_csv.preencher_disponibilidade({(*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9], (*row)[10]}),
                 int_primeiro_horario,
-                int_ultimo_horario));
+                int_ultimo_horario,
+                nullptr));
         }
         index++;
     }
@@ -180,19 +185,19 @@ std::vector<Disciplina *> Instancia::buscar_disciplinas(const std::vector<std::s
     return t_disc;
 }
 
-std::vector<Turma *> Instancia::buscar_turmas(const std::vector<std::string> &nome_turmas)
+std::vector<int> Instancia::buscar_turmas_index(const std::vector<std::string> &t_turmas)
 {
 
-    std::vector<Turma *> t_turma{nullptr};
+    std::vector<int> turmas_index{};
 
-    for (auto parse_disciplina : nome_turmas)
+    for (auto turma_str_id : t_turmas)
     {
         for (auto it : m_lista_turmas)
         {
-            if (parse_disciplina == it->get_id())
+            if (turma_str_id == it->get_id())
             {
                 // std::cout << "Turma: " << it->get_nome() << " | Endereço -> " << &it << " | ";
-                t_turma.push_back(it);
+                turmas_index.push_back(it->get_index());
                 continue;
             }
         }
@@ -200,7 +205,31 @@ std::vector<Turma *> Instancia::buscar_turmas(const std::vector<std::string> &no
 
     // std::cout << "\n" << std::endl;
 
-    return t_turma;
+    return turmas_index;
+}
+
+void Instancia::relacionar_turmas_cursos()
+{
+    std::unordered_map<std::string, Curso *> cursos_map;
+
+    for (Curso *curso : m_lista_cursos)
+    {
+        cursos_map[curso->get_id()] = curso;
+    }
+
+    for (Turma *turma : m_lista_turmas)
+    {
+        const std::string &curso_str = turma->get_curso_str();
+        auto it = cursos_map.find(curso_str);
+        if (it != cursos_map.end())
+        {
+            turma->set_curso(it->second);
+        }
+        else
+        {
+            turma->set_curso(nullptr);
+        }
+    }
 }
 
 void Instancia::print_instancia()
@@ -230,7 +259,7 @@ void Instancia::print_instancia()
     }
 }
 
-Instancia* Instancia::shallow_copy()
+Instancia *Instancia::shallow_copy()
 {
     Instancia *inst = new Instancia(this->m_ano_instancia);
     inst->m_csv = m_csv;

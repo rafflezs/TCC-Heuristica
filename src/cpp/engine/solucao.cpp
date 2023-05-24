@@ -176,22 +176,6 @@ Turma *Solucao::encontrar_turma_relacionada(Disciplina *t_disciplina)
     return (new Turma{});
 }
 
-Curso *Solucao::encontrar_curso_relacionado(Turma *t_turma)
-{
-    for (auto it : m_instancia->m_lista_cursos)
-    {
-        for (auto t : it->get_turmas())
-        {
-            if (t_turma == t)
-            {
-                return it;
-            }
-        }
-    }
-
-    return (new Curso{});
-}
-
 void Solucao::exibir_solucao()
 {
     for (auto it : m_instancia->m_lista_professores)

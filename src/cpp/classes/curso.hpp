@@ -1,6 +1,8 @@
 #ifndef _CURSO_HPP
 #define _CURSO_HPP
 
+#include "../public/public_includes.hpp"
+
 class Curso
 {
 private:
@@ -63,11 +65,6 @@ public:
     this->m_turmas_index = t_turmas_index;
   }
 
-  std::array<std::array<int, 16>, 6> get_disponibilidade()
-  {
-    return this->m_disponibilidade;
-  }
-
   std::vector<std::string> get_turmas()
   {
     return this->m_turmas;
@@ -95,6 +92,7 @@ public:
         const std::string &t_nome,
         std::string t_titulo_formacao,
         const std::vector<int> t_turmas_index,
+        const std::vector<std::string> t_turmas,
         const std::array<std::array<int, 16>, 6> t_disponibilidade) :
       
       m_id(t_id), 
@@ -102,6 +100,7 @@ public:
       m_index(t_index),
       m_titulo_formacao(t_titulo_formacao), 
       m_turmas_index(t_turmas_index),
+      m_turmas(t_turmas),
       m_disponibilidade(t_disponibilidade){};
 
   /*

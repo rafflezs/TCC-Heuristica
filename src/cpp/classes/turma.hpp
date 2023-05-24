@@ -11,11 +11,12 @@ private:
   int m_index{NULL};
   std::string m_nome{"NULL"};
   std::string m_periodo{"NULL"};
+  std::string m_curso_str{"NULL"};
   int m_primeiro_horario_turno{-1};
   int m_ultimo_horario_turno{-1};
   std::vector<Disciplina *> m_disciplinas{nullptr};
   std::array<std::array<int, 16>, 6> m_disponibilidade{};
-  Curso* m_curso{nullptr};
+  Curso *m_curso{nullptr};
 
 public:
   std::string get_id()
@@ -103,12 +104,22 @@ public:
     this->m_ultimo_horario_turno = t_ultimo_horario_turno;
   }
 
-  Curso* get_curso()
+  std::string get_curso_str()
+  {
+    return this->m_curso_str;
+  }
+
+  void set_curso_str(std::string t_curso_str)
+  {
+    this->m_curso_str = t_curso_str;
+  }
+
+  Curso *get_curso()
   {
     return this->m_curso;
   }
 
-  void set_curso(const Curso* t_curso)
+  void set_curso(Curso *t_curso)
   {
     this->m_curso = t_curso;
   }
@@ -120,19 +131,21 @@ public:
       const int t_index,
       const std::string t_nome,
       std::string t_periodo,
+      std::string t_curso_str,
       const std::vector<Disciplina *> t_disciplinas,
       const std::array<std::array<int, 16>, 6> t_disponibilidade,
       const int t_primeiro_horario_turno,
-      const int t_ultimo_horario_turno),
-      const Curso* t_curso : m_id(t_id),
-                                          m_nome(t_nome),
-                                          m_index(t_index),
-                                          m_periodo(t_periodo),
-                                          m_disciplinas(t_disciplinas),
-                                          m_disponibilidade(t_disponibilidade),
-                                          m_primeiro_horario_turno(t_primeiro_horario_turno),
-                                          m_ultimo_horario_turno(t_ultimo_horario_turno),
-                                          m_curso(t_curso){};
+      const int t_ultimo_horario_turno,
+      Curso *t_curso) : m_id(t_id),
+                        m_nome(t_nome),
+                        m_index(t_index),
+                        m_periodo(t_periodo),
+                        m_curso_str(t_curso_str),
+                        m_disciplinas(t_disciplinas),
+                        m_disponibilidade(t_disponibilidade),
+                        m_primeiro_horario_turno(t_primeiro_horario_turno),
+                        m_ultimo_horario_turno(t_ultimo_horario_turno),
+                        m_curso(t_curso){};
 
   /*
   ** Função para print da Classe

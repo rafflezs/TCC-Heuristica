@@ -304,7 +304,7 @@ void Heuristica::pos_processamento()
                 count = 0;
             }
 
-            // Pensar em um jeito de agrupar Turma por Curso
+            // A PARTIR DAQUI
 
             iteracao_solucao++;
             count++;
@@ -312,7 +312,9 @@ void Heuristica::pos_processamento()
     }
 }
 
-Solucao *Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao t_solucao)
+
+// Alterar tipo da funcao e parametros
+void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao* t_solucao)
 {
     // Reimplementar busca local
     // Essa funcao deve simplemente refazer o horario da turma
@@ -382,4 +384,6 @@ Solucao *Heuristica::get_melhor_solucao()
     auto melhor_solucao = std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);
     GravarArquivo ga = GravarArquivo("./data/output/horarios.tex");
     ga.salvar_saidas(*melhor_solucao);
+
+    return *melhor_solucao;
 }

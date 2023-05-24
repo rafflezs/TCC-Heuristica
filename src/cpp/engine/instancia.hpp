@@ -1,7 +1,7 @@
 #ifndef _INSTANCIA_HPP
 #define _INSTANCIA_HPP
 
-#include "../classes/curso.hpp"
+#include "../classes/turma.hpp"
 #include "../classes/professor.hpp"
 #include "../classes/disciplina.hpp"
 #include "../helpers/csv.hpp"
@@ -25,7 +25,8 @@ public:
     const std::vector<Disciplina *> instanciar_disciplina(const std::string &ano_instancia);
 
     std::vector<Disciplina *> buscar_disciplinas(const std::vector<std::string> &nome_disciplinas);
-    std::vector<Turma *> buscar_turmas(const std::vector<std::string> &nome_turmas);
+    std::vector<int> buscar_turmas_index(const std::vector<std::string> &nome_turmas);
+    void relacionar_turmas_cursos();
 
     void print_instancia();
 
