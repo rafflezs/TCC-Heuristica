@@ -146,7 +146,7 @@ bool Solucao::eh_horario_disponivel(Turma *t_turma, int t_dia_escolhido, int t_h
 
 Professor *Solucao::encontrar_prof_relacionado(Disciplina *t_disciplina)
 {
-    for (auto it : m_instancia->m_lista_professores)
+    for (auto it : m_instancia->get_lista_professores())
     {
         for (auto d : it->get_disciplinas())
         {
@@ -162,7 +162,7 @@ Professor *Solucao::encontrar_prof_relacionado(Disciplina *t_disciplina)
 
 Turma *Solucao::encontrar_turma_relacionada(Disciplina *t_disciplina)
 {
-    for (auto it : m_instancia->m_lista_turmas)
+    for (auto it : m_instancia->get_lista_turmas())
     {
         for (auto d : it->get_disciplinas())
         {
@@ -178,12 +178,12 @@ Turma *Solucao::encontrar_turma_relacionada(Disciplina *t_disciplina)
 
 void Solucao::exibir_solucao()
 {
-    for (auto it : m_instancia->m_lista_professores)
+    for (auto it : m_instancia->get_lista_professores())
     {
         it->print_solucao();
     }
 
-    for (auto it : m_instancia->m_lista_turmas)
+    for (auto it : m_instancia->get_lista_turmas())
     {
         it->print_solucao();
     }
@@ -200,7 +200,7 @@ Instancia Solucao::get_instancia()
 
 void Solucao::debug_vector_disciplina_addr()
 {
-    auto t_disciplinas_debug = m_instancia->m_lista_disciplinas;
+    auto t_disciplinas_debug = m_instancia->get_lista_disciplinas();
     std::cout << "Endereco Lista Raiz;" << &t_disciplinas_debug << std::endl;
 
     for (auto it : t_disciplinas_debug)

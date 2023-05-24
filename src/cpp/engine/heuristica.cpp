@@ -34,28 +34,28 @@ void Heuristica::inicializar()
 std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
 {
 
-    std::vector<Disciplina *> t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+    std::vector<Disciplina *> t_disciplinas_ordenadas = (*solucao).get_instancia().get_lista_disciplinas();
 
     switch (rand_metodo)
     {
 
     // Caso 1: Ordenar disciplinas por maior CH-MIN (tamanho)
     case 1:
-        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        t_disciplinas_ordenadas = (*solucao).get_instancia().get_lista_disciplinas();
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_ch_min() > rhs->get_ch_min(); });
         break;
 
     // Caso 2: Ordenar disciplinas por Menor Split (tamanho)
     case 2:
-        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        t_disciplinas_ordenadas = (*solucao).get_instancia().get_lista_disciplinas();
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return lhs->get_split() < rhs->get_split(); });
         break;
 
     // Caso 3: Ordenar disciplina por prioriedade de CH-MIN e Split combinadas (tamanho)
     case 3:
-        t_disciplinas_ordenadas = (*solucao).get_instancia().m_lista_disciplinas;
+        t_disciplinas_ordenadas = (*solucao).get_instancia().get_lista_disciplinas();
         std::sort(t_disciplinas_ordenadas.begin(), t_disciplinas_ordenadas.end(), [](Disciplina *lhs, Disciplina *rhs)
                   { return (lhs->get_ch_min() > rhs->get_ch_min()) && (lhs->get_split() < rhs->get_split()); });
         break;
@@ -142,7 +142,7 @@ int Heuristica::calcular_janela_professor(Solucao *t_solucao)
 
     int janela = 0;
 
-    auto profs = t_solucao->get_instancia().m_lista_professores;
+    auto profs = t_solucao->get_instancia().get_lista_professores();
     for (auto p : profs)
     {
         std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
@@ -254,7 +254,7 @@ int Heuristica::calcular_sexto_horario_turma(Solucao *t_solucao)
 
     int sexto_horario = 0;
 
-    auto turmas = t_solucao->get_instancia().m_lista_turmas;
+    auto turmas = t_solucao->get_instancia().get_lista_turmas();
     for (auto t : turmas)
     {
         std::array<std::array<int, 16>, 6> f_dispo = t->get_disponibilidade();
@@ -297,7 +297,14 @@ void Heuristica::pos_processamento()
         int iteracao_solucao = 1;
         int count = 0;
 
-        while (count < nova_solucao->get_instancia().m_lista_turmas.size())
+        auto turmas = nova_solucao->get_instancia().get_lista_turmas();
+        std::sort(turmas.begin(), turmas.end(), [](Turma *turma1, Turma *turma2)
+        {
+            return turma1->get_curso() < turma2->get_curso();
+        });
+
+        // iteracao circular com mod%
+        while (count < nova_solucao->get_instancia().get_lista_turmas().size())
         {
             if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
             {
@@ -312,9 +319,8 @@ void Heuristica::pos_processamento()
     }
 }
 
-
 // Alterar tipo da funcao e parametros
-void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao* t_solucao)
+void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
 {
     // Reimplementar busca local
     // Essa funcao deve simplemente refazer o horario da turma
@@ -347,7 +353,7 @@ std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> dis
     std::vector<Professor> professores_turma{};
     for (auto disciplina_index : disciplinas_turma)
     {
-        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(temp_solucao->get_instancia().m_lista_disciplinas[disciplina_index])));
+        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(temp_solucao->get_instancia().get_lista_disciplinas()[disciplina_index])));
     }
 
     for (auto temp_prof : professores_turma)

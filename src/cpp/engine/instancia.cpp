@@ -232,6 +232,48 @@ void Instancia::relacionar_turmas_cursos()
     }
 }
 
+std::vector<Turma *> Instancia::get_lista_turmas()
+{
+    return this->m_lista_turmas;
+}
+std::vector<Professor *> Instancia::get_lista_professores()
+{
+    return this->m_lista_professores;
+}
+std::vector<Disciplina *> Instancia::get_lista_disciplinas()
+{
+    return this->m_lista_disciplinas;
+}
+std::vector<Curso *> Instancia::get_lista_cursos()
+{
+    return this->m_lista_cursos;
+}
+std::string Instancia::get_ano_instancia()
+{
+    return this->m_ano_instancia;
+}
+
+void Instancia::set_lista_turmas(const std::vector<Turma *> t_input)
+{
+    this->m_lista_turmas = t_input;
+}
+void Instancia::set_lista_professores(const std::vector<Professor *> t_input)
+{
+    this->m_lista_professores = t_input;
+}
+void Instancia::set_lista_disciplinas(const std::vector<Disciplina *> t_input)
+{
+    this->m_lista_disciplinas = t_input;
+}
+void Instancia::set_lista_cursos(const std::vector<Curso *> t_input)
+{
+    this->m_lista_cursos = t_input;
+}
+void Instancia::set_ano_instancia(const std::string &t_input)
+{
+    this->m_ano_instancia = t_input;
+}
+
 void Instancia::print_instancia()
 {
     std::cout << "\n\n--------Lista de Disciplinas--------\n";
