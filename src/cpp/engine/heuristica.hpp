@@ -41,8 +41,8 @@ private:
     Heuristica *shallow_copy() const;
 
     void busca_local(std::vector<Turma*> t_turmas, Solucao* t_solucao);
-    std::set<int> encontrar_disciplinas_turma(Turma *t_turma);
-    std::vector<Professor> encontrar_professores_turma(std::set<int> disciplinas_turma, Solucao *t_solucao);
+    std::vector<Disciplina*> encontrar_disciplinas_turma(Turma *t_turma);
+    std::vector<Professor> encontrar_professores_turma(std::vector<Disciplina*> disciplinas_turma, Solucao *t_solucao);
 
     Solucao *get_melhor_solucao();
 

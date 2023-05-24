@@ -16,7 +16,7 @@ public:
         this->m_output_path = path;
     }
 
-    void salvar_analise(                                                                                                                    Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
+    void salvar_analise(Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
     {
         std::string file_w_path{m_output_path};
         std::ofstream arquivo(file_w_path, std::ios::app);
@@ -33,11 +33,11 @@ public:
             arquivo << "SOL_ID;[PESOS];JANELAS;SEXTOS_HORARIOS;VALOR_FINAL;ITERACAO;DISC_ORDER_SWITCH;TEMPO_SOLUCAO\n";
         }
 
-        arquivo << t_solucao->get_id_solucao() << ";[" 
-                << this->m_param_janela << "," 
-                << this->m_param_sexto << "];" 
-                << t_solucao->get_janela() << ";" 
-                << t_solucao->get_sexto_horario() << ";" 
+        arquivo << t_solucao->get_id_solucao() << ";["
+                << this->m_param_janela << ","
+                << this->m_param_sexto << "];"
+                << t_solucao->get_janela() << ";"
+                << t_solucao->get_sexto_horario() << ";"
                 << t_solucao->get_valor_avaliacao() << ";"
                 << t_iteracao << ";"
                 << t_case_construtiva << ";"
@@ -70,7 +70,7 @@ public:
                 << std::endl;
         arquivo << "\\begin{document}" << std::endl;
 
-        auto profs = t_solucao->get_instancia().m_lista_professores;
+        auto profs = t_solucao->get_instancia().get_lista_professores();
 
         for (auto p : profs)
         {
@@ -157,7 +157,7 @@ public:
                 << std::endl;
         arquivo << "\\begin{document}" << std::endl;
 
-        auto profs = t_solucao->get_instancia().m_lista_turmas;
+        auto profs = t_solucao->get_instancia().get_lista_turmas();
 
         for (auto p : profs)
         {

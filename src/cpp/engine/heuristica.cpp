@@ -133,7 +133,8 @@ void Heuristica::avaliar_solucao(Solucao *t_solucao, bool t_factibilidade)
     }
     else
     {
-        t_solucao->set_valor_avaliacao(std::numeric_limits<float>::max());
+        // t_solucao->set_valor_avaliacao(std::numeric_limits<float>::max());
+        t_solucao->set_valor_avaliacao(999999999999);
     }
 }
 
@@ -299,22 +300,53 @@ void Heuristica::pos_processamento()
 
         auto turmas = nova_solucao->get_instancia().get_lista_turmas();
         std::sort(turmas.begin(), turmas.end(), [](Turma *turma1, Turma *turma2)
-        {
-            return turma1->get_curso() < turma2->get_curso();
-        });
+                  { return turma1->get_curso() < turma2->get_curso(); });
 
-        // iteracao circular com mod%
+        int max_turmas_por_curso = 0;
+        for (Curso *curso : nova_solucao->get_instancia().get_lista_cursos())
+        {
+            auto turmas_size = curso->get_turmas_index().size();
+            if (turmas_size > max_turmas_por_curso)
+            {
+                max_turmas_por_curso = turmas_size;
+            }
+        }
+
         while (count < nova_solucao->get_instancia().get_lista_turmas().size())
         {
             if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
             {
+                m_solucoes[i] = nova_solucao;
                 count = 0;
             }
 
-            // A PARTIR DAQUI
+            int n = iteracao_solucao % max_turmas_por_curso;
+            if (n == 0)
+            {
+                n = max_turmas_por_curso;
+            }
+
+            std::vector<Turma *> turmas_selecionadas;
+            for (Turma *turma : turmas)
+            {
+                if (turma->get_curso()->get_turmas_index().size() >= n)
+                {
+                    turmas_selecionadas.push_back(turma);
+                    if (turmas_selecionadas.size() == n)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            // Perform operations with the selected Turmas
+            // Call the function to destroy their schedules
+            busca_local(turmas_selecionadas, nova_solucao);
 
             iteracao_solucao++;
             count++;
+
+            ga.salvar_analise(nova_solucao, iteracao_solucao, 4, (std::chrono::steady_clock::now() - *m_tempo_inicial));
         }
     }
 }
@@ -322,14 +354,20 @@ void Heuristica::pos_processamento()
 // Alterar tipo da funcao e parametros
 void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
 {
-    // Reimplementar busca local
-    // Essa funcao deve simplemente refazer o horario da turma
+    std::vector<Disciplina *> disciplinas_turma{};
+    for (Turma *turma : t_turmas)
+    {
+        // Destroy the schedule of the Turma
+        disciplinas_turma = encontrar_disciplinas_turma(turma);
+        std::vector<Professor> professores_turma = encontrar_professores_turma(disciplinas_turma, t_solucao);
+    }
+    bool deu_certo = t_solucao->popular_solucao(disciplinas_turma);
+    avaliar_solucao(t_solucao, deu_certo);
 }
 
-std::set<int> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
+std::vector<Disciplina *> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
 {
-
-    std::set<int> disciplinas_turma{};
+    std::vector<Disciplina *> disciplinas_turma{};
     auto f_dispo = t_turma->get_disponibilidade();
 
     for (int dia = 0; dia < f_dispo.size(); dia++)
@@ -338,25 +376,31 @@ std::set<int> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
         {
             if (f_dispo[dia][horario] > 0)
             {
-                disciplinas_turma.insert(f_dispo[dia][horario]);
+                disciplinas_turma.push_back(t_turma->get_disciplinas()[f_dispo[dia][horario]]);
                 f_dispo[dia][horario] = 0;
             }
         }
     }
 
     t_turma->set_disponibilidade(f_dispo);
+
+    // Remove duplicate Disciplinas
+    std::sort(disciplinas_turma.begin(), disciplinas_turma.end());
+    disciplinas_turma.erase(std::unique(disciplinas_turma.begin(), disciplinas_turma.end()), disciplinas_turma.end());
+
     return disciplinas_turma;
 }
 
-std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> disciplinas_turma, Solucao *temp_solucao)
+std::vector<Professor> Heuristica::encontrar_professores_turma(std::vector<Disciplina *> disciplinas_turma, Solucao *temp_solucao)
 {
     std::vector<Professor> professores_turma{};
-    for (auto disciplina_index : disciplinas_turma)
+
+    for (auto disciplina_ptr : disciplinas_turma)
     {
-        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(temp_solucao->get_instancia().get_lista_disciplinas()[disciplina_index])));
+        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(disciplina_ptr)));
     }
 
-    for (auto temp_prof : professores_turma)
+    for (auto &temp_prof : professores_turma)
     {
         auto f_dispo = temp_prof.get_disponibilidade();
 
@@ -370,6 +414,8 @@ std::vector<Professor> Heuristica::encontrar_professores_turma(std::set<int> dis
                 }
             }
         }
+
+        temp_prof.set_disponibilidade(f_dispo);
     }
 
     return professores_turma;
