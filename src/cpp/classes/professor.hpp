@@ -83,6 +83,19 @@ public:
                                                                     m_disciplinas(t_disciplinas),
                                                                     m_disponibilidade(t_disponibilidade){};
 
+  Professor(const Professor &other)
+      : m_id(other.m_id),
+        m_index(other.m_index),
+        m_nome(other.m_nome),
+        m_disponibilidade(other.m_disponibilidade)
+  {
+    // Perform deep copy for the vector of Disciplina pointers
+    for (Disciplina *disciplina : other.m_disciplinas)
+    {
+      m_disciplinas.push_back(new Disciplina(*disciplina));
+    }
+  }
+
   void print()
   {
     std::cout << "Index: " << this->get_index()

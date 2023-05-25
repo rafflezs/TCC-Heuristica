@@ -17,8 +17,8 @@ private:
   int m_ch_presencial{0};
   int m_split{1};
   int m_ch_min{0};
-public:
 
+public:
   std::string get_id()
   {
     return this->m_id;
@@ -99,7 +99,7 @@ public:
     this->m_ch_presencial = t_ch_presencial;
   }
 
-    int get_ch_min()
+  int get_ch_min()
   {
     return this->m_ch_min;
   }
@@ -109,7 +109,7 @@ public:
     this->m_ch_min = t_ch_min;
   }
 
-    int get_split()
+  int get_split()
   {
     return this->m_split;
   }
@@ -122,29 +122,43 @@ public:
   Disciplina(){};
 
   Disciplina(
-    const std::string t_id,
-    const std::string t_cod_diario,
-    const int t_index,
-    const std::string t_nome,
-    std::string t_periodo,
-    const int t_qtd_alunos,
-    const int t_ch_presencial,
-    const int t_ch_ead,
-    const int t_ch_min,
-    const int t_split,
-    const std::array<std::array<int, 16>, 6> t_disponibilidade
-  ) : 
-    m_id(t_id),
-    m_cod_diario(t_cod_diario), 
-    m_nome(t_nome), 
-    m_index(t_index),
-    m_periodo(t_periodo), 
-    m_qtd_alunos(t_qtd_alunos),
-    m_ch_presencial(t_ch_presencial),
-    m_ch_ead(t_ch_ead), 
-    m_ch_min(t_ch_min),
-    m_split(t_split),
-    m_disponibilidade(t_disponibilidade){};
+      const std::string t_id,
+      const std::string t_cod_diario,
+      const int t_index,
+      const std::string t_nome,
+      std::string t_periodo,
+      const int t_qtd_alunos,
+      const int t_ch_presencial,
+      const int t_ch_ead,
+      const int t_ch_min,
+      const int t_split,
+      const std::array<std::array<int, 16>, 6> t_disponibilidade) : m_id(t_id),
+                                                                    m_cod_diario(t_cod_diario),
+                                                                    m_nome(t_nome),
+                                                                    m_index(t_index),
+                                                                    m_periodo(t_periodo),
+                                                                    m_qtd_alunos(t_qtd_alunos),
+                                                                    m_ch_presencial(t_ch_presencial),
+                                                                    m_ch_ead(t_ch_ead),
+                                                                    m_ch_min(t_ch_min),
+                                                                    m_split(t_split),
+                                                                    m_disponibilidade(t_disponibilidade){};
+
+  Disciplina(const Disciplina &other)
+      : m_id(other.m_id),
+        m_cod_diario(other.m_cod_diario),
+        m_index(other.m_index),
+        m_nome(other.m_nome),
+        m_periodo(other.m_periodo),
+        m_disponibilidade(other.m_disponibilidade),
+        m_qtd_alunos(other.m_qtd_alunos),
+        m_ch_ead(other.m_ch_ead),
+        m_ch_presencial(other.m_ch_presencial),
+        m_split(other.m_split),
+        m_ch_min(other.m_ch_min)
+  {
+    // Perform deep copy for any other member variables, if applicable
+  }
 
   /*
   ** Função para print da Classe
@@ -153,32 +167,47 @@ public:
   */
   void print()
   {
-    std::cout << "Index: " << this->get_index() 
-    << ", ID: " << this->get_id() 
-    << ", Nome: " << this->get_nome()
-    << ", Periodo: " << this->get_periodo() 
-    << ", # ALUNOS: " << this->get_qtd_alunos() 
-    << ", CH Presencial: " << this->get_ch_presencial() 
-    << ", CH EAD: " << this->get_ch_ead() << std::endl
-    << ", MIN: " << this->get_ch_min() << std::endl
-    << ",SPLIT: " << this->get_split() << std::endl;
+    std::cout << "Index: " << this->get_index()
+              << ", ID: " << this->get_id()
+              << ", Nome: " << this->get_nome()
+              << ", Periodo: " << this->get_periodo()
+              << ", # ALUNOS: " << this->get_qtd_alunos()
+              << ", CH Presencial: " << this->get_ch_presencial()
+              << ", CH EAD: " << this->get_ch_ead() << std::endl
+              << ", MIN: " << this->get_ch_min() << std::endl
+              << ",SPLIT: " << this->get_split() << std::endl;
 
     std::cout << "array<disponibilidade>" << std::endl;
-    std::cout << std::setw(5) << "H1 " << " "
-              << std::setw(5) << "H2 " << " "
-              << std::setw(5) << "H3 " << " "
-              << std::setw(5) << "H4 " << " "
-              << std::setw(5) << "H5 " << " "
-              << std::setw(5) << "H6 " << " "
-              << std::setw(5) << "H7 " << " "
-              << std::setw(5) << "H8 " << " "
-              << std::setw(5) << "H9 " << " "
-              << std::setw(5) << "H10 " << " "
-              << std::setw(5) << "H11 " << " "
-              << std::setw(5) << "H12 " << " "
-              << std::setw(5) << "H13 " << " "
-              << std::setw(5) << "H14 " << " "
-              << std::setw(5) << "H15 " << " "
+    std::cout << std::setw(5) << "H1 "
+              << " "
+              << std::setw(5) << "H2 "
+              << " "
+              << std::setw(5) << "H3 "
+              << " "
+              << std::setw(5) << "H4 "
+              << " "
+              << std::setw(5) << "H5 "
+              << " "
+              << std::setw(5) << "H6 "
+              << " "
+              << std::setw(5) << "H7 "
+              << " "
+              << std::setw(5) << "H8 "
+              << " "
+              << std::setw(5) << "H9 "
+              << " "
+              << std::setw(5) << "H10 "
+              << " "
+              << std::setw(5) << "H11 "
+              << " "
+              << std::setw(5) << "H12 "
+              << " "
+              << std::setw(5) << "H13 "
+              << " "
+              << std::setw(5) << "H14 "
+              << " "
+              << std::setw(5) << "H15 "
+              << " "
               << std::setw(5) << "H16 " << std::endl;
     std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
     for (int i = 0; i < f_dispo.size(); i++)

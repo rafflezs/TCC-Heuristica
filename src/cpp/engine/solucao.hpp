@@ -33,7 +33,7 @@ public:
     Turma *encontrar_turma_relacionada(Disciplina *t_disciplina);
     Curso *encontrar_curso_relacionado(Turma *t_turma);
 
-    Instancia get_instancia();
+    Instancia* get_instancia();
     void debug_vector_disciplina_addr();
 
     bool get_factivel();
@@ -54,8 +54,7 @@ public:
     void set_instancia_nome(std::string t_instancia_nome);
     std::string get_instancia_nome();
 
-
-    Solucao *shallow_copy();
+    Solucao *copia_profunda();
 };
 
 #endif // !_SOLUCAO_HPP

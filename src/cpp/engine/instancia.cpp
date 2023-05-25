@@ -20,6 +20,62 @@ Instancia::Instancia(const std::string ano_instancia)
     relacionar_turmas_cursos();
 }
 
+Instancia::Instancia(const Instancia &other)
+    : m_csv(other.m_csv),
+      m_lista_turmas{},
+      m_lista_professores{},
+      m_lista_disciplinas{},
+      m_lista_cursos{},
+      m_ano_instancia(other.m_ano_instancia)
+{
+    // Perform deep copy for the vector of Turma pointers
+    for (Turma *turma : other.m_lista_turmas)
+    {
+        m_lista_turmas.push_back(new Turma(*turma));
+    }
+
+    // Perform deep copy for the vector of Professor pointers
+    for (Professor *professor : other.m_lista_professores)
+    {
+        m_lista_professores.push_back(new Professor(*professor));
+    }
+
+    // Perform deep copy for the vector of Disciplina pointers
+    for (Disciplina *disciplina : other.m_lista_disciplinas)
+    {
+        m_lista_disciplinas.push_back(new Disciplina(*disciplina));
+    }
+
+    // Perform deep copy for the vector of Curso pointers
+    for (Curso *curso : other.m_lista_cursos)
+    {
+        m_lista_cursos.push_back(new Curso(*curso));
+    }
+}
+
+Instancia::~Instancia()
+{
+    // Deallocate the dynamically allocated Turma objects
+    for (Turma* turma : m_lista_turmas) {
+        delete turma;
+    }
+
+    // Deallocate the dynamically allocated Professor objects
+    for (Professor* professor : m_lista_professores) {
+        delete professor;
+    }
+
+    // Deallocate the dynamically allocated Disciplina objects
+    for (Disciplina* disciplina : m_lista_disciplinas) {
+        delete disciplina;
+    }
+
+    // Deallocate the dynamically allocated Curso objects
+    for (Curso* curso : m_lista_cursos) {
+        delete curso;
+    }
+}
+
 const std::vector<Professor *> Instancia::instanciar_professor(const std::string &ano_instancia)
 {
     std::vector<Professor *> t_professores;

@@ -6,7 +6,6 @@
 #include <set>
 #include <ctime>
 #include <limits>
-#include <chrono>
 
 class Heuristica
 {
@@ -18,8 +17,8 @@ private:
     int m_tamanho_populacao{0};
     float m_peso_janela{0};
     float m_peso_sexto{0};
-    std::chrono::time_point<std::chrono::steady_clock> *m_tempo_inicial;
-    
+    std::chrono::_V2::steady_clock::time_point *m_tempo_inicial;
+
     std::vector<Disciplina *> ordenar_disciplinas(const int &rand_metodo, Solucao *solucao);
     void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina);
 
@@ -36,18 +35,17 @@ private:
     int calcular_janela_professor(Solucao *t_solucao);
     int calcular_sexto_horario_turma(Solucao *t_solucao);
 
-    Solucao *get_solucao(int index);
 
-    Heuristica *shallow_copy() const;
-
-    void busca_local(std::vector<Turma*> t_turmas, Solucao* t_solucao);
-    std::vector<Disciplina*> encontrar_disciplinas_turma(Turma *t_turma);
-    std::vector<Professor> encontrar_professores_turma(std::vector<Disciplina*> disciplinas_turma, Solucao *t_solucao);
+    void busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao);
+    std::vector<Disciplina *> encontrar_disciplinas_turma(Turma *t_turma);
+    std::vector<Professor> encontrar_professores_turma(std::vector<Disciplina *> disciplinas_turma, Solucao *t_solucao);
 
     Solucao *get_melhor_solucao();
 
 public:
-    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::time_point<std::chrono::steady_clock> *t_tempo_inicial);
+    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::_V2::steady_clock::time_point *t_tempo_inicial);
+    Solucao *get_solucao(int index);
+    std::vector<Solucao *>get_lista_solucoes();
     void inicializar();
 };
 

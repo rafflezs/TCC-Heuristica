@@ -189,9 +189,9 @@ void Solucao::exibir_solucao()
     }
 }
 
-Instancia Solucao::get_instancia()
+Instancia* Solucao::get_instancia()
 {
-    return *m_instancia;
+    return m_instancia;
 }
 
 // ! DEBUG FUNCTION
@@ -273,16 +273,18 @@ void Solucao::set_instancia_nome(std::string t_instancia)
     this->m_instancia_nome = t_instancia;
 }
 
-Solucao *Solucao::shallow_copy()
+Solucao *Solucao::copia_profunda()
 {
-    Solucao *sol = new Solucao(this->m_rng, this->m_instancia_nome, this->m_id);
+        Solucao* solucao_copia = new Solucao(m_rng, m_instancia_nome, m_id);
+        solucao_copia->m_factivel = m_factivel;
+        solucao_copia->m_valor_avaliado = m_valor_avaliado;
+        solucao_copia->m_valor_janelas = m_valor_janelas;
+        solucao_copia->m_valor_sextos_horarios = m_valor_sextos_horarios;
 
-    sol->set_instancia_nome(this->m_instancia_nome);
-    sol->set_id_solucao(this->m_id);
-    sol->set_factivel(this->m_factivel);
-    sol->set_valor_avaliacao(this->m_valor_avaliado);
-    sol->set_janela(this->m_valor_janelas);
-    sol->set_sexto_horario(this->m_valor_sextos_horarios);
-    sol->m_instancia = m_instancia->shallow_copy();
-    return sol;
+        if (m_instancia)
+        {
+            solucao_copia->m_instancia = new Instancia(*m_instancia); // Assuming Instancia supports deep copying
+        }
+
+        return solucao_copia;
 }

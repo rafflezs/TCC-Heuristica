@@ -18,6 +18,9 @@ private:
 
 public:
     Instancia(std::string ano_instancia);
+    Instancia(const Instancia &other);
+
+    ~Instancia();
 
     const std::vector<Professor *> instanciar_professor(const std::string &ano_instancia);
     const std::vector<Curso *> instanciar_curso(const std::string &ano_instancia);
@@ -34,16 +37,15 @@ public:
     std::vector<Curso *> get_lista_cursos();
     std::string get_ano_instancia();
 
-    void set_lista_turmas(const std::vector <Turma*> t_input);
-    void set_lista_professores(const std::vector <Professor*> t_input);
-    void set_lista_disciplinas(const std::vector <Disciplina*> t_input);
-    void set_lista_cursos(const std::vector <Curso*> t_input);
+    void set_lista_turmas(const std::vector<Turma *> t_input);
+    void set_lista_professores(const std::vector<Professor *> t_input);
+    void set_lista_disciplinas(const std::vector<Disciplina *> t_input);
+    void set_lista_cursos(const std::vector<Curso *> t_input);
     void set_ano_instancia(const std::string &t_input);
 
     void print_instancia();
 
     Instancia *shallow_copy();
-
 };
 
 #endif //!_INSTNACIA_HPP

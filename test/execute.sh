@@ -8,17 +8,9 @@ then
     test/compile.sh
 fi
 
-if [ -f "data/output/debug-out.txt" ]
-then
-    rm -f data/output/debug-out.txt
-    rm -f data/output/prof.tex
-    rm -f data/output/turma.tex
-    rm -f data/output/solucao-analise.csv
-fi
+rm -f data/output/*
 
-rm -f test/out.txt
-
-./test/exe "Teste" 1 1 1 >> data/output/debug-out.txt
+time ./test/exe "Teste" 1 1 1 >> data/output/debug-out.txt
 
 rm -f test/exe
 

@@ -1,5 +1,5 @@
 #include "../engine/solucao.hpp"
-#include <chrono>
+#include "../public/since-template.hpp"
 
 class GravarArquivo
 {
@@ -16,7 +16,7 @@ public:
         this->m_output_path = path;
     }
 
-    void salvar_analise(Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::duration<double> t_tempo_solucao)
+    void salvar_analise(Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
     {
         std::string file_w_path{m_output_path};
         std::ofstream arquivo(file_w_path, std::ios::app);
@@ -41,7 +41,7 @@ public:
                 << t_solucao->get_valor_avaliacao() << ";"
                 << t_iteracao << ";"
                 << t_case_construtiva << ";"
-                << std::to_string(t_tempo_solucao.count()) << "\n";
+                << since(t_tempo_inicial_solucao).count() << "\n";
     }
 
     void salvar_saidas(Solucao *t_solucao)
@@ -70,7 +70,7 @@ public:
                 << std::endl;
         arquivo << "\\begin{document}" << std::endl;
 
-        auto profs = t_solucao->get_instancia().get_lista_professores();
+        auto profs = t_solucao->get_instancia()->get_lista_professores();
 
         for (auto p : profs)
         {
@@ -157,7 +157,7 @@ public:
                 << std::endl;
         arquivo << "\\begin{document}" << std::endl;
 
-        auto profs = t_solucao->get_instancia().get_lista_turmas();
+        auto profs = t_solucao->get_instancia()->get_lista_turmas();
 
         for (auto p : profs)
         {

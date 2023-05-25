@@ -147,6 +147,24 @@ public:
                         m_ultimo_horario_turno(t_ultimo_horario_turno),
                         m_curso(t_curso){};
 
+  Turma(const Turma &other)
+      : m_id(other.m_id),
+        m_index(other.m_index),
+        m_nome(other.m_nome),
+        m_periodo(other.m_periodo),
+        m_curso_str(other.m_curso_str),
+        m_primeiro_horario_turno(other.m_primeiro_horario_turno),
+        m_ultimo_horario_turno(other.m_ultimo_horario_turno),
+        m_curso(new Curso(*other.m_curso)),
+        m_disponibilidade(other.m_disponibilidade)
+  {
+    // Perform deep copy for the vector of Disciplina pointers
+    for (Disciplina *disciplina : other.m_disciplinas)
+    {
+      m_disciplinas.push_back(new Disciplina(*disciplina));
+    }
+  }
+
   /*
   ** Função para print da Classe
   ** @param NULL

@@ -70,7 +70,7 @@ public:
     return this->m_turmas;
   }
 
-  void set_turmas(std::vector<std::string > t_turmas)
+  void set_turmas(std::vector<std::string> t_turmas)
   {
     this->m_turmas = t_turmas;
   }
@@ -94,14 +94,26 @@ public:
         const std::vector<int> t_turmas_index,
         const std::vector<std::string> t_turmas,
         const std::array<std::array<int, 16>, 6> t_disponibilidade) :
-      
-      m_id(t_id), 
-      m_nome(t_nome), 
-      m_index(t_index),
-      m_titulo_formacao(t_titulo_formacao), 
-      m_turmas_index(t_turmas_index),
-      m_turmas(t_turmas),
-      m_disponibilidade(t_disponibilidade){};
+
+                                                                      m_id(t_id),
+                                                                      m_nome(t_nome),
+                                                                      m_index(t_index),
+                                                                      m_titulo_formacao(t_titulo_formacao),
+                                                                      m_turmas_index(t_turmas_index),
+                                                                      m_turmas(t_turmas),
+                                                                      m_disponibilidade(t_disponibilidade){};
+
+  Curso(const Curso &other)
+      : m_id(other.m_id),
+        m_index(other.m_index),
+        m_nome(other.m_nome),
+        m_titulo_formacao(other.m_titulo_formacao),
+        m_turmas_index(other.m_turmas_index),
+        m_turmas(other.m_turmas),
+        m_disponibilidade(other.m_disponibilidade)
+  {
+    // Perform deep copy for any other member variables, if applicable
+  }
 
   /*
   ** Função para print da Classe
@@ -110,10 +122,10 @@ public:
   */
   void print()
   {
-    std::cout << "Index: " << this->get_index() 
-    << ", ID: " << this->get_id() 
-    << ", Nome: " << this->get_nome()
-    << ", Tipo: " << this->get_titulo_formacao() << std::endl;
+    std::cout << "Index: " << this->get_index()
+              << ", ID: " << this->get_id()
+              << ", Nome: " << this->get_nome()
+              << ", Tipo: " << this->get_titulo_formacao() << std::endl;
 
     std::cout << "vector<int Turmas>" << std::endl;
     for (auto t_turma : this->get_turmas_index())
@@ -129,22 +141,37 @@ public:
 
     std::cout << "array<disponibilidade>" << std::endl;
     std::array<std::array<int, 16>, 6> f_dispo = this->get_disponibilidade();
-    
-    std::cout << std::setw(5) << "H1 " << " "
-              << std::setw(5) << "H2 " << " "
-              << std::setw(5) << "H3 " << " "
-              << std::setw(5) << "H4 " << " "
-              << std::setw(5) << "H5 " << " "
-              << std::setw(5) << "H6 " << " "
-              << std::setw(5) << "H7 " << " "
-              << std::setw(5) << "H8 " << " "
-              << std::setw(5) << "H9 " << " "
-              << std::setw(5) << "H10 " << " "
-              << std::setw(5) << "H11 " << " "
-              << std::setw(5) << "H12 " << " "
-              << std::setw(5) << "H13 " << " "
-              << std::setw(5) << "H14 " << " "
-              << std::setw(5) << "H15 " << " "
+
+    std::cout << std::setw(5) << "H1 "
+              << " "
+              << std::setw(5) << "H2 "
+              << " "
+              << std::setw(5) << "H3 "
+              << " "
+              << std::setw(5) << "H4 "
+              << " "
+              << std::setw(5) << "H5 "
+              << " "
+              << std::setw(5) << "H6 "
+              << " "
+              << std::setw(5) << "H7 "
+              << " "
+              << std::setw(5) << "H8 "
+              << " "
+              << std::setw(5) << "H9 "
+              << " "
+              << std::setw(5) << "H10 "
+              << " "
+              << std::setw(5) << "H11 "
+              << " "
+              << std::setw(5) << "H12 "
+              << " "
+              << std::setw(5) << "H13 "
+              << " "
+              << std::setw(5) << "H14 "
+              << " "
+              << std::setw(5) << "H15 "
+              << " "
               << std::setw(5) << "H16 " << std::endl;
     for (int i = 0; i < f_dispo.size(); i++)
     {
