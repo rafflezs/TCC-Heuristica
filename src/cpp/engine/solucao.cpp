@@ -287,6 +287,45 @@ void Solucao::set_rng(std::default_random_engine t_rng)
     this->m_rng = t_rng;
 }
 
+void Solucao::destruir_horario(std::vector<Turma *> t_turmas)
+{
+    for (auto turma : t_turmas)
+    {
+        auto disponibilidade = turma->get_disponibilidade();
+        for (int dia = 0; dia < disponibilidade.size(); dia++)
+        {
+            for (int horario = 0; horario < disponibilidade[dia].size(); horario++)
+            {
+                if (disponibilidade[dia][horario] > 0)
+                {
+                    disponibilidade[dia][horario] = 0;
+                }
+            }
+        }
+        turma->set_disponibilidade(disponibilidade);
+    }
+}
+
+void Solucao::destruir_horario(std::vector<Disciplina *> t_disciplinas)
+{
+    for (auto disciplina : t_disciplinas)
+    {
+        auto professor = encontrar_prof_relacionado(disciplina);
+        auto disponibilidade = professor->get_disponibilidade();
+        for (int dia = 0; dia < disponibilidade.size(); dia++)
+        {
+            for (int horario = 0; horario < disponibilidade[dia].size(); horario++)
+            {
+                if (disponibilidade[dia][horario] > 0)
+                {
+                    disponibilidade[dia][horario] = 0;
+                }
+            }
+        }
+        professor->set_disponibilidade(disponibilidade);
+    }
+}
+
 Solucao::Solucao(Solucao &other)
 {
     m_rng = other.get_rng();

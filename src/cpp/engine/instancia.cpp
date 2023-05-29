@@ -237,7 +237,7 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
 std::vector<Disciplina *> Instancia::buscar_disciplinas(const std::vector<std::string> &nome_disciplinas)
 {
 
-    std::vector<Disciplina *> t_disc{nullptr};
+    std::vector<Disciplina *> t_disc{};
 
     for (auto parse_disciplina : nome_disciplinas)
     {

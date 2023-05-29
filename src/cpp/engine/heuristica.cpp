@@ -280,7 +280,7 @@ Solucao *Heuristica::get_solucao(int index)
     return this->m_solucoes[index];
 }
 
-std::vector <Solucao*> Heuristica::get_lista_solucoes()
+std::vector<Solucao *> Heuristica::get_lista_solucoes()
 {
     return this->m_solucoes;
 }
@@ -312,11 +312,6 @@ void Heuristica::pos_processamento()
 
         while (count < nova_solucao->get_instancia()->get_lista_turmas().size())
         {
-            if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
-            {
-                m_solucoes[i] = nova_solucao;
-                count = 0;
-            }
 
             int n = iteracao_solucao % max_turmas_por_curso;
             if (n == 0)
@@ -346,6 +341,12 @@ void Heuristica::pos_processamento()
             busca_local(turmas_selecionadas, nova_solucao);
             ga.salvar_analise(nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
 
+            if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
+            {
+                std::cout << "Antiga solucao: " << m_solucoes[i]->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
+                m_solucoes[i] = nova_solucao;
+                count = 0;
+            }
             iteracao_solucao++;
             count++;
         }
@@ -355,75 +356,20 @@ void Heuristica::pos_processamento()
 // Alterar tipo da funcao e parametros
 void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
 {
-    // !
-    // ! t_turmas->get_disciplinas() {0x0, ...}
-    // !
-    
-    std::vector<Disciplina *> disciplinas_turma{};
+
+    std::vector<Disciplina *> disciplinas_turmas{};
+    std::vector<Professor *> professores_relacionados{};
     for (Turma *turma : t_turmas)
     {
-        // Destroy the schedule of the Turma
-        disciplinas_turma = encontrar_disciplinas_turma(turma);
-        std::vector<Professor> professores_turma = encontrar_professores_turma(disciplinas_turma, t_solucao);
+        std::vector<Disciplina *> temp_disciplinas = turma->get_disciplinas();
+        disciplinas_turmas.insert(disciplinas_turmas.end(), temp_disciplinas.begin(), temp_disciplinas.end());
     }
-    bool deu_certo = t_solucao->popular_solucao(disciplinas_turma);
+
+    t_solucao->destruir_horario(t_turmas);
+    t_solucao->destruir_horario(disciplinas_turmas);
+
+    bool deu_certo = t_solucao->popular_solucao(disciplinas_turmas);
     avaliar_solucao(t_solucao, deu_certo);
-}
-
-std::vector<Disciplina *> Heuristica::encontrar_disciplinas_turma(Turma *t_turma)
-{
-    std::vector<Disciplina *> disciplinas_turma{};
-    auto f_dispo = t_turma->get_disponibilidade();
-
-    for (int dia = 0; dia < f_dispo.size(); dia++)
-    {
-        for (int horario = 0; horario < f_dispo[dia].size(); horario++)
-        {
-            if (f_dispo[dia][horario] > 0)
-            {
-                disciplinas_turma.push_back(t_turma->get_disciplinas()[f_dispo[dia][horario]]);
-                f_dispo[dia][horario] = 0;
-            }
-        }
-    }
-
-    t_turma->set_disponibilidade(f_dispo);
-
-    // Remove duplicate Disciplinas
-    std::sort(disciplinas_turma.begin(), disciplinas_turma.end());
-    disciplinas_turma.erase(std::unique(disciplinas_turma.begin(), disciplinas_turma.end()), disciplinas_turma.end());
-
-    return disciplinas_turma;
-}
-
-std::vector<Professor> Heuristica::encontrar_professores_turma(std::vector<Disciplina *> disciplinas_turma, Solucao *temp_solucao)
-{
-    std::vector<Professor> professores_turma{};
-
-    for (auto disciplina_ptr : disciplinas_turma)
-    {
-        professores_turma.push_back(*(temp_solucao->encontrar_prof_relacionado(disciplina_ptr)));
-    }
-
-    for (auto &temp_prof : professores_turma)
-    {
-        auto f_dispo = temp_prof.get_disponibilidade();
-
-        for (int dia = 0; dia < f_dispo.size(); dia++)
-        {
-            for (int horario = 0; horario < f_dispo[dia].size(); horario++)
-            {
-                if (f_dispo[dia][horario] > 0)
-                {
-                    f_dispo[dia][horario] = 0;
-                }
-            }
-        }
-
-        temp_prof.set_disponibilidade(f_dispo);
-    }
-
-    return professores_turma;
 }
 
 Solucao *Heuristica::get_melhor_solucao()

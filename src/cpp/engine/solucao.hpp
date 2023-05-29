@@ -57,6 +57,9 @@ public:
 
     std::default_random_engine get_rng();
     void set_rng(std::default_random_engine t_rng);
+
+    void destruir_horario(std::vector<Turma *> t_turmas);
+    void destruir_horario(std::vector<Disciplina *> t_disciplinas);
 };
 
 #endif // !_SOLUCAO_HPP
