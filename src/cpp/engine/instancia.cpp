@@ -286,7 +286,7 @@ void Instancia::relacionar_turmas_cursos()
 
     for (Curso *curso : m_lista_cursos)
     {
-        cursos_map[curso->get_id()] = curso;
+        cursos_map[curso->get_nome()] = curso;
     }
 
     for (Turma *turma : m_lista_turmas)

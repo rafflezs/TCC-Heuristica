@@ -327,7 +327,7 @@ void Heuristica::pos_processamento()
             std::vector<Turma *> turmas_selecionadas;
             for (Turma *turma : turmas)
             {
-                if (turma->get_curso()->get_turmas_index().size() >= n) // aqui que ta dando bosta
+                if (turma->get_curso()->get_turmas_index().size() >= n)
                 {
                     turmas_selecionadas.push_back(turma);
                     if (turmas_selecionadas.size() == n)
@@ -337,8 +337,12 @@ void Heuristica::pos_processamento()
                 }
             }
 
-            // Perform operations with the selected Turmas
-            // Call the function to destroy their schedules
+            std::cout << "Entrando na busca local com " << turmas_selecionadas.size() << " turmas, sendo elas:" << std::endl;
+            for (auto turma : turmas_selecionadas)
+            {
+                std::cout << turma->get_nome() << ", ";
+            }
+            std::cout << std::endl;
             busca_local(turmas_selecionadas, nova_solucao);
             ga.salvar_analise(nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
 
@@ -351,6 +355,10 @@ void Heuristica::pos_processamento()
 // Alterar tipo da funcao e parametros
 void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
 {
+    // !
+    // ! t_turmas->get_disciplinas() {0x0, ...}
+    // !
+    
     std::vector<Disciplina *> disciplinas_turma{};
     for (Turma *turma : t_turmas)
     {

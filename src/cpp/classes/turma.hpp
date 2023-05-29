@@ -126,6 +126,7 @@ public:
 
   Turma(){};
 
+  // Turma nao esta inicializando Curso corretamente
   Turma(
       const std::string t_id,
       const int t_index,
@@ -157,7 +158,7 @@ public:
     m_curso_str = other.get_curso_str();
     m_primeiro_horario_turno = other.get_primeiro_horario_turno();
     m_ultimo_horario_turno = other.get_ultimo_horario_turno();
-    m_curso = curso;
+    m_curso = other.get_curso();
     m_disponibilidade = other.get_disponibilidade();
     m_disciplinas = shallow_disc;
   }
