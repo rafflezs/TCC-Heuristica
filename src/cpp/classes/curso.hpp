@@ -103,18 +103,14 @@ public:
                                                                       m_turmas(t_turmas),
                                                                       m_disponibilidade(t_disponibilidade){};
 
-  Curso(const Curso &other)
-      : m_id(other.m_id),
-        m_index(other.m_index),
-        m_nome(other.m_nome),
-        m_titulo_formacao(other.m_titulo_formacao),
-        m_turmas_index(other.m_turmas_index),
-        m_turmas(other.m_turmas),
-        m_disponibilidade(other.m_disponibilidade)
-  {
-    // Perform deep copy for any other member variables, if applicable
-  }
-
+  Curso(Curso &other)
+      : m_id(other.get_id()),
+        m_index(other.get_index()),
+        m_nome(other.get_nome()),
+        m_titulo_formacao(other.get_titulo_formacao()),
+        m_turmas_index(other.get_turmas_index()),
+        m_turmas(other.get_turmas()),
+        m_disponibilidade(other.get_disponibilidade()){};
   /*
   ** Função para print da Classe
   ** @param NULL

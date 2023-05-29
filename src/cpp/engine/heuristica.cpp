@@ -291,7 +291,7 @@ void Heuristica::pos_processamento()
 
     for (int i = 0; i < m_solucoes.size(); i++)
     {
-        auto nova_solucao = m_solucoes[i]->copia_profunda();
+        auto nova_solucao = new Solucao(*m_solucoes[i]);
 
         int iteracao_solucao = 1;
         int count = 0;
@@ -327,7 +327,7 @@ void Heuristica::pos_processamento()
             std::vector<Turma *> turmas_selecionadas;
             for (Turma *turma : turmas)
             {
-                if (turma->get_curso()->get_turmas_index().size() >= n)
+                if (turma->get_curso()->get_turmas_index().size() >= n) // aqui que ta dando bosta
                 {
                     turmas_selecionadas.push_back(turma);
                     if (turmas_selecionadas.size() == n)

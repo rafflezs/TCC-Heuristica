@@ -189,7 +189,7 @@ void Solucao::exibir_solucao()
     }
 }
 
-Instancia* Solucao::get_instancia()
+Instancia *Solucao::get_instancia()
 {
     return m_instancia;
 }
@@ -273,18 +273,28 @@ void Solucao::set_instancia_nome(std::string t_instancia)
     this->m_instancia_nome = t_instancia;
 }
 
-Solucao *Solucao::copia_profunda()
+std::string Solucao::get_instancia_nome()
 {
-        Solucao* solucao_copia = new Solucao(m_rng, m_instancia_nome, m_id);
-        solucao_copia->m_factivel = m_factivel;
-        solucao_copia->m_valor_avaliado = m_valor_avaliado;
-        solucao_copia->m_valor_janelas = m_valor_janelas;
-        solucao_copia->m_valor_sextos_horarios = m_valor_sextos_horarios;
+    return this->m_instancia_nome;
+}
 
-        if (m_instancia)
-        {
-            solucao_copia->m_instancia = new Instancia(*m_instancia); // Assuming Instancia supports deep copying
-        }
+std::default_random_engine Solucao::get_rng()
+{
+    return this->m_rng;
+}
+void Solucao::set_rng(std::default_random_engine t_rng)
+{
+    this->m_rng = t_rng;
+}
 
-        return solucao_copia;
+Solucao::Solucao(Solucao &other)
+{
+    m_rng = other.get_rng();
+    m_instancia = other.get_instancia();
+    m_id = other.get_id_solucao();
+    m_factivel = other.get_factivel();
+    m_valor_avaliado = other.get_valor_avaliacao();
+    m_valor_janelas = other.get_janela();
+    m_valor_sextos_horarios = other.get_sexto_horario();
+    m_instancia_nome = other.get_instancia_nome();
 }

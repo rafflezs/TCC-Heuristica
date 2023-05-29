@@ -147,22 +147,19 @@ public:
                         m_ultimo_horario_turno(t_ultimo_horario_turno),
                         m_curso(t_curso){};
 
-  Turma(const Turma &other)
-      : m_id(other.m_id),
-        m_index(other.m_index),
-        m_nome(other.m_nome),
-        m_periodo(other.m_periodo),
-        m_curso_str(other.m_curso_str),
-        m_primeiro_horario_turno(other.m_primeiro_horario_turno),
-        m_ultimo_horario_turno(other.m_ultimo_horario_turno),
-        m_curso(new Curso(*other.m_curso)),
-        m_disponibilidade(other.m_disponibilidade)
+  Turma(Turma &other, Curso* curso, std::vector<Disciplina *> shallow_disc)
+
   {
-    // Perform deep copy for the vector of Disciplina pointers
-    for (Disciplina *disciplina : other.m_disciplinas)
-    {
-      m_disciplinas.push_back(new Disciplina(*disciplina));
-    }
+    m_id = other.get_id();
+    m_index = other.get_index();
+    m_nome = other.get_nome();
+    m_periodo = other.get_periodo();
+    m_curso_str = other.get_curso_str();
+    m_primeiro_horario_turno = other.get_primeiro_horario_turno();
+    m_ultimo_horario_turno = other.get_ultimo_horario_turno();
+    m_curso = curso;
+    m_disponibilidade = other.get_disponibilidade();
+    m_disciplinas = shallow_disc;
   }
 
   /*

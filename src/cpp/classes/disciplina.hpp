@@ -29,6 +29,16 @@ public:
     this->m_id = t_id;
   }
 
+  std::string get_cod_diario()
+  {
+    return this->m_cod_diario;
+  }
+
+  void set_cod_diario(std::string t_cod_diario)
+  {
+    this->m_cod_diario = t_cod_diario;
+  }
+
   int get_index()
   {
     return this->m_index;
@@ -144,21 +154,24 @@ public:
                                                                     m_split(t_split),
                                                                     m_disponibilidade(t_disponibilidade){};
 
-  Disciplina(const Disciplina &other)
-      : m_id(other.m_id),
-        m_cod_diario(other.m_cod_diario),
-        m_index(other.m_index),
-        m_nome(other.m_nome),
-        m_periodo(other.m_periodo),
-        m_disponibilidade(other.m_disponibilidade),
-        m_qtd_alunos(other.m_qtd_alunos),
-        m_ch_ead(other.m_ch_ead),
-        m_ch_presencial(other.m_ch_presencial),
-        m_split(other.m_split),
-        m_ch_min(other.m_ch_min)
-  {
-    // Perform deep copy for any other member variables, if applicable
-  }
+  /**
+  @brief Construtor para copia profunda do objeto recursivamente.
+  Cria um novo objeto com mesmos valores nos atributos,
+  porém com valor de enderaçamento disassociado.
+  @param other The Disciplina object to be copied.
+  */
+  Disciplina(Disciplina &other)
+      : m_id(other.get_id()),
+        m_cod_diario(other.get_cod_diario()),
+        m_index(other.get_index()),
+        m_nome(other.get_nome()),
+        m_periodo(other.get_periodo()),
+        m_disponibilidade(other.get_disponibilidade()),
+        m_qtd_alunos(other.get_qtd_alunos()),
+        m_ch_ead(other.get_ch_ead()),
+        m_ch_presencial(other.get_ch_presencial()),
+        m_split(other.get_split()),
+        m_ch_min(other.get_ch_min()){};
 
   /*
   ** Função para print da Classe

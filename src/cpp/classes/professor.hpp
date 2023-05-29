@@ -83,17 +83,13 @@ public:
                                                                     m_disciplinas(t_disciplinas),
                                                                     m_disponibilidade(t_disponibilidade){};
 
-  Professor(const Professor &other)
-      : m_id(other.m_id),
-        m_index(other.m_index),
-        m_nome(other.m_nome),
-        m_disponibilidade(other.m_disponibilidade)
+  Professor(Professor &other, std::vector<Disciplina*> shallow_disc)
   {
-    // Perform deep copy for the vector of Disciplina pointers
-    for (Disciplina *disciplina : other.m_disciplinas)
-    {
-      m_disciplinas.push_back(new Disciplina(*disciplina));
-    }
+    m_id = other.get_id();
+    m_index = other.get_index();
+    m_nome = other.get_nome();
+    m_disponibilidade = other.get_disponibilidade();
+    m_disciplinas = shallow_disc;
   }
 
   void print()

@@ -20,6 +20,7 @@ private:
 
 public:
     Solucao(std::default_random_engine &t_rng, std::string t_instancia, int t_id);
+    Solucao(Solucao &other);
 
     bool popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas);
     bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int *t_dias);
@@ -33,7 +34,7 @@ public:
     Turma *encontrar_turma_relacionada(Disciplina *t_disciplina);
     Curso *encontrar_curso_relacionado(Turma *t_turma);
 
-    Instancia* get_instancia();
+    Instancia *get_instancia();
     void debug_vector_disciplina_addr();
 
     bool get_factivel();
@@ -54,7 +55,8 @@ public:
     void set_instancia_nome(std::string t_instancia_nome);
     std::string get_instancia_nome();
 
-    Solucao *copia_profunda();
+    std::default_random_engine get_rng();
+    void set_rng(std::default_random_engine t_rng);
 };
 
 #endif // !_SOLUCAO_HPP

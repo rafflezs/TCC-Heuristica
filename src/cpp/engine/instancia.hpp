@@ -18,7 +18,7 @@ private:
 
 public:
     Instancia(std::string ano_instancia);
-    Instancia(const Instancia &other);
+    Instancia(Instancia &other);
 
     ~Instancia();
 
