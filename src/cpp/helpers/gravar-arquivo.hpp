@@ -74,6 +74,8 @@ public:
 
         for (auto p : profs)
         {
+            auto disciplinas_professor = p->get_disciplinas();
+
             arquivo << "\\centering" << std::endl;
             arquivo << "\\begin{tabularx}{\\textwidth} { | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X |}" << std::endl;
             arquivo << "\\hline" << std::endl;
@@ -113,7 +115,18 @@ public:
                 {
                     if (f_dispo[i][j] > 0)
                     {
-                        arquivo << f_dispo[i][j];
+                        for (auto disciplina : disciplinas_professor)
+                        {
+                            for (auto disciplina : disciplinas_professor)
+                            {
+                                if (disciplina->get_index() == f_dispo[i][j])
+                                {
+                                    auto turma = t_solucao->encontrar_turma_relacionada(disciplina);
+                                    arquivo << "\\parbox{4cm}{\\centering\\small " << disciplina->get_nome() << "}\\parbox{4cm}{\\centering\\small " << turma->get_nome() << "}";
+                                    break;
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -157,19 +170,22 @@ public:
                 << std::endl;
         arquivo << "\\begin{document}" << std::endl;
 
-        auto profs = t_solucao->get_instancia()->get_lista_turmas();
+        auto turmas = t_solucao->get_instancia()->get_lista_turmas();
 
-        for (auto p : profs)
+        for (auto turma : turmas)
         {
+
+            auto disciplinas_turma = turma->get_disciplinas();
+
             arquivo << "\\centering" << std::endl;
             arquivo << "\\begin{tabularx}{\\textwidth} { | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X |}" << std::endl;
             arquivo << "\\hline" << std::endl;
-            arquivo << "\\multicolumn{17}{|c|}{\\textbf{" << p->get_nome() << "}} \\\\" << std::endl;
+            arquivo << "\\multicolumn{17}{|c|}{\\textbf{" << turma->get_nome() << "}} \\\\" << std::endl;
             arquivo << "\\cline{1-17}" << std::endl;
             arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\textbf{07:30 - 08:20} & \\textbf{08:20 - 09:10} & \\textbf{09:20 - 10:10} & \\textbf{10:10 - 11:00} & \\textbf{11:00 - 11:50} & \\textbf{11:50 - 12:40} & \\textbf{13:30 - 14:20} & \\textbf{14:20 - 15:10} & \\textbf{15:20 - 16:10} & \\textbf{16:10 - 17:00} & \\textbf{17:00 - 17:50} & \\textbf{17:50 - 18:40} & \\textbf{18:50 - 19:40} & \\textbf{19:40 - 20:30} & \\textbf{20:40 - 21:30} & \\textbf{21:30 - 22:20} \\\\" << std::endl;
             arquivo << "\\hline" << std::endl;
 
-            std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
+            std::array<std::array<int, 16>, 6> f_dispo = turma->get_disponibilidade();
 
             for (int i = 0; i < f_dispo.size(); i++)
             {
@@ -196,11 +212,19 @@ public:
                 default:
                     break;
                 }
-                for (int j = 0; j < p->get_disponibilidade()[i].size(); j++)
+                for (int j = 0; j < turma->get_disponibilidade()[i].size(); j++)
                 {
                     if (f_dispo[i][j] > 0)
                     {
-                        arquivo << f_dispo[i][j];
+                        for (auto disciplina : disciplinas_turma)
+                        {
+                            if (disciplina->get_index() == f_dispo[i][j])
+                            {
+                                auto professor = t_solucao->encontrar_prof_relacionado(disciplina);
+                                arquivo << "\\parbox{4cm}{\\centering\\small " << disciplina->get_nome() << "}\\parbox{4cm}{\\centering\\small " << professor->get_nome() << "}";
+                                break;
+                            }
+                        }
                     }
                     else
                     {

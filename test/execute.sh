@@ -14,5 +14,5 @@ time ./test/exe "TCC-Instancia-2019-1" 100 1 1 >> data/output/debug-out.txt
 
 rm -f test/exe
 
-## Implementar chamada src/automation/latex-to-pdf.py
-## para gerar pdf de saida
+# Inserir aqui arquivo Python para formatar LaTeX
+pdflatex data/output/horarios.tex
