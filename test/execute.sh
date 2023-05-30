@@ -10,7 +10,7 @@ fi
 
 rm -f data/output/*
 
-time ./test/exe "Instancia-Facil-Comp" 1 1 1 >> data/output/debug-out.txt
+time ./test/exe "TCC-Instancia-2019-1" 100 1 1 >> data/output/debug-out.txt
 
 rm -f test/exe
 

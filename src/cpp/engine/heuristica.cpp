@@ -291,17 +291,17 @@ void Heuristica::pos_processamento()
 
     for (int i = 0; i < m_solucoes.size(); i++)
     {
-        auto nova_solucao = new Solucao(*m_solucoes[i]);
-
         int iteracao_solucao = 1;
-        int count = 0;
+        int count = 0; // Valor de escape da heuristica
 
-        auto turmas = nova_solucao->get_instancia()->get_lista_turmas();
+        // Obter as turmas da instancia e ordenar por curso
+        auto turmas = m_solucoes[i]->get_instancia()->get_lista_turmas();
         std::sort(turmas.begin(), turmas.end(), [](Turma *turma1, Turma *turma2)
                   { return turma1->get_curso() < turma2->get_curso(); });
 
+        // Obter maximo de turmas por curso
         int max_turmas_por_curso = 0;
-        for (Curso *curso : nova_solucao->get_instancia()->get_lista_cursos())
+        for (Curso *curso : m_solucoes[i]->get_instancia()->get_lista_cursos())
         {
             auto turmas_size = curso->get_turmas_index().size();
             if (turmas_size > max_turmas_por_curso)
@@ -310,8 +310,10 @@ void Heuristica::pos_processamento()
             }
         }
 
-        while (count < nova_solucao->get_instancia()->get_lista_turmas().size())
+        while (count < m_solucoes[i]->get_instancia()->get_lista_turmas().size())
         {
+            auto nova_solucao = new Solucao(*m_solucoes[i]); // Deep copy de Solucao[i]
+
 
             int n = iteracao_solucao % max_turmas_por_curso;
             if (n == 0)
@@ -344,8 +346,13 @@ void Heuristica::pos_processamento()
             if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
             {
                 std::cout << "Antiga solucao: " << m_solucoes[i]->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
+                delete m_solucoes[i]; // Delete the previous solution
                 m_solucoes[i] = nova_solucao;
                 count = 0;
+            }
+            else
+            {
+                delete nova_solucao; // Delete the new solution
             }
             iteracao_solucao++;
             count++;
