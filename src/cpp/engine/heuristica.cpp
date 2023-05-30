@@ -78,7 +78,7 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 
 void Heuristica::heuristica_construtiva(int t_iteracao)
 {
-    GravarArquivo ga = GravarArquivo("./data/output/analise.csv");
+    GravarArquivo ga = GravarArquivo();
 
     for (auto it : this->m_solucoes)
     {
@@ -88,7 +88,7 @@ void Heuristica::heuristica_construtiva(int t_iteracao)
         avaliar_solucao(it, deu_certo);
 
         // Salvando parametros da solucao em csv para futura analise
-        ga.salvar_analise(it, t_iteracao, rand_switch, *m_tempo_inicial);
+        ga.salvar_analise("data/output/", it, t_iteracao, rand_switch, *m_tempo_inicial);
     }
 
     ordenar_solucoes();
@@ -287,7 +287,7 @@ std::vector<Solucao *> Heuristica::get_lista_solucoes()
 
 void Heuristica::pos_processamento()
 {
-    GravarArquivo ga = GravarArquivo("./data/output/analise.csv");
+    GravarArquivo ga = GravarArquivo();
 
     for (int i = 0; i < m_solucoes.size(); i++)
     {
@@ -313,7 +313,6 @@ void Heuristica::pos_processamento()
         while (count < m_solucoes[i]->get_instancia()->get_lista_turmas().size())
         {
             auto nova_solucao = new Solucao(*m_solucoes[i]); // Deep copy de Solucao[i]
-
 
             int n = iteracao_solucao % max_turmas_por_curso;
             if (n == 0)
@@ -341,7 +340,7 @@ void Heuristica::pos_processamento()
             }
             std::cout << std::endl;
             busca_local(turmas_selecionadas, nova_solucao);
-            ga.salvar_analise(nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
+            ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
 
             if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
             {
@@ -392,8 +391,8 @@ Solucao *Heuristica::get_melhor_solucao()
     };
 
     auto melhor_solucao = std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);
-    GravarArquivo ga = GravarArquivo("./data/output/horarios.tex");
-    ga.salvar_saidas(*melhor_solucao);
+    GravarArquivo ga = GravarArquivo();
+    ga.salvar_saidas("data/output/", *melhor_solucao);
 
     return *melhor_solucao;
 }

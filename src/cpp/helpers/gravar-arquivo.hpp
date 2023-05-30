@@ -5,20 +5,16 @@ class GravarArquivo
 {
 
 private:
-    std::string m_output_path{"./data/output/"}; // salva os arquivos de saida por padrao na pasta data/output dentro deste repo
     std::string m_instancia{""};
     std::string m_param_janela{"1"};
     std::string m_param_sexto{"1"};
 
 public:
-    GravarArquivo(const std::string &path)
-    {
-        this->m_output_path = path;
-    }
+    GravarArquivo(){};
 
-    void salvar_analise(Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
+    void salvar_analise(const std::string &path, Solucao *t_solucao, int t_iteracao, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
     {
-        std::string file_w_path{m_output_path};
+        std::string file_w_path{path + "analise.csv"};
         std::ofstream arquivo(file_w_path, std::ios::app);
 
         if (!arquivo.is_open())
@@ -44,207 +40,26 @@ public:
                 << since(t_tempo_inicial_solucao).count() << "\n";
     }
 
-    void salvar_saidas(Solucao *t_solucao)
+    void salvar_saidas(const std::string &path, Solucao *t_solucao)
     {
-        salvar_solucao_prof(t_solucao);
-        salvar_solucao_turmas(t_solucao);
+        // salvar_solucao_turmas(path, t_solucao);
+        salvar_horario_professores(path, t_solucao);
     }
 
-    void salvar_solucao_prof(Solucao *t_solucao)
-    {
-        std::string file_w_path{m_output_path};
-        std::ofstream arquivo(file_w_path, std::ios::app);
+    /*
+    @brief Salva o horario de todos os professores da solução selecionada
+    ------ em formato de tabela LaTeX.
+    @param string path, Solucao* t_solucao
+    */
+    void salvar_horario_professores(const std::string &path, Solucao *t_solucao);
 
-        if (!arquivo.is_open())
-        {
-            std::cerr << "Erro ao abrir o arquivo " << file_w_path << std::endl;
-            return;
-        }
+    /*
+    @brief Salva o horario de todos as turmas da solução selecionada
+    ------ em formato de tabela LaTeX.
+    @param string path, Solucao* t_solucao
+    */
+    void salvar_solucao_turmas(const std::string &path, Solucao *t_solucao);
 
-        arquivo << "\\documentclass{article}" << std::endl;
-        arquivo << "\\usepackage[a4paper, landscape, margin=1in]{geometry}" << std::endl;
-        arquivo << "\\usepackage{tabularx}" << std::endl
-                << std::endl;
-
-        arquivo << "\\setlength{\\extrarowheight}{40pt}" << std::endl
-                << std::endl;
-        arquivo << "\\begin{document}" << std::endl;
-
-        auto profs = t_solucao->get_instancia()->get_lista_professores();
-
-        for (auto p : profs)
-        {
-            auto disciplinas_professor = p->get_disciplinas();
-
-            arquivo << "\\centering" << std::endl;
-            arquivo << "\\begin{tabularx}{\\textwidth} { | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X |}" << std::endl;
-            arquivo << "\\hline" << std::endl;
-            arquivo << "\\multicolumn{17}{|c|}{\\textbf{" << p->get_nome() << "}} \\\\" << std::endl;
-            arquivo << "\\cline{1-17}" << std::endl;
-            arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\textbf{07:30 - 08:20} & \\textbf{08:20 - 09:10} & \\textbf{09:20 - 10:10} & \\textbf{10:10 - 11:00} & \\textbf{11:00 - 11:50} & \\textbf{11:50 - 12:40} & \\textbf{13:30 - 14:20} & \\textbf{14:20 - 15:10} & \\textbf{15:20 - 16:10} & \\textbf{16:10 - 17:00} & \\textbf{17:00 - 17:50} & \\textbf{17:50 - 18:40} & \\textbf{18:50 - 19:40} & \\textbf{19:40 - 20:30} & \\textbf{20:40 - 21:30} & \\textbf{21:30 - 22:20} \\\\" << std::endl;
-            arquivo << "\\hline" << std::endl;
-
-            std::array<std::array<int, 16>, 6> f_dispo = p->get_disponibilidade();
-
-            for (int i = 0; i < f_dispo.size(); i++)
-            {
-                switch (i)
-                {
-                case 0:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{SEG}} & ";
-                    break;
-                case 1:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{TER}} & ";
-                    break;
-                case 2:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{QUA}} & ";
-                    break;
-                case 3:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{QUI}} & ";
-                    break;
-                case 4:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{SEX}} & ";
-                    break;
-                case 5:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{SAB}} & ";
-                    break;
-                default:
-                    break;
-                }
-                for (int j = 0; j < p->get_disponibilidade()[i].size(); j++)
-                {
-                    if (f_dispo[i][j] > 0)
-                    {
-                        for (auto disciplina : disciplinas_professor)
-                        {
-                            for (auto disciplina : disciplinas_professor)
-                            {
-                                if (disciplina->get_index() == f_dispo[i][j])
-                                {
-                                    auto turma = t_solucao->encontrar_turma_relacionada(disciplina);
-                                    arquivo << "\\parbox{4cm}{\\centering\\small " << disciplina->get_nome() << "}\\parbox{4cm}{\\centering\\small " << turma->get_nome() << "}";
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        arquivo << " ";
-                    }
-
-                    if (j < f_dispo[i].size() - 1)
-                    {
-                        arquivo << " & ";
-                    }
-                }
-                arquivo << " \\\\ \\hline" << std::endl;
-            }
-
-            arquivo << "\\end{tabularx}" << std::endl;
-            arquivo << "Instituto Federal de Educação, Ciência e Tecnologia Goiano - Campus Rio Verde, Rod. Sul Goiana, Km 01, Cx. P. 66, Rio Verde / Goiás" << std::endl;
-            arquivo << "\\newpage" << std::endl
-                    << std::endl;
-        }
-
-        arquivo << "\\end{document}" << std::endl;
-    };
-
-    void salvar_solucao_turmas(Solucao *t_solucao)
-    {
-        std::string file_w_path{m_output_path};
-        std::ofstream arquivo(file_w_path, std::ios::app);
-
-        if (!arquivo.is_open())
-        {
-            std::cerr << "Erro ao abrir o arquivo " << file_w_path << std::endl;
-            return;
-        }
-
-        arquivo << "\\documentclass{article}" << std::endl;
-        arquivo << "\\usepackage[a4paper, landscape, margin=1in]{geometry}" << std::endl;
-        arquivo << "\\usepackage{tabularx}" << std::endl
-                << std::endl;
-
-        arquivo << "\\setlength{\\extrarowheight}{40pt}" << std::endl
-                << std::endl;
-        arquivo << "\\begin{document}" << std::endl;
-
-        auto turmas = t_solucao->get_instancia()->get_lista_turmas();
-
-        for (auto turma : turmas)
-        {
-
-            auto disciplinas_turma = turma->get_disciplinas();
-
-            arquivo << "\\centering" << std::endl;
-            arquivo << "\\begin{tabularx}{\\textwidth} { | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X | > {\\centering\\arraybackslash} X |}" << std::endl;
-            arquivo << "\\hline" << std::endl;
-            arquivo << "\\multicolumn{17}{|c|}{\\textbf{" << turma->get_nome() << "}} \\\\" << std::endl;
-            arquivo << "\\cline{1-17}" << std::endl;
-            arquivo << "\\multicolumn{1}{|c|}{\\textbf{}} & \\textbf{07:30 - 08:20} & \\textbf{08:20 - 09:10} & \\textbf{09:20 - 10:10} & \\textbf{10:10 - 11:00} & \\textbf{11:00 - 11:50} & \\textbf{11:50 - 12:40} & \\textbf{13:30 - 14:20} & \\textbf{14:20 - 15:10} & \\textbf{15:20 - 16:10} & \\textbf{16:10 - 17:00} & \\textbf{17:00 - 17:50} & \\textbf{17:50 - 18:40} & \\textbf{18:50 - 19:40} & \\textbf{19:40 - 20:30} & \\textbf{20:40 - 21:30} & \\textbf{21:30 - 22:20} \\\\" << std::endl;
-            arquivo << "\\hline" << std::endl;
-
-            std::array<std::array<int, 16>, 6> f_dispo = turma->get_disponibilidade();
-
-            for (int i = 0; i < f_dispo.size(); i++)
-            {
-                switch (i)
-                {
-                case 0:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{SEG}} & ";
-                    break;
-                case 1:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{TER}} & ";
-                    break;
-                case 2:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{QUA}} & ";
-                    break;
-                case 3:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{QUI}} & ";
-                    break;
-                case 4:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{SEX}} & ";
-                    break;
-                case 5:
-                    arquivo << "\\multicolumn{1}{|c|}{\\textbf{SAB}} & ";
-                    break;
-                default:
-                    break;
-                }
-                for (int j = 0; j < turma->get_disponibilidade()[i].size(); j++)
-                {
-                    if (f_dispo[i][j] > 0)
-                    {
-                        for (auto disciplina : disciplinas_turma)
-                        {
-                            if (disciplina->get_index() == f_dispo[i][j])
-                            {
-                                auto professor = t_solucao->encontrar_prof_relacionado(disciplina);
-                                arquivo << "\\parbox{4cm}{\\centering\\small " << disciplina->get_nome() << "}\\parbox{4cm}{\\centering\\small " << professor->get_nome() << "}";
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        arquivo << " ";
-                    }
-
-                    if (j < f_dispo[i].size() - 1)
-                    {
-                        arquivo << " & ";
-                    }
-                }
-                arquivo << " \\\\ \\hline" << std::endl;
-            }
-
-            arquivo << "\\end{tabularx}" << std::endl;
-            arquivo << "Instituto Federal de Educação, Ciência e Tecnologia Goiano - Campus Rio Verde, Rod. Sul Goiana, Km 01, Cx. P. 66, Rio Verde / Goiás" << std::endl;
-            arquivo << "\\newpage" << std::endl
-                    << std::endl;
-        }
-
-        arquivo << "\\end{document}" << std::endl;
-    };
+    std::string obter_nome_dia_semana(int dia);
+    std::string obter_nome_horario(int dia);
 };
