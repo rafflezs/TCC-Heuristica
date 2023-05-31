@@ -29,11 +29,14 @@ void Heuristica::inicializar()
     auto melhor_solucao = get_melhor_solucao();
     if (melhor_solucao == nullptr)
     {
-        std::cout << "Nenhuma soluço encontrada" << std::endl;
+        std::cout << "Nenhuma soluço encontrada. Encerrando com erro 02" << std::endl;
     }
     else
     {
         std::cout << "A solução ID " << melhor_solucao->get_id_solucao() << " com o valor na função objetivo de " << melhor_solucao->get_valor_avaliacao() << " pontos." << std::endl;
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\nMAIS MELHOR SOLUCAO\n\n"
+                  << std::endl;
+        melhor_solucao->exibir_solucao();
     }
 }
 
@@ -291,74 +294,40 @@ void Heuristica::pos_processamento()
 
     for (int i = 0; i < m_solucoes.size(); i++)
     {
-        int iteracao_solucao = 1;
+        int iteracao_solucao = 1; // Valor usado apenas para gravar a Iteracao da Solucao atual no salvar_analise()
         int count = 0; // Valor de escape da heuristica
 
-        // Obter as turmas da instancia e ordenar por curso
-        auto turmas = m_solucoes[i]->get_instancia()->get_lista_turmas();
-        std::sort(turmas.begin(), turmas.end(), [](Turma *turma1, Turma *turma2)
-                  { return turma1->get_curso() < turma2->get_curso(); });
-
-        // Obter maximo de turmas por curso
-        int max_turmas_por_curso = 0;
-        for (Curso *curso : m_solucoes[i]->get_instancia()->get_lista_cursos())
+        for (auto curso : m_solucoes[i]->get_instancia()->get_lista_cursos())
         {
-            auto turmas_size = curso->get_turmas_index().size();
-            if (turmas_size > max_turmas_por_curso)
+            for (int qtd_turmas = 1; qtd_turmas <= curso->get_turmas().size(); qtd_turmas++)
             {
-                max_turmas_por_curso = turmas_size;
+                
             }
         }
 
-        while (count < m_solucoes[i]->get_instancia()->get_lista_turmas().size())
-        {
-            auto nova_solucao = new Solucao(*m_solucoes[i]); // Deep copy de Solucao[i]
-
-            int n = iteracao_solucao % max_turmas_por_curso;
-            if (n == 0)
-            {
-                n = max_turmas_por_curso;
-            }
-
-            std::vector<Turma *> turmas_selecionadas;
-            for (Turma *turma : turmas)
-            {
-                if (turma->get_curso()->get_turmas_index().size() >= n)
-                {
-                    turmas_selecionadas.push_back(turma);
-                    if (turmas_selecionadas.size() == n)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            std::cout << "Entrando na busca local com " << turmas_selecionadas.size() << " turmas, sendo elas:" << std::endl;
-            for (auto turma : turmas_selecionadas)
-            {
-                std::cout << turma->get_nome() << ", ";
-            }
-            std::cout << std::endl;
-            busca_local(turmas_selecionadas, nova_solucao);
-            ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
-
-            if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
-            {
-                std::cout << "Antiga solucao: " << m_solucoes[i]->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
-                delete m_solucoes[i]; // Delete the previous solution
-                m_solucoes[i] = nova_solucao;
-                count = 0;
-            }
-            else
-            {
-                delete nova_solucao; // Delete the new solution
-            }
-            iteracao_solucao++;
-            count++;
-        }
     }
 }
 
+            // for (int rept = 0; rept < 5; rept++)
+            // {
+            //     iteracao_solucao++;
+            //     busca_local(turmas_selecionadas, nova_solucao);
+            //     ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
+
+            //     if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
+            //     {
+            //         std::cout << "Antiga solucao: " << m_solucoes[i]->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
+            //         delete m_solucoes[i]; // Delete the previous solution
+            //         m_solucoes[i] = nova_solucao;
+            //         count = 0;
+            //         break;
+            //     }
+            // }
+            // if (count)
+            // {
+            //     delete nova_solucao; // Delete the new solution
+            // }
+            // count++;
 // Alterar tipo da funcao e parametros
 void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
 {
@@ -387,7 +356,7 @@ Solucao *Heuristica::get_melhor_solucao()
 
     auto compareSolucao = [](Solucao *solucao1, Solucao *solucao2)
     {
-        return solucao1->get_valor_avaliacao() > solucao2->get_valor_avaliacao();
+        return solucao1->get_valor_avaliacao() < solucao2->get_valor_avaliacao();
     };
 
     auto melhor_solucao = std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);

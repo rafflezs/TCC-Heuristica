@@ -17,6 +17,23 @@ int main(int argc, char **argv)
     // auto sol2 = new Solucao(*sol1);
     // debuga_tudo_nessa_desgraca(sol2);
 
+    // //!!!!!!!
+    // !!!!!!!!!!!!!
+    // !!!!!!!!
+    // ERRO PROPOSITAL:
+    // A BUSCA_LOCAL NAO ESTA FUNCIONANDO CORRETAMENTE COMO COMBINADO COM O BELO
+    // POR EXEMPLO, ESTA SELECIONANDO 11 TURMAS DE UMA VEZ, SEM QUALQUER RELACAO DE Curso
+    // O CORRETO SERIA
+    // TESTA de 1 em 1, LINEARMENTE
+    // DEPOIS 2 em 2, LINEARMENTE, SEMPRE DO MESMO CURSO
+    // O COUNT DEVERIA SER O PARAMETRO DE PARADA PARA INCREMENTAR A QUANTIDADE DE TURMAS
+    // OU SEJA, 1 em 1 TURMA, COUNT EXCEDEU A PARADA, PASSA PRA 2, DENTRO DA MESMA SOLUCAO
+    // ALEM DISSO, NAO ESTA TENDO SHUFFLE DE DISCIPLINAS NA BUSCA_LOCAL
+    // APAGAR O MAX_TURMAS_POR_CURSO
+
+    // TESTAR 1 TURMA SEMPRE, DEPOIS 2 TURMAS SEMPRE, DEPOIS 3 TURMAS SEMPRE ...
+    // IMPLEMENTAR REPETIR A BUSCA LOCAL PRA MESMA TURMA MAIS DE UMA VEZ
+
     std::cout << "Fim da execução. O programa completou com sucesso.\nTempo gasto total: " << since(tempo_inicial).count() << " microsegundos" << std::endl;
 
     return 0;
