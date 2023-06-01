@@ -1,10 +1,11 @@
 #include "heuristica.hpp"
 
-Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::_V2::steady_clock::time_point *t_tempo_inicial)
+Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::_V2::steady_clock::time_point *t_tempo_inicial)
 {
     this->m_rng = t_rng;
     this->m_instancia_nome = t_instancia_nome;
     this->m_tamanho_populacao = t_tam_pop;
+    this->m_qtd_turmas_heuristica = qtd_turmas_heuristica;
     this->m_peso_janela = t_peso_janela;
     this->m_peso_sexto = t_peso_sexto;
     this->m_tempo_inicial = t_tempo_inicial;
@@ -288,8 +289,8 @@ std::vector<Solucao *> Heuristica::get_lista_solucoes()
     return this->m_solucoes;
 }
 
-void Heuristica::pos_processamento()
-{
+void Heuristica::pos_processamento() // Adicionar parametro qtd_turmas a ser passado no bash para
+{                                    // facilmente controlar a quantidade de turmas na busca da heuristica
     GravarArquivo ga = GravarArquivo();
 
     for (int i = 0; i < m_solucoes.size(); i++)
@@ -299,16 +300,18 @@ void Heuristica::pos_processamento()
 
         for (auto curso : m_solucoes[i]->get_instancia()->get_lista_cursos())
         {
-            for (int qtd_turmas = 1; qtd_turmas <= curso->get_turmas().size(); qtd_turmas++)
+            auto turmas = curso->get_turmas(); // ! Alterar para cursos abrigarem ponteiro de Turmas*
+            for (int qtd_turmas = 1; qtd_turmas <= m_qtd_turmas_heuristica; qtd_turmas++)
             {
-                
+                // Selecionar qtd turmas a serem enviadas para busca local, qtd_turmas em qtd_turmas
+                // Caso qtd_turmas == 0, enviar uma turma do curso, depois duas, depois tres, circulando a lista (ex, turma 1, turma 2, turmas 3, turma 4, turma 1 ..., mas circular apenas em caso de melhoria)
+                // Caso qtd_turmas > 0, enviar aquela qtd_turmas, respeitando sempre o maximo de turmas no curso (ex: curso com 4 turmas, qtd == 6, enviar apenas 4)
             }
         }
-
     }
 }
 
-            // for (int rept = 0; rept < 5; rept++)
+            // for (int rept = 0; rept < 5; rept++) // implementar rept como parametro da Heuristica para facilmente alterar depois
             // {
             //     iteracao_solucao++;
             //     busca_local(turmas_selecionadas, nova_solucao);
