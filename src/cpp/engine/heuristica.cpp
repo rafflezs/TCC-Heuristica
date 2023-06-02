@@ -289,48 +289,58 @@ std::vector<Solucao *> Heuristica::get_lista_solucoes()
     return this->m_solucoes;
 }
 
-void Heuristica::pos_processamento() // Adicionar parametro qtd_turmas a ser passado no bash para
-{                                    // facilmente controlar a quantidade de turmas na busca da heuristica
+void Heuristica::pos_processamento(/*int rept, int max_turmas_heuristica*/)
+{
     GravarArquivo ga = GravarArquivo();
 
     for (int i = 0; i < m_solucoes.size(); i++)
     {
-        int iteracao_solucao = 1; // Valor usado apenas para gravar a Iteracao da Solucao atual no salvar_analise()
-        int count = 0; // Valor de escape da heuristica
+        int iteracao_solucao = 1;
+        int count = 0;
 
-        for (auto curso : m_solucoes[i]->get_instancia()->get_lista_cursos())
+        auto nova_solucao = new Solucao(*m_solucoes[i]);
+
+        for (auto curso : nova_solucao->get_instancia()->get_lista_cursos())
         {
-            auto turmas = curso->get_turmas(); // ! Alterar para cursos abrigarem ponteiro de Turmas*
+            auto turmas = nova_solucao->encontrar_turmas_relacionadas(curso);
+
             for (int qtd_turmas = 1; qtd_turmas <= m_qtd_turmas_heuristica; qtd_turmas++)
             {
-                // Selecionar qtd turmas a serem enviadas para busca local, qtd_turmas em qtd_turmas
-                // Caso qtd_turmas == 0, enviar uma turma do curso, depois duas, depois tres, circulando a lista (ex, turma 1, turma 2, turmas 3, turma 4, turma 1 ..., mas circular apenas em caso de melhoria)
-                // Caso qtd_turmas > 0, enviar aquela qtd_turmas, respeitando sempre o maximo de turmas no curso (ex: curso com 4 turmas, qtd == 6, enviar apenas 4)
+                int turma_total = turmas.size();
+                std::vector<Turma *> turmas_selecionadas;
+
+                for (int j = 0; j < qtd_turmas; j++)
+                {
+                    int index = (count + j) % turma_total;
+                    turmas_selecionadas.push_back(turmas[index]);
+                }
+
+                // !! TESTAR ESSA PORRA
+                for (int rept = 0; rept < 5; rept++) // implementar rept como parametro da Heuristica para facilmente alterar depois
+                {
+                    iteracao_solucao++;
+                    busca_local(turmas_selecionadas, nova_solucao);
+                    ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
+
+                    if (nova_solucao->get_valor_avaliacao() < nova_solucao->get_valor_avaliacao())
+                    {
+                        std::cout << "Antiga solucao: " << nova_solucao->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
+                        delete m_solucoes[i];
+                        m_solucoes[i] = nova_solucao;
+                        count = 0;
+                        break;
+                    }
+                }
+                if (count)
+                {
+                    delete nova_solucao;
+                    count++;
+                }
             }
         }
     }
 }
 
-            // for (int rept = 0; rept < 5; rept++) // implementar rept como parametro da Heuristica para facilmente alterar depois
-            // {
-            //     iteracao_solucao++;
-            //     busca_local(turmas_selecionadas, nova_solucao);
-            //     ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
-
-            //     if (nova_solucao->get_valor_avaliacao() < m_solucoes[i]->get_valor_avaliacao())
-            //     {
-            //         std::cout << "Antiga solucao: " << m_solucoes[i]->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
-            //         delete m_solucoes[i]; // Delete the previous solution
-            //         m_solucoes[i] = nova_solucao;
-            //         count = 0;
-            //         break;
-            //     }
-            // }
-            // if (count)
-            // {
-            //     delete nova_solucao; // Delete the new solution
-            // }
-            // count++;
 // Alterar tipo da funcao e parametros
 void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
 {

@@ -176,6 +176,28 @@ Turma *Solucao::encontrar_turma_relacionada(Disciplina *t_disciplina)
     return (new Turma{});
 }
 
+std::vector<Turma *> Solucao::encontrar_turmas_relacionadas(Curso *curso)
+{
+
+    std::vector<Turma *> turmas_relacionadas{};
+
+    auto turmas_str_id = curso->get_turmas();
+
+    for (auto turma_id : turmas_str_id)
+    {
+        for (auto turma : get_instancia()->get_lista_turmas())
+        {
+            if (turma_id == turma->get_id())
+            {
+                turmas_relacionadas.push_back(turma);
+                break;
+            }
+        }
+    }
+
+    return turmas_relacionadas;
+}
+
 void Solucao::exibir_solucao()
 {
     for (auto it : m_instancia->get_lista_professores())
