@@ -1,14 +1,14 @@
 #include "heuristica.hpp"
 
-Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::_V2::steady_clock::time_point *t_tempo_inicial)
+Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const int qtd_rept_busca_local, const float &t_peso_janela, const float &t_peso_sexto)
 {
     this->m_rng = t_rng;
     this->m_instancia_nome = t_instancia_nome;
     this->m_tamanho_populacao = t_tam_pop;
     this->m_qtd_turmas_heuristica = qtd_turmas_heuristica;
+    this->m_qtd_rept_busca_local = qtd_rept_busca_local;
     this->m_peso_janela = t_peso_janela;
     this->m_peso_sexto = t_peso_sexto;
-    this->m_tempo_inicial = t_tempo_inicial;
 
     for (int i = 0; i < m_tamanho_populacao; i++)
     {
@@ -16,8 +16,9 @@ Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_i
     }
 }
 
-void Heuristica::inicializar()
+void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo_inicial)
 {
+    this->m_tempo_inicial = m_tempo_inicial;
     // Heuristica inicial para preencher solucoes vazias
     heuristica_construtiva(0);
     exibir_solucoes();
@@ -34,7 +35,7 @@ void Heuristica::inicializar()
     }
     else
     {
-        std::cout << "A solução ID " << melhor_solucao->get_id_solucao() << " com o valor na função objetivo de " << melhor_solucao->get_valor_avaliacao() << " pontos." << std::endl;
+        std::cout << "A solução ID " << melhor_solucao->get_id_solucao() << " com o valor na função objetivo de " << melhor_solucao->get_valor_solucao() << " pontos." << std::endl;
         std::cout << "\n\n\n\n\n\n\n\n\n\n\nMAIS MELHOR SOLUCAO\n\n"
                   << std::endl;
         melhor_solucao->exibir_solucao();
@@ -92,7 +93,7 @@ void Heuristica::heuristica_construtiva(int t_iteracao)
         avaliar_solucao(it, deu_certo);
 
         // Salvando parametros da solucao em csv para futura analise
-        ga.salvar_analise("data/output/", it, t_iteracao, rand_switch, *m_tempo_inicial);
+        ga.salvar_analise("data/output/", it, t_iteracao, 0, "CONSTRUTIVA", rand_switch, *m_tempo_inicial);
     }
 
     ordenar_solucoes();
@@ -102,7 +103,7 @@ void Heuristica::exibir_solucoes()
 {
     for (auto solucao : m_solucoes)
     {
-        std::cout << "Solucao " << solucao->get_id_solucao() << " | Avaliada em: " << solucao->get_valor_avaliacao() << std::endl;
+        std::cout << "Solucao " << solucao->get_id_solucao() << " | Avaliada em: " << solucao->get_valor_solucao() << std::endl;
         solucao->exibir_solucao();
     }
     std::cout << "Solucoes Exibidas: void return (no problems found)" << std::endl;
@@ -123,25 +124,27 @@ void Heuristica::debug_heuristica()
 void Heuristica::ordenar_solucoes()
 {
     std::sort(m_solucoes.begin(), m_solucoes.end(), [](Solucao *s1, Solucao *s2)
-              { return s1->get_valor_avaliacao() < s2->get_valor_avaliacao(); });
+              { return s1->get_valor_solucao() < s2->get_valor_solucao(); });
 }
 
 void Heuristica::avaliar_solucao(Solucao *t_solucao, bool t_factibilidade)
 {
-    float sexto_horario = calcular_sexto_horario_turma(t_solucao);
-    float janela_prof = calcular_janela_professor(t_solucao);
+    int sexto_horario = calcular_sexto_horario_turma(t_solucao);
+    int janela_prof = calcular_janela_professor(t_solucao);
 
-    t_solucao->set_sexto_horario(sexto_horario);
-    t_solucao->set_janela(janela_prof);
+    t_solucao->set_qtd_sexto_horario(sexto_horario);
+    t_solucao->set_qtd_janela(janela_prof);
+    t_solucao->set_peso_sexto(m_peso_sexto);
+    t_solucao->set_peso_janela(m_peso_janela);
     t_solucao->set_factivel(t_factibilidade);
     if (t_factibilidade == true)
     {
-        t_solucao->set_valor_avaliacao((m_peso_sexto * sexto_horario) + (m_peso_janela * janela_prof));
+        t_solucao->set_valor_solucao((m_peso_sexto * sexto_horario) + (m_peso_janela * janela_prof));
     }
     else
     {
         // t_solucao->set_valor_avaliacao(std::numeric_limits<float>::max());
-        t_solucao->set_valor_avaliacao(999999999999);
+        t_solucao->set_valor_solucao(999999);
     }
 }
 
@@ -289,14 +292,14 @@ std::vector<Solucao *> Heuristica::get_lista_solucoes()
     return this->m_solucoes;
 }
 
-void Heuristica::pos_processamento(/*int rept, int max_turmas_heuristica*/)
+void Heuristica::pos_processamento()
 {
     GravarArquivo ga = GravarArquivo();
 
-    for (int i = 0; i < m_solucoes.size(); i++)
+    for (int i = 0; i < m_solucoes.size(); i++) // Iterar pela populacao de solucoes
     {
-        int iteracao_solucao = 1;
-        int count = 0;
+        int iteracao_solucao = 1; // Identificador da evolucao da solucao ao longo das iteracoes
+        int count = 0;            // Valor de escape da heuristica
 
         auto nova_solucao = new Solucao(*m_solucoes[i]);
 
@@ -304,7 +307,12 @@ void Heuristica::pos_processamento(/*int rept, int max_turmas_heuristica*/)
         {
             auto turmas = nova_solucao->encontrar_turmas_relacionadas(curso);
 
-            for (int qtd_turmas = 1; qtd_turmas <= m_qtd_turmas_heuristica; qtd_turmas++)
+            int qtd_turmas = m_qtd_turmas_heuristica;
+            if (qtd_turmas == 0)
+            {
+                qtd_turmas = 1;
+            }
+            for (; qtd_turmas <= m_qtd_turmas_heuristica; qtd_turmas++)
             {
                 int turma_total = turmas.size();
                 std::vector<Turma *> turmas_selecionadas;
@@ -316,15 +324,15 @@ void Heuristica::pos_processamento(/*int rept, int max_turmas_heuristica*/)
                 }
 
                 // !! TESTAR ESSA PORRA
-                for (int rept = 0; rept < 5; rept++) // implementar rept como parametro da Heuristica para facilmente alterar depois
+                for (int rept = 0; rept < m_qtd_rept_busca_local; rept++) // implementar rept como parametro da Heuristica para facilmente alterar depois
                 {
                     iteracao_solucao++;
                     busca_local(turmas_selecionadas, nova_solucao);
-                    ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, 4, *m_tempo_inicial);
+                    ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, curso->get_nome(), 4, *m_tempo_inicial);
 
-                    if (nova_solucao->get_valor_avaliacao() < nova_solucao->get_valor_avaliacao())
+                    if (nova_solucao->get_valor_solucao() < nova_solucao->get_valor_solucao())
                     {
-                        std::cout << "Antiga solucao: " << nova_solucao->get_valor_avaliacao() << " substituida pela nova solucao: " << nova_solucao->get_valor_avaliacao() << std::endl;
+                        std::cout << "Antiga solucao: " << nova_solucao->get_valor_solucao() << " substituida pela nova solucao: " << nova_solucao->get_valor_solucao() << std::endl;
                         delete m_solucoes[i];
                         m_solucoes[i] = nova_solucao;
                         count = 0;
@@ -338,6 +346,11 @@ void Heuristica::pos_processamento(/*int rept, int max_turmas_heuristica*/)
                 }
             }
         }
+    }
+
+    for (auto sol_final : m_solucoes)
+    {
+        ga.salvar_analise("data/output/", sol_final, 0, 0, "FINAL", 0, *m_tempo_inicial);
     }
 }
 
@@ -369,7 +382,7 @@ Solucao *Heuristica::get_melhor_solucao()
 
     auto compareSolucao = [](Solucao *solucao1, Solucao *solucao2)
     {
-        return solucao1->get_valor_avaliacao() < solucao2->get_valor_avaliacao();
+        return solucao1->get_valor_solucao() < solucao2->get_valor_solucao();
     };
 
     auto melhor_solucao = std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);

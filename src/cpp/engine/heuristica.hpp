@@ -16,6 +16,7 @@ private:
     std::string m_instancia_nome{"NULL"};
     int m_tamanho_populacao{0};
     int m_qtd_turmas_heuristica{1};
+    int m_qtd_rept_busca_local{1};
     float m_peso_janela{0};
     float m_peso_sexto{0};
     std::chrono::_V2::steady_clock::time_point *m_tempo_inicial;
@@ -38,14 +39,13 @@ private:
 
     void busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao);
 
-
     Solucao *get_melhor_solucao();
 
 public:
-    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const float &t_peso_janela, const int &t_peso_sexto, std::chrono::_V2::steady_clock::time_point *t_tempo_inicial);
+    Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const int qtd_rept_busca_local, const float &t_peso_janela, const float &t_peso_sexto);
     Solucao *get_solucao(int index);
     std::vector<Solucao *> get_lista_solucoes();
-    void inicializar();
+    void inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo_inicial);
 };
 
 #endif //!_HEURISTICA_HPP

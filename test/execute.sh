@@ -10,7 +10,14 @@ fi
 
 rm -f data/output/*
 
-time ./test/exe "TCC-Instancia-2019-1" 5 1 1 >> data/output/debug-out.txt
+NOME_INSTANCA = "TCC-Instancia-2019-1"
+TAM_POPULACAO = 5
+QTD_TURMAS_HEURISTICA = 0 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
+QTD_REPT_HEURISTICA = 1   # 1 para linear, 2+ para rept
+PESO_JANELA = 1
+PESO_SEXTO = 1
+
+time ./test/exe $NOME_INSTANCA $TAM_POPULACAO $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO >> data/output/debug-out.txt
 
 rm -f test/exe
 

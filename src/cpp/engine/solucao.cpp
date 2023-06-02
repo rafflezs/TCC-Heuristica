@@ -255,34 +255,52 @@ void Solucao::set_factivel(bool const &t_factivel)
     this->m_factivel = t_factivel;
 }
 
-float Solucao::get_valor_avaliacao()
+float Solucao::get_valor_solucao()
 {
-    return this->m_valor_avaliado;
+    return this->m_valor_solucao;
 }
 
-void Solucao::set_valor_avaliacao(float const &t_valor_avaliacao)
+void Solucao::set_valor_solucao(float const &t_valor_avaliacao)
 {
-    this->m_valor_avaliado = t_valor_avaliacao;
+    this->m_valor_solucao = t_valor_avaliacao;
 }
 
-float Solucao::get_janela()
+float Solucao::get_peso_janela()
 {
-    return this->m_valor_janelas;
+    return this->m_peso_janelas;
 }
 
-void Solucao::set_janela(float const &t_janela)
+void Solucao::set_peso_janela(float const &t_janela)
 {
-    this->m_valor_janelas = t_janela;
+    this->m_peso_janelas = t_janela;
 }
 
-float Solucao::get_sexto_horario()
+int Solucao::get_qtd_janela()
 {
-    return this->m_valor_sextos_horarios;
+    return this->m_qtd_janelas;
+}
+void Solucao::set_qtd_janela(int const &t_janela)
+{
+    this->m_qtd_janelas = t_janela;
 }
 
-void Solucao::set_sexto_horario(float const &t_sexto_horario)
+int Solucao::get_qtd_sexto_horario()
 {
-    this->m_valor_sextos_horarios = t_sexto_horario;
+    return this->m_qtd_sexto;
+}
+void Solucao::set_qtd_sexto_horario(int const &t_sexto_horario)
+{
+    this->m_qtd_sexto = t_sexto_horario;
+}
+
+float Solucao::get_peso_sexto()
+{
+    return this->m_peso_sexto;
+}
+
+void Solucao::set_peso_sexto(float const &t_sexto_horario)
+{
+    this->m_peso_sexto = t_sexto_horario;
 }
 
 void Solucao::set_id_solucao(const int &t_id)
@@ -354,8 +372,10 @@ Solucao::Solucao(Solucao &other)
     m_instancia = other.get_instancia();
     m_id = other.get_id_solucao();
     m_factivel = other.get_factivel();
-    m_valor_avaliado = other.get_valor_avaliacao();
-    m_valor_janelas = other.get_janela();
-    m_valor_sextos_horarios = other.get_sexto_horario();
+    m_valor_solucao = other.get_valor_solucao();
+    m_peso_janelas = other.get_peso_janela();
+    m_peso_sexto = other.get_peso_sexto();
+    m_qtd_janelas = other.get_qtd_janela();
+    m_qtd_sexto = other.get_qtd_sexto_horario();
     m_instancia_nome = other.get_instancia_nome();
 }

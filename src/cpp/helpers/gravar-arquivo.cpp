@@ -1,5 +1,43 @@
 #include "gravar-arquivo.hpp"
 
+void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, int t_iteracao, int qtd_turmas_heuristica, std::string curso, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
+{
+    std::string file_w_path{path + "analise.csv"};
+    std::ofstream arquivo(file_w_path, std::ios::app);
+
+    if (!arquivo.is_open())
+    {
+        std::cerr << "Erro ao abrir o arquivo " << file_w_path << std::endl;
+        return;
+    }
+
+    arquivo.seekp(0, std::ios::end);
+    if (arquivo.tellp() == 0)
+    {
+        arquivo << "SOL_ID;PESO_SEXTO;PESO_JANELA;QTD_JANELAS;SEXTOS_HORARIOS;VALOR_JANELA;VALOR_SEXTO;ITERACAO;QTD_TURMAS_HEURISTICA;CURSO;DISC_ORDER_SWITCH;TEMPO_SOLUCAO;VALOR_SOLUCAO\n";
+    }
+
+    arquivo << t_solucao->get_id_solucao() << ";"
+            << t_solucao->get_peso_janela() << ";"
+            << t_solucao->get_peso_sexto() << ";"
+            << t_solucao->get_qtd_janela() << ";"
+            << t_solucao->get_qtd_sexto_horario() << ";"
+            << (t_solucao->get_qtd_janela() * t_solucao->get_peso_janela()) << ";"
+            << (t_solucao->get_qtd_sexto_horario() * t_solucao->get_peso_sexto()) << ";"
+            << t_iteracao << ";"
+            << qtd_turmas_heuristica << ";"
+            << curso << ";"
+            << t_case_construtiva << ";"
+            << since(t_tempo_inicial_solucao).count() << ";"
+            << t_solucao->get_valor_solucao() << "\n";
+}
+
+void GravarArquivo::salvar_saidas(const std::string &path, Solucao *t_solucao)
+{
+    // salvar_solucao_turmas(path, t_solucao);
+    salvar_horario_professores(path, t_solucao);
+}
+
 void GravarArquivo::salvar_horario_professores(const std::string &path, Solucao *t_solucao)
 {
     std::ofstream arquivo(path + "professor.tex");
