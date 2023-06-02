@@ -1,7 +1,6 @@
 #ifndef _HEURISTICA_HPP
 #define _HEURISTICA_HPP
 
-#include "solucao.hpp"
 #include "../helpers/gravar-arquivo.hpp"
 #include <set>
 #include <ctime>

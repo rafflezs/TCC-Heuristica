@@ -21,11 +21,11 @@ void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo
     this->m_tempo_inicial = m_tempo_inicial;
     // Heuristica inicial para preencher solucoes vazias
     heuristica_construtiva(0);
-    exibir_solucoes();
+    // exibir_solucoes();
 
     // Heuristica: fix-and-optimize
     pos_processamento();
-    exibir_solucoes();
+    // exibir_solucoes();
 
     // salvando solucao em arquivo .tex
     auto melhor_solucao = get_melhor_solucao();
@@ -301,52 +301,89 @@ void Heuristica::pos_processamento()
         int iteracao_solucao = 1; // Identificador da evolucao da solucao ao longo das iteracoes
         int count = 0;            // Valor de escape da heuristica
 
-        auto nova_solucao = new Solucao(*m_solucoes[i]);
+        int curso_index = 0;
 
-        for (auto curso : nova_solucao->get_instancia()->get_lista_cursos())
+        while (curso_index < m_solucoes[i]->get_instancia()->get_lista_cursos().size())
         {
-            auto turmas = nova_solucao->encontrar_turmas_relacionadas(curso);
+            std::cout << "-------------------" << std::endl;
+            std::cout << "Curso index: " << curso_index << std::endl;
+            std::cout << "Count: " << count << std::endl;
 
+            auto nova_solucao = new Solucao(*m_solucoes[i]);
+            auto turmas = nova_solucao->encontrar_turmas_relacionadas(nova_solucao->get_instancia()->get_lista_cursos()[curso_index]);
+
+            std::cout << "No curso " << nova_solucao->get_instancia()->get_lista_cursos()[curso_index]->get_nome() << " tem " << turmas.size() << " turmas" << std::endl;
+
+            //* define a qtd de turmas que serao enviadas na busca_local() dinamicamente
             int qtd_turmas = m_qtd_turmas_heuristica;
-            if (qtd_turmas == 0)
+            if (m_qtd_turmas_heuristica == 0)
             {
                 qtd_turmas = 1;
+                m_qtd_turmas_heuristica = turmas.size();
             }
-            for (; qtd_turmas <= m_qtd_turmas_heuristica; qtd_turmas++)
-            {
-                int turma_total = turmas.size();
-                std::vector<Turma *> turmas_selecionadas;
 
+            std::cout << "QTD_TURMAS " << qtd_turmas << " e M_QTD_TURMAS " << m_qtd_turmas_heuristica << std::endl;
+
+            // * Garante que TODAS as turmas do curso passem pela busca_local() ao menos UMA VEZ.
+            for (int index_atual_lista = 0; index_atual_lista < turmas.size(); index_atual_lista++)
+            {
+                std::vector<Turma *> turmas_selecionadas;
+                int index = index_atual_lista;
+
+                std::cout << "Index: " << index << " e index_atual_lista" << index_atual_lista << std::endl;
+
+                /* ==SELECAO DE TURMAS EM LISTA CIRCULAR==
+                 * @param seleciona quais turmas serao enviadas a busca_local() baseado no index do vetor
+                 */
                 for (int j = 0; j < qtd_turmas; j++)
                 {
-                    int index = (count + j) % turma_total;
                     turmas_selecionadas.push_back(turmas[index]);
+                    index = (index + 1) % turmas.size();
                 }
 
-                // !! TESTAR ESSA PORRA
-                for (int rept = 0; rept < m_qtd_rept_busca_local; rept++) // implementar rept como parametro da Heuristica para facilmente alterar depois
-                {
-                    iteracao_solucao++;
-                    busca_local(turmas_selecionadas, nova_solucao);
-                    ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, curso->get_nome(), 4, *m_tempo_inicial);
+                std::cout << "Index: " << index << std::endl;
 
-                    if (nova_solucao->get_valor_solucao() < nova_solucao->get_valor_solucao())
+                bool melhoria = true;
+
+                while (melhoria && count < turmas.size())
+                {
+                    melhoria = false;
+
+                    for (int repeticoes_heuristica = 0; repeticoes_heuristica < m_qtd_rept_busca_local; repeticoes_heuristica++)
                     {
-                        std::cout << "Antiga solucao: " << nova_solucao->get_valor_solucao() << " substituida pela nova solucao: " << nova_solucao->get_valor_solucao() << std::endl;
-                        delete m_solucoes[i];
-                        m_solucoes[i] = nova_solucao;
-                        count = 0;
-                        break;
+                        iteracao_solucao++;
+                        busca_local(turmas_selecionadas, nova_solucao);
+                        // ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, curso->get_nome(), 4, *m_tempo_inicial); // ? checar TODA as iteracoes
+
+                        if (nova_solucao->get_valor_solucao() < nova_solucao->get_valor_solucao())
+                        {
+                            ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, nova_solucao->get_instancia()->get_lista_cursos()[curso_index]->get_nome(), 4, *m_tempo_inicial); // ? checar APENAS evolucao de melhoria
+                            delete m_solucoes[i];
+                            m_solucoes[i] = new Solucao(*nova_solucao);
+                            delete nova_solucao;
+                            melhoria = true;
+                            count = 0;
+                            break;
+                        }
+                    }
+
+                    if (!melhoria)
+                    {
+                        std::cout << "Sem melhoria, incrementado COUNT" << std::endl;
+                        count++;
                     }
                 }
-                if (count)
+
+                if (count >= turmas.size() && qtd_turmas == turmas.size())
                 {
-                    delete nova_solucao;
-                    count++;
+                    std::cout << "Incrementando curso" << std::endl;
+                    curso_index++;
                 }
             }
         }
     }
+
+    std::cout << "Encerrando pos_processamento()" << std::endl;
 
     for (auto sol_final : m_solucoes)
     {

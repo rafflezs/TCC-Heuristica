@@ -1,5 +1,9 @@
 #include "gravar-arquivo.hpp"
 
+GravarArquivo::GravarArquivo()
+{
+}
+
 void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, int t_iteracao, int qtd_turmas_heuristica, std::string curso, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
 {
     std::string file_w_path{path + "analise.csv"};
