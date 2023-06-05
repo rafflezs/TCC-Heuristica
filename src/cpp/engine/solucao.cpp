@@ -329,8 +329,10 @@ void Solucao::set_rng(std::default_random_engine t_rng)
 
 void Solucao::destruir_horario(std::vector<Turma *> t_turmas)
 {
+    std::cout << "Destruindo horario das turmas" << std::endl;
     for (auto turma : t_turmas)
     {
+        std::cout << "Turma: " << turma->get_nome() << std::endl;
         auto disponibilidade = turma->get_disponibilidade();
         for (int dia = 0; dia < disponibilidade.size(); dia++)
         {
@@ -348,9 +350,14 @@ void Solucao::destruir_horario(std::vector<Turma *> t_turmas)
 
 void Solucao::destruir_horario(std::vector<Disciplina *> t_disciplinas)
 {
+    std::cout << "Destruindo horario dos professores" << std::endl;
     for (auto disciplina : t_disciplinas)
     {
+        std::cout << "Disciplina " << disciplina->get_nome() << " do professor ";
+
         auto professor = encontrar_prof_relacionado(disciplina);
+        std::cout << professor->get_nome() << std::endl;
+
         auto disponibilidade = professor->get_disponibilidade();
         for (int dia = 0; dia < disponibilidade.size(); dia++)
         {

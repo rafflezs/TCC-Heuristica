@@ -10,6 +10,7 @@
 #include <cstring>
 #include <iomanip>
 #include <algorithm>
+#include <map>
 
 #define NC "\e[0m"
 #define RED "\e[0;31m"

@@ -296,20 +296,22 @@ void Heuristica::pos_processamento()
 {
     GravarArquivo ga = GravarArquivo();
 
-    for (int i = 0; i < m_solucoes.size(); i++) // Iterar pela populacao de solucoes
+    std::map<int, Solucao *> melhorSolucoes; // Map to store Solucao copies with better results
+
+    for (int index_solucao = 0; index_solucao < m_solucoes.size(); index_solucao++) // Iterar pela populacao de solucoes
     {
         int iteracao_solucao = 1; // Identificador da evolucao da solucao ao longo das iteracoes
         int count = 0;            // Valor de escape da heuristica
 
         int curso_index = 0;
 
-        while (curso_index < m_solucoes[i]->get_instancia()->get_lista_cursos().size())
+        while (curso_index < m_solucoes[index_solucao]->get_instancia()->get_lista_cursos().size())
         {
             std::cout << "-------------------" << std::endl;
             std::cout << "Curso index: " << curso_index << std::endl;
             std::cout << "Count: " << count << std::endl;
 
-            auto nova_solucao = new Solucao(*m_solucoes[i]);
+            auto nova_solucao = new Solucao(*m_solucoes[index_solucao]);
             auto turmas = nova_solucao->encontrar_turmas_relacionadas(nova_solucao->get_instancia()->get_lista_cursos()[curso_index]);
 
             std::cout << "No curso " << nova_solucao->get_instancia()->get_lista_cursos()[curso_index]->get_nome() << " tem " << turmas.size() << " turmas" << std::endl;
@@ -352,21 +354,22 @@ void Heuristica::pos_processamento()
                     for (int repeticoes_heuristica = 0; repeticoes_heuristica < m_qtd_rept_busca_local; repeticoes_heuristica++)
                     {
                         iteracao_solucao++;
+                        std::cout << "Pré heuristica" << std::endl;
                         busca_local(turmas_selecionadas, nova_solucao);
+                        std::cout << "Pos heuristica" << std::endl;
                         // ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, curso->get_nome(), 4, *m_tempo_inicial); // ? checar TODA as iteracoes
-
-                        if (nova_solucao->get_valor_solucao() < nova_solucao->get_valor_solucao())
+                        std::cout << "Valor solucao original: " << m_solucoes[index_solucao]->get_valor_solucao() << " | Valor nova solucao" << nova_solucao->get_valor_solucao() << std::endl;
+                        if (nova_solucao->get_valor_solucao() < m_solucoes[index_solucao]->get_valor_solucao())
                         {
                             ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, nova_solucao->get_instancia()->get_lista_cursos()[curso_index]->get_nome(), 4, *m_tempo_inicial); // ? checar APENAS evolucao de melhoria
-                            delete m_solucoes[i];
-                            m_solucoes[i] = new Solucao(*nova_solucao);
-                            delete nova_solucao;
+                            melhorSolucoes[index_solucao] = new Solucao(*nova_solucao);
                             melhoria = true;
                             count = 0;
                             break;
                         }
                     }
 
+                    delete nova_solucao;
                     if (!melhoria)
                     {
                         std::cout << "Sem melhoria, incrementado COUNT" << std::endl;
@@ -381,6 +384,18 @@ void Heuristica::pos_processamento()
                 }
             }
         }
+    }
+
+    for (const auto &[index, melhorSolucao] : melhorSolucoes)
+    {
+        delete m_solucoes[index];
+        m_solucoes[index] = melhorSolucao;
+    }
+
+    // Clean up the map
+    for (const auto &[index, melhorSolucao] : melhorSolucoes)
+    {
+        delete melhorSolucao;
     }
 
     std::cout << "Encerrando pos_processamento()" << std::endl;
@@ -403,11 +418,28 @@ void Heuristica::busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao)
         disciplinas_turmas.insert(disciplinas_turmas.end(), temp_disciplinas.begin(), temp_disciplinas.end());
     }
 
+    std::cout << "Turmas selecionadas" << std::endl;
+
     t_solucao->destruir_horario(t_turmas);
     t_solucao->destruir_horario(disciplinas_turmas);
 
+    std::cout << "Horarios destruidos" << std::endl;
+
     bool deu_certo = t_solucao->popular_solucao(disciplinas_turmas);
+
+    if (deu_certo)
+    {
+        std::cout << "Deu certo" << std::endl;
+    }
+    else
+
+    {
+        std::cout << "Num deu" << std::endl;
+    }
+
     avaliar_solucao(t_solucao, deu_certo);
+
+    std::cout << "Cabo a busca_local" << std::endl;
 }
 
 Solucao *Heuristica::get_melhor_solucao()

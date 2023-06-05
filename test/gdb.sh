@@ -5,7 +5,6 @@ fi
 
 g++ -g ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm
 
-# gdb --args ./test/exe "Teste"  1 1 1
 NOME_INSTANCA="Instancia-Facil-Comp"
 TAM_POPULACAO=1
 QTD_TURMAS_HEURISTICA=0 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
