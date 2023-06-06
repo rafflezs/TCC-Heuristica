@@ -317,12 +317,11 @@ std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
 
         bool houve_melhoria = true;
 
-        while (houve_melhoria)
+        for (auto curso : temp_solucao->get_instancia()->get_lista_cursos())
         {
-            houve_melhoria = false;
-            for (auto curso : temp_solucao->get_instancia()->get_lista_cursos())
-
+            while (houve_melhoria)
             {
+                houve_melhoria = false;
                 std::vector<Turma *> turmas_curso{};
 
                 for (auto turma_index : curso->get_turmas_index())
