@@ -340,16 +340,15 @@ void Heuristica::pos_processamento()
                 for (int j = 0; j < qtd_turmas; j++)
                 {
                     turmas_selecionadas.push_back(turmas[index]);
+                    std::cout << turmas[index]->get_nome() << std::endl;
                     index = (index + 1) % turmas.size();
                 }
 
                 std::cout << "Index: " << index << std::endl;
 
                 bool melhoria = true;
-
                 while (melhoria && count < turmas.size())
                 {
-                    melhoria = false;
 
                     for (int repeticoes_heuristica = 0; repeticoes_heuristica < m_qtd_rept_busca_local; repeticoes_heuristica++)
                     {
@@ -367,13 +366,11 @@ void Heuristica::pos_processamento()
                             count = 0;
                             break;
                         }
-                    }
-
-                    delete nova_solucao;
-                    if (!melhoria)
-                    {
-                        std::cout << "Sem melhoria, incrementado COUNT" << std::endl;
-                        count++;
+                        else
+                        {
+                            melhoria = false;
+                            count++;
+                        }
                     }
                 }
 
