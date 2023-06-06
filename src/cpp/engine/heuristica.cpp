@@ -327,62 +327,64 @@ void Heuristica::pos_processamento()
             std::cout << "QTD_TURMAS " << qtd_turmas << " e M_QTD_TURMAS " << m_qtd_turmas_heuristica << std::endl;
 
             // * Garante que TODAS as turmas do curso passem pela busca_local() ao menos UMA VEZ.
-            for (int index_atual_lista = 0; index_atual_lista < turmas.size(); index_atual_lista++)
-            {
-                std::vector<Turma *> turmas_selecionadas;
-                int index = index_atual_lista;
+            // for (int index_atual_lista = 0; index_atual_lista < turmas.size(); index_atual_lista++)
+            // {
+            //     std::vector<Turma *> turmas_selecionadas;
+            //     int index = index_atual_lista;
 
-                std::cout << "Index: " << index << " e index_atual_lista" << index_atual_lista << std::endl;
+            //     std::cout << "Index: " << index << " e index_atual_lista" << index_atual_lista << std::endl;
 
-                /* ==SELECAO DE TURMAS EM LISTA CIRCULAR==
-                 * @param seleciona quais turmas serao enviadas a busca_local() baseado no index do vetor
-                 */
-                for (int j = 0; j < qtd_turmas; j++)
-                {
-                    turmas_selecionadas.push_back(turmas[index]);
-                    std::cout << turmas[index]->get_nome() << std::endl;
-                    index = (index + 1) % turmas.size();
-                }
+            //     /* ==SELECAO DE TURMAS EM LISTA CIRCULAR==
+            //      * @param seleciona quais turmas serao enviadas a busca_local() baseado no index do vetor
+            //      */
+            //     for (int j = 0; j < qtd_turmas; j++)
+            //     {
+            //         turmas_selecionadas.push_back(turmas[index]);
+            //         std::cout << turmas[index]->get_nome() << std::endl;
+            //         index = (index + 1) % turmas.size();
+            //     }
 
-                std::cout << "Index: " << index << std::endl;
+            //     std::cout << "Index: " << index << std::endl;
 
-                bool melhoria = true;
-                while (melhoria && count < turmas.size())
-                {
+            //     bool melhoria = true;
+            //     while (melhoria && count < turmas.size())
+            //     {
 
-                    for (int repeticoes_heuristica = 0; repeticoes_heuristica < m_qtd_rept_busca_local; repeticoes_heuristica++)
-                    {
-                        iteracao_solucao++;
-                        std::cout << "Pré heuristica" << std::endl;
-                        busca_local(turmas_selecionadas, nova_solucao);
-                        std::cout << "Pos heuristica" << std::endl;
-                        // ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, curso->get_nome(), 4, *m_tempo_inicial); // ? checar TODA as iteracoes
-                        std::cout << "Valor solucao original: " << m_solucoes[index_solucao]->get_valor_solucao() << " | Valor nova solucao" << nova_solucao->get_valor_solucao() << std::endl;
-                        if (nova_solucao->get_valor_solucao() < m_solucoes[index_solucao]->get_valor_solucao())
-                        {
-                            ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, nova_solucao->get_instancia()->get_lista_cursos()[curso_index]->get_nome(), 4, *m_tempo_inicial); // ? checar APENAS evolucao de melhoria
-                            melhorSolucoes[index_solucao] = new Solucao(*nova_solucao);
-                            melhoria = true;
-                            count = 0;
-                            break;
-                        }
-                        else
-                        {
-                            melhoria = false;
-                            count++;
-                        }
-                    }
-                }
+            //         for (int repeticoes_heuristica = 0; repeticoes_heuristica < m_qtd_rept_busca_local; repeticoes_heuristica++)
+            //         {
+            //             iteracao_solucao++;
+            //             std::cout << "Pré heuristica" << std::endl;
+            //             busca_local(turmas_selecionadas, nova_solucao);
+            //             std::cout << "Pos heuristica" << std::endl;
+            //             // ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, curso->get_nome(), 4, *m_tempo_inicial); // ? checar TODA as iteracoes
+            //             std::cout << "Valor solucao original: " << m_solucoes[index_solucao]->get_valor_solucao() << " | Valor nova solucao" << nova_solucao->get_valor_solucao() << std::endl;
+            //             if (nova_solucao->get_valor_solucao() < m_solucoes[index_solucao]->get_valor_solucao())
+            //             {
+            //                 ga.salvar_analise("data/output/", nova_solucao, iteracao_solucao, qtd_turmas, nova_solucao->get_instancia()->get_lista_cursos()[curso_index]->get_nome(), 4, *m_tempo_inicial); // ? checar APENAS evolucao de melhoria
+            //                 melhorSolucoes[index_solucao] = new Solucao(*nova_solucao);
+            //                 melhoria = true;
+            //                 count = 0;
+            //                 break;
+            //             }
+            //             else
+            //             {
+            //                 melhoria = false;
+            //                 count++;
+            //             }
+            //         }
+            //     }
 
-                if (count >= turmas.size() && qtd_turmas == turmas.size())
-                {
-                    std::cout << "Incrementando curso" << std::endl;
-                    curso_index++;
-                }
-            }
+            //     if (count >= turmas.size() && qtd_turmas == turmas.size())
+            //     {
+            //         std::cout << "Incrementando curso" << std::endl;
+            //         curso_index++;
+            //     }
+            // }
         }
     }
 
+
+    // Daqui pra baixo, colocar em outra função
     for (const auto &[index, melhorSolucao] : melhorSolucoes)
     {
         delete m_solucoes[index];
