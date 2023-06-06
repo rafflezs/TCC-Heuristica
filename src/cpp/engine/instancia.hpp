@@ -31,6 +31,8 @@ public:
     std::vector<int> buscar_turmas_index(const std::vector<std::string> &nome_turmas);
     void relacionar_turmas_cursos();
 
+    Turma* get_turma_por_id(int turma_index);
+
     std::vector<Turma *> get_lista_turmas();
     std::vector<Professor *> get_lista_professores();
     std::vector<Disciplina *> get_lista_disciplinas();

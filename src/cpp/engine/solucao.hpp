@@ -69,6 +69,7 @@ public:
 
     void destruir_horario(std::vector<Turma *> t_turmas);
     void destruir_horario(std::vector<Disciplina *> t_disciplinas);
+    void busca_local(std::vector<Turma *> t_turmas);
 };
 
 #endif // !_SOLUCAO_HPP

@@ -329,10 +329,8 @@ void Solucao::set_rng(std::default_random_engine t_rng)
 
 void Solucao::destruir_horario(std::vector<Turma *> t_turmas)
 {
-    std::cout << "Destruindo horario das turmas" << std::endl;
     for (auto turma : t_turmas)
     {
-        std::cout << "Turma: " << turma->get_nome() << std::endl;
         auto disponibilidade = turma->get_disponibilidade();
         for (int dia = 0; dia < disponibilidade.size(); dia++)
         {
@@ -350,14 +348,9 @@ void Solucao::destruir_horario(std::vector<Turma *> t_turmas)
 
 void Solucao::destruir_horario(std::vector<Disciplina *> t_disciplinas)
 {
-    std::cout << "Destruindo horario dos professores" << std::endl;
     for (auto disciplina : t_disciplinas)
     {
-        std::cout << "Disciplina " << disciplina->get_nome() << " do professor ";
-
         auto professor = encontrar_prof_relacionado(disciplina);
-        std::cout << professor->get_nome() << std::endl;
-
         auto disponibilidade = professor->get_disponibilidade();
         for (int dia = 0; dia < disponibilidade.size(); dia++)
         {
@@ -371,6 +364,27 @@ void Solucao::destruir_horario(std::vector<Disciplina *> t_disciplinas)
         }
         professor->set_disponibilidade(disponibilidade);
     }
+}
+
+void Solucao::busca_local(std::vector<Turma *> t_turmas)
+{
+
+    std::vector<Disciplina *> disciplinas_turmas{};
+    std::vector<Professor *> professores_relacionados{};
+    for (Turma *turma : t_turmas)
+    {
+        std::vector<Disciplina *> temp_disciplinas = turma->get_disciplinas();
+        disciplinas_turmas.insert(disciplinas_turmas.end(), temp_disciplinas.begin(), temp_disciplinas.end());
+    }
+
+    this->destruir_horario(t_turmas);
+    this->destruir_horario(disciplinas_turmas);
+
+    if (this->popular_solucao(disciplinas_turmas)) //  Se popular_solucao() for true, set_factivel também é true
+
+        this->set_factivel(true);
+    else
+        this->set_factivel(false);
 }
 
 Solucao::Solucao(Solucao &other)

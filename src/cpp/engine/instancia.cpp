@@ -107,7 +107,7 @@ const std::vector<Professor *> Instancia::instanciar_professor(const std::string
         {
             t_professores.push_back(new Professor(
                 (*row)[0],
-                index,
+                index-1,
                 (*row)[1],
                 buscar_disciplinas(m_csv.parse_coluna((*row)[2], ',')),
                 m_csv.preencher_disponibilidade({(*row)[3], (*row)[4], (*row)[5], (*row)[6], (*row)[7], (*row)[8]})));
@@ -136,7 +136,7 @@ const std::vector<Curso *> Instancia::instanciar_curso(const std::string &ano_in
             t_cursos.push_back(
                 new Curso(
                     (*row)[0],
-                    index,
+                    index-1,
                     (*row)[1],
                     (*row)[2],
                     buscar_turmas_index(m_csv.parse_coluna((*row)[3], ',')),
@@ -182,7 +182,7 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
 
             t_turmas.push_back(new Turma(
                 (*row)[0],
-                index,
+                index-1,
                 (*row)[2],
                 (*row)[3],
                 (*row)[1],
@@ -216,7 +216,7 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
             t_disciplinas.push_back(new Disciplina(
                 (*row)[0],
                 (*row)[1],
-                index,
+                index-1,
                 (*row)[2],
                 (*row)[5],
                 std::stoi((*row)[6]),
@@ -302,6 +302,12 @@ void Instancia::relacionar_turmas_cursos()
             turma->set_curso(nullptr);
         }
     }
+}
+
+Turma *Instancia::get_turma_por_id(int turma_index)
+{
+    Turma* m_turma = m_lista_turmas.at(turma_index);
+    return m_turma;
 }
 
 std::vector<Turma *> Instancia::get_lista_turmas()

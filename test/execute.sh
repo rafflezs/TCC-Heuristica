@@ -12,8 +12,8 @@ rm -f data/output/*
 
 NOME_INSTANCA="Instancia-Facil-Comp"
 # NOME_INSTANCA="TCC-Instancia-2019-1"
-TAM_POPULACAO=5
-QTD_TURMAS_HEURISTICA=0 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
+TAM_POPULACAO=1
+QTD_TURMAS_HEURISTICA=1 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
 QTD_REPT_HEURISTICA=1   # 1 para linear, 2+ para rept
 PESO_JANELA=1
 PESO_SEXTO=1

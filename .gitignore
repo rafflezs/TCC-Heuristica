@@ -5,6 +5,4 @@
 /test/exe
 /desktop.ini
 /todo.md
-/test/out.txt
-horarios.pdf
-/data/output/*
+data/output

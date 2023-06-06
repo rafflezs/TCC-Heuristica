@@ -19,12 +19,15 @@ private:
     float m_peso_janela{0};
     float m_peso_sexto{0};
     std::chrono::_V2::steady_clock::time_point *m_tempo_inicial;
+    GravarArquivo output{};
 
     std::vector<Disciplina *> ordenar_disciplinas(const int &rand_metodo, Solucao *solucao);
     void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina);
 
     void heuristica_construtiva(int t_iteracao);
-    void pos_processamento();
+    std::map<int, Solucao *> pos_processamento_estatico();
+    std::map<int, Solucao *> pos_processamento_dinamico();
+    void fix_n_opt();
 
     void exibir_solucoes();
     void debug_heuristica();
@@ -35,8 +38,6 @@ private:
     void avaliar_solucao(Solucao *t_solucao, bool t_factibilidade);
     int calcular_janela_professor(Solucao *t_solucao);
     int calcular_sexto_horario_turma(Solucao *t_solucao);
-
-    void busca_local(std::vector<Turma *> t_turmas, Solucao *t_solucao);
 
     Solucao *get_melhor_solucao();
 

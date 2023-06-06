@@ -7,7 +7,7 @@ g++ -g ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/
 
 NOME_INSTANCA="Instancia-Facil-Comp"
 TAM_POPULACAO=1
-QTD_TURMAS_HEURISTICA=0 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
+QTD_TURMAS_HEURISTICA=5 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
 QTD_REPT_HEURISTICA=1   # 1 para linear, 2+ para rept
 PESO_JANELA=1
 PESO_SEXTO=1
