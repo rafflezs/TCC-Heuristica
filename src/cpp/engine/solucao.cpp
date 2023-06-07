@@ -380,6 +380,8 @@ void Solucao::busca_local(std::vector<Turma *> t_turmas)
     this->destruir_horario(t_turmas);
     this->destruir_horario(disciplinas_turmas);
 
+    std::shuffle(disciplinas_turmas.begin(), disciplinas_turmas.end(), m_rng);
+
     if (this->popular_solucao(disciplinas_turmas)) //  Se popular_solucao() for true, set_factivel também é true
 
         this->set_factivel(true);

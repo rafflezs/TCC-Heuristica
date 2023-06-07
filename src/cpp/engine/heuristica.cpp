@@ -312,7 +312,8 @@ std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
 
     for (auto solucao : m_solucoes) // Iterar pela populacao de solucoes
     {
-        // int num_turmas = turmas.size();
+        int iteracao_solucao = 0;
+
         Solucao *temp_solucao = new Solucao(*solucao);
 
         for (auto curso : temp_solucao->get_instancia()->get_lista_cursos())
@@ -348,6 +349,8 @@ std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
 
                         if (nova_solucao->get_valor_solucao() < temp_solucao->get_valor_solucao())
                         {
+                            output.salvar_analise("data/output/", nova_solucao, iteracao_solucao, turmas_iteracao.size(), curso->get_nome(), 4, *m_tempo_inicial);
+
                             std::cout << "Houve melhoria. Reiniciando loop." << std::endl;
                             solucoes_map.insert(std::make_pair(nova_solucao->get_id_solucao(), nova_solucao));
                             temp_solucao = nova_solucao;
@@ -377,8 +380,8 @@ std::map<int, Solucao *> Heuristica::pos_processamento_dinamico()
     {
         // int num_turmas = turmas.size();
         Solucao *temp_solucao = new Solucao(*solucao);
-        
-        std::vector<int> qtd_iteracoes{1,2,100};
+        int iteracao_solucao = 0;
+        std::vector<int> qtd_iteracoes{1, 2, 100};
         for (auto n : qtd_iteracoes)
         {
             for (auto curso : temp_solucao->get_instancia()->get_lista_cursos())
@@ -414,6 +417,7 @@ std::map<int, Solucao *> Heuristica::pos_processamento_dinamico()
 
                             if (nova_solucao->get_valor_solucao() < temp_solucao->get_valor_solucao())
                             {
+                                output.salvar_analise("data/output/", nova_solucao, iteracao_solucao, turmas_iteracao.size(), curso->get_nome(), 4, *m_tempo_inicial);
                                 std::cout << "Houve melhoria. Reiniciando loop." << std::endl;
                                 solucoes_map.insert(std::make_pair(nova_solucao->get_id_solucao(), nova_solucao));
                                 temp_solucao = nova_solucao;
