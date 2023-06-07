@@ -315,10 +315,9 @@ std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
         // int num_turmas = turmas.size();
         Solucao *temp_solucao = new Solucao(*solucao);
 
-        bool houve_melhoria = true;
-
         for (auto curso : temp_solucao->get_instancia()->get_lista_cursos())
         {
+            bool houve_melhoria = true;
             while (houve_melhoria)
             {
                 houve_melhoria = false;
@@ -339,21 +338,29 @@ std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
                     }
                     std::cout << std::endl;
 
-                    nova_solucao->busca_local(turmas_iteracao);
-                    avaliar_solucao(nova_solucao, nova_solucao->get_factivel());
+                    int count = 0;
+                    for (; count < m_qtd_rept_busca_local; count++)
+                    {
+                        std::cout << "Count = " << count << std::endl;
 
-                    if (nova_solucao->get_valor_solucao() < temp_solucao->get_valor_solucao())
-                    {
-                        std::cout << "Houve melhoria. Reiniciando loop." << std::endl;
-                        solucoes_map.insert(std::make_pair(nova_solucao->get_id_solucao(), nova_solucao));
-                        temp_solucao = nova_solucao;
-                        houve_melhoria = true;
+                        nova_solucao->busca_local(turmas_iteracao);
+                        avaliar_solucao(nova_solucao, nova_solucao->get_factivel());
+
+                        if (nova_solucao->get_valor_solucao() < temp_solucao->get_valor_solucao())
+                        {
+                            std::cout << "Houve melhoria. Reiniciando loop." << std::endl;
+                            solucoes_map.insert(std::make_pair(nova_solucao->get_id_solucao(), nova_solucao));
+                            temp_solucao = nova_solucao;
+                            houve_melhoria = true;
+                            break;
+                        }
+                        else
+                        {
+                            std::cout << "Não houve melhoria. Indo para a proxima turma sem incrementar a qtd_turmas" << std::endl;
+                        }
                     }
-                    else
-                    {
-                        std::cout << "Não houve melhoria. Indo para a proxima turma sem incrementar a qtd_turmas" << std::endl;
+                    if (count == m_qtd_rept_busca_local)
                         delete nova_solucao;
-                    }
                 }
             }
         }
@@ -370,43 +377,56 @@ std::map<int, Solucao *> Heuristica::pos_processamento_dinamico()
     {
         // int num_turmas = turmas.size();
         Solucao *temp_solucao = new Solucao(*solucao);
-
-        std::vector<int> qtd_turmas_iteracoes{1, 2, 10};
-        for (auto n : qtd_turmas_iteracoes)
+        
+        std::vector<int> qtd_iteracoes{1,2,100};
+        for (auto n : qtd_iteracoes)
         {
             for (auto curso : temp_solucao->get_instancia()->get_lista_cursos())
             {
-
-                std::vector<Turma *> turmas_curso{};
-
-                for (auto turma_index : curso->get_turmas_index())
-                    turmas_curso.push_back(temp_solucao->get_instancia()->get_turma_por_id(turma_index));
-
-                for (int nbl = 0; nbl < turmas_curso.size() + 1 - std::min(n, int(turmas_curso.size())); nbl++)
+                bool houve_melhoria = true;
+                while (houve_melhoria)
                 {
-                    Solucao *nova_solucao = new Solucao(*temp_solucao);
+                    houve_melhoria = false;
+                    std::vector<Turma *> turmas_curso{};
 
-                    std::vector<Turma *> turmas_iteracao;
-                    for (int i = 0; i < std::min(n, int(turmas_curso.size())); i++)
-                    {
-                        turmas_iteracao.push_back(solucao->get_instancia()->get_turma_por_id(turmas_curso[i + nbl]->get_index()));
-                        std::cout << turmas_iteracao.back()->get_nome() << ", ";
-                    }
-                    std::cout << std::endl;
+                    for (auto turma_index : curso->get_turmas_index())
+                        turmas_curso.push_back(temp_solucao->get_instancia()->get_turma_por_id(turma_index));
 
-                    nova_solucao->busca_local(turmas_iteracao);
-                    avaliar_solucao(nova_solucao, nova_solucao->get_factivel());
+                    for (int nbl = 0; nbl < turmas_curso.size() + 1 - std::min(n, int(turmas_curso.size())); nbl++)
+                    {
+                        Solucao *nova_solucao = new Solucao(*temp_solucao);
 
-                    if (nova_solucao->get_valor_solucao() < temp_solucao->get_valor_solucao())
-                    {
-                        std::cout << "Houve melhoria. Reiniciando loop." << std::endl;
-                        solucoes_map.insert(std::make_pair(nova_solucao->get_id_solucao(), nova_solucao));
-                        temp_solucao = nova_solucao;
-                    }
-                    else
-                    {
-                        std::cout << "Não houve melhoria. Indo para a proxima turma sem incrementar a qtd_turmas" << std::endl;
-                        delete nova_solucao;
+                        std::vector<Turma *> turmas_iteracao;
+                        for (int i = 0; i < std::min(n, int(turmas_curso.size())); i++)
+                        {
+                            turmas_iteracao.push_back(solucao->get_instancia()->get_turma_por_id(turmas_curso[i + nbl]->get_index()));
+                            std::cout << turmas_iteracao.back()->get_nome() << ", ";
+                        }
+                        std::cout << std::endl;
+
+                        int count = 0;
+                        for (; count < m_qtd_rept_busca_local; count++)
+                        {
+                            std::cout << "Count = " << count << std::endl;
+
+                            nova_solucao->busca_local(turmas_iteracao);
+                            avaliar_solucao(nova_solucao, nova_solucao->get_factivel());
+
+                            if (nova_solucao->get_valor_solucao() < temp_solucao->get_valor_solucao())
+                            {
+                                std::cout << "Houve melhoria. Reiniciando loop." << std::endl;
+                                solucoes_map.insert(std::make_pair(nova_solucao->get_id_solucao(), nova_solucao));
+                                temp_solucao = nova_solucao;
+                                houve_melhoria = true;
+                                break;
+                            }
+                            else
+                            {
+                                std::cout << "Não houve melhoria. Indo para a proxima turma sem incrementar a qtd_turmas" << std::endl;
+                            }
+                        }
+                        if (count == m_qtd_rept_busca_local)
+                            delete nova_solucao;
                     }
                 }
             }
