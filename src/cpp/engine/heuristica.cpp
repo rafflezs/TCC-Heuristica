@@ -54,6 +54,7 @@ void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo
                   << std::endl;
         std::cout << "A solução ID " << melhor_solucao->get_id_solucao() << " com o valor na função objetivo de " << melhor_solucao->get_valor_solucao() << " pontos." << std::endl;
         melhor_solucao->exibir_solucao();
+        output.salvar_saidas("data/output/",melhor_solucao);
     }
 }
 
