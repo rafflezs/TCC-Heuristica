@@ -30,5 +30,5 @@ time ./test/exe $NOME_INSTANCA $TAM_POPULACAO $QTD_TURMAS_HEURISTICA $QTD_REPT_H
 rm -f test/exe
 
 # Inserir aqui arquivo Python para formatar LaTeX
-# pdflatex -halt-on-error -output-directory data/output/ data/output/professor.tex 
-# pdflatex -halt-on-error -output-directory data/output/ data/output/turma.tex 
+pdflatex -halt-on-error -output-directory data/output/ data/output/professor.tex 
+pdflatex -halt-on-error -output-directory data/output/ data/output/turma.tex 
