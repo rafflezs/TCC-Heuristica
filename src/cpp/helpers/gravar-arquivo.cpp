@@ -96,7 +96,8 @@ void GravarArquivo::salvar_horario_professores(const std::string &path, Solucao 
         }
         arquivo << std::endl;
         arquivo << "\\end{tabular}" << std::endl;
-        arquivo << "\\newpage" << std::endl;
+        if (professor != instancia->get_lista_professores().back())
+            arquivo << "\\newpage" << std::endl;
     }
 
     arquivo << "\\end{document}" << std::endl;
@@ -156,7 +157,8 @@ void GravarArquivo::salvar_solucao_turmas(const std::string &path, Solucao *t_so
         }
         arquivo << std::endl;
         arquivo << "\\end{tabular}" << std::endl;
-        arquivo << "\\newpage" << std::endl;
+        if (turma != instancia->get_lista_turmas().back())
+            arquivo << "\\newpage" << std::endl;
     }
 
     arquivo << "\\end{document}" << std::endl;
