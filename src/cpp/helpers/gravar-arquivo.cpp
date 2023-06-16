@@ -205,5 +205,5 @@ void GravarArquivo::pequena_trollagem(std::string t_path, Solucao *t_solucao)
         return;
     }
 
-    arquivo << "," << t_solucao->get_id_solucao() << "," << (t_solucao->get_peso_janela() * t_solucao->get_qtd_janela()) << "," << (t_solucao->get_peso_sexto() * t_solucao->get_qtd_sexto_horario()) << "," << t_solucao->get_valor_solucao();
+    arquivo << t_solucao->get_id_solucao() << ";" << (t_solucao->get_peso_janela() * t_solucao->get_qtd_janela()) << ";" << (t_solucao->get_peso_sexto() * t_solucao->get_qtd_sexto_horario()) << ";" << t_solucao->get_valor_solucao();
 }

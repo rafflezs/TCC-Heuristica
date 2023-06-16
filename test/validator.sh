@@ -37,7 +37,7 @@ progresso_atual=0
 erros=0
 
 # Cria arquivo para acompanhar exec_time
-echo "ITERACAO,INSTANCIA,TAM_POPULACAO,QTD_TURMAS_HEURISTICA,QTD_REPT_HEURISTICA,PESO_JANELA,PESO_SEXTO,TEMPO_EXEC,BEST_ID,BEST_WINDOW_VALUE,BEST_SIXTH_GRADE_VALUE,SOLUTION_VALUE" >> "data/bash-time.csv"
+echo "ITERACAO;INSTANCIA_NOME;TAM_POPULACAO;QTD_TURMAS_HEURISTICA;QTD_REPT_HEURISTICA;PESO_JANELA;PESO_SEXTO;TEMPO_EXEC;ID_SOLUCAO;JANELA_SOLUCAO;SEXTO_HORARIO_SOLUCAO;VALOR_SOLUCAO" >> "data/bash-time.csv"
 
 for instancia_value in "${INSTANCIAS_LIST[@]}"; do
     output_dir="data/output/$instancia_value"
@@ -66,7 +66,7 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         echo ""
 
                         # Read values from pequena_trollagem.txt
-                        IFS=',' read -r best_id best_window_value best_sixth_grade_value solution_value < "data/pequena_trollagem.txt"
+                        IFS=';' read -r best_id best_window_value best_sixth_grade_value solution_value < "data/pequena_trollagem.txt"
 
                         # Move arquivos para subpasta criada
                         echo "Movendo arquivos."
@@ -94,7 +94,7 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         echo ""
 
                         exec_time=$(cat "data/output/time.txt")
-                        echo "$progresso_atual,$instancia_value,$TAM_POPULACAO,$qtd_turma_value,$qtd_rept_value,$peso_janela_value,$peso_sexto_value,$exec_time,$best_id,$best_window_value,$best_sixth_grade_value,$solution_value" >> "data/bash-time.csv"
+                        echo "$progresso_atual;$instancia_value;$TAM_POPULACAO;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;$exec_time;$best_id;$best_window_value;$best_sixth_grade_value;$solution_value" >> "data/bash-time.csv"
                     else
                         ((progresso_atual++))
                         echo "Falha na execucao: passo $progresso_atual de $total."
@@ -102,9 +102,8 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         ((erros++))
 
                         exec_time=$(cat "data/output/time.txt")
-                        echo "$progresso_atual,$instancia_value,$TAM_POPULACAO,$qtd_turma_value,$qtd_rept_value,$peso_janela_value,$peso_sexto_value,RUNTIME_ERROR,RUNTIME_ERROR,RUNTIME_ERROR,RUNTIME_ERROR" >> "data/bash-time.csv"
+                        echo "$progresso_atual;$instancia_value;$TAM_POPULACAO;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR" >> "data/bash-time.csv"
                     fi
-
                 done
             done
         done
