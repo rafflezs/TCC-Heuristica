@@ -25,6 +25,8 @@ public:
     */
     void salvar_solucao_turmas(const std::string &path, Solucao *t_solucao);
 
+    void pequena_trollagem(std::string t_path, Solucao* t_solucao);
+
     std::string obter_nome_dia_semana(int dia);
     std::string obter_nome_horario(int dia);
 };

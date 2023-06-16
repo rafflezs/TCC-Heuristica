@@ -194,3 +194,16 @@ std::string GravarArquivo::obter_nome_dia_semana(int dia)
 
     return nome_dia;
 };
+
+void GravarArquivo::pequena_trollagem(std::string t_path, Solucao *t_solucao)
+{
+    std::ofstream arquivo(t_path);
+
+    if (!arquivo.is_open())
+    {
+        std::cerr << "Falha ao carregar o arquivo! Encerrando programa com erro: 08" << std::endl;
+        return;
+    }
+
+    arquivo << "," << t_solucao->get_id_solucao() << "," << (t_solucao->get_peso_janela() * t_solucao->get_qtd_janela()) << "," << (t_solucao->get_peso_sexto() * t_solucao->get_qtd_sexto_horario()) << "," << t_solucao->get_valor_solucao();
+}

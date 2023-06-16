@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ulimit -v 1000000  # Setar limite para execucao
+ulimit -v 8000000  # Setar limite para execucao
 
 # Fase de compilacao
-if [ ! -f "./test/exe" ]; then
+if [ -f "./test/exe" ]; then
     echo "Compilando codigo fonte (/src/cpp*)..."
     if g++ ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm; then
         echo "Codigo compilado corretamente!"
@@ -20,7 +20,7 @@ fi
 rm -r data/output/*
 
 # Lista de parametros
-INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
+INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2") # "TCC-Instancia-2022-1")
 REPTS_LIST=(1 2 5 10)
 QTD_TURMAS_LIST=(0 1 2 1000)
 PESOS_JANELA_LIST=(1 2 5)
@@ -37,7 +37,7 @@ progresso_atual=0
 erros=0
 
 # Cria arquivo para acompanhar exec_time
-echo "ITERACAO,INSTANCIA,TAM_POPULACAO,QTD_TURMAS_HEURISTICA,QTD_REPT_HEURISTICA,PESO_JANELA,PESO_SEXTO,TEMPO_EXEC" >> "data/bash-time.csv"
+echo "ITERACAO,INSTANCIA,TAM_POPULACAO,QTD_TURMAS_HEURISTICA,QTD_REPT_HEURISTICA,PESO_JANELA,PESO_SEXTO,TEMPO_EXEC,BEST_ID,BEST_WINDOW_VALUE,BEST_SIXTH_GRADE_VALUE,SOLUTION_VALUE" >> "data/bash-time.csv"
 
 for instancia_value in "${INSTANCIAS_LIST[@]}"; do
     output_dir="data/output/$instancia_value"
@@ -65,6 +65,8 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         echo "Tempo de execucao: $exec_time segundos."
                         echo ""
 
+                        # Read values from pequena_trollagem.txt
+                        IFS=',' read -r best_id best_window_value best_sixth_grade_value solution_value < "data/pequena_trollagem.txt"
 
                         # Move arquivos para subpasta criada
                         echo "Movendo arquivos."
@@ -74,7 +76,6 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         if [ -f "data/output/analise.csv" ]; then
                             mv "data/output/analise.csv" "$subfolder_path/"
                         fi
-
 
                         # Executa o compilador LaTeX
                         echo "Compilando LaTeX"
@@ -93,7 +94,7 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         echo ""
 
                         exec_time=$(cat "data/output/time.txt")
-                        echo "$progresso_atual,$instancia_value,$TAM_POPULACAO,$qtd_turma_value,$qtd_rept_value,$peso_janela_value,$peso_sexto_value,$exec_time" >> "data/bash-time.csv"
+                        echo "$progresso_atual,$instancia_value,$TAM_POPULACAO,$qtd_turma_value,$qtd_rept_value,$peso_janela_value,$peso_sexto_value,$exec_time,$best_id,$best_window_value,$best_sixth_grade_value,$solution_value" >> "data/bash-time.csv"
                     else
                         ((progresso_atual++))
                         echo "Falha na execucao: passo $progresso_atual de $total."
@@ -101,14 +102,15 @@ for instancia_value in "${INSTANCIAS_LIST[@]}"; do
                         ((erros++))
 
                         exec_time=$(cat "data/output/time.txt")
-                        echo "$progresso_atual,$instancia_value,$TAM_POPULACAO,$qtd_turma_value,$qtd_rept_value,$peso_janela_value,$peso_sexto_value,RUNTIME_ERROR" >> "data/bash-time.csv"
+                        echo "$progresso_atual,$instancia_value,$TAM_POPULACAO,$qtd_turma_value,$qtd_rept_value,$peso_janela_value,$peso_sexto_value,RUNTIME_ERROR,RUNTIME_ERROR,RUNTIME_ERROR,RUNTIME_ERROR" >> "data/bash-time.csv"
                     fi
+
                 done
             done
         done
     done
 done
 
-mv "/data/bash-time.csv" "data/output/" 
+mv "data/bash-time.csv" "data/output/"
 echo ""
 echo "Programa encerrado com $erros! Resultados salvos em /data/output/"
