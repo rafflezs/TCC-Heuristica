@@ -5,4 +5,5 @@
 /test/exe
 /desktop.ini
 /todo.md
-data/output
+data
+data/*
