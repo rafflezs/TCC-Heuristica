@@ -6,17 +6,17 @@
 class Disciplina
 {
 private:
-  std::string m_id{"NULL"};
-  std::string m_cod_diario{"NULL"};
-  int m_index{NULL};
-  std::string m_nome{"NULL"};
-  std::string m_periodo{"NULL"};
-  std::array<std::array<int, 16>, 6> m_disponibilidade{};
-  int m_qtd_alunos{0};
-  int m_ch_ead{0};
-  int m_ch_presencial{0};
-  int m_split{1};
-  int m_ch_min{0};
+  std::string m_id;
+  std::string m_cod_diario;
+  int m_index;
+  std::string m_nome;
+  std::string m_periodo;
+  std::array<std::array<int, 16>, 6> m_disponibilidade;
+  int m_qtd_alunos;
+  int m_ch_ead;
+  int m_ch_presencial;
+  int m_split;
+  int m_ch_min;
 
 public:
   std::string get_id()

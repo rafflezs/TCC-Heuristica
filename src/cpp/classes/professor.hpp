@@ -8,11 +8,11 @@
 class Professor
 {
 private:
-  std::string m_id{"NULL"};
-  int m_index{NULL};
-  std::string m_nome{"NULL"};
-  std::vector<Disciplina *> m_disciplinas{nullptr};
-  std::array<std::array<int, 16>, 6> m_disponibilidade{};
+  std::string m_id;
+  int m_index;
+  std::string m_nome;
+  std::vector<Disciplina *> m_disciplinas;
+  std::array<std::array<int, 16>, 6> m_disponibilidade;
 
 public:
   std::string get_id()

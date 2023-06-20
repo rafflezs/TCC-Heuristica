@@ -56,7 +56,7 @@ void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo
         melhor_solucao->exibir_solucao();
         output.salvar_analise("data/output/", melhor_solucao, 0, 0, "MELHOR_SOLUCAO", 0, *m_tempo_inicial);
         output.salvar_saidas("data/output/", melhor_solucao);
-        output.pequena_trollagem("data/pequena_trollagem.txt", melhor_solucao);
+        output.pequena_trollagem("data/output/pequena_trollagem.txt", melhor_solucao);
     }
 }
 
@@ -101,7 +101,6 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 
 void Heuristica::heuristica_construtiva(int t_iteracao)
 {
-    GravarArquivo ga = GravarArquivo();
 
     for (auto it : this->m_solucoes)
     {
@@ -311,7 +310,6 @@ std::vector<Solucao *> Heuristica::get_lista_solucoes()
 std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
 {
     std::map<int, Solucao *> solucoes_map;
-    GravarArquivo ga = GravarArquivo();
 
     for (auto solucao : m_solucoes) // Iterar pela populacao de solucoes
     {
@@ -377,7 +375,6 @@ std::map<int, Solucao *> Heuristica::pos_processamento_estatico()
 std::map<int, Solucao *> Heuristica::pos_processamento_dinamico()
 {
     std::map<int, Solucao *> solucoes_map;
-    GravarArquivo ga = GravarArquivo();
 
     for (auto solucao : m_solucoes) // Iterar pela populacao de solucoes
     {
@@ -459,7 +456,6 @@ Solucao *Heuristica::get_melhor_solucao()
     };
 
     auto melhor_solucao = std::min_element(m_solucoes.begin(), m_solucoes.end(), compareSolucao);
-    GravarArquivo ga = GravarArquivo();
     output.salvar_saidas("data/output/", *melhor_solucao);
 
     return *melhor_solucao;

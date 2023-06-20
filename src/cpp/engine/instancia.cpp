@@ -101,17 +101,18 @@ const std::vector<Professor *> Instancia::instanciar_professor(const std::string
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
 
     int index = 0;
-    for (std::vector<std::vector<std::string>>::iterator row = csv.begin(); row != csv.end(); row++)
+    std::vector<std::vector<std::string>>::iterator row = csv.begin();
+    row++;
+    for (; row != csv.end(); row++)
     {
-        if (index > 0)
-        {
-            t_professores.push_back(new Professor(
-                (*row)[0],
-                index-1,
-                (*row)[1],
-                buscar_disciplinas(m_csv.parse_coluna((*row)[2], ',')),
-                m_csv.preencher_disponibilidade({(*row)[3], (*row)[4], (*row)[5], (*row)[6], (*row)[7], (*row)[8]})));
-        }
+
+        t_professores.push_back(new Professor(
+            (*row)[0],
+            index,
+            (*row)[1],
+            buscar_disciplinas(m_csv.parse_coluna((*row)[2], ',')),
+            m_csv.preencher_disponibilidade({(*row)[3], (*row)[4], (*row)[5], (*row)[6], (*row)[7], (*row)[8]})));
+
         index++;
     }
 
@@ -129,20 +130,21 @@ const std::vector<Curso *> Instancia::instanciar_curso(const std::string &ano_in
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
 
     int index = 0;
-    for (std::vector<std::vector<std::string>>::iterator row = csv.begin(); row != csv.end(); row++)
+    std::vector<std::vector<std::string>>::iterator row = csv.begin();
+    row++;
+    for (; row != csv.end(); row++)
     {
-        if (index > 0)
-        {
-            t_cursos.push_back(
-                new Curso(
-                    (*row)[0],
-                    index-1,
-                    (*row)[1],
-                    (*row)[2],
-                    buscar_turmas_index(m_csv.parse_coluna((*row)[3], ',')),
-                    m_csv.parse_coluna((*row)[3], ','),
-                    m_csv.preencher_disponibilidade({(*row)[4], (*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9]})));
-        }
+
+        t_cursos.push_back(
+            new Curso(
+                (*row)[0],
+                index,
+                (*row)[1],
+                (*row)[2],
+                buscar_turmas_index(m_csv.parse_coluna((*row)[3], ',')),
+                m_csv.parse_coluna((*row)[3], ','),
+                m_csv.preencher_disponibilidade({(*row)[4], (*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9]})));
+
         index++;
     }
 
@@ -160,38 +162,39 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
 
     int index = 0;
-    for (std::vector<std::vector<std::string>>::iterator row = csv.begin(); row != csv.end(); row++)
+    std::vector<std::vector<std::string>>::iterator row = csv.begin();
+    row++;
+    for (; row != csv.end(); row++)
     {
-        if (index > 0)
+
+        int int_primeiro_horario = 0;
+        int int_ultimo_horario = 5;
+
+        if ((*row)[3] == "Tarde")
         {
-            int int_primeiro_horario = 0;
-            int int_ultimo_horario = 5;
 
-            if ((*row)[3] == "Tarde")
-            {
-
-                int_primeiro_horario = 6;
-                int_ultimo_horario = 11;
-            }
-            else if ((*row)[3] == "Noite")
-            {
-
-                int_primeiro_horario = 12;
-                int_ultimo_horario = 15;
-            }
-
-            t_turmas.push_back(new Turma(
-                (*row)[0],
-                index-1,
-                (*row)[2],
-                (*row)[3],
-                (*row)[1],
-                buscar_disciplinas(m_csv.parse_coluna((*row)[4], ',')),
-                m_csv.preencher_disponibilidade({(*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9], (*row)[10]}),
-                int_primeiro_horario,
-                int_ultimo_horario,
-                nullptr));
+            int_primeiro_horario = 6;
+            int_ultimo_horario = 11;
         }
+        else if ((*row)[3] == "Noite")
+        {
+
+            int_primeiro_horario = 12;
+            int_ultimo_horario = 15;
+        }
+
+        t_turmas.push_back(new Turma(
+            (*row)[0],
+            index,
+            (*row)[2],
+            (*row)[3],
+            (*row)[1],
+            buscar_disciplinas(m_csv.parse_coluna((*row)[4], ',')),
+            m_csv.preencher_disponibilidade({(*row)[5], (*row)[6], (*row)[7], (*row)[8], (*row)[9], (*row)[10]}),
+            int_primeiro_horario,
+            int_ultimo_horario,
+            nullptr));
+
         index++;
     }
 
@@ -209,23 +212,24 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
     std::vector<std::vector<std::string>> csv = m_csv.ler_colunas(&file, ';');
 
     int index = 0;
-    for (std::vector<std::vector<std::string>>::iterator row = csv.begin(); row != csv.end(); row++)
+    std::vector<std::vector<std::string>>::iterator row = csv.begin();
+    row++;
+    for (; row != csv.end(); row++)
     {
-        if (index > 0)
-        {
-            t_disciplinas.push_back(new Disciplina(
-                (*row)[0],
-                (*row)[1],
-                index-1,
-                (*row)[2],
-                (*row)[5],
-                std::stoi((*row)[6]),
-                std::stoi((*row)[7]),
-                std::stoi((*row)[8]),
-                std::stoi((*row)[9]),
-                std::stoi((*row)[10]),
-                m_csv.preencher_disponibilidade({(*row)[11], (*row)[12], (*row)[13], (*row)[14], (*row)[15], (*row)[16]})));
-        }
+
+        t_disciplinas.push_back(new Disciplina(
+            (*row)[0],
+            (*row)[1],
+            index,
+            (*row)[2],
+            (*row)[5],
+            std::stoi((*row)[6]),
+            std::stoi((*row)[7]),
+            std::stoi((*row)[8]),
+            std::stoi((*row)[9]),
+            std::stoi((*row)[10]),
+            m_csv.preencher_disponibilidade({(*row)[11], (*row)[12], (*row)[13], (*row)[14], (*row)[15], (*row)[16]})));
+
         index++;
     }
 
@@ -306,7 +310,7 @@ void Instancia::relacionar_turmas_cursos()
 
 Turma *Instancia::get_turma_por_id(int turma_index)
 {
-    Turma* m_turma = m_lista_turmas.at(turma_index);
+    Turma *m_turma = m_lista_turmas.at(turma_index);
     return m_turma;
 }
 

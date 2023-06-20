@@ -6,13 +6,13 @@
 class Curso
 {
 private:
-  std::string m_id{"NULL"};
-  int m_index{0};
-  std::string m_nome{"NULL"};
-  std::string m_titulo_formacao{"NULL"};
-  std::vector<int> m_turmas_index{};
-  std::vector<std::string> m_turmas{};
-  std::array<std::array<int, 16>, 6> m_disponibilidade{};
+  std::string m_id;
+  int m_index;
+  std::string m_nome;
+  std::string m_titulo_formacao;
+  std::vector<int> m_turmas_index;
+  std::vector<std::string> m_turmas;
+  std::array<std::array<int, 16>, 6> m_disponibilidade;
 
 public:
   std::string get_id()

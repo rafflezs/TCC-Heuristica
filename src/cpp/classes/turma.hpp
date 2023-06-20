@@ -7,16 +7,16 @@
 class Turma
 {
 private:
-  std::string m_id{"NULL"};
-  int m_index{NULL};
-  std::string m_nome{"NULL"};
-  std::string m_periodo{"NULL"};
-  std::string m_curso_str{"NULL"};
-  int m_primeiro_horario_turno{-1};
-  int m_ultimo_horario_turno{-1};
-  std::vector<Disciplina *> m_disciplinas{nullptr};
-  std::array<std::array<int, 16>, 6> m_disponibilidade{};
-  Curso *m_curso{nullptr};
+  std::string m_id;
+  int m_index;
+  std::string m_nome;
+  std::string m_periodo;
+  std::string m_curso_str;
+  int m_primeiro_horario_turno;
+  int m_ultimo_horario_turno;
+  std::vector<Disciplina *> m_disciplinas;
+  std::array<std::array<int, 16>, 6> m_disponibilidade;
+  Curso *m_curso;
 
 public:
   std::string get_id()

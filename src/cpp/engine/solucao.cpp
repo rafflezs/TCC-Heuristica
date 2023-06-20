@@ -146,34 +146,38 @@ bool Solucao::eh_horario_disponivel(Turma *t_turma, int t_dia_escolhido, int t_h
 
 Professor *Solucao::encontrar_prof_relacionado(Disciplina *t_disciplina)
 {
-    for (auto it : m_instancia->get_lista_professores())
+    for (auto professor : m_instancia->get_lista_professores())
     {
-        for (auto d : it->get_disciplinas())
+        for (auto disciplina : professor->get_disciplinas())
         {
-            if (t_disciplina == d)
+            std::cout << t_disciplina->get_id() << " | " << disciplina->get_id() << std::endl;
+            if (t_disciplina->get_id() == disciplina->get_id())
             {
-                return it;
+                std::cout << professor->get_id() << std::endl;
+                return professor;
             }
         }
     }
 
-    return (new Professor{});
+    exit(3);
 }
 
 Turma *Solucao::encontrar_turma_relacionada(Disciplina *t_disciplina)
 {
-    for (auto it : m_instancia->get_lista_turmas())
+    for (auto turma : m_instancia->get_lista_turmas())
     {
-        for (auto d : it->get_disciplinas())
+        for (auto disciplina : turma->get_disciplinas())
         {
-            if (t_disciplina == d)
+            std::cout << t_disciplina->get_id() << " | " << disciplina->get_id() << std::endl;
+            if (t_disciplina->get_id() == disciplina->get_id())
             {
-                return it;
+                std::cout << turma->get_id() << std::endl;
+                return turma;
             }
         }
     }
 
-    return (new Turma{});
+    exit(3);
 }
 
 std::vector<Turma *> Solucao::encontrar_turmas_relacionadas(Curso *curso)
