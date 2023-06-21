@@ -63,28 +63,150 @@ def pipe(args):
             matrizes[professor][dia_index][index] = nome_disc
             matrizes[turma][dia_index][index] = nome_disc
 
-    # for professor, matriz in matrizes.items():
-    #     print(f"Matriz do Professor {professor}:")
-    #     for dia in range(6):
-    #         for horario in range(16):
-    #             print(matriz[dia][horario], end="\t")
-    #         print()
-    #     print()
+    janelas = 0
+    sextos = 0
 
-    # for turma, matriz in matrizes.items():
-    #     print(f"Matriz da Turma {turma}:")
-    #     for dia in range(6):
-    #         for horario in range(16):
-    #             print(matriz[dia][horario], end="\t")
-    #         print()
-    #     print()
+    for professor, matriz in matrizes.items():
+        print(f"Matriz do Professor {professor}:")
+        for dia in range(6):
+            print("AAAAAAAAAAAAAAAAAAa",matriz[dia][5])
+            if (matriz[dia][5] is not None) or (matriz[dia][11] is not None):
+                sextos = sextos + 1
+            for horario in range(16):
+                print(matriz[dia][horario], end="\t")
+            
+            primeiro_slot = 0
+            ultimo_slot = 0
+            for slot in range(0,6):
+                if (matriz[dia][slot] == None):
+                    primeiro_slot = slot;
+                    break
+
+            for slot in range(5,0):
+                
+                if (matriz[dia][slot] == None):
+                    ultimo_slot = slot;
+                    break
+
+
+            for slot in range(primeiro_slot + 1, ultimo_slot):
+                if (matriz[dia][slot] == None):
+                    janelas = janelas + 1;
+
+            # Tarde
+            primeiro_slot = 0;
+            ultimo_slot = 0;
+
+            for slot in range(7,12):
+                if (matriz[dia][slot] == None):
+                    primeiro_slot = slot;
+                    break
+
+            for slot in range(11,7):
+                if (matriz[dia][slot] == None):
+                    ultimo_slot = slot;
+                    break
+
+
+            for slot in range(primeiro_slot + 1, ultimo_slot):
+                if (matriz[dia][slot] == None):
+                    janelas = janelas + 1;
+
+            # Noite
+            primeiro_slot = 0;
+            ultimo_slot = 0;
+
+            for slot in range(13,16):
+                if (matriz[dia][slot] == None):
+                    primeiro_slot = slot;
+                    break
+            
+            for slot in range(15,13):
+                if (matriz[dia][slot] == None):
+                    ultimo_slot = slot;
+                    break
+
+
+            for slot in range(primeiro_slot + 1, ultimo_slot):
+                if (matriz[dia][slot] == None):
+                    janelas = janelas + 1;
+            print()
+        print()
+
+    for turma, matriz in matrizes.items():
+        print(f"Matriz da Turma {turma}:")
+        for dia in range(6):
+            if (matriz[dia][5] is not None) or (matriz[dia][11] is not None):
+                sextos = sextos + 1
+            for horario in range(16):
+                print(matriz[dia][horario], end="\t")
+			# Manhã
+            primeiro_slot = 0
+            ultimo_slot = 0
+            for slot in range(0,6):
+                if (matriz[dia][slot] == None):
+                    primeiro_slot = slot;
+                    break
+
+            for slot in range(5,0):
+                
+                if (matriz[dia][slot] == None):
+                    ultimo_slot = slot;
+                    break
+
+
+            for slot in range(primeiro_slot + 1, ultimo_slot):
+                if (matriz[dia][slot] == None):
+                    janelas = janelas + 1;
+
+            # Tarde
+            primeiro_slot = 0;
+            ultimo_slot = 0;
+
+            for slot in range(7,12):
+                if (matriz[dia][slot] == None):
+                    primeiro_slot = slot;
+                    break
+
+            for slot in range(11,7):
+                if (matriz[dia][slot] == None):
+                    ultimo_slot = slot;
+                    break
+
+
+            for slot in range(primeiro_slot + 1, ultimo_slot):
+                if (matriz[dia][slot] == None):
+                    janelas = janelas + 1;
+
+            # Noite
+            primeiro_slot = 0;
+            ultimo_slot = 0;
+
+            for slot in range(13,16):
+                if (matriz[dia][slot] == None):
+                    primeiro_slot = slot;
+                    break
+            
+            for slot in range(15,13):
+                if (matriz[dia][slot] == None):
+                    ultimo_slot = slot;
+                    break
+
+
+            for slot in range(primeiro_slot + 1, ultimo_slot):
+                if (matriz[dia][slot] == None):
+                    janelas = janelas + 1;
+            print()
+        print()
     gerar_tabela_laTeX(path + "/" + instancia + "-professores", matrizes, professores)
     gerar_tabela_laTeX(path + "/" + instancia + "-turma", matrizes, turmas)
+
+    print(janelas)
+    print(sextos)
 
 
 def gerar_tabela_laTeX(nome, matrizes, vetor):
     dias_semana = ["SEG", "TER", "QUA", "QUI", "SEX", "SAB"]
-    horarios = ["07:30 - 08:20", "08:20 - 09:10", "09:20 - 10:10", "10:10 - 11:00", "11:00 - 11:50", "11:50 - 12:40", "13:30 - 14:20", "14:20 - 15:10", "15:20 - 16:10", "16:10 - 17:00", "17:00 - 17:50", "17:50 - 18:40", "18:50 - 19:40", "19:40 - 20:30", "20:40 - 21:30", "21:30 - 22:20"]
     
     with open(nome + ".tex", "w") as arquivo:
         arquivo.write(r"\documentclass{article}" + "\n")
@@ -118,8 +240,6 @@ def gerar_tabela_laTeX(nome, matrizes, vetor):
             arquivo.write(r"\newpage" + "\n")
 
         arquivo.write(r"\end{document}" + "\n")
-
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

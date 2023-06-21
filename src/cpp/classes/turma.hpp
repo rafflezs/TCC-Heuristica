@@ -148,7 +148,7 @@ public:
                         m_ultimo_horario_turno(t_ultimo_horario_turno),
                         m_curso(t_curso){};
 
-  Turma(Turma &other, Curso* curso, std::vector<Disciplina *> shallow_disc)
+  Turma(Turma &other, Curso *curso, std::vector<Disciplina *> shallow_disc)
 
   {
     m_id = other.get_id();
@@ -161,6 +161,19 @@ public:
     m_curso = other.get_curso();
     m_disponibilidade = other.get_disponibilidade();
     m_disciplinas = shallow_disc;
+  }
+
+  int get_qtd_sextos()
+  {
+    int qtd_sextos_turma = 0;
+    for (int dia = 0; dia < 6; dia++)
+    {
+      if (m_disponibilidade[dia][5] > 0)
+        qtd_sextos_turma++;
+      if (m_disponibilidade[dia][11] > 0)
+        qtd_sextos_turma++;
+    }
+    return qtd_sextos_turma;
   }
 
   /*
@@ -227,7 +240,7 @@ public:
 
   void print_solucao()
   {
-    std::cout << "Nome: " << this->get_nome() << std::endl;
+    std::cout << "Id: " << this->get_id() << "| Nome: " << this->get_nome() << " | pointer" << this << std::endl;
 
     std::cout << "Horario da Turma: " << std::endl;
     std::cout << std::setw(5) << "   "
@@ -351,6 +364,15 @@ public:
     }
     std::cout << "\\end{tabular}\n";
     std::cout << "\\end{table}\n";
+  }
+
+  void destruir_turma()
+  {
+    for (int i = 0; i < m_disciplinas.size(); i++)
+    {
+      delete m_disciplinas[i];
+    }
+    delete m_curso;
   }
 };
 

@@ -83,13 +83,111 @@ public:
                                                                     m_disciplinas(t_disciplinas),
                                                                     m_disponibilidade(t_disponibilidade){};
 
-  Professor(Professor &other, std::vector<Disciplina*> shallow_disc)
+  Professor(Professor &other, std::vector<Disciplina *> shallow_disc)
   {
     m_id = other.get_id();
     m_index = other.get_index();
     m_nome = other.get_nome();
     m_disponibilidade = other.get_disponibilidade();
     m_disciplinas = shallow_disc;
+  }
+
+  int get_qtd_janelas_horario()
+  {
+    int janela = 0;
+
+    for (int dia = 0; dia < 6; dia++)
+    {
+
+      int primeiro_slot = 0;
+      int ultimo_slot = 0;
+
+      // Manhã
+      for (int slot = 0; slot < 6; slot++)
+      {
+        if (this->m_disponibilidade[dia][slot] > 0)
+        {
+          primeiro_slot = slot;
+          break;
+        }
+      }
+      for (int slot = 5; slot >= 0; slot--)
+      {
+        if (this->m_disponibilidade[dia][slot] > 0)
+        {
+          ultimo_slot = slot;
+          break;
+        }
+      }
+
+      for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
+      {
+        if (this->m_disponibilidade[dia][slot] == 0)
+        {
+          janela += 1;
+        }
+      }
+
+      primeiro_slot = 0;
+      ultimo_slot = 0;
+
+      // Tarde
+      for (int slot = 6; slot < 12; slot++)
+      {
+        if (this->m_disponibilidade[dia][slot] > 0)
+        {
+          primeiro_slot = slot;
+          break;
+        }
+      }
+      for (int slot = 11; slot >= 6; slot--)
+      {
+        if (this->m_disponibilidade[dia][slot] > 0)
+        {
+          ultimo_slot = slot;
+          break;
+        }
+      }
+
+      for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
+      {
+        if (this->m_disponibilidade[dia][slot] <= 0)
+        {
+          janela += 1;
+        }
+      }
+
+      primeiro_slot = 0;
+      ultimo_slot = 0;
+
+      // Noite
+      for (int slot = 12; slot < 16; slot++)
+      {
+        if (this->m_disponibilidade[dia][slot] > 0)
+        {
+          primeiro_slot = slot;
+          break;
+        }
+      }
+      for (int slot = 15; slot >= 12; slot--)
+      {
+        if (this->m_disponibilidade[dia][slot] > 0)
+        {
+          ultimo_slot = slot;
+          break;
+        }
+      }
+
+      for (int slot = primeiro_slot + 1; slot < ultimo_slot; slot++)
+      {
+        if (this->m_disponibilidade[dia][slot] <= 0)
+        {
+          janela += 1;
+        }
+      }
+    }
+
+    return janela;
   }
 
   void print()
@@ -222,6 +320,14 @@ public:
         std::cout << std::setw(5) << f_dispo[i][j] << " ";
       }
       std::cout << std::endl;
+    }
+  }
+
+  void destruir_professor()
+  {
+    for (int i = 0; i < m_disciplinas.size(); i++)
+    {
+      delete m_disciplinas[i];
     }
   }
 };

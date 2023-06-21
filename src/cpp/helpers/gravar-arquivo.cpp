@@ -4,7 +4,7 @@ GravarArquivo::GravarArquivo()
 {
 }
 
-void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, int t_iteracao, int qtd_turmas_heuristica, std::string curso, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
+void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, int t_iteracao, int qtd_turmas_heuristica, std::string curso, std::vector<int> t_turmas_selecionadas, int t_case_construtiva, std::chrono::_V2::steady_clock::time_point t_tempo_inicial_solucao)
 {
     std::string file_w_path{path + "analise.csv"};
     std::ofstream arquivo(file_w_path, std::ios::app);
@@ -18,8 +18,19 @@ void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, 
     arquivo.seekp(0, std::ios::end);
     if (arquivo.tellp() == 0)
     {
-        arquivo << "SOL_ID;PESO_SEXTO;PESO_JANELA;QTD_JANELAS;SEXTOS_HORARIOS;VALOR_JANELA;VALOR_SEXTO;ITERACAO;QTD_TURMAS_HEURISTICA;CURSO;DISC_ORDER_SWITCH;TEMPO_SOLUCAO;VALOR_SOLUCAO\n";
+        arquivo << "SOL_ID;PESO_SEXTO;PESO_JANELA;QTD_JANELAS;SEXTOS_HORARIOS;VALOR_JANELA;VALOR_SEXTO;ITERACAO;QTD_TURMAS_HEURISTICA;TURMAS_SELECIONADAS;CURSO;DISC_ORDER_SWITCH;TEMPO_SOLUCAO;VALOR_SOLUCAO\n";
     }
+
+    std::string str_turmas_selecionadas = "[";
+    for (auto turma : t_turmas_selecionadas)
+    {
+        str_turmas_selecionadas += t_solucao->get_instancia()->get_lista_turmas()[turma]->get_nome();
+        if (turma != t_turmas_selecionadas.back())
+        {
+            str_turmas_selecionadas += ", ";
+        }
+    }
+    str_turmas_selecionadas += "]";
 
     arquivo << t_solucao->get_id_solucao() << ";"
             << t_solucao->get_peso_janela() << ";"
@@ -30,6 +41,7 @@ void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, 
             << (t_solucao->get_qtd_sexto_horario() * t_solucao->get_peso_sexto()) << ";"
             << t_iteracao << ";"
             << qtd_turmas_heuristica << ";"
+            << str_turmas_selecionadas << ";"
             << curso << ";"
             << t_case_construtiva << ";"
             << since(t_tempo_inicial_solucao).count() << ";"
@@ -49,7 +61,7 @@ void GravarArquivo::salvar_horario_professores(const std::string &path, Solucao 
     if (!arquivo.is_open())
     {
         std::cerr << "Falha ao carregar o arquivo! Encerrando programa com erro: 08" << std::endl;
-        return;
+        exit(8);
     }
 
     Instancia *instancia = t_solucao->get_instancia();
@@ -112,7 +124,7 @@ void GravarArquivo::salvar_solucao_turmas(const std::string &path, Solucao *t_so
     if (!arquivo.is_open())
     {
         std::cerr << "Falha ao carregar o arquivo! Encerrando programa com erro: 08" << std::endl;
-        return;
+        exit(8);
     }
 
     Instancia *instancia = t_solucao->get_instancia();
@@ -202,7 +214,7 @@ void GravarArquivo::pequena_trollagem(std::string t_path, Solucao *t_solucao)
     if (!arquivo.is_open())
     {
         std::cerr << "Falha ao carregar o arquivo! Encerrando programa com erro: 08" << std::endl;
-        return;
+        exit(8);
     }
 
     arquivo << t_solucao->get_id_solucao() << ";" << (t_solucao->get_peso_janela() * t_solucao->get_qtd_janela()) << ";" << (t_solucao->get_peso_sexto() * t_solucao->get_qtd_sexto_horario()) << ";" << t_solucao->get_valor_solucao();

@@ -1,0 +1,3 @@
+Executando heuristica
+Fim da execução. O programa completou com sucesso.
+Tempo gasto total: 111609 microsegundos

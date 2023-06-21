@@ -48,6 +48,8 @@ public:
     void print_instancia();
 
     Instancia *shallow_copy();
+
+    void destruir_atributos_instancia();
 };
 
 #endif //!_INSTNACIA_HPP

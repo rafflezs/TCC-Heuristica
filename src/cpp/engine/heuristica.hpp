@@ -25,9 +25,8 @@ private:
     void ordenar_disciplinas(const int &rand_metodo, std::vector<Disciplina *> *t_disciplina);
 
     void heuristica_construtiva(int t_iteracao);
-    std::map<int, Solucao *> pos_processamento_estatico();
-    std::map<int, Solucao *> pos_processamento_dinamico();
-    void fix_n_opt();
+    Solucao *fix_and_optimize_estatico(Solucao *t_solucao);
+    Solucao *fix_and_optimize_dinamico(Solucao *t_solucao);
 
     void exibir_solucoes();
     void debug_heuristica();
@@ -35,11 +34,15 @@ private:
     // Função Objetivo
     void ordenar_solucoes();
 
-    void avaliar_solucao(Solucao *t_solucao, bool t_factibilidade);
+    void avaliar_solucao(Solucao *t_solucao);
     int calcular_janela_professor(Solucao *t_solucao);
     int calcular_sexto_horario_turma(Solucao *t_solucao);
 
-    Solucao *get_melhor_solucao();
+    void get_melhor_solucao();
+
+    void exibir_turma_e_sexto(Instancia *t_instancia, std::vector<int> t_index_turmas);
+    void exibir_professor_e_janela(Instancia *t_instancia, int t_professor);
+    void exibir_melhoria(Solucao *solucao_antiga, Solucao *solucao_melhorada, std::vector<int> t_turmas_index);
 
 public:
     Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const int qtd_rept_busca_local, const float &t_peso_janela, const float &t_peso_sexto);

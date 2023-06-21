@@ -5,7 +5,7 @@ ulimit -v 16000000  # Setar limite para execução
 # Fase de compilação
 if [ -f "./test/exe" ]; then
     echo "Compilando código fonte (/src/cpp*)..."
-    if g++ ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm; then
+    if g++ -O2 ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm; then
         echo "Código compilado corretamente!"
     else
         echo "Falha na compilação"
@@ -17,12 +17,12 @@ if [ -f "./test/exe" ]; then
 fi
 
 # Lista de parâmetros
-INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2") # "TCC-Instancia-2022-1")
+INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" ) #"TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
 REPTS_LIST=(1 2 5 10)
 QTD_TURMAS_LIST=(0 1 2 1000)
 PESOS_JANELA_LIST=(1 2 5)
 PESOS_SEXTO_LIST=(1 2 5)
-TAM_POPULACAO=50
+TAM_POPULACAO=10
 
 # #
 # # Main drive: loop principal de parâmetros
@@ -33,7 +33,7 @@ total=$((${#INSTANCIAS_LIST[@]} * ${#REPTS_LIST[@]} * ${#QTD_TURMAS_LIST[@]} * $
 progresso_atual=0
 erros=0
 
-for ((i = 1; i <= 5; i++)); do
+for ((i = 1; i <= 1; i++)); do
 
     output_dir_iteration="data/output/Execucao${i}"
     mkdir -p "$output_dir_iteration"

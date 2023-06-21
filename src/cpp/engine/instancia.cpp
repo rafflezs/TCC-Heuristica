@@ -405,3 +405,32 @@ Instancia *Instancia::shallow_copy()
     }
     return inst;
 }
+
+void Instancia::destruir_atributos_instancia()
+{
+    // Desalocar cursos
+    for (int i = 0; i < m_lista_cursos.size(); i++)
+    {
+        delete m_lista_cursos[i];
+    }
+
+    // Desalocar turmas
+    for (int i = 0; i < m_lista_turmas.size(); i++)
+    {
+        m_lista_turmas[i]->destruir_turma();
+        delete m_lista_turmas[i];
+    }
+
+    // Desalocar professores
+    for (int i = 0; i < m_lista_professores.size(); i++)
+    {
+        m_lista_professores[i]->destruir_professor();
+        delete m_lista_professores[i];
+    }
+
+    // Desalocar disciplinas
+    for (int i = 0; i < m_lista_disciplinas.size(); i++)
+    {
+        delete m_lista_disciplinas[i];
+    }
+}

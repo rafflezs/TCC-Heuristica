@@ -3,18 +3,19 @@
 ## Implementar chamada src/automation/file-converter.py
 ## para gerar instancia a partir do xlsx
 
-if [ -f "/test/exe" ]
-then
+if [ -f "/test/exe" ]; then
+    echo "Compilando"
     test/compile.sh
 fi
 
-rm -f data/output/*
+echo "Limpando pasta output/"
+rm -r "data/output/"
+mkdir "data/output"
 
-NOME_INSTANCA="TCC-Instancia-2018-2"
-# NOME_INSTANCA="TCC-Instancia-2019-1"
+NOME_INSTANCA="TCC-Instancia-2019-1"
 TAM_POPULACAO=1
-QTD_TURMAS_HEURISTICA=0 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
-QTD_REPT_HEURISTICA=3   # 1 para linear, 2+ para rept
+QTD_TURMAS_HEURISTICA=1 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
+QTD_REPT_HEURISTICA=1   # 1 para linear, 2+ para rept
 PESO_JANELA=1
 PESO_SEXTO=1
 
@@ -25,10 +26,35 @@ echo "qtd repet heuristica: $QTD_REPT_HEURISTICA"
 echo "peso janela: $PESO_JANELA"
 echo "peso sexto: $PESO_SEXTO"
 
-time ./test/exe $NOME_INSTANCA $TAM_POPULACAO $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO >> data/output/debug-out.txt
+folder="data/output/$NOME_INSTANCA"
+mkdir "$folder"
 
-rm -f test/exe
+time ./test/exe $NOME_INSTANCA $TAM_POPULACAO $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO >> "$folder"/debug-out.txt
 
+rm -f test/exe # Comentar essa linha caso nao altere o codigo
+
+mv data/output/analise.csv "$folder"
+mv data/output/pequena_trollagem.txt "$folder"
+mv data/output/professor.tex "$folder"
+mv data/output/turma.tex "$folder"
+
+
+echo "Compilando PDFs"
 # Inserir aqui arquivo Python para formatar LaTeX
-pdflatex -halt-on-error -output-directory data/output/ data/output/professor.tex 
-pdflatex -halt-on-error -output-directory data/output/ data/output/turma.tex 
+for file in $(find "$folder" -name "*.tex"); do
+    echo "$file"
+    pdflatex -halt-on-error -interaction=batchmode -output-directory $folder $file > /dev/null
+done
+
+echo ""
+echo "Limpando a pasta"
+if ls "$folder"/*.log >/dev/null 2>&1; then
+    rm -f "$folder"/*.log
+fi
+if ls "$folder"/*.aux >/dev/null 2>&1; then
+    rm -f "$folder"/*.aux
+fi
+
+echo ""
+echo "Execucao finalizada. Saidas salvas em $folder"
+echo "-----------------------------------------------"
