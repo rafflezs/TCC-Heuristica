@@ -39,7 +39,7 @@ for ((i = 1; i <= 1; i++)); do
     mkdir -p "$output_dir_iteration"
     
     # Cria arquivo para acompanhar exec_time
-    echo "ITERACAO;INSTANCIA_NOME;TAM_POPULACAO;QTD_TURMAS_HEURISTICA;QTD_REPT_HEURISTICA;PESO_JANELA;PESO_SEXTO;TEMPO_EXEC;ID_SOLUCAO;JANELA_SOLUCAO;SEXTO_HORARIO_SOLUCAO;VALOR_SOLUCAO" >> "data/bash-time.csv"
+    echo "ITERACAO;INSTANCIA_NOME;TAM_POPULACAO;QTD_TURMAS_HEURISTICA;QTD_REPT_HEURISTICA;PESO_JANELA;PESO_SEXTO;TEMPO_EXEC;ID_SOLUCAO;JANELA;VALOR_JANELA_SOLUCAO;SEXTO;SEXTO_HORARIO_SOLUCAO;SEXTO+JANELA;VALOR_SOLUCAO" >> "data/bash-time.csv"
 
     for instancia_value in "${INSTANCIAS_LIST[@]}"; do
         output_dir="$output_dir_iteration/$instancia_value"

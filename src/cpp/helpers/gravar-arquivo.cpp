@@ -1,4 +1,5 @@
 #include "gravar-arquivo.hpp"
+#include <iomanip>
 
 GravarArquivo::GravarArquivo()
 {
@@ -18,7 +19,7 @@ void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, 
     arquivo.seekp(0, std::ios::end);
     if (arquivo.tellp() == 0)
     {
-        arquivo << "SOL_ID;PESO_SEXTO;PESO_JANELA;QTD_JANELAS;SEXTOS_HORARIOS;VALOR_JANELA;VALOR_SEXTO;ITERACAO;QTD_TURMAS_HEURISTICA;TURMAS_SELECIONADAS;CURSO;DISC_ORDER_SWITCH;TEMPO_SOLUCAO;VALOR_SOLUCAO\n";
+        arquivo << "SOL_ID;PESO_SEXTO;PESO_JANELA;QTD_JANELAS;SEXTOS_HORARIOS;VALOR_JANELA;VALOR_SEXTO;JANELA+SEXTO;ITERACAO;QTD_TURMAS_HEURISTICA;TURMAS_SELECIONADAS;CURSO;DISC_ORDER_SWITCH;VALOR_SOLUCAO;TEMPO_SOLUCAO\n";
     }
 
     std::string str_turmas_selecionadas = "[";
@@ -39,13 +40,16 @@ void GravarArquivo::salvar_analise(const std::string &path, Solucao *t_solucao, 
             << t_solucao->get_qtd_sexto_horario() << ";"
             << (t_solucao->get_qtd_janela() * t_solucao->get_peso_janela()) << ";"
             << (t_solucao->get_qtd_sexto_horario() * t_solucao->get_peso_sexto()) << ";"
+            << (t_solucao->get_qtd_sexto_horario() + t_solucao->get_qtd_janela()) << ";"
             << t_iteracao << ";"
             << qtd_turmas_heuristica << ";"
             << str_turmas_selecionadas << ";"
             << curso << ";"
             << t_case_construtiva << ";"
-            << since(t_tempo_inicial_solucao).count() << ";"
-            << t_solucao->get_valor_solucao() << "\n";
+            << t_solucao->get_valor_solucao() << ";"
+            << std::fixed << std::setprecision(2) << std::chrono::duration_cast<std::chrono::duration<double>>(since(t_tempo_inicial_solucao)).count() << std::endl;
+
+    arquivo.close();
 }
 
 void GravarArquivo::salvar_saidas(const std::string &path, Solucao *t_solucao)
@@ -217,5 +221,13 @@ void GravarArquivo::pequena_trollagem(std::string t_path, Solucao *t_solucao)
         exit(8);
     }
 
-    arquivo << t_solucao->get_id_solucao() << ";" << (t_solucao->get_peso_janela() * t_solucao->get_qtd_janela()) << ";" << (t_solucao->get_peso_sexto() * t_solucao->get_qtd_sexto_horario()) << ";" << t_solucao->get_valor_solucao();
+    // ID SOLUCAO; JANELA; VALOR_JANEÇLA; SEXTO; VALOR_SEXTO; SEXTO+JANELA;VALOR_SOLUCAO
+    arquivo << t_solucao->get_id_solucao() << ";" 
+            << t_solucao->get_qtd_janela() << ";" 
+            << (t_solucao->get_peso_janela() * t_solucao->get_qtd_janela()) << ";" 
+            << t_solucao->get_qtd_sexto_horario() << ";" 
+            << (t_solucao->get_peso_sexto() * t_solucao->get_qtd_sexto_horario()) << ";" 
+            << (t_solucao->get_qtd_janela() + t_solucao->get_qtd_sexto_horario()) << ";" 
+            << t_solucao->get_valor_solucao();
+    arquivo.close();
 }

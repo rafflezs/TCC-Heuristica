@@ -1,0 +1,1 @@
+docker run -v data:/app/data/output TCC
