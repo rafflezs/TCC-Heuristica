@@ -62,7 +62,7 @@ for ((i = 1; i <= 3; i++)); do
                         echo ""
 
                         # Checa se houve runtime error
-                        if { time ./test/exe $NOME_INSTANCA $TAM_POPULACAO $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO ; } > "data/output/time.txt" > debug.txt ; then
+                        if { time ./test/exe $instancia_value $TAM_POPULACAO $qtd_turma_value $qtd_rept_value $peso_janela_value $peso_sexto_value > "$subfolder_path"/debug.txt ; } > "data/output/time.txt" ; then
                             echo "Tempo de execução: $exec_time segundos."
                             echo ""
 
@@ -99,8 +99,8 @@ for ((i = 1; i <= 3; i++)); do
                         else
                             ((progresso_atual++))
                             echo "Falha na execução: passo $progresso_atual de $total."
-                            echo "Erros encontrados: $erros"
                             ((erros++))
+                            echo "Erros encontrados: $erros"
 
                             exec_time=$(cat "data/output/time.txt")
                             echo "$progresso_atual;$instancia_value;$TAM_POPULACAO;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR" >> "data/bash-time.csv"
