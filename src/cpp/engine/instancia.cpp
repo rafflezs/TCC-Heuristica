@@ -105,6 +105,7 @@ const std::vector<Professor *> Instancia::instanciar_professor(const std::string
     row++;
     for (; row != csv.end(); row++)
     {
+        std::cout << (*row)[0] << " | " << (*row)[2] << std::endl;
 
         t_professores.push_back(new Professor(
             (*row)[0],
@@ -164,6 +165,7 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
     int index = 0;
     std::vector<std::vector<std::string>>::iterator row = csv.begin();
     row++;
+    // std::cout << (*row)[0] << " | " << (*row)[2] << std::endl;
     for (; row != csv.end(); row++)
     {
 
@@ -216,6 +218,7 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
     row++;
     for (; row != csv.end(); row++)
     {
+        // std::cout << (*row)[0] << " | " << (*row)[2] << std::endl;
 
         t_disciplinas.push_back(new Disciplina(
             (*row)[0],

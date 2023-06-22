@@ -14,6 +14,7 @@ Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_i
     {
         this->m_solucoes.push_back(new Solucao(m_rng, m_instancia_nome, i));
     }
+    std::cout << "Gerando solucoes em C++" << std::endl;
 }
 
 void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo_inicial)
@@ -21,6 +22,7 @@ void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo
     this->m_tempo_inicial = m_tempo_inicial;
     heuristica_construtiva(0);
 
+    std::cout << "Salvando melhor solucao em C++" << std::endl;
     get_melhor_solucao();
 
     for (int i = 0; i < m_solucoes.size(); i++)
@@ -73,18 +75,34 @@ void Heuristica::heuristica_construtiva(int t_iteracao)
 
     for (int index_sol = 0; index_sol < m_solucoes.size(); index_sol++)
     {
+        std::cout << "Construtiva para a solucao " << index_sol << " em C++" << std::endl;
+
         auto disciplinas_ordenadas = ordenar_disciplinas(index_sol, m_solucoes[index_sol]);
+        std::cout << "1" << std::endl;
+
         bool deu_certo = m_solucoes[index_sol]->popular_solucao(disciplinas_ordenadas);
+        std::cout << "2" << std::endl;
+
         avaliar_solucao(m_solucoes[index_sol]);
+        std::cout << "3" << std::endl;
+
         // Salvando parametros da solucao em csv para futura analise
+        std::cout << "Salvando analise" << std::endl;
+
         output.salvar_analise("data/output/", m_solucoes[index_sol], t_iteracao, 0, "CONSTRUTIVA", {}, index_sol, *m_tempo_inicial);
+
+        std::cout << "Busca local ";
 
         if (m_qtd_turmas_heuristica == 0)
         {
+            std::cout << "DINAMICA" << std::endl;
+
             m_solucoes[index_sol] = fix_and_optimize_dinamico(new Solucao(*m_solucoes[index_sol]));
         }
         else
         {
+            std::cout << "ESTATICA" << std::endl;
+
             m_solucoes[index_sol] = fix_and_optimize_estatico(new Solucao(*m_solucoes[index_sol]));
         }
     }
@@ -250,10 +268,10 @@ Solucao *Heuristica::fix_and_optimize_dinamico(Solucao *t_solucao)
                         {
 
                             std::cout << "Solucao antiga" << std::endl;
-                            exibir_turma_e_sexto(t_solucao->get_instancia(), turmas_iteracao);
+                            // exibir_turma_e_sexto(t_solucao->get_instancia(), turmas_iteracao);
 
                             std::cout << "Solucao nova" << std::endl;
-                            exibir_turma_e_sexto(nova_solucao.get_instancia(), turmas_iteracao);
+                            // exibir_turma_e_sexto(nova_solucao.get_instancia(), turmas_iteracao);
 
                             delete solucao_retorno;
                             solucao_retorno = new Solucao(nova_solucao);
@@ -278,7 +296,7 @@ void Heuristica::get_melhor_solucao()
         exit(2);
     }
 
-    Solucao* melhor_solucao = new Solucao(*m_solucoes[0]);
+    Solucao *melhor_solucao = new Solucao(*m_solucoes[0]);
 
     if (m_solucoes.size() > 1)
     {

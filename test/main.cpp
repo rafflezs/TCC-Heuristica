@@ -4,6 +4,7 @@ void debuga_tudo_nessa_desgraca(Solucao *t_solucao);
 
 int main(int argc, char **argv)
 {
+    std::cout << "Iniciando programa em C++" << std::endl;
     auto rd = std::random_device{};
     auto rng = std::default_random_engine{rd()};
 

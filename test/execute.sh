@@ -3,10 +3,8 @@
 ## Implementar chamada src/automation/file-converter.py
 ## para gerar instancia a partir do xlsx
 
-if [ -f "/test/exe" ]; then
-    echo "Compilando"
-    test/compile.sh
-fi
+echo "Compilando src/cpp"
+g++ -O3 ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm
 
 echo "Limpando pasta output/"
 rm -r "data/output/"
@@ -54,6 +52,8 @@ fi
 if ls "$folder"/*.aux >/dev/null 2>&1; then
     rm -f "$folder"/*.aux
 fi
+
+rm -f test/exe
 
 echo ""
 echo "Execucao finalizada. Saidas salvas em $folder"

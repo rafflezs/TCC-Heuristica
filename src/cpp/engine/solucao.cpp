@@ -21,8 +21,12 @@ bool Solucao::popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas)
             return false;
         }
 
+        std::cout << t_disciplinas_ordenadas.back()->get_id() << " | " << t_disciplinas_ordenadas.back()->get_nome() << std::endl;
         auto professor_relacionado = encontrar_prof_relacionado(t_disciplinas_ordenadas.back());
+        std::cout << professor_relacionado->get_id() << " | " << professor_relacionado->get_nome() << std::endl;
         auto turma_relacionada = encontrar_turma_relacionada(t_disciplinas_ordenadas.back());
+        std::cout << turma_relacionada->get_id() << " | " << turma_relacionada->get_nome() << std::endl
+                  << std::endl;
 
         bool verificado = verificar_horario(t_disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada);
         if (verificado == true)

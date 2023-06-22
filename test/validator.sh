@@ -3,21 +3,20 @@
 ulimit -v 16000000  # Setar limite para execução
 
 # Fase de compilação
-if [ -f "./test/exe" ]; then
-    echo "Compilando código fonte (/src/cpp*)..."
-    if g++ -O2 ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm; then
-        echo "Código compilado corretamente!"
-    else
-        echo "Falha na compilação"
-        exit 1
-    fi
-    echo "Prosseguindo com script..."
-    echo ""
-    echo ""
+echo "Compilando código fonte (/src/cpp*)..."
+if g++ -O3 ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm; then
+    echo "Código compilado corretamente!"
+else
+    echo "Falha na compilação"
+    exit 1
 fi
+echo "Prosseguindo com script..."
+echo ""
+echo ""
 
 # Lista de parâmetros
-INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" ) #"TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
+# INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
+INSTANCIAS_LIST=("TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
 REPTS_LIST=(1 2 5 10)
 QTD_TURMAS_LIST=(0 1 2 1000)
 PESOS_JANELA_LIST=(1 2 5)
@@ -33,7 +32,7 @@ total=$((${#INSTANCIAS_LIST[@]} * ${#REPTS_LIST[@]} * ${#QTD_TURMAS_LIST[@]} * $
 progresso_atual=0
 erros=0
 
-for ((i = 1; i <= 1; i++)); do
+for ((i = 1; i <= 3; i++)); do
 
     output_dir_iteration="data/output/Execucao${i}"
     mkdir -p "$output_dir_iteration"
@@ -63,7 +62,7 @@ for ((i = 1; i <= 1; i++)); do
                         echo ""
 
                         # Checa se houve runtime error
-                        if { time -p (./test/exe "$instancia_value" "$TAM_POPULACAO" "$qtd_turma_value" "$qtd_rept_value" "$peso_janela_value" "$peso_sexto_value") ; } 2> >(grep real | awk '{print $2}' > "data/output/time.txt") > /dev/null ; then
+                        if { time ./test/exe $NOME_INSTANCA $TAM_POPULACAO $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO ; } > "data/output/time.txt" > debug.txt ; then
                             echo "Tempo de execução: $exec_time segundos."
                             echo ""
 

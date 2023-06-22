@@ -1,103 +1,103 @@
 ID;Curso;Nome;Periodo ;Disciplinas;SEG;TER;QUA;QUI;SEX;SAB
-20192.02ADI11N.1N;Técnico em Administração;Técnico em Administração (Primeiro Noturno);Noite;RV.ADM01,RV.ADM02,RV.ADM03,RV.ADM04,RV.ADM401,RV.EXA808,RV.HUM824;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADI11N.2N;Técnico em Administração;Técnico em Administração (Segundo Noturnno);Noite;RV.ADM05,RV.ADM06,RV.ADM07,RV.ADM08,RV.ADM405,RV.CON817,RV.EXA810;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM112.1V;Técnico em Administração;Técnico em Administração (Primeiro Periodo);Tarde;RV.ADM01,RV.ADM02,RV.ADM03,RV.ADM04,RV.ADM401,RV.EXA808,RV.HUM824;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ADM112.2V;Técnico em Administração;Técnico em Administração (Segundo Periodo);Tarde;RV.ADM05,RV.ADM06,RV.ADM07,RV.ADM08,RV.ADM405,RV.CON817,RV.EXA810;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ADM112.3V;Técnico em Administração;Técnico em Administração (Terceiro Periodo);Tarde;RV.ADM09,RV.ADM10,RV.ADM11,RV.ADM413,RV.ADM811,TADMRV33;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ADM11N.1N;Técnico em Administração;Técnico em Administração (Primeiro Noturno);Noite;RV.ADM01,RV.ADM02,RV.ADM03,RV.ADM04,RV.ADM401,RV.EXA808,RV.HUM824;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM11N.2N;Técnico em Administração;Técnico em Administração (Segundo Noturnno);Noite;RV.ADM05,RV.ADM06,RV.ADM07,RV.ADM08,RV.ADM405,RV.CON817,RV.EXA810;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM11N.3N;Técnico em Administração;Técnico em Administração (Terceiro Noturnno);Noite;RV.ADM09,RV.ADM10,RV.ADM11,RV.ADM413,RV.ADM811,TADMRV33;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM12N.2N;PROEJA Adminstração;PROEJA Adminstração (Segundo Noturnno);Noite;RV.ADM401,RV.PRO006,RV.PRO007,RV.PRO009,RV.PRO010,RV.PRO011,RV.PRO012;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM12N.3N;PROEJA Adminstração;PROEJA Adminstração (Terceiro Noturnno);Noite;RV.ADM03,RV.PRO013,RV.PRO014,RV.PRO015,RV.PRO016,RV.PRO018;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM12N.4N;PROEJA Adminstração;PROEJA Adminstração (Quarto Noturnno);Noite;RV.PRO019,RV.PRO023,RV.PRO024,RV.PRO025,RV.PRO026,RV.PRO027,RV.PRO028,RV.PRO036;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM12N.5N;PROEJA Adminstração;PROEJA Adminstração (Quinto Noturnno);Noite;RV.ADM402,RV.ADM406,RV.ADM408,RV.CON816,RV.PRO14,RV.PRO70,RV.PRO80,RV.PRO92;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM12N.6N;PROEJA Adminstração;PROEJA Adminstração (Sexto Noturnno);Noite;RV.ADM403,RV.ADM824,RV.CON816,RV.EXA809,RV.HUM818,RV.PRO71,RV.PRO81;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM12N.7N;PROEJA Adminstração;PROEJA Adminstração (Setimo Noturnno);Noite;RV.ADM405,RV.ADM407,RV.ADM810,RV.CON815,RV.HUM823,RV.PRO23,RV.PRO72;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ADM20N.2N;Administração;Administração (Segundo Noturnno);Noite;GRAD.ADM.ASI.07,GRAD.ADM.GP-I.08,GRAD.ADM.TGA-II.06,GRAD.EB.02,GRAD.MC.05;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02AGN21N.6N;Agronegócio;Agronegócio (Sexto Noturnno);Noite;RV.AGN219,RV.AGN223,RV.AGN224,RV.AGN226,RV.HUM215,RV.TCC212,RV.TCC213;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02AGP11M.1M;Técnico em Agropecuária;Técnico em Agropecuária (Primeiro Periodo);Manhã;RV.EXA224,RV.TAG003,RV.TAG004,RV.TAG005,RV.TAG503;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02AGP11M.2M;Técnico em Agropecuária;Técnico em Agropecuária (Segundo Periodo);Manhã;RAGROP-RV.1,RAGROP-RV.6,RV.TAG006,RV.TAG007,RV.TAG008;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02AGP11M.3M;Técnico em Agropecuária;Técnico em Agropecuária (Terceiro Periodo);Manhã;RV.TAG001,RV.TAG002,RV.TAG010,RV.TAG011,RV.TAG012,RV.TAG506;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02AGP11M.4M;Técnico em Agropecuária;Técnico em Agropecuária (Quarto Periodo);Manhã;RAGROP-RV.4,RV.TAG013,RV.TAG014,RV.TAG015,RV.TAG517;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02AGP11V.1V;Técnico em Agropecuária;Técnico em Agropecuária (Primeiro Periodo);Tarde;RV.EXA224,RV.TAG003,RV.TAG004,RV.TAG005,RV.TAG503;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02AGP11V.2V;Técnico em Agropecuária;Técnico em Agropecuária (Segundo Periodo);Tarde;RAGROP-RV.1,RAGROP-RV.6,RV.TAG006,RV.TAG007,RV.TAG008;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02AGP11V.3V;Técnico em Agropecuária;Técnico em Agropecuária (Terceiro Periodo);Tarde;RV.TAG001,RV.TAG002,RV.TAG010,RV.TAG011,RV.TAG012,RV.TAG506;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02AGP11V.4V;Técnico em Agropecuária;Técnico em Agropecuária (Quarto Periodo);Tarde;RAGROP-RV.4,RV.TAG013,RV.TAG014,RV.TAG015,RV.TAG517;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02AGR20I.2M;Agronomia;Agronomia (Segundo Periodo);Manhã;GRAD.EB.01,GRAD.F.01,GRAD.GMS.01,GRAD.M.01,GRAD.OSV.01,GRAD.QO.01,GRAD.Z.01;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02AGR20I.4V;Agronomia;Agronomia (Quarto Periodo);Tarde;GRAD.A.25,GRAD.BB.01,GRAD.CLS.01,GRAD.EA.31,GRAD.FS.02,GRAD.G.02,GRAD.MMA.01,GRAD.T.02;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02AGR20I.6M;Agronomia;Agronomia (Sexto Periodo);Manhã;RV.AGR214,RV.AGR218,RV.AGR225,RV.AGR226,RV.AGR242,RV.ENG208,RV.ENG217,RV.ZOO226;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02AGR20I.8V;Agronomia;Agronomia (Oitavo Periodo);Tarde;RV.AGR215,RV.AGR238,RV.EAL231,RV.ENG230,RV.HUM218,RV.ZOO235;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02AGR20I.ESPECIAL;Agronomia;Agronomia (Turma Especial);Integral;GRAD.AA.01,RV.AGR202,RV.AGR209,RV.AGR224,RV.AGR234,RV.BIO244,RV.GAM239;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02AGR20I.FERIAS;Agronomia;Agronomia (Turma de Ferias);Integral;RV.ENG208;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02ALI11N.1N;Técnico em Alimentos;Técnico em Alimentos (Primeiro Noturno);Noite;RV.EXA722,RV.QAP428,RV.TAL06,RV.TAL07,RV.TAL08,RV.TAL09,RV.TAL81;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ALI11N.2N;Técnico em Alimentos;Técnico em Alimentos (Segundo Noturnno);Noite;RV.EXA810,RV.TAL11,RV.TAL12,RV.TAL712,RVTAL.82;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ALI11N.3N;Técnico em Alimentos;Técnico em Alimentos (Terceiro Noturnno);Noite;RV.TAL02,RV.TAL03,RV.TAL727,RV.TAL85,RV.TAL87;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ALI11N.4N;Técnico em Alimentos;Técnico em Alimentos (Quarto Noturnno);Noite;RV.TAL13,RV.TAL14,RV.TAL15,RV.TAL16,RV.TAL17,RV.TAL717;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ALI20I.2M;Engenharia de Alimentos;Engenharia de Alimentos (Segundo Periodo);Manhã;GRAD.CDI.04,GRAD.DT.02,GRAD.EB.02,GRAD.FOTB.01,GRAD.QA.02,GRAD.QO.02;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02ALI20I.4V;Engenharia de Alimentos;Engenharia de Alimentos (Quarto Periodo);Tarde;GRAD.BA.01,GRAD.CN.01,GRAD.FQ.02,GRAD.FT.01,GRAD.MICROBIOL.01,GRAD.QA.03;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ALI20I.6M;Engenharia de Alimentos;Engenharia de Alimentos (Sexto Periodo);Manhã;RV.EAL205,RV.EAL213,RV.EAL214,RV.ENG209,RV.ENG211,RV.INF205;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02ALI20I.8V;Engenharia de Alimentos;Engenharia de Alimentos (Oitavo Periodo);Tarde;RV.EAL218,RV.EAL219,RV.EAL221,RV.EAL222,RV.EAL230;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ALI20I.ESPECIAL;Engenharia de Alimentos;Engenharia de Alimentos (Turma Especial);Integral;GRAD.GAAL.01;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02BIO22N.2N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Segundo Noturnno);Noite;GRAD.AV.03,GRAD.FSHE.01,GRAD.HISTOLOG.01,GRAD.QO.02,GRAD.ZI-I.01;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BIO22N.4N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Quarto Noturnno);Noite;GRAD. ZV.01,GRAD.BABP.01,GRAD.DIDáT.01,GRAD.EG.03,GRAD.FV.05;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BIO22N.6N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Sexto Noturnno);Noite;RV.BIO352,RV.BIO353,RV.BIO354,RV.BIO355;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BIO22N.8N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Oitavo Noturnno);Noite;RV.BIO318,RV.BIO357,RV.EDU217,RV.GAM240;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BIO23I.2M;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Segundo Periodo);Manhã;GRAD.BB.02,GRAD.BIOESTAT.01,GRAD.EG.01,GRAD.GENéT.01,GRAD.HISTOL.01,GRAD.QO.02,GRAD.ZI.01;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02BIO23I.4V;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Quarto Periodo);Tarde;GRAD.BABP.01,GRAD.BIOF.01,GRAD.EPC.01,GRAD.LA.01,GRAD.MOV.01,GRAD.ZV.01;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02BIO23I.6M;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Sexto Periodo);Manhã;RV.BIO206,RV.BIO213,RV.BIO316,RV.BIO317,RV.BIO347,RV.EAM203;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02BIO23I.8V;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Oitavo Periodo);Tarde;RV.BIO238,RV.BIO239,RV.GAM235;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02BIO23I.ESPECIAL;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Turma Especial);Integral;GRAD.NMP.01;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02BTC11N.1N;Técnico em Biotecnologia;Técnico em Biotecnologia (Primeiro Noturno);Noite;CTBIOTRV.1,CTBIOTRV.19,CTBIOTRV.20,CTBIOTRV.3,CTBIOTRV.5,RV.EXA810;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BTC11N.2N;Técnico em Biotecnologia;Técnico em Biotecnologia (Segundo Noturnno);Noite;CTBIOTRV.21,CTBIOTRV.22,CTBIOTRV.23,CTBIOTRV.26,RV.TAL607,RV.TAL727;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BTC11N.3N;Técnico em Biotecnologia;Técnico em Biotecnologia (Terceiro Noturnno);Noite;CTBIOTRV.10,CTBIOTRV.13,CTBIOTRV.18,CTBIOTRV.24,CTBIOTRV.25;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02BTC11N.4N;Técnico em Biotecnologia;Técnico em Biotecnologia (Quarto Noturnno);Noite;CTBIOTRV.14,CTBIOTRV.15,CTBIOTRV.16,CTBIOTRV.17,RV.AGR424;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02CDC20I.2M;Ciência da Computação;Ciência da Computação (Segundo Periodo);Manhã;GRAD.CDI.03,GRAD.GAAL.01,GRAD.LTP.01,GRAD.MCCC.01,GRAD.MD.01,GRAD.SD.01;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02CDC20I.4V;Ciência da Computação;Ciência da Computação (Quarto Periodo);Tarde;GRAD.ANAPROJALG.01,GRAD.BD.01,GRAD.ED.02,GRAD.PLP.01,GRAD.PLP.02,GRAD.PO.01,GRAD.RC.01;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02CDC20I.6M;Ciência da Computação;Ciência da Computação (Sexto Periodo);Manhã;GRAD.EE.02,RV.BCC021,RV.BCC023,RV.BCC024,RV.BCC038,RV.BCCP14,RV.EAL230;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02CDC20I.8V;Ciência da Computação;Ciência da Computação (Oitavo Periodo);Tarde;RV.BCC030,RV.BCC032,RV.BCC037,RV.BCCP16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02CDC20I.ESPECIAL;Ciência da Computação;Ciência da Computação (Turma Especial);Integral;GRAD.ED.01;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02CIV20I.2M;Engenharia Civil;Engenharia Civil (Segundo Periodo);Manhã;GRAD.CDI.04,GRAD.CN.01,GRAD.EB.02,GRAD.FE-II.01,GRAD.FíSICA II.01,GRAD.PROJARQ.01,GRAD.TOPOG.01;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02CIV20I.4V;Engenharia Civil;Engenharia Civil (Quarto Periodo);Tarde;GRAD..MV.01,GRAD.ICEM.01,GRAD.IEP.01,GRAD.MC.02,GRAD.MCC- I.01,GRAD.METCOMP.01;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02CIV20I.6M;Engenharia Civil;Engenharia Civil (Sexto Periodo);Manhã;RV.EAM212,RV.ENG224,RV.ENG240,RV.ENG241,RV.ENG242,RV.ENG243;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02CIV20I.8V;Engenharia Civil;Engenharia Civil (Oitavo Periodo);Tarde;GRAD.TAA.01,RV.EAM206,RV.ENG248,RV.ENG249,RV.ENG257,RV.ENG261,RV.GAM224;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02CIV20I.ESPECIAL;Engenharia Civil;Engenharia Civil (Turma Especial);Integral;GRAD.FíSICA III.01,RV.ENG236,RV.ENG245,RV.ENG256;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02COT11N.1N;Técnico em Contabilidade;Técnico em Contabilidade (Primeiro Noturno);Noite;RV.ADM410,RV.CON001,RV.CON002,RV.CON003,RV.EXA808,RV.HUM824;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02COT11N.2N;Técnico em Contabilidade;Técnico em Contabilidade (Segundo Noturnno);Noite;RV.ADM12,RV.CON004,RV.CON005,RV.CON100,RV.CON107;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02COT11N.3N;Técnico em Contabilidade;Técnico em Contabilidade (Terceiro Noturnno);Noite;RV.CON006,RV.CON007,RV.CON008,RV.CON111,RV.CONT102;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02EAM20I.2M;Engenharia Ambiental;Engenharia Ambiental (Segundo Periodo);Manhã;GRAD.CDI.04,GRAD.DT.02,GRAD.EE.02,GRAD.MASU.02,GRAD.PTUR.01,GRAD.QAAI.01,GRAD.QO.02;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02EAM20I.4V;Engenharia Ambiental;Engenharia Ambiental (Quarto Periodo);Tarde;GRAD.LA.03,GRAD.MA.01,GRAD.POLAGU.01,GRAD.PS.02,GRAD.SEDO.01,GRAD.TOPOG.01;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02EAM20I.6M;Engenharia Ambiental;Engenharia Ambiental (Sexto Periodo);Manhã;RV.EAL204,RV.EAM208,RV.EAM212,RV.ENG224,RV.GAM203,RV.INF205;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02EAM20I.8V;Engenharia Ambiental;Engenharia Ambiental (Oitavo Periodo);Tarde;RV.EAM206,RV.EAM207,RV.EAM209,RV.ENG212,RV.GAM218,RV.GAM235,RV.HUM214;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02EAM20I.ESPECIAL;Engenharia Ambiental;Engenharia Ambiental (Turma Especial);Integral;GRAD.CDI.03,RV.GAM217;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02EDI11N.1N;Técnico em Edificações;Técnico em Edificações (Primeiro Noturno);Noite;RV.DTC001,RV.IMP001,RV.MAP001,RV.MAS001,RV.MCI001,RV.T-PL001;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02EDI11N.2N;Técnico em Edificações;Técnico em Edificações (Segundo Noturnno);Noite;RV.MCC001,RV.MSL001,RV.PAI001,RV.SE-I001,RV.T-AL001;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02EDI11N.3N;Técnico em Edificações;Técnico em Edificações (Terceiro Noturnno);Noite;RV.FDC001,RV.PA-II001,RV.PHD001,RV.SE-II001,RV.TC-I001;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02EDI11N.4N;Técnico em Edificações;Técnico em Edificações (Quarto Noturnno);Noite;RV.EPD002,RV.GOT001,RV.IEC001,RV.PFL001,RV.SOT001,RV.TC-II001;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02EDI12N.6N;Técnico em Edificações;Técnico em Edificações (Sexto Noturnno);Noite;CTEDIFRV.20,CTEDIFRV.21,CTEDIFRV.22,CTEDIFRV.30,RV.PRO41,RV.PRO51;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02EDI12N.7N;Técnico em Edificações;Técnico em Edificações (Setimo Noturnno);Noite;CTEDIFRV.25,CTEDIFRV.26,CTEDIFRV.27,CTEDIFRV.31,CTEDIFRV.32,RV.PRO42,RV.PRO52;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02INF11N.1N.-;Técnico em Informática;Técnico em Informática (Primeiro Noturno);Noite;RV.INF610,RV.INF618,RV.INF619,RV.INF92,RV.INF96;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02INF11N.2N.-;Técnico em Informática;Técnico em Informática (Segundo Noturnno);Noite;RV.INF100,RV.INF64,RV.INF74,RV.INF97,RV.INF98,RV.INF99;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02INF11N.3N.-;Técnico em Informática;Técnico em Informática (Terceiro Noturnno);Noite;RV.CON817,RV.INF61,RV.INF62,RV.INF63,RV.INF85,RV.INF94;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02INF11N.4N.-;Técnico em Informática;Técnico em Informática (Quarto Noturnno);Noite;RV.INF60,RV.INF88,RV.INF91,TADMRV33;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI10N.1N;Técnico em Química;Técnico em Química (Primeiro Noturno);Noite;RV.EXA722,RV.EXA723,RV.QUI720,RV.QUI723,RV.QUI724,RV.QUI735,RV.QUI736;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI10N.2N;Técnico em Química;Técnico em Química (Segundo Noturnno);Noite;RV.ING412,RV.QUI725,RV.QUI726,RV.QUI731,RV.QUI737,RV.TAL717,RV.TAL727;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI10N.3N;Técnico em Química;Técnico em Química (Terceiro Noturnno);Noite;RV.HUM805,RV.QUI124,RV.QUI728,RV.QUI729,RV.QUI730,RV.QUI733,RV.TAL10;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI22N.2N;Química;Química (Segundo Noturnno);Noite;GRAD.CáLCULO.01,GRAD.FQ.01,GRAD.FQIE.01,GRAD.FQIE.01,GRAD.FSHE.01,GRAD.PAQG.01,GRAD.QG-II.01;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI22N.4N;Química;Química (Quarto Noturnno);Noite;GRAD.DIDáT.01,GRAD.EB.02,GRAD.FGE-II.01,GRAD.PAQAQ.01,GRAD.QAQ.03;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI22N.6N;Química;Química (Sexto Noturnno);Noite;RV.EDU205,RV.HUM223,RV.QUI230;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI22N.8N;Química;Química (Oitavo Noturnno);Noite;RV.EDU208,RV.EDU210,RV.QUI220,RV.QUI235,RV.QUI239,RV.QUI254;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02QUI22N.ESPECIAL;Química;Química (Turma Especial);Integral;RV.EXA203,RV.EXA222;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02QUI22N.FERIAS;Química;Química (Turma de Ferias);Integral;RV.QUI228;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02SAM21N.2N;Saneamento Ambiental;Saneamento Ambiental (Segundo Noturnno);Noite;GRAD.CáLCULO.01,GRAD.EB.02,GRAD.HIDROLOG.01,GRAD.QAAI.01,GRAD.TOPOG.01;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02SAM21N.4N;Saneamento Ambiental;Saneamento Ambiental (Quarto Noturnno);Noite;GRAD.ER.01,GRAD.GAP.01,GRAD.GEOPROCESS.01,GRAD.GRS.02,GRAD.LA.01,GRAD.SP.02;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02SAM21N.6N;Saneamento Ambiental;Saneamento Ambiental (Sexto Noturnno);Noite;RV.GAM208,RV.GAM209,RV.GAM220,RV.GAM232;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02SAM21N.ESPECIAL;Saneamento Ambiental;Saneamento Ambiental (Turma Especial);Integral;GRAD.QG.01,RV.EAM211,RV.GAM236;13-16;13-16;13-16;13-16;13-16;1-16
-20192.02SGT11N.1N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Primeiro Noturno);Noite;CTSTRARV.1,CTSTRARV.2,CTSTRARV.3,CTSTRARV.30,CTSTRARV.31,CTSTRARV.50;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02SGT11N.2N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Segundo Noturnno);Noite;CTSTRARV.32,CTSTRARV.33,CTSTRARV.34,CTSTRARV.35,CTSTRARV.36,CTSTRARV.37,TADMRV33;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02SGT11N.3N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Terceiro Noturnno);Noite;CTSTRARV.19,CTSTRARV.38,CTSTRARV.39,CTSTRARV.40,CTSTRARV.41,CTSTRARV.42,CTSTRARV.43;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02SGT11N.4N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Quarto Noturnno);Noite;CTSTRARV.23,CTSTRARV.44,CTSTRARV.45,CTSTRARV.46,CTSTRARV.47,CTSTRARV.48,CTSTRARV.49;1-12;1-12;1-12;1-12;1-12;12-16
-20192.02ZOO20I.2M;Zootecnia;Zootecnia (Segundo Periodo);Manhã;GRAD.EG.01,GRAD.FMB.02,GRAD.GMS.02,GRAD.IBPZ.01,GRAD.MC.02,GRAD.QO.02,GRAD.ZOOLOGIA.01;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02ZOO20I.4V;Zootecnia;Zootecnia (Quarto Periodo);Tarde;GRAD.EE.02,GRAD.FA.02,GRAD.FS.03,GRAD.FV.03,GRAD.GENéTICA.01,GRAD.MIA.01;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ZOO20I.6M;Zootecnia;Zootecnia (Sexto Periodo);Manhã;RV.HUM207,RV.ZOO213,RV.ZOO263,SZOOTEC-RV.11,SZOOTEC-RV.12,SZOOTEC-RV.13,SZOOTEC-RV.14;7-16;7-16;7-16;7-16;7-16;1-16
-20192.02ZOO20I.8V;Zootecnia;Zootecnia (Oitavo Periodo);Tarde;RV.EAL228,RV.GAM218,RV.HUM205,RV.HUM207,RV.ZOO217,RV.ZOO225;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
-20192.02ZOO20I.ESPECIAL;Zootecnia;Zootecnia (Turma Especial);Integral;RV.BIO201,RV.EXA201,RV.QUI205,RV.ZOO202,RV.ZOO223;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02ADI11N.1N;Técnico em Administração;Técnico em Administração (Primeiro Noturno);Noite;137689,137686,137684,137690,137687,137688,137685;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADI11N.2N;Técnico em Administração;Técnico em Administração (Segundo Noturnno);Noite;132890,132891,132888,132892,132886,132887,132889;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM112.1V;Técnico em Administração;Técnico em Administração (Primeiro Periodo);Tarde;132678,132675,132673,132679,132676,132677,132674;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ADM112.2V;Técnico em Administração;Técnico em Administração (Segundo Periodo);Tarde;133289,133290,133287,133291,133285,133286,133288;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ADM112.3V;Técnico em Administração;Técnico em Administração (Terceiro Periodo);Tarde;132741,132744,132742,132745,132740,132743;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ADM11N.1N;Técnico em Administração;Técnico em Administração (Primeiro Noturno);Noite;132685,132682,132680,132686,132683,132684,132681;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM11N.2N;Técnico em Administração;Técnico em Administração (Segundo Noturnno);Noite;133172,133173,133170,133174,133168,133169,133171;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM11N.3N;Técnico em Administração;Técnico em Administração (Terceiro Noturnno);Noite;132747,132750,132748,132751,132746,132749;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM12N.2N;PROEJA Adminstração;PROEJA Adminstração (Segundo Noturnno);Noite;132793,132790,132795,132796,132794,132792,132791;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM12N.3N;PROEJA Adminstração;PROEJA Adminstração (Terceiro Noturnno);Noite;132798,132803,132797,132801,132800,132802;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM12N.4N;PROEJA Adminstração;PROEJA Adminstração (Quarto Noturnno);Noite;132810,132811,132809,132807,132806,132808,132805,132812;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM12N.5N;PROEJA Adminstração;PROEJA Adminstração (Quinto Noturnno);Noite;132814,132817,132813,134376,132816,132818,132815,132819;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM12N.6N;PROEJA Adminstração;PROEJA Adminstração (Sexto Noturnno);Noite;132825,132821,132820,132822,132823,132826,132824;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM12N.7N;PROEJA Adminstração;PROEJA Adminstração (Setimo Noturnno);Noite;132828,132827,132829,132830,132831,132832,132833;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ADM20N.2N;Administração;Administração (Segundo Noturnno);Noite;132928,132930,132932,132929,132931;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02AGN21N.6N;Agronegócio;Agronegócio (Sexto Noturnno);Noite;132905,132908,132904,132906,132903,134077,132907;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02AGP11M.1M;Técnico em Agropecuária;Técnico em Agropecuária (Primeiro Periodo);Manhã;132689,132688,132691,132687,132690;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02AGP11M.2M;Técnico em Agropecuária;Técnico em Agropecuária (Segundo Periodo);Manhã;133305,133304,133303,133306,133307;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02AGP11M.3M;Técnico em Agropecuária;Técnico em Agropecuária (Terceiro Periodo);Manhã;132752,132753,132754,132756,132755,132757;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02AGP11M.4M;Técnico em Agropecuária;Técnico em Agropecuária (Quarto Periodo);Manhã;132758,132759,132761,132762,132760;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02AGP11V.1V;Técnico em Agropecuária;Técnico em Agropecuária (Primeiro Periodo);Tarde;132694,132693,132696,132692,132695;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02AGP11V.2V;Técnico em Agropecuária;Técnico em Agropecuária (Segundo Periodo);Tarde;133300,133299,133298,133301,133302;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02AGP11V.3V;Técnico em Agropecuária;Técnico em Agropecuária (Terceiro Periodo);Tarde;132763,132764,132765,132767,132766,132768;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02AGP11V.4V;Técnico em Agropecuária;Técnico em Agropecuária (Quarto Periodo);Tarde;132769,132770,132772,132773,132771;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02AGR20I.2M;Agronomia;Agronomia (Segundo Periodo);Manhã;132933,132934,132935,132936,132937,132938,132939;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02AGR20I.4V;Agronomia;Agronomia (Quarto Periodo);Tarde;133016,132940,132941,133017,132943,133006,132944,132945;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02AGR20I.6M;Agronomia;Agronomia (Sexto Periodo);Manhã;132952,132951,132948,132950,132947,132946,132949,132953;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02AGR20I.8V;Agronomia;Agronomia (Oitavo Periodo);Tarde;132957,132956,132960,132958,132954,132955;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02AGR20I.ESPECIAL;Agronomia;Agronomia (Turma Especial);Integral;135056,132909,132911,133892,132983,132966,132910;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02AGR20I.FERIAS;Agronomia;Agronomia (Turma de Ferias);Integral;132150;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02ALI11N.1N;Técnico em Alimentos;Técnico em Alimentos (Primeiro Noturno);Noite;132698,132701,132702,132703,132697,132699,132700;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ALI11N.2N;Técnico em Alimentos;Técnico em Alimentos (Segundo Noturnno);Noite;133177,133179,133180,133178,133175;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ALI11N.3N;Técnico em Alimentos;Técnico em Alimentos (Terceiro Noturnno);Noite;132778,132776,132775,132777,132774;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ALI11N.4N;Técnico em Alimentos;Técnico em Alimentos (Quarto Noturnno);Noite;132784,132782,132781,132783,132780,132779;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ALI20I.2M;Engenharia de Alimentos;Engenharia de Alimentos (Segundo Periodo);Manhã;133322,133323,133324,133325,133326,133327;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02ALI20I.4V;Engenharia de Alimentos;Engenharia de Alimentos (Quarto Periodo);Tarde;133328,133329,133331,133330,133332,133333;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ALI20I.6M;Engenharia de Alimentos;Engenharia de Alimentos (Sexto Periodo);Manhã;133335,133336,133334,133337,133339,133338;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02ALI20I.8V;Engenharia de Alimentos;Engenharia de Alimentos (Oitavo Periodo);Tarde;133343,133344,133342,133341,133340;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ALI20I.ESPECIAL;Engenharia de Alimentos;Engenharia de Alimentos (Turma Especial);Integral;133348;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02BIO22N.2N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Segundo Noturnno);Noite;133552,133396,133397,133398,133399;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BIO22N.4N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Quarto Noturnno);Noite;133404,133400,133401,133402,133403;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BIO22N.6N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Sexto Noturnno);Noite;133405,133406,133408,133407;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BIO22N.8N;Ciências Biológicas (licenciatura);Ciências Biológicas (licenciatura) (Oitavo Noturnno);Noite;133411,133410,133412,133409;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BIO23I.2M;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Segundo Periodo);Manhã;133027,133026,133028,133029,133030,133031,133032;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02BIO23I.4V;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Quarto Periodo);Tarde;133034,133033,133035,133036,133037,133038;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02BIO23I.6M;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Sexto Periodo);Manhã;133044,133041,133040,133042,133039,133043;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02BIO23I.8V;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Oitavo Periodo);Tarde;133046,133045,133047;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02BIO23I.ESPECIAL;Ciências Biológicas (bacharelado);Ciências Biológicas (bacharelado) (Turma Especial);Integral;133018;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02BTC11N.1N;Técnico em Biotecnologia;Técnico em Biotecnologia (Primeiro Noturno);Noite;132728,132732,132729,132733,132731,132730;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BTC11N.2N;Técnico em Biotecnologia;Técnico em Biotecnologia (Segundo Noturnno);Noite;133205,133201,133202,133200,133203,133204;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BTC11N.3N;Técnico em Biotecnologia;Técnico em Biotecnologia (Terceiro Noturnno);Noite;132868,132869,132866,132865,132867;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02BTC11N.4N;Técnico em Biotecnologia;Técnico em Biotecnologia (Quarto Noturnno);Noite;132874,132873,132870,132872,132871;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02CDC20I.2M;Ciência da Computação;Ciência da Computação (Segundo Periodo);Manhã;133056,133057,133058,133060,133059,133061;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02CDC20I.4V;Ciência da Computação;Ciência da Computação (Quarto Periodo);Tarde;133062,133063,133064,133091,133066,133065,133067;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02CDC20I.6M;Ciência da Computação;Ciência da Computação (Sexto Periodo);Manhã;133092,133072,133070,133069,133093,133071,133068;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02CDC20I.8V;Ciência da Computação;Ciência da Computação (Oitavo Periodo);Tarde;133085,133083,133084,133082;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02CDC20I.ESPECIAL;Ciência da Computação;Ciência da Computação (Turma Especial);Integral;133019;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02CIV20I.2M;Engenharia Civil;Engenharia Civil (Segundo Periodo);Manhã;133352,133353,133354,133355,133356,133357,133358;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02CIV20I.4V;Engenharia Civil;Engenharia Civil (Quarto Periodo);Tarde;133363,133361,133360,133364,133362,133365;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02CIV20I.6M;Engenharia Civil;Engenharia Civil (Sexto Periodo);Manhã;133370,133368,133371,133367,133366,133369;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02CIV20I.8V;Engenharia Civil;Engenharia Civil (Oitavo Periodo);Tarde;133377,133378,133372,133374,133375,133376,133373;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02CIV20I.ESPECIAL;Engenharia Civil;Engenharia Civil (Turma Especial);Integral;133385,133379,133387,133386;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02COT11N.1N;Técnico em Contabilidade;Técnico em Contabilidade (Primeiro Noturno);Noite;132709,132704,132706,132708,132707,132705;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02COT11N.2N;Técnico em Contabilidade;Técnico em Contabilidade (Segundo Noturnno);Noite;133181,133182,133185,133184,133183;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02COT11N.3N;Técnico em Contabilidade;Técnico em Contabilidade (Terceiro Noturnno);Noite;132786,132789,132788,132785,132787;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02EAM20I.2M;Engenharia Ambiental;Engenharia Ambiental (Segundo Periodo);Manhã;133211,133212,133213,133214,133215,133216,133217;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02EAM20I.4V;Engenharia Ambiental;Engenharia Ambiental (Quarto Periodo);Tarde;133218,133219,133220,133221,133222,133223;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02EAM20I.6M;Engenharia Ambiental;Engenharia Ambiental (Sexto Periodo);Manhã;133225,133230,133228,133227,133226,133229;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02EAM20I.8V;Engenharia Ambiental;Engenharia Ambiental (Oitavo Periodo);Tarde;133237,133236,133233,133232,133234,133235,133231;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02EAM20I.ESPECIAL;Engenharia Ambiental;Engenharia Ambiental (Turma Especial);Integral;133238,133245;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02EDI11N.1N;Técnico em Edificações;Técnico em Edificações (Primeiro Noturno);Noite;132734,132735,132736,132738,132737,132739;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02EDI11N.2N;Técnico em Edificações;Técnico em Edificações (Segundo Noturnno);Noite;133206,133207,133208,133209,133210;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02EDI11N.3N;Técnico em Edificações;Técnico em Edificações (Terceiro Noturnno);Noite;132875,132876,132877,132878,132879;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02EDI11N.4N;Técnico em Edificações;Técnico em Edificações (Quarto Noturnno);Noite;132880,132881,132882,132883,132884,132885;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02EDI12N.6N;Técnico em Edificações;Técnico em Edificações (Sexto Noturnno);Noite;133312,133313,133314,133311,133309,133308;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02EDI12N.7N;Técnico em Edificações;Técnico em Edificações (Setimo Noturnno);Noite;133319,133320,133316,133310,133321,133317,133315;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02INF11N.1N.-;Técnico em Informática;Técnico em Informática (Primeiro Noturno);Noite;132711,132712,132713,132714,132710;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02INF11N.2N.-;Técnico em Informática;Técnico em Informática (Segundo Noturnno);Noite;133296,133295,133292,133293,133297,133294;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02INF11N.3N.-;Técnico em Informática;Técnico em Informática (Terceiro Noturnno);Noite;132834,132836,132837,132835,132839,132838;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02INF11N.4N.-;Técnico em Informática;Técnico em Informática (Quarto Noturnno);Noite;132840,132841,132843,132842;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI10N.1N;Técnico em Química;Técnico em Química (Primeiro Noturno);Noite;132718,132715,132720,132717,132719,132721,132716;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI10N.2N;Técnico em Química;Técnico em Química (Segundo Noturnno);Noite;133187,133191,133192,133189,133190,133186,133188;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI10N.3N;Técnico em Química;Técnico em Química (Terceiro Noturnno);Noite;132846,132849,132850,132847,132844,132848,132845;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI22N.2N;Química;Química (Segundo Noturnno);Noite;133413,133414,133415,134886,133416,133417,133418;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI22N.4N;Química;Química (Quarto Noturnno);Noite;133419,133567,133421,133422,133423;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI22N.6N;Química;Química (Sexto Noturnno);Noite;133425,133424,133428;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI22N.8N;Química;Química (Oitavo Noturnno);Noite;133431,133433,133430,133434,133429,133435;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02QUI22N.ESPECIAL;Química;Química (Turma Especial);Integral;133451,133436;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02QUI22N.FERIAS;Química;Química (Turma de Ferias);Integral;132162;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02SAM21N.2N;Saneamento Ambiental;Saneamento Ambiental (Segundo Noturnno);Noite;133457,133458,133459,133460,133461;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02SAM21N.4N;Saneamento Ambiental;Saneamento Ambiental (Quarto Noturnno);Noite;133462,133464,133463,133465,133466,133467;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02SAM21N.6N;Saneamento Ambiental;Saneamento Ambiental (Sexto Noturnno);Noite;133472,133471,133470,133468;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02SAM21N.ESPECIAL;Saneamento Ambiental;Saneamento Ambiental (Turma Especial);Integral;133438,133440,133439;13-16;13-16;13-16;13-16;13-16;1-16
+20192.02SGT11N.1N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Primeiro Noturno);Noite;132727,132722,132726,132723,132725,132724;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02SGT11N.2N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Segundo Noturnno);Noite;133198,133194,133197,133199,133196,133193,133195;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02SGT11N.3N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Terceiro Noturnno);Noite;132854,132852,132851,132856,132855,132853,132857;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02SGT11N.4N;Técnico em Segurança do Trabalho;Técnico em Segurança do Trabalho (Quarto Noturnno);Noite;132859,132864,132858,132862,132860,132861,132863;1-12;1-12;1-12;1-12;1-12;12-16
+20192.02ZOO20I.2M;Zootecnia;Zootecnia (Segundo Periodo);Manhã;133479,133480,133481,133482,133483,133484,133485;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02ZOO20I.4V;Zootecnia;Zootecnia (Quarto Periodo);Tarde;133486,133488,133487,133489,133490,133491;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ZOO20I.6M;Zootecnia;Zootecnia (Sexto Periodo);Manhã;133494,133498,133522,133496,133495,133493,133492;7-16;7-16;7-16;7-16;7-16;1-16
+20192.02ZOO20I.8V;Zootecnia;Zootecnia (Oitavo Periodo);Tarde;133505,133503,133504,133501,133500,133502;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-6,13-16;1-16
+20192.02ZOO20I.ESPECIAL;Zootecnia;Zootecnia (Turma Especial);Integral;133506,133509,133511,135687,133441;13-16;13-16;13-16;13-16;13-16;1-16
