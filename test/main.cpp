@@ -13,8 +13,10 @@ int main(int argc, char **argv)
     {
         std::cout << "argv[" << i << "]=" << argv[i] << std::endl;
     }
+
     std::cout << "Entrando na heuristica em C++" << std::endl;
-    Heuristica h = Heuristica(rng, argv[1], std::stoi(argv[2]), std::stoi(argv[3]), std::stoi(argv[4]), std::stof(argv[5]), std::stof(argv[6]));
+    //                           INSTANCIA,         QTD_TURMAS,           QTD_REPT,           PESO JAN,          PESO SEX)
+    Heuristica h = Heuristica(rng, argv[1], std::stoi(argv[2]), std::stoi(argv[3]), std::stof(argv[4]), std::stof(argv[5]));
     std::cout << "Terminou a heuristica em C++" << std::endl;
     auto tempo_inicial = std::chrono::steady_clock::now();
     h.inicializar(&tempo_inicial);

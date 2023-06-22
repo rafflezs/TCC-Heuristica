@@ -17,11 +17,7 @@ echo ""
 if [ -d "data/output" ];
 then
     echo "Limpando data/output"
-    echo ""
-    echo ""
-    rm -r "data/output"
-else
-    mkdir "data/output"
+    rm -r data/output
 fi
 
 # Lista de parâmetros
@@ -37,18 +33,18 @@ SEXTOS=(1 2 5)
 # #
 
 # Variável de progresso para saber quanto falta para acabar.
-total=$((${#INSTANCIAS_LIST[@]} * ${#REPETICOES[@]} * ${#TURMAS[@]} * ${#JANELAS[@]} * ${#SEXTOS[@]} * ${ITERACOES}))
-progresso=0
+total=$((${#INSTANCIAS_LIST[@]} * ${#REPETICOES[@]} * ${#TURMAS[@]} * ${#JANELAS[@]} * ${#SEXTOS[@]} * 5))
+progresso_atual=0
 erros=0
-
-# Cria arquivo para acompanhar exec_time
-echo "ITERACAO;INSTANCIA_NOME;TAM_POPULACAO;QTD_TURMAS_HEURISTICA;QTD_REPT_HEURISTICA;PESO_JANELA;PESO_SEXTO;TEMPO_EXEC;ID_SOLUCAO;JANELA;VALOR_JANELA_SOLUCAO;SEXTO;SEXTO_HORARIO_SOLUCAO;SEXTO+JANELA;VALOR_SOLUCAO" >> "data/output/bash-time.csv"
 
 for ((i = 1; i <= $ITERACOES; i++)); do
 
     output_dir_iteration="data/output/Iteracao-${i}"
     mkdir -p "$output_dir_iteration"
     
+    # Cria arquivo para acompanhar exec_time
+    echo "ITERACAO;INSTANCIA_NOME;ITERACOES;QTD_TURMAS_HEURISTICA;QTD_REPT_HEURISTICA;PESO_JANELA;PESO_SEXTO;TEMPO_EXEC;ID_SOLUCAO;JANELA_SOLUCAO;SEXTO_HORARIO_SOLUCAO;VALOR_SOLUCAO" >> "data/bash-time.csv"
+
     for instancia_value in "${INSTANCIAS_LIST[@]}"; do
         output_dir="$output_dir_iteration/$instancia_value"
         mkdir -p "$output_dir"
@@ -59,10 +55,10 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                 for peso_janela_value in "${JANELAS[@]}"; do
                     for peso_sexto_value in "${SEXTOS[@]}"; do
 
-                        ((progresso++))
+                        ((progresso_atual++))
 
                         # Cria subpasta da nova execução
-                        subfolder_name="ID${progresso}-TURMAS${qtd_turma_value}-REPETICOES${qtd_rept_value}-JAN${peso_janela_value}-SEX${peso_sexto_value}"
+                        subfolder_name="ID${i}-TURMAS${qtd_turma_value}-REPETICOES${qtd_rept_value}-JAN${peso_janela_value}-SEX${peso_sexto_value}"
                         subfolder_path="$output_dir/$subfolder_name"
                         mkdir -p "$subfolder_path"
 
@@ -99,7 +95,7 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                                 mv "data/output/turma.tex" "$subfolder_path/"
                                 (cd "$subfolder_path" && pdflatex -halt-on-error -interaction=batchmode -output-directory . turma.tex > /dev/null)
                             fi
-                            echo "Iteração completa: passo $progresso de $total."
+                            echo "Iteração completa: passo $progresso_atual de $total."
                             echo "----------------------------------------------"
                             echo ""
 
@@ -111,17 +107,17 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                             rm "$subfolder_path"/professor.log
 
                             exec_time=$(cat "data/output/time.txt")
-                            echo "$progresso;$instancia_value;$ITERACOES;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;$exec_time;$best_id;$best_window_value;$best_sixth_grade_value;$solution_value" >> "data/output/bash-time.csv"
+                            echo "$progresso_atual;$instancia_value;$ITERACOES;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;$exec_time;$best_id;$best_window_value;$best_sixth_grade_value;$solution_value" >> "data/output/bash-time.csv"
                         else
-                            echo "Falha na execução: passo $progresso de $total."
+                            echo "Falha na execução: passo $progresso_atual de $total."
                             echo "Erros encontrados: $erros"
                             ((erros++))
 
                             exec_time=$(cat "data/output/time.txt")
-                            echo "$progresso;$instancia_value;$ITERACOES;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR" >> "data/output/bash-time.csv"
+                            echo "$progresso_atual;$instancia_value;$ITERACOES;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR;RUNTIME_ERROR" >> "data/output/bash-time.csv"
                             rm -f "data/output/pequena_trollagem.txt"
 
-                            echo "ID ${progresso}" >> data/output/erros.txt
+                            echo "ID ${progresso_atual}" >> data/output/erros.txt
                         fi
                     done
                 done

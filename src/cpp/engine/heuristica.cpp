@@ -1,20 +1,31 @@
 #include "heuristica.hpp"
 
-Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int &t_tam_pop, const int qtd_turmas_heuristica, const int qtd_rept_busca_local, const float &t_peso_janela, const float &t_peso_sexto)
+Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int qtd_turmas_heuristica, const int qtd_rept_busca_local, const int &t_peso_janela, const int &t_peso_sexto)
 {
     this->m_rng = t_rng;
     this->m_instancia_nome = t_instancia_nome;
-    this->m_tamanho_populacao = t_tam_pop;
     this->m_qtd_turmas_heuristica = qtd_turmas_heuristica;
     this->m_qtd_rept_busca_local = qtd_rept_busca_local;
     this->m_peso_janela = t_peso_janela;
     this->m_peso_sexto = t_peso_sexto;
 
-    for (int i = 0; i < m_tamanho_populacao; i++)
+    for (int i = 0; i < 10; i++)
     {
         this->m_solucoes.push_back(new Solucao(m_rng, m_instancia_nome, i));
     }
     std::cout << "Gerando solucoes em C++" << std::endl;
+}
+
+Heuristica::~Heuristica()
+{
+    std::cout << "De-instanciando objeto Heuristica" << std::endl;
+    for (int i = 0; i < m_solucoes.size(); i++)
+    {
+        delete m_solucoes[i];
+        m_solucoes[i] = nullptr;
+    }
+
+    m_solucoes.clear();
 }
 
 void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo_inicial)
@@ -24,11 +35,6 @@ void Heuristica::inicializar(std::chrono::_V2::steady_clock::time_point *m_tempo
 
     std::cout << "Salvando melhor solucao em C++" << std::endl;
     get_melhor_solucao();
-
-    for (int i = 0; i < m_solucoes.size(); i++)
-    {
-        delete m_solucoes[i];
-    }
 }
 
 std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo, Solucao *solucao)
@@ -296,29 +302,27 @@ void Heuristica::get_melhor_solucao()
         exit(2);
     }
 
-    Solucao *melhor_solucao = new Solucao(*m_solucoes[0]);
+    Solucao melhor_solucao = Solucao(*m_solucoes[0]);
 
     if (m_solucoes.size() > 1)
     {
         for (int i = 1; i < m_solucoes.size(); i++)
         {
-            if (m_solucoes[i]->get_valor_solucao() < melhor_solucao->get_valor_solucao())
+            if (m_solucoes[i]->get_valor_solucao() < melhor_solucao.get_valor_solucao())
             {
-                delete melhor_solucao;
-                melhor_solucao = m_solucoes[i];
+                melhor_solucao = *m_solucoes[i];
             }
         }
     }
 
     std::cout << "\n\n\n\nMAIS MELHOR SOLUCAO\n"
               << std::endl;
-    std::cout << "A solução ID " << melhor_solucao->get_id_solucao() << " com o valor na função objetivo de " << melhor_solucao->get_valor_solucao() << " pontos." << std::endl;
-    melhor_solucao->exibir_solucao();
-    output.salvar_analise("data/output/", melhor_solucao, 0, 0, "MELHOR_SOLUCAO", {}, 0, *m_tempo_inicial);
-    output.salvar_saidas("data/output/", melhor_solucao);
-    output.pequena_trollagem("data/output/pequena_trollagem.txt", melhor_solucao);
+    std::cout << "A solução ID " << melhor_solucao.get_id_solucao() << " com o valor na função objetivo de " << melhor_solucao.get_valor_solucao() << " pontos." << std::endl;
+    melhor_solucao.exibir_solucao();
+    output.salvar_analise("data/output/", &melhor_solucao, 0, 0, "MELHOR_SOLUCAO", {}, 0, *m_tempo_inicial);
+    output.salvar_saidas("data/output/", &melhor_solucao);
+    output.pequena_trollagem("data/output/pequena_trollagem.txt", &melhor_solucao);
 
-    delete melhor_solucao;
 }
 
 void Heuristica::exibir_turma_e_sexto(Instancia *t_instancia, std::vector<int> t_index_turmas)
