@@ -24,7 +24,7 @@ public:
     Solucao(std::default_random_engine &t_rng, std::string t_instancia, int t_id);
     Solucao(Solucao &other);
 
-    bool popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas);
+    void popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas);
     bool verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma);
     void alocar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);
     bool eh_horario_disponivel(Turma *t_turma, int t_dia_escolhido, int t_horario_inicial, int t_split);

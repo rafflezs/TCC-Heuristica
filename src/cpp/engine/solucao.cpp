@@ -8,37 +8,40 @@ Solucao::Solucao(std::default_random_engine &t_rng, std::string t_instancia, int
     this->m_instancia_nome = t_instancia;
 }
 
-bool Solucao::popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas)
+void Solucao::popular_solucao(std::vector<Disciplina *> t_disciplinas_ordenadas)
 {
     int iteracoes = 0;
     int iteracoes_limite = t_disciplinas_ordenadas.size();
 
     while (!t_disciplinas_ordenadas.empty())
     {
-        if (iteracoes >
-            (iteracoes_limite * iteracoes_limite))
+        if (iteracoes >= (iteracoes_limite * iteracoes_limite))
         {
-            return false;
+            std::cout << "A solucao " << this->m_id << "alcancou o limite de iteracoes " << iteracoes << std::endl;
+            this->m_factivel = false;
+            return;
         }
 
-        std::cout << t_disciplinas_ordenadas.back()->get_id() << " | " << t_disciplinas_ordenadas.back()->get_nome() << std::endl;
+        // std::cout << t_disciplinas_ordenadas.back()->get_id() << " | " << t_disciplinas_ordenadas.back()->get_nome() << std::endl;
         auto professor_relacionado = encontrar_prof_relacionado(t_disciplinas_ordenadas.back());
-        std::cout << professor_relacionado->get_id() << " | " << professor_relacionado->get_nome() << std::endl;
+        // std::cout << professor_relacionado->get_id() << " | " << professor_relacionado->get_nome() << std::endl;
         auto turma_relacionada = encontrar_turma_relacionada(t_disciplinas_ordenadas.back());
-        std::cout << turma_relacionada->get_id() << " | " << turma_relacionada->get_nome() << std::endl
-                  << std::endl;
+        // std::cout << turma_relacionada->get_id() << " | " << turma_relacionada->get_nome() << std::endl << std::endl;
 
         bool verificado = verificar_horario(t_disciplinas_ordenadas.back(), professor_relacionado, turma_relacionada);
         if (verificado == true)
         {
-            t_disciplinas_ordenadas.pop_back();
             iteracoes++;
+            t_disciplinas_ordenadas.pop_back();
         }
         else
+        {
             iteracoes++;
+        }
     }
 
-    return true;
+    std::cout << "A solucao " << this->m_id << " foi populada corretamente" << std::endl;
+    this->m_factivel = true;
 }
 
 bool Solucao::verificar_horario(Disciplina *t_disciplina, Professor *t_professor, Turma *t_turma)
@@ -383,10 +386,7 @@ void Solucao::busca_local(std::vector<int> t_turmas)
 
     std::shuffle(disciplinas_turmas.begin(), disciplinas_turmas.end(), m_rng);
 
-    if (this->popular_solucao(disciplinas_turmas)) //  Se popular_solucao() for true, set_factivel também é true
-        this->set_factivel(true);
-    else
-        this->set_factivel(false);
+    this->popular_solucao(disciplinas_turmas); //  Se popular_solucao() for true, set_factivel também é true
 }
 
 Solucao::Solucao(Solucao &other)

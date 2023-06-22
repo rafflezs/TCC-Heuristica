@@ -4,14 +4,8 @@ ulimit -v 16000000  # Setar limite para execução
 
 # Fase de compilação
 echo "Compilando código fonte (/src/cpp*)..."
-if g++ -O3 ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm; then
-    echo "Código compilado corretamente!"
-else
-    echo "Falha na compilação"
-    exit 1
-fi
-echo "Prosseguindo com script..."
-echo ""
+g++ -O3 ./test/main.cpp ./src/cpp/engine/*.cpp ./src/cpp/helpers/*.cpp -o ./test/exe -lm
+echo "Código compilado corretamente!"
 echo ""
 
 if [ -d "data/output" ];
@@ -26,7 +20,7 @@ fi
 
 # Lista de parâmetros
 ITERACOES=10
-INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" ) #"TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
+INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
 TURMAS=(0 1 2 1000)
 REPETICOES=(1 2 5 10)
 JANELAS=(1 2 5)
@@ -73,12 +67,12 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                         echo ""
 
                         # Checa se houve runtime error
-                        if { time -p (./test/exe "$instancia_value" "$qtd_turma_value" "$qtd_rept_value" "$peso_janela_value" "$peso_sexto_value" >> "$subfolder_path"/debug.txt ) ; } 2> >(grep real | awk '{print $2}' > "data/output/time.txt") > /dev/null ; then
+                        if { time -p (./test/exe "$instancia_value" "$qtd_turma_value" "$qtd_rept_value" "$peso_janela_value" "$peso_sexto_value" ) ; } 2> >(grep real | awk '{print $2}' > "data/output/time.txt") > /dev/null ; then
                             echo "Tempo de execução: $exec_time segundos."
                             echo ""
 
                             # Read values from pequena_trollagem.txt
-                            IFS=';' read -r best_id best_window_value best_sixth_grade_value solution_value < "data/output/pequena_trollagem.txt"
+                            IFS=';' read -r best_id qtd_window best_window_value qtd_sixth best_sixth_grade_value window_sixth solution_value < "data/output/pequena_trollagem.txt"
 
                             # Move arquivos para subpasta criada
                             echo "Movendo arquivos."
@@ -111,7 +105,7 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                             rm "$subfolder_path"/professor.log
 
                             exec_time=$(cat "data/output/time.txt")
-                            echo "$progresso;$instancia_value;$ITERACOES;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;$exec_time;$best_id;$best_window_value;$best_sixth_grade_value;$solution_value" >> "data/output/bash-time.csv"
+                            echo "$progresso;$instancia_value;$ITERACOES;$qtd_turma_value;$qtd_rept_value;$peso_janela_value;$peso_sexto_value;$exec_time;$best_id;$qtd_window;$best_window_value;$qtd_sixth;$best_sixth_grade_value;$window_sixth;$solution_value" >> "data/output/bash-time.csv"
                         else
                             echo "Falha na execução: passo $progresso de $total."
                             echo "Erros encontrados: $erros"
@@ -124,6 +118,7 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                             echo "ID ${progresso}" >> data/output/erros.txt
                         fi
                     done
+                    exit 1
                 done
             done
         done

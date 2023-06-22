@@ -2,20 +2,15 @@
 
 Instancia::Instancia(const std::string ano_instancia)
 {
-    // std::cout << "Gerando instancia do periodo: " + ano_instancia << std::endl;
     this->m_ano_instancia = ano_instancia;
 
     this->m_lista_disciplinas = instanciar_disciplina(ano_instancia);
-    // std::cout << "Gerou lista de disciplinas" << std::endl;
 
     this->m_lista_turmas = instanciar_turma(ano_instancia);
-    // std::cout << "Gerou lista de turmas" << std::endl;
 
     this->m_lista_professores = instanciar_professor(ano_instancia);
-    // std::cout << "Gerou lista de professores" << std::endl;
 
     this->m_lista_cursos = instanciar_curso(ano_instancia);
-    // std::cout << "Gerou lista de cursos" << std::endl;
 
     relacionar_turmas_cursos();
 }
@@ -105,8 +100,6 @@ const std::vector<Professor *> Instancia::instanciar_professor(const std::string
     row++;
     for (; row != csv.end(); row++)
     {
-        std::cout << (*row)[0] << " | " << (*row)[2] << std::endl;
-
         t_professores.push_back(new Professor(
             (*row)[0],
             index,
@@ -165,7 +158,6 @@ const std::vector<Turma *> Instancia::instanciar_turma(const std::string &ano_in
     int index = 0;
     std::vector<std::vector<std::string>>::iterator row = csv.begin();
     row++;
-    // std::cout << (*row)[0] << " | " << (*row)[2] << std::endl;
     for (; row != csv.end(); row++)
     {
 
@@ -218,8 +210,6 @@ const std::vector<Disciplina *> Instancia::instanciar_disciplina(const std::stri
     row++;
     for (; row != csv.end(); row++)
     {
-        // std::cout << (*row)[0] << " | " << (*row)[2] << std::endl;
-
         t_disciplinas.push_back(new Disciplina(
             (*row)[0],
             (*row)[1],
@@ -252,14 +242,11 @@ std::vector<Disciplina *> Instancia::buscar_disciplinas(const std::vector<std::s
         {
             if (parse_disciplina == it->get_id())
             {
-                // std::cout << "Disciplina: " << it->get_nome() << " | Endereço -> " << &it << " | ";
                 t_disc.push_back(it);
                 continue;
             }
         }
     }
-
-    // std::cout << "\n" << std::endl;
 
     return t_disc;
 }
@@ -275,14 +262,11 @@ std::vector<int> Instancia::buscar_turmas_index(const std::vector<std::string> &
         {
             if (turma_str_id == it->get_id())
             {
-                // std::cout << "Turma: " << it->get_nome() << " | Endereço -> " << &it << " | ";
                 turmas_index.push_back(it->get_index());
                 continue;
             }
         }
     }
-
-    // std::cout << "\n" << std::endl;
 
     return turmas_index;
 }
