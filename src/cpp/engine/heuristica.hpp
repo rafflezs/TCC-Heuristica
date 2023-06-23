@@ -39,8 +39,8 @@ private:
 
     void get_melhor_solucao();
 
-    void exibir_turma_e_sexto(Instancia *t_instancia, std::vector<int> t_index_turmas);
-    void exibir_professor_e_janela(Instancia *t_instancia, int t_professor);
+    void exibir_turma_e_sexto(Solucao *t_solucao, std::vector<int> t_index_turmas);
+    void exibir_professor_e_janela(Solucao *t_solucao, int t_professor);
     void exibir_melhoria(Solucao *solucao_antiga, Solucao *solucao_melhorada, std::vector<int> t_turmas_index);
 
 public:

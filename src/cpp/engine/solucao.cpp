@@ -329,42 +329,38 @@ void Solucao::set_rng(std::default_random_engine t_rng)
     this->m_rng = t_rng;
 }
 
-void Solucao::destruir_horario(std::vector<Turma *> t_turmas)
+void Solucao::destruir_horario_turmas(std::vector<Turma *> t_turmas)
 {
     for (auto turma : t_turmas)
     {
-        auto disponibilidade = turma->get_disponibilidade();
-        for (int dia = 0; dia < disponibilidade.size(); dia++)
+        for (int dia = 0; dia < turma->get_disponibilidade().size(); dia++)
         {
-            for (int horario = 0; horario < disponibilidade[dia].size(); horario++)
+            for (int horario = 0; horario < turma->get_disponibilidade()[dia].size(); horario++)
             {
-                if (disponibilidade[dia][horario] > 0)
+                if (turma->get_disponibilidade()[dia][horario] > 0)
                 {
-                    disponibilidade[dia][horario] = 0;
+                    turma->set_time_slot(dia, horario, 0);
                 }
             }
         }
-        turma->set_disponibilidade(disponibilidade);
     }
 }
 
-void Solucao::destruir_horario(std::vector<Disciplina *> t_disciplinas)
+void Solucao::destruir_horario_professor(std::vector<int> t_disciplinas)
 {
     for (auto disciplina : t_disciplinas)
     {
-        auto professor = encontrar_prof_relacionado(disciplina);
-        auto disponibilidade = professor->get_disponibilidade();
-        for (int dia = 0; dia < disponibilidade.size(); dia++)
+        auto professor = encontrar_prof_relacionado(m_instancia->get_lista_disciplinas()[disciplina]);
+        for (int dia = 0; dia < professor->get_disponibilidade().size(); dia++)
         {
-            for (int horario = 0; horario < disponibilidade[dia].size(); horario++)
+            for (int horario = 0; horario < professor->get_disponibilidade()[dia].size(); horario++)
             {
-                if (disponibilidade[dia][horario] > 0)
+                if (professor->get_disponibilidade()[dia][horario] == disciplina)
                 {
-                    disponibilidade[dia][horario] = 0;
+                    professor->set_time_slot(dia, horario, 0);
                 }
             }
         }
-        professor->set_disponibilidade(disponibilidade);
     }
 }
 
@@ -373,34 +369,45 @@ void Solucao::busca_local(std::vector<int> t_turmas)
 
     std::vector<Disciplina *> disciplinas_turmas{};
     std::vector<Turma *> turmas{};
-    std::vector<Professor *> professores_relacionados{};
+    std::cout << "Iterando: ";
     for (auto turma : t_turmas)
     {
         turmas.push_back(this->get_instancia()->get_lista_turmas()[turma]);
+        std::cout << " turma " << turmas.back()->get_nome();
         std::vector<Disciplina *> temp_disciplinas = this->get_instancia()->get_lista_turmas()[turma]->get_disciplinas();
+        std::cout << " | temp_disciplinas.size() = " << temp_disciplinas.size();
         disciplinas_turmas.insert(disciplinas_turmas.end(), temp_disciplinas.begin(), temp_disciplinas.end());
     }
 
-    this->destruir_horario(turmas);
-    this->destruir_horario(disciplinas_turmas);
+    std::vector<int> disciplinas_index_professor{};
+    for (auto disciplina : disciplinas_turmas)
+    {
+        disciplinas_index_professor.push_back(disciplina->get_index());
+    }
+
+    std::cout << "turmas.size() = " << turmas.size() << " | disciplinas_index_professor.size() = " << disciplinas_index_professor.size() << " | disciplinas_turmas.size() = " << disciplinas_turmas.size() << std::endl;
+
+    this->destruir_horario_turmas(turmas);
+    this->destruir_horario_professor(disciplinas_index_professor);
 
     std::shuffle(disciplinas_turmas.begin(), disciplinas_turmas.end(), m_rng);
 
+    std::cout << "Gerando horario para a solucao ptr: " << this << std::endl;
     this->popular_solucao(disciplinas_turmas); //  Se popular_solucao() for true, set_factivel também é true
 }
 
 Solucao::Solucao(Solucao &other)
 {
     m_rng = other.get_rng();
-    m_instancia = other.get_instancia();
-    m_id = other.get_id_solucao();
-    m_factivel = other.get_factivel();
-    m_valor_solucao = other.get_valor_solucao();
-    m_peso_janelas = other.get_peso_janela();
-    m_peso_sexto = other.get_peso_sexto();
-    m_qtd_janelas = other.get_qtd_janela();
-    m_qtd_sexto = other.get_qtd_sexto_horario();
-    m_instancia_nome = other.get_instancia_nome();
+    m_instancia = new Instancia(*other.m_instancia);
+    m_id = other.m_id;
+    m_factivel = other.m_factivel;
+    m_valor_solucao = other.m_valor_solucao;
+    m_peso_janelas = other.m_peso_janelas;
+    m_peso_sexto = other.m_peso_sexto;
+    m_qtd_janelas = other.m_qtd_janelas;
+    m_qtd_sexto = other.m_qtd_sexto;
+    m_instancia_nome = other.m_instancia_nome;
 }
 
 void Solucao::desalocar_atributos_solucao()

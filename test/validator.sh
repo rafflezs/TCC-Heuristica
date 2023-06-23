@@ -23,8 +23,8 @@ ITERACOES=10
 INSTANCIAS_LIST=("TCC-Instancia-2018-1" "TCC-Instancia-2018-2" "TCC-Instancia-2019-1" "TCC-Instancia-2019-2" "TCC-Instancia-2022-1")
 TURMAS=(0 1 2 1000)
 REPETICOES=(1 2 5 10)
-JANELAS=(1 2 5)
-SEXTOS=(1 2 5)
+JANELAS=(1 2 5 )
+SEXTOS=(1 2 5 )
 
 # #
 # # Main drive: loop principal de parâmetros

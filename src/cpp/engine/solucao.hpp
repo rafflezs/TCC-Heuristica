@@ -67,8 +67,8 @@ public:
     std::default_random_engine get_rng();
     void set_rng(std::default_random_engine t_rng);
 
-    void destruir_horario(std::vector<Turma *> t_turmas);
-    void destruir_horario(std::vector<Disciplina *> t_disciplinas);
+    void destruir_horario_turmas(std::vector<Turma *> t_turmas);
+    void destruir_horario_professor(std::vector<int> t_disciplinas);
     void busca_local(std::vector<int> t_turmas);
 
     void desalocar_atributos_solucao();

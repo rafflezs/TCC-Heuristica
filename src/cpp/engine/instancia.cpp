@@ -22,6 +22,17 @@ Instancia::Instancia(Instancia &other)
     m_ano_instancia = other.m_ano_instancia;
 
     // Perform deep copy for the vector of Turma pointers
+
+    for (Curso *curso : other.m_lista_cursos)
+    {
+        m_lista_cursos.push_back(new Curso(*curso));
+    }
+
+    for (Disciplina *disciplina : other.m_lista_disciplinas)
+    {
+        m_lista_disciplinas.push_back(new Disciplina(*disciplina));
+    }
+
     for (Turma *turma : other.m_lista_turmas)
     {
         std::vector<Disciplina *> copy_disc;

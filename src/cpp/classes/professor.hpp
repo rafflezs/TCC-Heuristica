@@ -50,14 +50,14 @@ public:
     this->m_disponibilidade = t_disponibilidade;
   }
 
-  void set_disponibilidade(int t_dia, int t_horario, int t_valor)
-  {
-    this->m_disponibilidade[t_dia][t_horario] = t_valor;
-  }
-
   std::array<std::array<int, 16>, 6> get_disponibilidade()
   {
     return this->m_disponibilidade;
+  }
+
+  void set_time_slot(int t_dia, int t_horario, int t_valor)
+  {
+    this->m_disponibilidade[t_dia][t_horario] = t_valor;
   }
 
   std::vector<Disciplina *> get_disciplinas()

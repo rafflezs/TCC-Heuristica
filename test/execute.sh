@@ -14,7 +14,7 @@ NOME_INSTANCA="TCC-Instancia-2018-1"
 QTD_TURMAS_HEURISTICA=0 # 0 para mandar 1 > 2 > 3 ... max_turmas_curso; max_turmas ou mais para mandar todas as turmas do curso de uma vez
 QTD_REPT_HEURISTICA=1   # 1 para linear, 2+ para rept
 PESO_JANELA=1
-PESO_SEXTO=1
+PESO_SEXTO=10
 
 echo "instancia: $NOME_INSTANCA"
 echo "tam populacao: $TAM_POPULACAO"
@@ -26,7 +26,7 @@ echo "peso sexto: $PESO_SEXTO"
 folder="data/output/$NOME_INSTANCA"
 mkdir "$folder"
 
-time ./test/exe $NOME_INSTANCA $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO # >> "$folder"/debug-out.txt
+time ./test/exe $NOME_INSTANCA $QTD_TURMAS_HEURISTICA $QTD_REPT_HEURISTICA $PESO_JANELA $PESO_SEXTO >> "$folder"/debug-out.txt
 
 rm -f test/exe # Comentar essa linha caso nao altere o codigo
 

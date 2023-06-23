@@ -79,7 +79,7 @@ public:
     this->m_disponibilidade = t_disponibilidade;
   }
 
-  void set_disponibilidade(int t_dia, int t_horario, int t_valor)
+  void set_time_slot(int t_dia, int t_horario, int t_valor)
   {
     this->m_disponibilidade[t_dia][t_horario] = t_valor;
   }
@@ -240,7 +240,7 @@ public:
 
   void print_solucao()
   {
-    std::cout << "Id: " << this->get_id() << "| Nome: " << this->get_nome() << " | pointer" << this << std::endl;
+    std::cout << "Id: " << this->get_id() << "| Nome: " << this->get_nome() << " | pointer " << this << std::endl;
 
     std::cout << "Horario da Turma: " << std::endl;
     std::cout << std::setw(5) << "   "
