@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ulimit -v 8000000  # Setar limite para execução
+ulimit -v 10000000  # Setar limite para execução
 
 # Fase de compilação
 echo "Compilando código fonte (/src/cpp*)..."
