@@ -67,7 +67,7 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                         echo ""
 
                         # Checa se houve runtime error
-                        if { time -p (./test/exe "$instancia_value" "$qtd_turma_value" "$qtd_rept_value" "$peso_janela_value" "$peso_sexto_value" ) ; } 2> >(grep real | awk '{print $2}' > "data/output/time.txt") > /dev/null ; then
+                        if { time -p (./test/exe "$instancia_value" "$qtd_turma_value" "$qtd_rept_value" "$peso_janela_value" "$peso_sexto_value" ) ; } 2> >(grep real | awk '{print $2}' > "data/output/time.txt") > "$subfolder_path/debug.log" ; then
                             echo "Tempo de execução: $exec_time segundos."
                             echo ""
 

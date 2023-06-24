@@ -11,7 +11,7 @@ class Solucao
 private:
     std::default_random_engine m_rng;
     Instancia *m_instancia{nullptr};
-    int m_id{0};
+    int m_id;
     bool m_factivel{false};
     float m_valor_solucao{0.0};
     float m_peso_janelas{0.0};
@@ -41,24 +41,24 @@ public:
     void debug_vector_disciplina_addr();
 
     bool get_factivel();
-    void set_factivel(bool const &t_factivel);
+    void set_factivel(bool t_factivel);
 
     float get_valor_solucao();
-    void set_valor_solucao(float const &t_valor_solucao);
+    void set_valor_solucao(float t_valor_solucao);
 
     float get_peso_janela();
-    void set_peso_janela(float const &t_peos_janela);
+    void set_peso_janela(float t_peos_janela);
 
     float get_peso_sexto();
-    void set_peso_sexto(float const &t_peso_sexto);
+    void set_peso_sexto(float t_peso_sexto);
 
     int get_qtd_janela();
-    void set_qtd_janela(int const &t_janela);
+    void set_qtd_janela(int t_janela);
 
     int get_qtd_sexto_horario();
-    void set_qtd_sexto_horario(int const &t_sexto_horario);
+    void set_qtd_sexto_horario(int t_sexto_horario);
 
-    void set_id_solucao(const int &t_id);
+    void set_id_solucao(int t_id);
     int get_id_solucao();
 
     void set_instancia_nome(std::string t_instancia_nome);

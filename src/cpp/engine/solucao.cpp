@@ -3,8 +3,8 @@
 Solucao::Solucao(std::default_random_engine &t_rng, std::string t_instancia, int t_id)
 {
     this->m_rng = t_rng;
-    m_instancia = new Instancia(t_instancia);
-    m_id = t_id;
+    this->m_instancia = new Instancia(t_instancia);
+    this->m_id = t_id;
     this->m_instancia_nome = t_instancia;
 }
 
@@ -252,7 +252,7 @@ bool Solucao::get_factivel()
     return this->m_factivel;
 }
 
-void Solucao::set_factivel(bool const &t_factivel)
+void Solucao::set_factivel(bool t_factivel)
 {
     this->m_factivel = t_factivel;
 }
@@ -262,7 +262,7 @@ float Solucao::get_valor_solucao()
     return this->m_valor_solucao;
 }
 
-void Solucao::set_valor_solucao(float const &t_valor_avaliacao)
+void Solucao::set_valor_solucao(float t_valor_avaliacao)
 {
     this->m_valor_solucao = t_valor_avaliacao;
 }
@@ -272,7 +272,7 @@ float Solucao::get_peso_janela()
     return this->m_peso_janelas;
 }
 
-void Solucao::set_peso_janela(float const &t_janela)
+void Solucao::set_peso_janela(float t_janela)
 {
     this->m_peso_janelas = t_janela;
 }
@@ -281,7 +281,7 @@ int Solucao::get_qtd_janela()
 {
     return this->m_qtd_janelas;
 }
-void Solucao::set_qtd_janela(int const &t_janela)
+void Solucao::set_qtd_janela(int t_janela)
 {
     this->m_qtd_janelas = t_janela;
 }
@@ -290,7 +290,7 @@ int Solucao::get_qtd_sexto_horario()
 {
     return this->m_qtd_sexto;
 }
-void Solucao::set_qtd_sexto_horario(int const &t_sexto_horario)
+void Solucao::set_qtd_sexto_horario(int t_sexto_horario)
 {
     this->m_qtd_sexto = t_sexto_horario;
 }
@@ -300,12 +300,12 @@ float Solucao::get_peso_sexto()
     return this->m_peso_sexto;
 }
 
-void Solucao::set_peso_sexto(float const &t_sexto_horario)
+void Solucao::set_peso_sexto(float t_sexto_horario)
 {
     this->m_peso_sexto = t_sexto_horario;
 }
 
-void Solucao::set_id_solucao(const int &t_id)
+void Solucao::set_id_solucao(int t_id)
 {
     this->m_id = t_id;
 }

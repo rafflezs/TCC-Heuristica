@@ -14,6 +14,7 @@ Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_i
     for (int i = 0; i < TAMPOP; i++)
     {
         this->m_solucoes.push_back(new Solucao(m_rng, m_instancia_nome, i));
+        this->m_solucoes.back()->set_id_solucao(i);
     }
 }
 
@@ -78,7 +79,7 @@ std::vector<Disciplina *> Heuristica::ordenar_disciplinas(const int &rand_metodo
 void Heuristica::heuristica_construtiva(int t_iteracao)
 {
 
-    for (int index_sol = 0; index_sol < m_solucoes.size(); index_sol++)
+    for (int index_sol = 0; index_sol < TAMPOP; index_sol++)
     {
         m_solucoes[index_sol]->popular_solucao(ordenar_disciplinas(index_sol, m_solucoes[index_sol]));
         avaliar_solucao(m_solucoes[index_sol]);
@@ -86,7 +87,6 @@ void Heuristica::heuristica_construtiva(int t_iteracao)
         // Salvando parametros da solucao em csv para futura analise
         m_solucoes[index_sol]->set_peso_janela(this->m_peso_janela);
         m_solucoes[index_sol]->set_peso_sexto(this->m_peso_sexto);
-        m_solucoes[index_sol]->set_id_solucao(this->m_id_melhor_solucao);
         output.salvar_analise("data/output/", m_solucoes[index_sol], t_iteracao, -1, "CONSTRUTIVA", {}, index_sol, *m_tempo_inicial);
 
         if (m_qtd_turmas_heuristica == 0)
