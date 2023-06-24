@@ -1,5 +1,7 @@
 #include "heuristica.hpp"
 
+#define TAMPOP 10
+
 Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_instancia_nome, const int qtd_turmas_heuristica, const int qtd_rept_busca_local, const int &t_peso_janela, const int &t_peso_sexto)
 {
     this->m_rng = t_rng;
@@ -9,7 +11,7 @@ Heuristica::Heuristica(std::default_random_engine &t_rng, const std::string &t_i
     this->m_peso_janela = t_peso_janela;
     this->m_peso_sexto = t_peso_sexto;
 
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < TAMPOP; i++)
     {
         this->m_solucoes.push_back(new Solucao(m_rng, m_instancia_nome, i));
     }
@@ -84,16 +86,15 @@ void Heuristica::heuristica_construtiva(int t_iteracao)
         // Salvando parametros da solucao em csv para futura analise
         m_solucoes[index_sol]->set_peso_janela(this->m_peso_janela);
         m_solucoes[index_sol]->set_peso_sexto(this->m_peso_sexto);
+        m_solucoes[index_sol]->set_id_solucao(this->m_id_melhor_solucao);
         output.salvar_analise("data/output/", m_solucoes[index_sol], t_iteracao, -1, "CONSTRUTIVA", {}, index_sol, *m_tempo_inicial);
 
         if (m_qtd_turmas_heuristica == 0)
         {
-            std::cout << "DINAMICO" << std::endl;
             m_solucoes[index_sol] = fix_and_optimize_dinamico(new Solucao(*m_solucoes[index_sol]));
         }
         else
         {
-            std::cout << "ESTATICO" << std::endl;
             m_solucoes[index_sol] = fix_and_optimize_estatico(new Solucao(*m_solucoes[index_sol]));
         }
     }
@@ -134,12 +135,10 @@ void Heuristica::avaliar_solucao(Solucao *t_solucao)
 
     if (t_solucao->get_factivel() == true)
     {
-        std::cout << "A solucao " << t_solucao->get_id_solucao() << " é factível" << std::endl;
         t_solucao->set_valor_solucao((m_peso_sexto * t_solucao->get_qtd_sexto_horario()) + (m_peso_janela * t_solucao->get_qtd_janela()));
     }
     else if (t_solucao->get_factivel() == false)
     {
-        std::cout << "A solucao " << t_solucao->get_id_solucao() << " é INFACTIVEL" << std::endl;
         t_solucao->set_valor_solucao(999999);
     }
 }
@@ -184,6 +183,7 @@ Solucao *Heuristica::fix_and_optimize_estatico(Solucao *t_solucao)
 
     int iteracao_solucao = 0;
     Solucao *solucao_retorno = new Solucao(*t_solucao); // atribui solucao original
+    this->m_id_melhor_solucao = solucao_retorno->get_id_solucao();
 
     for (auto curso : t_solucao->get_instancia()->get_lista_cursos())
     {
@@ -198,10 +198,8 @@ Solucao *Heuristica::fix_and_optimize_estatico(Solucao *t_solucao)
 
             for (int nbl = 0; nbl < index_turmas_curso.size() + 1 - std::min(m_qtd_turmas_heuristica, int(index_turmas_curso.size())); nbl++)
             {
-                std::cout << solucao_retorno << std::endl;
                 auto nova_solucao = new Solucao(*solucao_retorno);
-                std::cout << nova_solucao << std::endl;
-
+                this->m_id_melhor_solucao = nova_solucao->get_id_solucao();
                 std::vector<int> turmas_iteracao;
                 for (int i = 0; i < std::min(m_qtd_turmas_heuristica, int(index_turmas_curso.size())); i++)
                     turmas_iteracao.push_back(index_turmas_curso[i + nbl]);
@@ -216,6 +214,7 @@ Solucao *Heuristica::fix_and_optimize_estatico(Solucao *t_solucao)
                     {
                         nova_solucao->set_peso_janela(this->m_peso_janela);
                         nova_solucao->set_peso_sexto(this->m_peso_sexto);
+                        this->m_id_melhor_solucao = nova_solucao->get_id_solucao();
                         output.salvar_analise("data/output/", nova_solucao, iteracao_solucao, turmas_iteracao.size(), curso->get_nome(), turmas_iteracao, 4, *m_tempo_inicial);
                         exibir_melhoria(solucao_retorno, nova_solucao, turmas_iteracao);
 
@@ -224,11 +223,8 @@ Solucao *Heuristica::fix_and_optimize_estatico(Solucao *t_solucao)
                         houve_melhoria = true;
                         break;
                     }
-                    else
-                    {
-                        delete nova_solucao;
-                    }
                 }
+                delete nova_solucao;
             }
         }
     }
@@ -241,15 +237,12 @@ Solucao *Heuristica::fix_and_optimize_dinamico(Solucao *t_solucao)
     std::vector<int> qtd_iteracoes{1, 2, 100};
 
     Solucao *solucao_retorno = new Solucao(*t_solucao); // atribui solucao original
+    this->m_id_melhor_solucao = solucao_retorno->get_id_solucao();
 
     for (auto n : qtd_iteracoes)
     {
-        std::cout << "\n\n-----------------------------\nqtd_iteacoes: " << n << std::endl
-                  << std::endl;
         for (auto curso : t_solucao->get_instancia()->get_lista_cursos())
         {
-            std::cout << "\n\nCurso: " << curso->get_nome() << std::endl
-                      << std::endl;
             bool houve_melhoria = true;
             while (houve_melhoria)
             {
@@ -258,32 +251,28 @@ Solucao *Heuristica::fix_and_optimize_dinamico(Solucao *t_solucao)
                 // Seleciona as turmas Todas as turmas do Curso
                 std::vector<int> index_turmas_curso{};
                 for (auto turma_index : curso->get_turmas_index())
-                    {
-                    std::cout << solucao_retorno->get_instancia()->get_lista_turmas()[turma_index] << " ";
+                {
                     index_turmas_curso.push_back(turma_index);
-                    }
-                    std::cout << std::endl;
+                }
 
                 // Processamento dinamico de turmas
                 for (int nbl = 0; nbl < index_turmas_curso.size() + 1 - std::min(m_qtd_turmas_heuristica, int(index_turmas_curso.size())); nbl++)
                 {
                     auto nova_solucao = new Solucao(*solucao_retorno);
-
+                    this->m_id_melhor_solucao = nova_solucao->get_id_solucao();
                     std::vector<int> turmas_iteracao;
                     for (int i = 0; i < std::min(n, int(index_turmas_curso.size())); i++)
                     {
-                        int select_index = i+nbl;
+                        int select_index = i + nbl;
                         if (select_index >= index_turmas_curso.size())
                         {
                             break;
                         }
-                        std::cout << "i + nbl=" << i << "+" << nbl << std::endl;
                         turmas_iteracao.push_back(index_turmas_curso[select_index]);
                     }
 
                     for (int count = 0; count < m_qtd_rept_busca_local; count++)
                     {
-                        std::cout << "Turmas curso size: " << index_turmas_curso.size() << " | Turmas iteracao size: " << turmas_iteracao.size() << std::endl;
                         nova_solucao->busca_local(turmas_iteracao);
                         avaliar_solucao(nova_solucao);
 
@@ -293,6 +282,7 @@ Solucao *Heuristica::fix_and_optimize_dinamico(Solucao *t_solucao)
                         {
                             nova_solucao->set_peso_janela(this->m_peso_janela);
                             nova_solucao->set_peso_sexto(this->m_peso_sexto);
+                            this->m_id_melhor_solucao = nova_solucao->get_id_solucao();
                             output.salvar_analise("data/output/", nova_solucao, iteracao_solucao, turmas_iteracao.size(), curso->get_nome(), turmas_iteracao, 4, *m_tempo_inicial);
                             exibir_melhoria(solucao_retorno, nova_solucao, turmas_iteracao);
 
@@ -302,11 +292,8 @@ Solucao *Heuristica::fix_and_optimize_dinamico(Solucao *t_solucao)
 
                             break;
                         }
-                        else
-                        {
-                            delete nova_solucao;
-                        }
                     }
+                    delete nova_solucao;
                 }
             }
         }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ulimit -v 16000000  # Setar limite para execução
+ulimit -v 8000000  # Setar limite para execução
 
 # Fase de compilação
 echo "Compilando código fonte (/src/cpp*)..."
@@ -118,7 +118,6 @@ for ((i = 1; i <= $ITERACOES; i++)); do
                             echo "ID ${progresso}" >> data/output/erros.txt
                         fi
                     done
-                    exit 1
                 done
             done
         done
@@ -126,4 +125,4 @@ for ((i = 1; i <= $ITERACOES; i++)); do
 done
 
 echo ""
-echo "Programa encerrado com $erros! Resultados salvos em /data/output/"
+echo "Programa encerrado com $erros erros! Resultados salvos em /data/output/"

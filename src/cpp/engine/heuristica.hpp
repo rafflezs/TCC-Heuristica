@@ -17,6 +17,7 @@ private:
     int m_qtd_rept_busca_local{1};
     int m_peso_janela{0};
     int m_peso_sexto{0};
+    int m_id_melhor_solucao{0};
     std::chrono::_V2::steady_clock::time_point *m_tempo_inicial;
     GravarArquivo output{};
 
