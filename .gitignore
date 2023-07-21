@@ -5,5 +5,9 @@
 /test/exe
 /desktop.ini
 /todo.md
-data/output
-data/og-sol/
+**/data/output/**/*.tex*
+**/data/output/**/**/*.tex*
+**/data/output/**/**/**/*.tex*
+**/data/output/**/*.pdf*
+**/data/output/**/**/*.pdf*
+**/data/output/**/**/**/*.pdf*
